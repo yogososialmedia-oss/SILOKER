@@ -15,21 +15,20 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item active">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Basic">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item active">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Basic">Verifikasi Perusahaan</div>
             </a>
         </li>
-
         <li class="menu-item active">
-            <a href="index-perusahaan.html" class="menu-link">
+            <a href="{{ route('index-perusahaan') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div class="text-truncate" data-i18n="Basic">Profile</div>
             </a>
@@ -41,19 +40,19 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="daftar-loker-perusahaan.html" class="menu-link">
+                    <a href="{{ route('daftar-loker-perusahaan') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Analytics">Daftar Loker</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="input-loker-perusahaan.html" class="menu-link">
+                    <a href="{{ route('input-loker-perusahaan') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Analytics">Input Loker</div>
                     </a>
                 </li>
             </ul>
         </li>
         <li class="menu-item">
-            <a href="daftar-apply-perusahaan.html" class="menu-link">
+            <a href="{{ route('history-apply-perusahaan') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-pin"></i>
                 <div class="text-truncate" data-i18n="Basic">History Apply</div>
             </a>

@@ -22,20 +22,18 @@
                             <table class="table mb-0" id="daftar-loker-perusahaan">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Tanggal</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Jabatan</th>
                                         <th>Tipe</th>
                                         <th>Status</th>
-                                        <th>No.WA</th>
+                                        <th>No.Telp</th>
                                         <th>Email</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
                                         <td>12/12/2025</td>
                                         <td>Cititex</td>
                                         <td>Admin</td>
@@ -49,16 +47,18 @@
                                                     data-bs-toggle="dropdown"><i
                                                         class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                                    <a class="dropdown-item" href="{{ route('edit-loker-perusahaan') }}"><i
                                                             class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="icon-base bx bx-show me-2"></i>Lihat</a>
+                                                    <a class="dropdown-item" href="{{ route('detail-loker-perusahaan') }}"><i
+                                                            class="icon-base bx bx-show me-2"></i>Detail Loker</a>
+                                                    <a class="dropdown-item" href="{{ route('daftar-apply-perusahaan') }}"><i
+                                                            class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
                                                 </div>
                                             </div>
                                         </td>
+                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
                                         <td>12/11/2025</td>
                                         <td>Warga Lokal</td>
                                         <td>Operational</td>
@@ -72,10 +72,12 @@
                                                     data-bs-toggle="dropdown"><i
                                                         class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                                    <a class="dropdown-item" href="{{ route('edit-loker-perusahaan') }}"><i
                                                             class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="icon-base bx bx-show me-2"></i>Lihat</a>
+                                                    <a class="dropdown-item" href="{{ route('detail-loker-perusahaan') }}"><i
+                                                            class="icon-base bx bx-show me-2"></i>Detail Loker</a>
+                                                    <a class="dropdown-item" href="{{ route('daftar-apply-perusahaan') }}"><i
+                                                            class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
                                                 </div>
                                             </div>
                                         </td>

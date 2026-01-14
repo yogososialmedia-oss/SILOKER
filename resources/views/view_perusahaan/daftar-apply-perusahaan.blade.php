@@ -25,9 +25,8 @@
                                 <th>Nama</th>
                                 <th>Perusahaan</th>
                                 <th>Jabatan</th>
-                                <th>No.Telp</th>
-                                <th>Email</th>
                                 <th>Status</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tr>
@@ -36,9 +35,20 @@
                             <td>I Made Yogo Sujanardhana</td>
                             <td>Cititex</td>
                             <td>Admin</td>
-                            <td>082247275901</td>
-                            <td>yogogaming@gmail.com</td>
                             <td><span class="badge bg-label-info me-1">Diterima</span></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown"><i
+                                            class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href=""><i
+                                                class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="icon-base bx bx-show me-2"></i>Update Status</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tbody>
                         </tbody>
