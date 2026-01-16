@@ -44,8 +44,10 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href=""><i
                                                 class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="icon-base bx bx-show me-2"></i>Update Status</a>
+                                        <button type="button" class="dropdown-item"
+                                            data-bs-toggle="modal" data-bs-target="#modalCenter"
+                                            href="javascript:void(0);"><i class="icon-base bx bx-show me-2"></i>Update
+                                            Status</button>
                                     </div>
                                 </div>
                             </td>
@@ -58,6 +60,42 @@
         </div>
 
         <!-- / Content -->
+
+        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-6">
+                                <label for="nameWithTitle" class="form-label">Name</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                            </div>
+                        </div>
+                        <div class="row g-6">
+                            <div class="col mb-0">
+                                <label for="emailWithTitle" class="form-label">Email</label>
+                                <input type="email" id="emailWithTitle" class="form-control"
+                                    placeholder="xxxx@xxx.xx" />
+                            </div>
+                            <div class="col mb-0">
+                                <label for="dobWithTitle" class="form-label">DOB</label>
+                                <input type="date" id="dobWithTitle" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
@@ -75,4 +113,6 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
+
+
 </x-admin-perusahaan.layout>
