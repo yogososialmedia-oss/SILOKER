@@ -4,14 +4,43 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-                <div class="col-12 mb-5">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top" alt="...">
+                <div class="col-lg-4 mb-5">
+                    <div class="card ">
+                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top"
+                            alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="text-end mb-1">11 JAN 2026 - 21 JAN 2026 </p>
+                            <h4 class="card-title mb-1">Cititex</h4>
+                            <h5 class="card-title mb-1">Admin</h5>
+                            <H6 class="mb-1">Job Opportunity</H6>
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-location-plus icon-sm"></i>
+                                <span>Jakarta</span>
+                            </p>
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-buildings icon-sm"></i>
+                                <span>Work From Office</span>
+                            </p>
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-book-reader icon-sm"></i>
+                                <span>Minimal Pendidikan S1</span>
+                            </p>
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-show icon-sm"></i>
+                                <span>50</span>
+                            </p>
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-file icon-sm"></i>
+                                <span>30</span>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
                         </div>
                     </div>
                 </div>

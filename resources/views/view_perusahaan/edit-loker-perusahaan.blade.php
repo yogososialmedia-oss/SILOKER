@@ -58,7 +58,7 @@
                                     <input type="text" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-4">
                                     <label for="defaultSelect" class="form-label">Model Kerja</label>
                                     <select id="defaultSelect" class="form-select">
                                         <option>Pilih model kerja</option>
@@ -67,7 +67,7 @@
                                         <option value="3">Hybrid</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-4">
                                     <label for="defaultSelect" class="form-label">Tipe loker</label>
                                     <select id="defaultSelect" class="form-select">
                                         <option>Pilih tipe loker</option>
@@ -75,13 +75,27 @@
                                         <option value="2">Internship</option>
                                     </select>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-4 mb-4">
+                                    <label for="defaultSelect" class="form-label">Minimal Pendidikan</label>
+                                    <select id="defaultSelect" class="form-select">
+                                        <option>Pilih Minimal Pendidikan</option>
+                                        <option value="1">Minimal Pendidikan SMA/ Sederajat</option>
+                                        <option value="2">Minimal Pendidikan D1</option>
+                                        <option value="3">Minimal Pendidikan D2</option>
+                                        <option value="4">Minimal Pendidikan D3</option>
+                                        <option value="5">Minimal Pendidikan S1</option>
+                                        <option value="6">Minimal Pendidikan S2</option>
+                                        <option value="7">Minimal Pendidikan S3</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-12 mb-4">
                                     <label for="exampleFormControlTextarea1" class="form-label">Example
                                         textarea</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                                 <div class="col-mb text-end">
-                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    <button type="button" class="btn btn-primary">Upload</button>
                                 </div>
                             </div>
                         </div>
