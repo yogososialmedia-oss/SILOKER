@@ -29,30 +29,31 @@
                                 <th>Opsi</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td>01/02/2026</td>
-                            <td>220030087</td>
-                            <td>I Made Yogo Sujanardhana</td>
-                            <td>Cititex</td>
-                            <td>Admin</td>
-                            <td><span class="badge bg-label-info me-1">Diterima</span></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"><i
-                                            class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href=""><i
-                                                class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
-                                        <button type="button" class="dropdown-item"
-                                            data-bs-toggle="modal" data-bs-target="#modalCenter"
-                                            href="javascript:void(0);"><i class="icon-base bx bx-show me-2"></i>Update
-                                            Status</button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+
                         <tbody>
+                            <tr>
+                                <td>01/02/2026</td>
+                                <td>220030087</td>
+                                <td>I Made Yogo Sujanardhana</td>
+                                <td>Cititex</td>
+                                <td>Admin</td>
+                                <td><span class="badge bg-label-info me-1">Diterima</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown"><i
+                                                class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href=""><i
+                                                    class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#modalCenter" href="javascript:void(0);"><i
+                                                    class="icon-base bx bx-show me-2"></i>Update
+                                                Status</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -65,33 +66,58 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                        <h5 class="modal-title" id="modalCenterTitle">Update Status</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-6">
-                                <label for="nameWithTitle" class="form-label">Name</label>
-                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                                <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
+                                <select class="form-select" id="exampleFormControlSelect1"
+                                    aria-label="Default select example">
+                                    <option selected>Pilih Status</option>
+                                    <option value="1">Interview</option>
+                                    <option value="2">Tidak Diterima</option>
+                                    <option value="3">Diterima</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="row g-6">
-                            <div class="col mb-0">
-                                <label for="emailWithTitle" class="form-label">Email</label>
-                                <input type="email" id="emailWithTitle" class="form-control"
-                                    placeholder="xxxx@xxx.xx" />
+                        <div class="alert alert-info" role="alert">
+                            Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait update status
+                            pencari kerja.
+                        </div>
+                        <div class="col mb-6">
+                            <label for="exampleFormControlTextarea1" class="form-label">Tambahkan pesan</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="row g-6 extra-form">
+                            <div class="col mb-1">
+                                <label class="form-label">Tanggal</label>
+                                <input type="date" class="form-control" />
                             </div>
-                            <div class="col mb-0">
-                                <label for="dobWithTitle" class="form-label">DOB</label>
-                                <input type="date" id="dobWithTitle" class="form-control" />
+                            <div class="col mb-1">
+                                <label class="form-label">Waktu</label>
+                                <input type="time" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row g-6 extra-form">
+                            <div class="col mb-1">
+                                <label class="form-label">No.Telp</label>
+                                <input type="text" class="form-control" placeholder="Tambahkan nomor telepon" />
+                            </div>
+                            <div class="col mb-1">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" class="form-control" placeholder="Tambahkan alamat" />
                             </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary">Update Status</button>
                     </div>
                 </div>
             </div>
@@ -114,5 +140,18 @@
     </div>
     <!-- Content wrapper -->
 
+    @push('scripjs')
+        <script>
+            document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
+                const extraForms = document.querySelectorAll('.extra-form');
+                const selectedValue = this.value;
 
+                if (selectedValue == "2") { // Tidak Diterima
+                    extraForms.forEach(el => el.style.display = 'none');
+                } else {
+                    extraForms.forEach(el => el.style.display = 'flex');
+                }
+            });
+        </script>
+    @endpush
 </x-admin-perusahaan.layout>
