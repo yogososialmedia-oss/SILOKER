@@ -16,3 +16,4 @@ Route::view('/test5','view_perusahaan.daftar-loker-perusahaan')->name('daftar-lo
 Route::view('/test6','view_perusahaan.edit-loker-perusahaan')->name('edit-loker-perusahaan');
 Route::view('/test7','view_perusahaan.daftar-apply-perusahaan')->name('daftar-apply-perusahaan');
 Route::view('/test8','view_perusahaan.detail-loker-perusahaan')->name('detail-loker-perusahaan');
+Route::view('/test9','view_perusahaan.detail-apply-perusahaan')->name('detail-apply-perusahaan');
