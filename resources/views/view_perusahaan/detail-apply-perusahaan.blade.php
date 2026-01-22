@@ -10,32 +10,32 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan nama perusahaan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan jabatan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Link.Id</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan jabatan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (Jika Mahasiswa STIKOM )</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan jabatan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan email perusahaan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No.Telp</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan nomor perusahaan">
+                                    <input type="text" class="form-control" placeholder="">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">

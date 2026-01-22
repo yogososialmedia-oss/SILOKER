@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No.Telp</label>
-                                    <input type="text" class="form-control" placeholder="Tambahkan nomor perusahaan">
+                                    <input type="text" class="form-control" placeholder="Tambahkan nomor telepon perusahaan">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">

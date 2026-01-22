@@ -24,10 +24,12 @@
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="index-perusahaan.html">Tentang Perusahaan</a>
+                        <a class="navbar-brand" href="index-perusahaan.html">Tentang
+                          Perusahaan</a>
                       </li>
                       <li class="nav-item">
-                        <a class="navbar-brand" href="lowongan-kerja-profile-perusahaan.html">Lowongan Kerja</a>
+                        <a class="navbar-brand" href="loker-profile-perusahaan.blade.php">Lowongan
+                          Kerja</a>
                       </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -37,6 +39,145 @@
                     </ul>
                   </div>
               </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-12  mb-5">
+          <div class="row">
+            <div class="col-6 mb-5">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="text-end fs-9">11 Jan 2026 - 21 Jan 2026 </p>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="row">
+                        <div class="col-3">
+                          <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="card-img" alt="">
+                        </div>
+                        <div class="col-8">
+                          <h3 class="mb-1">DEYSTORY</h3>
+                          <P class="mb-1">Job Opportunity</P>
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-location-plus icon-sm"></i>
+                                <span>Jakarta</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <h3>Administrasi</h1>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-buildings icon-sm"></i>
+                                <span>Work From Office</span>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-book-reader icon-sm"></i>
+                                <span>Minimal Pendidikan S1</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-5">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="text-end fs-9">11 Jan 2026 - 21 Jan 2026 </p>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="row">
+                        <div class="col-3">
+                          <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="card-img" alt="">
+                        </div>
+                        <div class="col-8">
+                          <h3 class="mb-1">DEYSTORY</h3>
+                          <P class="mb-1">Job Opportunity</P>
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-location-plus icon-sm"></i>
+                                <span>Jakarta</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <h3>Administrasi</h1>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-buildings icon-sm"></i>
+                                <span>Work From Office</span>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-book-reader icon-sm"></i>
+                                <span>Minimal Pendidikan S1</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mb-5">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="text-end fs-9">11 Jan 2026 - 21 Jan 2026 </p>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="row">
+                        <div class="col-3">
+                          <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="card-img" alt="">
+                        </div>
+                        <div class="col-8">
+                          <h3 class="mb-1">DEYSTORY</h3>
+                          <P class="mb-1">Job Opportunity</P>
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-location-plus icon-sm"></i>
+                                <span>Jakarta</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <h3>Administrasi</h1>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-buildings icon-sm"></i>
+                                <span>Work From Office</span>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-book-reader icon-sm"></i>
+                                <span>Minimal Pendidikan S1</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

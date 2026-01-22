@@ -9,7 +9,7 @@
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top"
                             alt="...">
                         <div class="card-body">
-                            <p class="text-end mb-1">11 JAN 2026 - 21 JAN 2026 </p>
+                            <p class="text-end mb-1 fs-9">11 Jan 2026 - 21 Jan 2026 </p>
                             <h4 class="card-title mb-1">Cititex</h4>
                             <h5 class="card-title mb-1">Admin</h5>
                             <H6 class="mb-1">Job Opportunity</H6>
