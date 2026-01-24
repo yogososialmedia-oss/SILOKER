@@ -10,6 +10,7 @@ class HomeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    // Ini Fungsi Index
     {
         return view("view_admin.home_admin");
 
