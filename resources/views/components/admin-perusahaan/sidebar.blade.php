@@ -40,12 +40,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('daftar-loker-perusahaan') }}" class="menu-link">
+                    <a href="{{ route('perusahaan.loker.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Analytics">Daftar Loker</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('input-loker-perusahaan') }}" class="menu-link">
+                    <a href="{{ route('perusahaan.loker.create') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Analytics">Input Loker</div>
                     </a>
                 </li>

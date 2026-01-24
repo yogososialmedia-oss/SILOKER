@@ -22,7 +22,6 @@
                             <table class="table mb-0" id="daftar-loker-perusahaan">
                                 <thead>
                                     <tr>
-                                        <th>Tanggal</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Jabatan</th>
                                         <th>Tipe</th>
@@ -33,14 +32,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ( $loker as $data_loker )
                                     <tr>
-                                        <td>12/12/2025</td>
-                                        <td>Cititex</td>
-                                        <td>Admin</td>
-                                        <td>Job Opportunity</td>
-                                        <td><span class="badge bg-label-info me-1">Open</span></td>
-                                        <td>082348945873</td>
-                                        <td>cititex@gmail.com</td>
+                                        <td>{{ $data_loker->perusahaanMitra->nama_perusahaan}}</td>
+                                        <td>{{ $data_loker->jabatan }}</td>
+                                        <td>{{ $data_loker->tipe_loker }}</td>
+                                        <td><span class="badge bg-label-warning me-1">Closed</span>
+                                        </td>
+                                        <td>{{ $data_loker->perusahaanMitra->no_telp_perusahaan }}</td>
+                                        <td>{{ $data_loker->perusahaanMitra->email_perusahaan }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -51,37 +51,14 @@
                                                             class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
                                                     <a class="dropdown-item" href="{{ route('detail-loker-perusahaan') }}"><i
                                                             class="icon-base bx bx-show me-2"></i>Detail Loker</a>
-                                                    <a class="dropdown-item" href="{{ route('daftar-apply-perusahaan') }}"><i
-                                                            class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>12/11/2025</td>
-                                        <td>Warga Lokal</td>
-                                        <td>Operational</td>
-                                        <td>Job Opportunity</td>
-                                        <td><span class="badge bg-label-warning me-1">Close</span></td>
-                                        <td>0825678092</td>
-                                        <td>wargalokal@gmail.com</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown"><i
-                                                        class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('edit-loker-perusahaan') }}"><i
-                                                            class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="{{ route('detail-loker-perusahaan') }}"><i
-                                                            class="icon-base bx bx-show me-2"></i>Detail Loker</a>
-                                                    <a class="dropdown-item" href="{{ route('daftar-apply-perusahaan') }}"><i
+                                                    <a class="dropdown-item" href="{{ route('perusahaan.apply.index') }}"><i
                                                             class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>

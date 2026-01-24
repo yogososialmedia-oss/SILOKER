@@ -31,12 +31,13 @@
                         </thead>
 
                         <tbody>
+                            @foreach ( $apply as $data_apply )
                             <tr>
-                                <td>01/02/2026</td>
-                                <td>220030087</td>
+                                <td>{{ $data_apply->tanggal_apply }}</td>
+                                <td>nim</td>
                                 <td>I Made Yogo Sujanardhana</td>
                                 <td>Cititex</td>
-                                <td>Admin</td>
+                                <td>{{ $data_apply->loker->jabatan }}</td>
                                 <td><span class="badge bg-label-info me-1">Diterima</span></td>
                                 <td>
                                     <div class="dropdown">
@@ -54,6 +55,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
