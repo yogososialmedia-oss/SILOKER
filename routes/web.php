@@ -23,3 +23,7 @@ Route::view('/test6','view_perusahaan.edit-loker-perusahaan')->name('edit-loker-
 Route::view('/test7','view_perusahaan.daftar-apply-perusahaan')->name('daftar-apply-perusahaan');
 Route::view('/test8','view_perusahaan.detail-loker-perusahaan')->name('detail-loker-perusahaan');
 Route::view('/test9','view_perusahaan.detail-apply-perusahaan')->name('detail-apply-perusahaan');
+
+Route::view('/test10','view_admin.verifikasi-perusahaan')->name('verifikasi-perusahaan');
+Route::view('/test11','view_admin.detail-verifikasi-perusahaan')->name('detail-verifikasi-perusahaan');
+Route::view('/test12','view_admin.login-admin')->name('login-admin');
