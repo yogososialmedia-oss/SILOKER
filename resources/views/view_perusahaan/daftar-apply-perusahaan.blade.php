@@ -1,4 +1,4 @@
-<x-admin-perusahaan.layout>
+<x-admin_perusahaan.layout>
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
@@ -155,4 +155,4 @@
             });
         </script>
     @endpush
-</x-admin-perusahaan.layout>
+</x-admin_perusahaan.layout>

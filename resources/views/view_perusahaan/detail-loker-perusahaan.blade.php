@@ -1,4 +1,4 @@
-<x-admin-perusahaan.layout>
+<x-admin_perusahaan.layout>
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
@@ -65,4 +65,4 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-</x-admin-perusahaan.layout>
+</x-admin_perusahaan.layout>

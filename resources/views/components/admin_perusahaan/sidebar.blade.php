@@ -16,13 +16,13 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Basic">Dashboard</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{{ route('verifikasi-perusahaan') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Basic">Verifikasi Perusahaan</div>
             </a>

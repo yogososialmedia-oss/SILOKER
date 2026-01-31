@@ -1,4 +1,4 @@
-<x-admin-perusahaan.layout>
+<x-admin_perusahaan.layout>
   <!-- Content wrapper -->
   <div class="content-wrapper">
     <!-- Content -->
@@ -24,17 +24,17 @@
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="index-perusahaan.html">Tentang
+                        <a class="navbar-brand" href="{{ route('index-perusahaan') }}">Tentang
                           Perusahaan</a>
                       </li>
                       <li class="nav-item">
-                        <a class="navbar-brand" href="loker-profile-perusahaan.blade.php">Lowongan
+                        <a class="navbar-brand" href="{{ route('loker-profile-perusahaan') }}">Lowongan
                           Kerja</a>
                       </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="edit-profile-perusahaan.html">Edit Profile</a>
+                        <a class="navbar-brand" href="{{ route('edit-profile-perusahaan') }}">Edit Profile</a>
                       </li>
                     </ul>
                   </div>
@@ -201,4 +201,4 @@
     <div class="content-backdrop fade"></div>
   </div>
   <!-- Content wrapper -->
-</x-admin-perusahaan.layout>
+</x-admin_perusahaan.layout>

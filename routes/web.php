@@ -27,3 +27,6 @@ Route::view('/test9','view_perusahaan.detail-apply-perusahaan')->name('detail-ap
 Route::view('/test10','view_admin.verifikasi-perusahaan')->name('verifikasi-perusahaan');
 Route::view('/test11','view_admin.detail-verifikasi-perusahaan')->name('detail-verifikasi-perusahaan');
 Route::view('/test12','view_admin.login-admin')->name('login-admin');
+Route::view('/test13','view_admin.dashboard')->name('dashboard');
+
+Route::view('/test14','view_pencari_kerja.index-pencari-kerja')->name('index-pencari-kerja');

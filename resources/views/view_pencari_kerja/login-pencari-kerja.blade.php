@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Admin</title>
+    <title>Login Pencari Kerja</title>
 
     <meta name="description" content="" />
 
@@ -59,7 +59,7 @@
                 <div class="card px-sm-6 px-0">
                     <div class="card-body">
                         <div class="app-brand justify-content-center mb-6" >
-                                <a class="app-brand-text demo text-heading fw-bold">Login Perusahaan</a>
+                                <a class="app-brand-text demo text-heading fw-bold">Login Pencari Kerja</a>
                         </div>
                         <form id="formAuthentication" class="mb-6" action="index.html">
                             <div class="mb-6">
@@ -89,6 +89,13 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
                         </form>
+
+                        <p class="text-center">
+                            <span>New on our platform?</span>
+                            <a href="auth-register-basic.html">
+                                <span>Create an account</span>
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <!-- /Register -->

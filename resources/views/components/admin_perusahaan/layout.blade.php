@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{ url('/admin-perusahaan/assets/') }}"
+<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{ url('/admin_perusahaan/assets/') }}"
     data-template="vertical-menu-template-free">
 
 <head>
@@ -12,7 +12,7 @@
 
     <meta name="description" content="" />
     
-    @include('impor.admin-perusahaan.css')
+    @include('impor.admin_perusahaan.css')
 
 
 
@@ -25,9 +25,9 @@
         <div class="layout-container">
 
             <!-- Layout container -->
-            <x-admin-perusahaan.sidebar>
+            <x-admin_perusahaan.sidebar>
                 
-            </x-admin-perusahaan.sidebar>
+            </x-admin_perusahaan.sidebar>
             <div class="layout-page">
                 <!-- Navbar -->
 
@@ -57,7 +57,7 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
-    @include('impor.admin-perusahaan.js')
+    @include('impor.admin_perusahaan.js')
     @stack('scripjs')
 </body>
 
