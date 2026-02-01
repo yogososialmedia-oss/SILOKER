@@ -11,7 +11,7 @@
     <title>Career Center</title>
 
     <meta name="description" content="" />
-    
+
     @include('impor.admin_perusahaan.css')
 
 
@@ -19,19 +19,19 @@
 </head>
 
 <body>
-            {{-- navbar --}}
-            <x-pencari_kerja.navbar>
-                
-            </x-pencari_kerja.navbar>
+    {{-- navbar --}}
+    <x-pencari_kerja.navbar>
 
-                {{ $slot }}
-            <!-- / Layout page -->
+    </x-pencari_kerja.navbar>
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+    {{ $slot }}
+    <!-- / Layout page -->
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
 
     @include('impor.admin_perusahaan.js')
     @stack('scripjs')
-</body>
+
 
 </html>

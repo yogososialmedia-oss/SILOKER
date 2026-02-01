@@ -29,4 +29,4 @@ Route::view('/test11','view_admin.detail-verifikasi-perusahaan')->name('detail-v
 Route::view('/test12','view_admin.login-admin')->name('login-admin');
 Route::view('/test13','view_admin.dashboard')->name('dashboard');
 
-Route::view('/test14','view_pencari_kerja.index-pencari-kerja')->name('index-pencari-kerja');
+Route::view('/test14','view_pencari_kerja.loker')->name('loker');

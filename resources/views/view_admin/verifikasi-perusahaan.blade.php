@@ -42,7 +42,8 @@
                                             data-bs-toggle="dropdown"><i
                                                 class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('detail-verifikasi-perusahaan') }}"><i
+                                            <a class="dropdown-item"
+                                                href="{{ route('detail-verifikasi-perusahaan') }}"><i
                                                     class="icon-base bx bx-edit-alt me-2"></i>Detail Verifikasi</a>
                                             <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#modalCenter" href="javascript:void(0);"><i
@@ -58,7 +59,6 @@
         </div>
 
         <!-- / Content -->
-
         <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -69,63 +69,68 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-6">
-                                <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
-                                <select class="form-select" id="exampleFormControlSelect1"
-                                    aria-label="Default select example">
-                                    <option selected>Pilih Status</option>
-                                    <option value="1">Belum Terverifikasi</option>
-                                    <option value="2">Terverifikasi</option>
-                                    <option value="3">Verifikasi Gagal</option>
-                                </select>
+                                <form  method="POST">
+                                    @csrf
+                                    <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
+                                    <select class="form-control" name="Status" id="exampleFormControlSelect1"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Status</option>
+                                        <option value="Belum Terverifikasi">Belum Terverifikasi</option>
+                                        <option value="Terverifikasi">Terverifikasi</option>
+                                        <option value="Verifikasi Gagal">Verifikasi Gagal</option>
+                                    </select>
                             </div>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait verifikasiperusahaan.
+                            Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait
+                            verifikasiperusahaan.
                         </div>
                         <div class="col mb-6">
                             <label for="exampleFormControlTextarea1" class="form-label">Tambahkan pesan</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" name="Pesan" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">Update Status</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">Update Status</button>
+                        </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl">
+                    <div
+                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©2026 Yogo & Wahyu
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
         </div>
+        <!-- Content wrapper -->
 
-        <!-- Footer -->
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl">
-                <div
-                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">
-                        ©2026 Yogo & Wahyu
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- / Footer -->
+        @push('scripjs')
+            <script>
+                document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
+                    const extraForms = document.querySelectorAll('.extra-form');
+                    const selectedValue = this.value;
 
-        <div class="content-backdrop fade"></div>
-    </div>
-    <!-- Content wrapper -->
-
-    @push('scripjs')
-        <script>
-            document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
-                const extraForms = document.querySelectorAll('.extra-form');
-                const selectedValue = this.value;
-
-                if (selectedValue == "2") { // Tidak Diterima
-                    extraForms.forEach(el => el.style.display = 'none');
-                } else {
-                    extraForms.forEach(el => el.style.display = 'flex');
-                }
-            });
-        </script>
-    @endpush
+                    if (selectedValue == "2") { // Tidak Diterima
+                        extraForms.forEach(el => el.style.display = 'none');
+                    } else {
+                        extraForms.forEach(el => el.style.display = 'flex');
+                    }
+                });
+            </script>
+        @endpush
 </x-admin_perusahaan.layout>

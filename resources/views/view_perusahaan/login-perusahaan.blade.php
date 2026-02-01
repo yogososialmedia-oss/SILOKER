@@ -61,7 +61,8 @@
                         <div class="app-brand justify-content-center mb-6" >
                                 <a class="app-brand-text demo text-heading fw-bold">Login Admin</a>
                         </div>
-                        <form id="formAuthentication" class="mb-6" action="index.html">
+                        <form id="formAuthentication" class="mb-6" action="" method="POST">
+                            @csrf
                             <div class="mb-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email-username"

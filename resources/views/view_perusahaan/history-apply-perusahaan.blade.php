@@ -30,17 +30,17 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td>01/02/2026</td>
-                            <td>220030087</td>
-                            <td>I Made Yogo Sujanardhana</td>
-                            <td>Cititex</td>
-                            <td>Admin</td>
-                            <td>082247275901</td>
-                            <td>yogogaming@gmail.com</td>
-                            <td><span class="badge bg-label-info me-1">Diterima</span></td>
-                        </tr>
                         <tbody>
+                            <tr>
+                                <td>01/02/2026</td>
+                                <td>220030087</td>
+                                <td>I Made Yogo Sujanardhana</td>
+                                <td>Cititex</td>
+                                <td>Admin</td>
+                                <td>082247275901</td>
+                                <td>yogogaming@gmail.com</td>
+                                <td><span class="badge bg-label-info me-1">Diterima</span></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

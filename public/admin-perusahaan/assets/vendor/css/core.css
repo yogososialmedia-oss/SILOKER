@@ -27883,3 +27883,6 @@ body:not(.modal-open) .layout-content-navbar .layout-navbar {
   --bs-footer-link-color: var(--bs-body-color);
   --bs-footer-brand-color: var(--bs-heading-color);
 }
+.content-wrapper-user {
+    padding-top: 70px; /* sesuaikan tinggi navbar */
+}
