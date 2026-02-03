@@ -41,9 +41,12 @@
                     <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
                         <ul class="navbar-nav flex-row align-items-center ms-md-auto">
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="dropdown-item" href="javascript:void(0);">
-                                    <i class="icon-base bx bx-power-off icon-md me-3"></i><span>Log Out</span>
-                                </a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item" >
+                                        <i class="icon-base bx bx-power-off icon-md me-3"></i><span>Log Out</span>
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>

@@ -21,6 +21,18 @@ class DatabaseSeeder extends Seeder
             LokerSeeder::class,
         ]);
 
+        $this->call([
+            PencariKerjaSeeder::class,
+        ]);
+        
+        $this->call([
+            AdminSeeder::class,
+        ]);
+
+        $this->call([
+            ApplySeeder::class,
+        ]);
+
         // User::factory(10)->create();
 
         // User::factory()->create([

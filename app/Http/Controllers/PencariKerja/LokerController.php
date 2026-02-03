@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PencariKerja;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class LokerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    // Ini Fungsi Index
     {
-        return view("view_admin.home_admin");
-
+        return view('view_pencari_kerja.loker');
     }
 
     /**

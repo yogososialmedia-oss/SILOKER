@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Perusahaan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PerusahaanMitraController extends Controller
+class IndexPerusahaanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('view_perusahaan.index-perusahaan');
     }
 
     /**

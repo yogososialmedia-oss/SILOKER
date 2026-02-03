@@ -1,17 +1,55 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Perusahaan\ApplyController;
-use App\Http\Controllers\Perusahaan\LokerController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerController;
+use App\Http\Controllers\Perusahaan\ApplyController as PerusahaanApplyController;
+use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
+use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
 use App\Models\Apply;
+use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/home', [HomeController::class,'index'])->name('home');
-Route::get('/perusahaan/loker', [LokerController::class, 'index'])->name('perusahaan.loker.index');
-Route::get('/perusahaan/loker/create', [LokerController::class, 'create'])->name('perusahaan.loker.create');
-Route::get('/perusahaan/apply', [ApplyController::class, 'index'])->name('perusahaan.apply.index');
+Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])->name('pencarikerja.loker.index');
+
+
+
+
+Route::middleware(['isPerusahaanMitra'])->group(function () {
+    Route::get('/perusahaan/home', [IndexPerusahaanController::class,'index'])->name('perusahaan.index');
+    Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker.index');
+    Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
+    Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply.index');
+});
+Route::middleware(['isAdmin'])->group(function () {
+    Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');
+});
+Route::middleware(['isPencariKerja'])->group(function () {
+    
+});
+
+Route::middleware('guestPencariKerja')->group(function () {
+    
+    Route::get('/pencarikerja/login', [LoginController::class,'showLoginFormPencariKerja'])->name('pencarikerja.login');
+    Route::post('/pencarikerja/login', [LoginController::class,'LoginPencariKerja'])->name('pencarikerja.login.post');
+});
+Route::middleware('guestPerusahaanMitra')->group(function () {
+    
+    Route::get('/perusahaan/login', [LoginController::class,'showLoginFormPerusahaan'])->name('perusahaan.login');
+    Route::post('/perusahaan/login', [LoginController::class,'loginPerusahaanMitra'])->name('perusahaan.login.post');
+    
+});
+Route::middleware('guestAdmin')->group(function () {
+    Route::get('/admin/login', [LoginController::class,'showLoginFormAdmin'])->name('admin.login');
+    Route::post('/admin/login', [LoginController::class,'loginAdmin'])->name('admin.login.post');
+    
+});
+
+Route::post('/logout', [LoginController::class,'logout'])->name('logout')->middleware('authAny');
+
 
 Route::view('/test','view_perusahaan.history-apply-perusahaan')->name('history-apply-perusahaan');
 Route::view('/test1','view_perusahaan.loker-profile-perusahaan')->name('loker-profile-perusahaan');
