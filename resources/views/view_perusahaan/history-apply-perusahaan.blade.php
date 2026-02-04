@@ -60,9 +60,9 @@
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
+        <!-- / Footer -->   
 
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-</x-admin_perusahaan.layout>
+</x-admin_perusahaan.layout>    

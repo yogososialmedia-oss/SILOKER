@@ -7,13 +7,16 @@
         <div class="col-12 mb-5">
           <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
             <!-- Thumbnail / Banner -->
-            <img src="../assets/img/backgrounds/back.png" class="card-img-top" style="height:280px; object-fit:cover;">
+            <img src="{{ asset ('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
 
             <!-- Overlay Logo & Nama -->
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-              <img src="../assets/img/illustrations/girl-doing-yoga-light.png" class="rounded-circle mb-2"
+              <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
               <h4 class="fw-bold mb-0 text-white">PT Ayam Betutu Bali</h4>
+              <a href="">Verifikasi</a>
+              <a href="">Verifikasi Gagal</a>
+              <p>Terverifikasi</p>
             </div>
             <div class="bg-white p-4">
               <nav class="navbar navbar-expand-lg py-1">

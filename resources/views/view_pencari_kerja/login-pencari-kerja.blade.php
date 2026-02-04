@@ -13,7 +13,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset ('admin-perusahaan/assets/img/favicon/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('admin-perusahaan/assets/img/favicon/favicon.ico')}}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,44 +22,80 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
 
-    <link rel="stylesheet" href="{{ asset ('admin-perusahaan/assets/vendor/fonts/iconify-icons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('admin-perusahaan/assets/vendor/fonts/iconify-icons.css')}}" />
 
     <!-- Core CSS -->
     <!-- build:css assets/vendor/css/theme.css  -->
 
-    <link rel="stylesheet" href="{{ asset ('admin-perusahaan/assets/vendor/css/core.css')}}" />
-    <link rel="stylesheet" href="{{ asset ('admin-perusahaan/assets/css/demo.css')}}" />
+    <link rel="stylesheet" href="{{ asset('admin-perusahaan/assets/vendor/css/core.css')}}" />
+    <link rel="stylesheet" href="{{ asset('admin-perusahaan/assets/css/demo.css')}}" />
 
     <!-- Vendors CSS -->
 
-    <link rel="stylesheet" href="{{ asset ('admin-perusahaan/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet"
+        href="{{ asset('admin-perusahaan/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
     <!-- endbuild -->
 
     <!-- Page CSS -->
     <!-- Page -->
-    <link rel="stylesheet" href="{{ asset ('admin-perusahaan/assets/vendor/css/pages/page-auth.css')}}" />
+    <link rel="stylesheet" href="{{ asset('admin-perusahaan/assets/vendor/css/pages/page-auth.css')}}" />
 
     <!-- Helpers -->
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/js/helpers.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/js/helpers.js')}}"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 
-    <script src="{{ asset ('admin-perusahaan/assets/js/config.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/js/config.js')}}"></script>
 </head>
 
 <body>
-    <!-- Content -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <span class="app-brand-text demo menu-text fw-bold text-white me-5">
+                Career Center
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-7">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbar-ex-7">
+                <div class="navbar-nav me-auto ms-4">
+                    <a class="nav-item nav-link active" href="javascript:void(0)">Home</a>
+                    <a class="nav-item nav-link" href="javascript:void(0)">About</a>
+                    <a class="nav-item nav-link" href="javascript:void(0)">Loker</a>
+                </div>
+                <div class="navbar-nav ms-lg-auto" id="navbar-ex-15">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
+                                data-trigger="hover">Login</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="javascript:void(0)">Admin</a>
+                                <a class="dropdown-item" href="javascript:void(0)">Perusahaan</a>
+                                <a class="dropdown-item" href="javascript:void(0)">Pencari Kerja</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)"><i
+                                    class="icon-base navbar-icon bx bx-user"></i>
+                                Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div>
                 <!-- Register -->
                 <div class="card px-sm-6 px-0">
                     <div class="card-body">
-                        <div class="app-brand justify-content-center mb-6" >
-                                <a class="app-brand-text demo text-heading fw-bold">Login Pencari Kerja</a>
+                        <div class="app-brand justify-content-center mb-6">
+                            <a class="app-brand-text demo text-heading fw-bold">Login Pencari Kerja</a>
                         </div>
                         <form id="formAuthentication" class="mb-6" action="" method="POST">
                             @csrf
@@ -108,14 +144,14 @@
 
     <!-- Core JS -->
 
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/libs/jquery/jquery.js')}}"></script>
 
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/libs/popper/popper.js')}}"></script>
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/js/bootstrap.js')}}"></script>
 
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-    <script src="{{ asset ('admin-perusahaan/assets/vendor/js/menu.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/vendor/js/menu.js')}}"></script>
 
     <!-- endbuild -->
 
@@ -123,7 +159,7 @@
 
     <!-- Main JS -->
 
-    <script src="{{ asset ('admin-perusahaan/assets/js/main.js')}}"></script>
+    <script src="{{ asset('admin-perusahaan/assets/js/main.js')}}"></script>
 
     <!-- Page JS -->
 
