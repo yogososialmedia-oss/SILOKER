@@ -70,3 +70,4 @@ Route::view('/test13','view_admin.dashboard')->name('dashboard');
 
 Route::view('/test14','view_pencari_kerja.loker')->name('loker');
 Route::view('/test15','view_perusahaan.registrasi-perusahaan')->name('registrasi-perusahaan');
+Route::view('/test16','view_pencari_kerja.registrasi-pencari-kerja')->name('registrasi-pencari-kerja');

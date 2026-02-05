@@ -98,85 +98,56 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nama Perusahaan</label>
-                                    <input name="NamaPerusahaan" class="form-control"
-                                        placeholder="Tambahkan nama perusahaan">
+                                    <label class="form-label">Nama</label>
+                                    <input name="NamaPencariKerja" class="form-control"
+                                        placeholder="Tambahkan nama anda">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">No NPWP</label>
-                                    <input name="NoNpwp" class="form-control" placeholder="Tambahkan nomor NPWP">
+                                    <label class="form-label">NIM (jika mahasiswa stikom)</label>
+                                    <input name="Nim" class="form-control"
+                                        placeholder="Tambahkan NIM (jika mahasiswa stikom)">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No.Telp</label>
                                     <input name="NoTelp" class="form-control"
-                                        placeholder="Tambahkan nomor telepon perusahaan">
+                                        placeholder="Tambahkan nomor telepon anda">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <label for="defaultSelect" class="form-label">Provinsi</label>
-                                    <select name="Provinsi" id="defaultSelect" class="form-select">
-                                        <option>Pilih provinsi</option>
-                                        <option value="Bali">Bali</option>
-                                        <option value="Banda Aceh">Banda Aceh</option>
-                                        <option value="Medan">Medan</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label for="defaultSelect" class="form-label">Kabupaten</label>
-                                    <select name="Kabupaten" id="defaultSelect" class="form-select">
-                                        <option>Pilih kabupaten</option>
-                                        <option value="Tabanan">Tabanan</option>
-                                        <option value="Buleleng">Buleleng</option>
-                                        <option value="Badung">Badung</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label for="defaultSelect" class="form-label">Kecamatan</label>
-                                    <select name="Kecamatan" id="defaultSelect" class="form-select">
-                                        <option>Pilih kecamatan</option>
-                                        <option value="Tabanan">Kediri</option>
-                                        <option value="Buleleng">Kerambitan</option>
-                                        <option value="Badung">Selemadeg</option>
-                                    </select>
-                                </div>
                                 <div class="col-md-6 mb-3">
+                                    <label class="form-label">No.Telp</label>
+                                    <input name="NoTelp" class="form-control"
+                                        placeholder="Tambahkan nomor telepon anda">
+                                    <div class="form-text"></div>
+                                </div>
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">Alamat</label>
-                                    <input name="Alamat" type="text" class="form-control">
+                                    <input name="Alamat" type="text" class="form-control"placeholder="Tambahkan alamat anda">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Google Maps</label>
-                                    <input name="GoogleMaps" class="form-control">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Linked.id</label>
+                                    <input name="NoTelp" class="form-control"
+                                        placeholder="Tambahkan link profile linked.id anda">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Logo</label>
-                                    <input name="logo" type="file" class="form-control">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Upload CV</label>
+                                    <input name="UploadCv" type="file" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Banner</label>
-                                    <input name="banner" type="file" class="form-control">
-                                    <div class="form-text"></div>
-                                </div>
-                                <div class="col-md-12 mb-6">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Tentang
-                                        Perusahaan</label>
-                                    <textarea name="TentangPerusahaan" class="form-control"
-                                        id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
+                                
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input name="Email" class="form-control"
-                                        placeholder="Tambahkan alamat email perusahaan">
+                                        placeholder="Tambahkan alamat email anda">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Password</label>
                                     <input name="Password" class="form-control"
-                                        placeholder="Buat password">
+                                        placeholder="Buat password anda">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-mb text-end">
