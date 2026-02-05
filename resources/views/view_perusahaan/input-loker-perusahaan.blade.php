@@ -25,13 +25,15 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
                                         <input name="Email" type="text" class="form-control"
-                                            placeholder="Tambahkan email perusahaan" value="{{ $info_perusahaan->email_perusahaan }}">
+                                            placeholder="Tambahkan email perusahaan"
+                                            value="{{ $info_perusahaan->email_perusahaan }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
                                         <input name="NoTelp" type="text" class="form-control"
-                                            placeholder="Tambahkan nomor telepon perusahaan" value="{{ $info_perusahaan->no_telp_perusahaan }}">
+                                            placeholder="Tambahkan nomor telepon perusahaan"
+                                            value="{{ $info_perusahaan->no_telp_perusahaan }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -54,19 +56,36 @@
                                         <input name="PosterLoker" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Provinsi</label>
-                                        <input name="Provinsi" type="text" class="form-control">
-                                        <div class="form-text"></div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="defaultSelect" class="form-label">Provinsi</label>
+                                        <select name="Provinsi" id="defaultSelect" class="form-select">
+                                            <option>Pilih provinsi</option>
+                                            <option value="Bali">Bali</option>
+                                            <option value="Banda Aceh">Banda Aceh</option>
+                                            <option value="Medan">Medan</option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Kabupaten</label>
-                                        <input name="Kabupaten" type="text" class="form-control">
-                                        <div class="form-text"></div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="defaultSelect" class="form-label">Kabupaten</label>
+                                        <select name="Kabupaten" id="defaultSelect" class="form-select">
+                                            <option>Pilih kabupaten</option>
+                                            <option value="Tabanan">Tabanan</option>
+                                            <option value="Buleleng">Buleleng</option>
+                                            <option value="Badung">Badung</option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Kecamatan</label>
-                                        <input name="Kecamatan" type="text" class="form-control">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="defaultSelect" class="form-label">Kecamatan</label>
+                                        <select name="Kecamatan" id="defaultSelect" class="form-select">
+                                            <option>Pilih kecamatan</option>
+                                            <option value="Tabanan">Kediri</option>
+                                            <option value="Buleleng">Kerambitan</option>
+                                            <option value="Badung">Selemadeg</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Alamat</label>
+                                        <input name="Alamat" type="text" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-4 mb-4">
