@@ -27,32 +27,49 @@
                   <input name="NoTelp" class="form-control">
                   <div class="form-text"></div>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Provinsi</label>
-                  <input name="Provinsi" type="text" class="form-control">
-                  <div class="form-text"></div>
+                <div class="col-md-6 mb-4">
+                  <label for="defaultSelect" class="form-label">Provinsi</label>
+                  <select name="Provinsi" id="defaultSelect" class="form-select">
+                    <option>Pilih provinsi</option>
+                    <option value="Bali">Bali</option>
+                    <option value="Banda Aceh">Banda Aceh</option>
+                    <option value="Medan">Medan</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <label for="defaultSelect" class="form-label">Kabupaten</label>
+                  <select name="Kabupaten" id="defaultSelect" class="form-select">
+                    <option>Pilih kabupaten</option>
+                    <option value="Tabanan">Tabanan</option>
+                    <option value="Buleleng">Buleleng</option>
+                    <option value="Badung">Badung</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <label for="defaultSelect" class="form-label">Kecamatan</label>
+                  <select name="Kecamatan" id="defaultSelect" class="form-select">
+                    <option>Pilih kecamatan</option>
+                    <option value="Tabanan">Kediri</option>
+                    <option value="Buleleng">Kerambitan</option>
+                    <option value="Badung">Selemadeg</option>
+                  </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Kabupaten</label>
-                  <input name="Kabupaten" type="text" class="form-control">
+                  <label class="form-label">Alamat</label>
+                  <input name="Alamat" type="text" class="form-control">
                   <div class="form-text"></div>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Kecamatan</label>
-                  <input name="Kecamatan" type="text" class="form-control">
-                  <div class="form-text"></div>
-                </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label class="form-label">Google Maps</label>
                   <input name="GoogleMaps" class="form-control">
                   <div class="form-text"></div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label class="form-label">Logo</label>
                   <input name="logo" type="file" class="form-control">
                   <div class="form-text"></div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label class="form-label">Banner</label>
                   <input name="banner" type="file" class="form-control">
                   <div class="form-text"></div>

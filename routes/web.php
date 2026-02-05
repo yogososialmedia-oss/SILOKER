@@ -69,3 +69,4 @@ Route::view('/test12','view_admin.login-admin')->name('login-admin');
 Route::view('/test13','view_admin.dashboard')->name('dashboard');
 
 Route::view('/test14','view_pencari_kerja.loker')->name('loker');
+Route::view('/test15','view_perusahaan.registrasi-perusahaan')->name('registrasi-perusahaan');
