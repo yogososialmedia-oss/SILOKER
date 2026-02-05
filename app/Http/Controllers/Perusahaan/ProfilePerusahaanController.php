@@ -53,33 +53,32 @@ class ProfilePerusahaanController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request->all());
+        /**@var \App\Models\PerusahaanMitra $authPerusahaan*/
         $authPerusahaan = Auth::guard('perusahaanmitra')->user();
         $validatedData = $request->validate([
             'NamaPerusahaan' => 'required|string',
-            'alamat' => 'required|string',
+            'Alamat' => 'required|string',
             'Provinsi' => 'nullable|string',
             'Kabupaten' => 'nullable|string',
             'Kecamatan' => 'nullable|string',
             'Email' => 'required|email',
-            'no_telp' => 'required|string',
+            'NoTelp' => 'required|string',
             'NoNpwp' => 'nullable',
             'GoogleMaps' => 'nullable|string',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'TentangPerusahaan' => 'nullable|string',
         ], [
             'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.',
+            'Alamat.required' => 'Alamat wajib diisi.',
             'Provinsi.string' => 'Format Provinsi tidak valid.',
             'Kabupaten.string' => 'Format Kabupaten tidak valid.',
             'Kecamatan.string' => 'Format Kecamatan tidak valid.',
             'Email.required' => 'Email wajib diisi.',
             'Email.email' => 'Format email tidak valid.',
-            'no_telp.required' => 'Nomor Telepon wajib diisi.',
+            'NoTelp.required' => 'Nomor Telepon wajib diisi.',
             'NoNpwp.required' => 'Nomor NPWP wajib diisi.',
             'GoogleMaps.string' => 'Format Google Maps tidak valid.',
-            'logo.required' => 'Logo Perusahaan wajib diunggah.',
             'logo.image' => 'Logo Perusahaan harus berupa gambar.',
             'banner.image' => 'Banner Perusahaan harus berupa gambar.',
             'TentangPerusahaan.string' => 'Format Tentang Perusahaan tidak valid.',
@@ -88,12 +87,12 @@ class ProfilePerusahaanController extends Controller
 
         // Update data perusahaan
         $authPerusahaan->nama_perusahaan = $validatedData['NamaPerusahaan'];
-        $authPerusahaan->alamat = $validatedData['alamat'];
+        $authPerusahaan->alamat_perusahaan = $validatedData['Alamat'];
         $authPerusahaan->provinsi = $validatedData['Provinsi'] ?? $authPerusahaan->provinsi;
         $authPerusahaan->kabupaten = $validatedData['Kabupaten'] ?? $authPerusahaan->kabupaten;
         $authPerusahaan->kecamatan = $validatedData['Kecamatan'] ?? $authPerusahaan->kecamatan;
-        $authPerusahaan->email = $validatedData['Email'];
-        $authPerusahaan->no_telp = $validatedData['no_telp'];
+        $authPerusahaan->email_perusahaan = $validatedData['Email'];
+        $authPerusahaan->no_telp_perusahaan = $validatedData['NoTelp'];
         $authPerusahaan->no_npwp = $validatedData['NoNpwp'];
         $authPerusahaan->google_maps = $validatedData['GoogleMaps'] ?? $authPerusahaan->google_maps;
         $authPerusahaan->tentang_perusahaan = $validatedData['TentangPerusahaan'] ?? $authPerusahaan->tentang_perusahaan;
@@ -119,7 +118,7 @@ class ProfilePerusahaanController extends Controller
             $bannerFile->storeAs('public/banner_perusahaan', $bannerFilename);
             $authPerusahaan->banner_perusahaan = $bannerFilename;
             }
-        // $authPerusahaan->save();
+        $authPerusahaan->save();
 
 
         return redirect()->route('perusahaan.profile')->with('success', 'Profil perusahaan berhasil diperbarui.');

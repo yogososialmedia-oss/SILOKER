@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerController;
@@ -29,6 +30,7 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
 });
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');
+    Route::get('/admin/verifikasi-perusahaan', [VerifikasiPerusahaanController::class,'index'])->name('admin.verifikasi-perusahaan');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     

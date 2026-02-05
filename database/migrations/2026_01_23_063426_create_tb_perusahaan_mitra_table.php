@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('nama_perusahaan');
             $table->string('email_perusahaan')->unique();
+            $table->string('provinsi');
+            $table->string('kabupaten');
+            $table->string('kecamatan');
             $table->string('no_telp_perusahaan');
             $table->text('alamat_perusahaan');
             $table->string('logo')->nullable();
             $table->string('banner_perusahaan')->nullable();
             $table->string('password_perusahaan');
             $table->string('no_npwp');
+            $table->text('google_maps')->nullable();
             $table->text('tentang_perusahaan')->nullable();
             $table->enum('status_akun', ['pending', 'terverifikasi', 'verifikasi_gagal'])->default('pending');
             $table->text('deskripsi_status')->nullable();

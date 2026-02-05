@@ -24,8 +24,11 @@ class PerusahaanMitra extends Authenticatable
         'no_telp_perusahaan',
         'alamat_perusahaan',
         'logo',
+        'banner_perusahaan',
         'password_perusahaan',
         'no_npwp',
+        'tentang_perusahaan',
+        'google_maps',
         'status_akun',
         'deskripsi_status',
     ];

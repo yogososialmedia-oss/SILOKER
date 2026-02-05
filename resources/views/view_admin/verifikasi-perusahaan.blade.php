@@ -30,12 +30,13 @@
                         </thead>
 
                         <tbody>
+                            @foreach($status_akun as $akun)
                             <tr>
-                                <td>01/02/26</td>
-                                <td>Cititex</td>
-                                <td>cititex@gmail.com</td>
-                                <td>0847391</td>
-                                <td><span class="badge bg-label-info me-1">Terverifikasi</span></td>
+                                <td>{{$akun->created_at}}</td>
+                                <td>{{$akun->nama_perusahaan}}</td>
+                                <td>{{$akun->email_perusahaan}}</td>
+                                <td>{{$akun->no_npwp}}</td>
+                                <td><span class="badge bg-label-info me-1">{{$akun->status_akun}}</span></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -52,6 +53,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
