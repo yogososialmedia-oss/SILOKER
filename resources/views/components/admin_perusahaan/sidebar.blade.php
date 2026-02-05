@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('verifikasi-perusahaan') }}" class="menu-link">
+            <a href="{{ route('admin.verifikasi-perusahaan') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Basic">Verifikasi Perusahaan</div>
             </a>
