@@ -43,7 +43,7 @@
                   <textarea name="TentangPerusahaan" id="exampleFormControlTextarea1" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="col-mb text-end">
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary">Edit</button>
                 </div>
               </div>
             </form>

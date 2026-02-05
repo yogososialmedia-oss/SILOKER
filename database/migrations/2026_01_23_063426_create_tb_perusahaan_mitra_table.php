@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('banner_perusahaan')->nullable();
             $table->string('password_perusahaan');
             $table->string('no_npwp');
+            $table->text('tentang_perusahaan')->nullable();
             $table->enum('status_akun', ['pending', 'terverifikasi', 'verifikasi_gagal'])->default('pending');
             $table->text('deskripsi_status')->nullable();
             $table->timestamps();

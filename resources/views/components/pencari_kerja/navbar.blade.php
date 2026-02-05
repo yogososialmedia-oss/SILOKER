@@ -11,7 +11,7 @@
             <div class="navbar-nav me-auto ms-4">
                 <a class="nav-item nav-link active" href="javascript:void(0)">Home</a>
                 <a class="nav-item nav-link" href="javascript:void(0)">About</a>
-                <a class="nav-item nav-link" href="javascript:void(0)">Loker</a>
+                <a class="nav-item nav-link" href="{{ route('loker') }}">Loker</a>
             </div>
             <div class="navbar-nav ms-lg-auto" id="navbar-ex-15">
                 <ul class="navbar-nav me-auto">
