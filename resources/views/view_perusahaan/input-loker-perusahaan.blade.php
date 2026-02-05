@@ -25,13 +25,13 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
                                         <input name="Email" type="text" class="form-control"
-                                            placeholder="Tambahkan email perusahaan">
+                                            placeholder="Tambahkan email perusahaan" value="{{ $info_perusahaan->email_perusahaan }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
                                         <input name="NoTelp" type="text" class="form-control"
-                                            placeholder="Tambahkan nomor telepon perusahaan">
+                                            placeholder="Tambahkan nomor telepon perusahaan" value="{{ $info_perusahaan->no_telp_perusahaan }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -54,12 +54,17 @@
                                         <input name="PosterLoker" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Provinsi</label>
+                                        <input name="Provinsi" type="text" class="form-control">
+                                        <div class="form-text"></div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Kabupaten</label>
                                         <input name="Kabupaten" type="text" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Kecamatan</label>
                                         <input name="Kecamatan" type="text" class="form-control">
                                         <div class="form-text"></div>

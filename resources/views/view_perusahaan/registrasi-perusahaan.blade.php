@@ -1,4 +1,4 @@
-<x-admin_perusahaan.layout>
+<x-pencari_kerja.layout>
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
@@ -32,16 +32,27 @@
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Status</label>
-                                        <input name="Status" class="form-control" placeholder="">
+                                        <label class="form-label">Provinsi</label>
+                                        <input name="Provinsi" type="text" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-4 mb-3">
+                                        <label class="form-label">Kabupaten</label>
+                                        <input name="Kabupaten" type="text" class="form-control">
+                                        <div class="form-text"></div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Kecamatan</label>
+                                        <input name="Kecamatan" type="text" class="form-control">
+                                        <div class="form-text"></div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Logo</label>
                                         <input name="logo" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Banner</label>
                                         <input name="banner" type="file" class="form-control">
                                         <div class="form-text"></div>
@@ -80,4 +91,4 @@
     <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-</x-admin_perusahaan.layout>
+</x-pencari_kerja.layout>

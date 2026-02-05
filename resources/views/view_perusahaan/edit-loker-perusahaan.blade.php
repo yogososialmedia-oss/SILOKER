@@ -54,12 +54,17 @@
                                         <input name="PosterLoker" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Provinsi</label>
+                                        <input name="Provinsi" type="text" class="form-control">
+                                        <div class="form-text"></div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Kabupaten</label>
                                         <input name="Kabupaten" type="text" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label class="form-label">Kecamatan</label>
                                         <input name="Kecamatan" type="text" class="form-control">
                                         <div class="form-text"></div>

@@ -39,14 +39,13 @@
                 </div>
                 <div class="col-md-12 mb-4">
                   <label for="exampleFormControlTextarea1" class="form-label">Tentang Perusahaan</label>
-                  <textarea name="TentangPerusahaan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea name="TentangPerusahaan" id="exampleFormControlTextarea1" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="col-mb text-end">
                   <button type="button" class="btn btn-primary">Save</button>
                 </div>
               </div>
             </form>
-
           </div>
         </div>
       </div>

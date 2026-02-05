@@ -83,7 +83,7 @@
                         </div>
                         <div class="alert alert-info" role="alert">
                             Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait
-                            verifikasiperusahaan.
+                            verifikasi perusahaan.
                         </div>
                         <div class="col mb-6">
                             <label for="exampleFormControlTextarea1" class="form-label">Tambahkan pesan</label>
