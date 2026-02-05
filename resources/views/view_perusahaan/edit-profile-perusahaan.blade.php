@@ -4,8 +4,9 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('perusahaan.profile.update') }}" method="POST" enctype="multipart/form-data">
               @csrf
+              @method('PUT')
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Nama Perusahaan</label>
@@ -42,7 +43,7 @@
                   <textarea name="TentangPerusahaan" id="exampleFormControlTextarea1" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="col-mb text-end">
-                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                 </div>
               </div>
             </form>

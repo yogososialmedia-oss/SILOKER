@@ -20,10 +20,12 @@ Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])
 
 
 Route::middleware(['isPerusahaanMitra'])->group(function () {
-    Route::get('/perusahaan/home', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
+    Route::get('/perusahaan/profile', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
     Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
     Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
     Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
+    Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
+    Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
 });
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');
