@@ -53,51 +53,68 @@ class ProfilePerusahaanController extends Controller
      */
     public function update(Request $request)
     {
+        dd($request->all());
         $authPerusahaan = Auth::guard('perusahaanmitra')->user();
         $validatedData = $request->validate([
-            'nama_perusahaan' => 'required|string|max:255',
-            'alamat' => 'required|string|max:500',
-            'email' => 'required|email|max:255',
-            'no_telp' => 'required|string|max:20',
-            'logo_perusahaan' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'banner_perusahaan' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'tentang_perusahaan' => 'nullable|string',
+            'NamaPerusahaan' => 'required|string',
+            'alamat' => 'required|string',
+            'Provinsi' => 'nullable|string',
+            'Kabupaten' => 'nullable|string',
+            'Kecamatan' => 'nullable|string',
+            'Email' => 'required|email',
+            'no_telp' => 'required|string',
+            'NoNpwp' => 'nullable',
+            'GoogleMaps' => 'nullable|string',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'TentangPerusahaan' => 'nullable|string',
         ], [
-            'nama_perusahaan.required' => 'Nama Perusahaan wajib diisi.',
+            'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
             'alamat.required' => 'Alamat wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
+            'Provinsi.string' => 'Format Provinsi tidak valid.',
+            'Kabupaten.string' => 'Format Kabupaten tidak valid.',
+            'Kecamatan.string' => 'Format Kecamatan tidak valid.',
+            'Email.required' => 'Email wajib diisi.',
+            'Email.email' => 'Format email tidak valid.',
             'no_telp.required' => 'Nomor Telepon wajib diisi.',
-            'logo_perusahaan.required' => 'Logo Perusahaan wajib diunggah.',
-            'logo_perusahaan.image' => 'Logo Perusahaan harus berupa gambar.',
-            'banner_perusahaan.image' => 'Banner Perusahaan harus berupa gambar.',
+            'NoNpwp.required' => 'Nomor NPWP wajib diisi.',
+            'GoogleMaps.string' => 'Format Google Maps tidak valid.',
+            'logo.required' => 'Logo Perusahaan wajib diunggah.',
+            'logo.image' => 'Logo Perusahaan harus berupa gambar.',
+            'banner.image' => 'Banner Perusahaan harus berupa gambar.',
+            'TentangPerusahaan.string' => 'Format Tentang Perusahaan tidak valid.',
         ]);
         // Update logo perusahaan jika ada file yang diunggah
 
         // Update data perusahaan
-        $authPerusahaan->nama_perusahaan = $validatedData['nama_perusahaan'];
+        $authPerusahaan->nama_perusahaan = $validatedData['NamaPerusahaan'];
         $authPerusahaan->alamat = $validatedData['alamat'];
-        $authPerusahaan->email = $validatedData['email'];
+        $authPerusahaan->provinsi = $validatedData['Provinsi'] ?? $authPerusahaan->provinsi;
+        $authPerusahaan->kabupaten = $validatedData['Kabupaten'] ?? $authPerusahaan->kabupaten;
+        $authPerusahaan->kecamatan = $validatedData['Kecamatan'] ?? $authPerusahaan->kecamatan;
+        $authPerusahaan->email = $validatedData['Email'];
         $authPerusahaan->no_telp = $validatedData['no_telp'];
-        $authPerusahaan->tentang_perusahaan = $validatedData['tentang_perusahaan'] ?? $authPerusahaan->tentang_perusahaan;
+        $authPerusahaan->no_npwp = $validatedData['NoNpwp'];
+        $authPerusahaan->google_maps = $validatedData['GoogleMaps'] ?? $authPerusahaan->google_maps;
+        $authPerusahaan->tentang_perusahaan = $validatedData['TentangPerusahaan'] ?? $authPerusahaan->tentang_perusahaan;
 
-        if ($request->hasFile('logo_perusahaan')) {
+        if ($request->hasFile('logo')) {
             $logoPath = storage_path('app/public/logo_perusahaan/' . $authPerusahaan->logo_perusahaan);
             if (file_exists($logoPath)) {
                 unlink($logoPath); // Hapus file logo lama
             }
-            $logoFile = $request->file('logo_perusahaan');
+            $logoFile = $request->file('logo');
             $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
             $logoFile->storeAs('public/logo_perusahaan', $logoFilename);
             $authPerusahaan->logo_perusahaan = $logoFilename;
             }
         // Update banner perusahaan jika ada file yang diunggah
-        if ($request->hasFile('banner_perusahaan')) {
+        if ($request->hasFile('banner')) {
             $bannerPath = storage_path('app/public/banner_perusahaan/' . $authPerusahaan->banner_perusahaan);
             if (file_exists($bannerPath)) {
                 unlink($bannerPath); // Hapus file banner lama
             }
-            $bannerFile = $request->file('banner_perusahaan');
+            $bannerFile = $request->file('banner');
             $bannerFilename = time() . '_' . $bannerFile->getClientOriginalName();
             $bannerFile->storeAs('public/banner_perusahaan', $bannerFilename);
             $authPerusahaan->banner_perusahaan = $bannerFilename;

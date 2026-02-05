@@ -7,7 +7,8 @@
         <div class="col-12 mb-5">
           <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
             <!-- Thumbnail / Banner -->
-            <img src="{{ asset ('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
+            <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
+              style="height:280px; object-fit:cover;">
 
             <!-- Overlay Logo & Nama -->
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
@@ -60,6 +61,10 @@
               <br>
               <h6 class="fw-bold mb-2">Alamat</h6>
               <p>Jl.apokaden</p>
+              <a href="" class="d-flex align-items-center gap-1">
+                <i class="bx bx-current-location"></i>
+                <span>View on google maps</span>
+              </a>
               <br>
               <h6 class="fw-bold mb-2">Email</h6>
               <p>betutu@gmail.com</p>
