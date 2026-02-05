@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Perusahaan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class IndexPerusahaanController extends Controller
+class ProfilePerusahaanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('view_perusahaan.index-perusahaan');
+        $info_perusahaan = Auth::guard('perusahaanmitra') ->user();
+        return view('view_perusahaan.index-perusahaan', compact('info_perusahaan'));
+        
     }
 
     /**

@@ -21,7 +21,7 @@
 <body>
     {{-- navbar --}}
     <x-pencari_kerja.navbar>
-
+        
     </x-pencari_kerja.navbar>
 
     {{ $slot }}

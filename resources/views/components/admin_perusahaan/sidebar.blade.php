@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="menu-item active">
-            <a href="{{ route('index-perusahaan') }}" class="menu-link">
+            <a href="{{ route('perusahaan.profile') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div class="text-truncate" data-i18n="Basic">Profile</div>
             </a>
@@ -40,7 +40,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('perusahaan.loker.index') }}" class="menu-link">
+                    <a href="{{ route('perusahaan.loker') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Analytics">Daftar Loker</div>
                     </a>
                 </li>
@@ -52,7 +52,7 @@
             </ul>
         </li>
         <li class="menu-item">
-            <a href="{{ route('history-apply-perusahaan') }}" class="menu-link">
+            <a href="{{ route('perusahaan.apply') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-pin"></i>
                 <div class="text-truncate" data-i18n="Basic">History Apply</div>
             </a>

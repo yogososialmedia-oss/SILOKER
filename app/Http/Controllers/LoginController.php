@@ -136,7 +136,7 @@ class LoginController extends Controller
             ]);
         }
         Auth::guard('perusahaanmitra')->login($perusahaan);
-        return redirect()->route('perusahaan.index');
+        return redirect()->route('perusahaan.profile');
     }
 
     public function LoginPencariKerja(Request $request)

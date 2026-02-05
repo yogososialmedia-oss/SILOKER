@@ -17,7 +17,7 @@ class guestPerusahaanMitra
     public function handle(Request $request, Closure $next): Response
     {
         If (Auth::guard('perusahaanmitra')->check()) {
-            return redirect()->route('perusahaan.index');
+            return redirect()->route('perusahaan.profile');
         }
         return $next($request);
     }

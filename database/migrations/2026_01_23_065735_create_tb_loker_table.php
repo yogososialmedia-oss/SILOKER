@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('tb_loker', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_perusahaan_mitra')->constrained('tb_perusahaan_mitra')->onDelete('cascade');
+            $table->string('email_perusahaan');
+            $table->string('no_telp_perusahaan');
             $table->string('jabatan');
             $table->date('tanggal_mulai_loker');
             $table->date('tanggal_berakhir_loker');
@@ -25,7 +28,6 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->enum('minimal_pendidikan', ['SMA/sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3']);
             $table->enum('model_kerja', ['WFH', 'WFO', 'Hybrid']);
-            $table->foreignId('id_perusahaan_mitra')->constrained('tb_perusahaan_mitra')->onDelete('cascade');
             $table->timestamps();
         });
     }

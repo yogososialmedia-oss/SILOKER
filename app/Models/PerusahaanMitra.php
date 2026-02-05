@@ -29,6 +29,7 @@ class PerusahaanMitra extends Authenticatable
         'status_akun',
         'deskripsi_status',
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -39,4 +40,8 @@ class PerusahaanMitra extends Authenticatable
         'password_perusahaan',
     ];
     
+    public function loker()
+    {
+        return $this->hasMany(Loker::class, 'id_loker');
+    }
 }

@@ -9,6 +9,8 @@ class Loker extends Model
     protected $table = 'tb_loker';
     protected $fillable = [
         'id_perusahaan_mitra',
+        'email_perusahaan',
+        'no_telp_perusahaan',
         'jabatan',
         'tanggal_mulai_loker',
         'tanggal_berakhir_loker',

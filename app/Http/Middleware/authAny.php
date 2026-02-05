@@ -19,6 +19,6 @@ class authAny
         if (Auth::guard('admin')->check() || Auth::guard('perusahaanmitra')->check() || Auth::guard('pencarikerja')->check()) {
             return $next($request);
         }
-        return redirect()->route('pencarikerja.loker.index');
+        return redirect()->route('pencarikerja.loker');
     }
 }

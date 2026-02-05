@@ -7,6 +7,7 @@ use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerContro
 use App\Http\Controllers\Perusahaan\ApplyController as PerusahaanApplyController;
 use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
 use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
+use App\Http\Controllers\Perusahaan\ProfilePerusahaanController;
 use App\Models\Apply;
 use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,10 @@ Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])
 
 
 Route::middleware(['isPerusahaanMitra'])->group(function () {
-    Route::get('/perusahaan/home', [IndexPerusahaanController::class,'index'])->name('perusahaan.index');
-    Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker.index');
+    Route::get('/perusahaan/home', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
+    Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
     Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
-    Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply.index');
+    Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
 });
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');

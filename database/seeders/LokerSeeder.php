@@ -15,6 +15,8 @@ class LokerSeeder extends Seeder
     {
         Loker::create([
         'id_perusahaan_mitra' => 1,
+        'email_perusahaan' => 'majumundur@example.com',
+        'no_telp_perusahaan' => '021-12345678',
         'jabatan' => 'Software Engineer',
         'tanggal_mulai_loker' => '2023-01-01',
         'tanggal_berakhir_loker' => '2023-12-31',
@@ -29,6 +31,8 @@ class LokerSeeder extends Seeder
 
         Loker::create([
         'id_perusahaan_mitra' => 2,
+        'email_perusahaan' => 'maju@example.com',
+        'no_telp_perusahaan' => '021-12345679',
         'jabatan' => 'Software Engineer',
         'tanggal_mulai_loker' => '2023-01-01',
         'tanggal_berakhir_loker' => '2023-12-31',
@@ -43,6 +47,8 @@ class LokerSeeder extends Seeder
 
         Loker::create([
         'id_perusahaan_mitra' => 3,
+        'email_perusahaan' => 'mundur@example.com',
+        'no_telp_perusahaan' => '021-12345677',
         'jabatan' => 'Software Engineer',
         'tanggal_mulai_loker' => '2023-01-01',
         'tanggal_berakhir_loker' => '2023-12-31',

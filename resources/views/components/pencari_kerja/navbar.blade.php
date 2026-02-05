@@ -19,9 +19,9 @@
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
                             data-trigger="hover">Login</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0)">Admin</a>
-                            <a class="dropdown-item" href="javascript:void(0)">Perusahaan</a>
-                            <a class="dropdown-item" href="javascript:void(0)">Pencari Kerja</a>
+                            <a class="dropdown-item" href="{{route('admin.login')}}">Admin</a>
+                            <a class="dropdown-item" href="{{route('perusahaan.login')}}">Perusahaan</a>
+                            <a class="dropdown-item" href="{{route('pencarikerja.login')}}">Pencari Kerja</a>
                         </div>
                     </li>
                     <li class="nav-item">

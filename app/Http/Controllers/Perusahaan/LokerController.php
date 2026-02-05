@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Perusahaan;
 use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LokerController extends Controller
 {
@@ -22,7 +23,8 @@ class LokerController extends Controller
      */
     public function create()
     {
-        return view('view_perusahaan.input-loker-perusahaan');
+        $info_perusahaan = Auth::guard('perusahaanmitra')->user();
+        return view('view_perusahaan.input-loker-perusahaan', compact('info_perusahaan'));
     }
 
     /**
@@ -46,7 +48,8 @@ class LokerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $loker = Loker::findOrFail($id);
+        return view('view_perusahaan.edit-loker-perusahaan', compact('loker'));
     }
 
     /**
@@ -54,7 +57,7 @@ class LokerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $request->all();
     }
 
     /**
