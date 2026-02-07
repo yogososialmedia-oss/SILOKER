@@ -15,8 +15,10 @@
                             <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">wqr</h4>
-                            <p>220030087</p>
+                            <h4 class="fw-bold mb-0 text-white">dgwe</h4>
+                            <a href="">Verifikasi</a>
+                            <a href="">Verifikasi Gagal</a>
+                            <p>Terverifikasi</p>
                         </div>
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
@@ -28,16 +30,13 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">Tentang Saya</a>
+                                                <a class="navbar-brand" href="{{ route('index-perusahaan') }}">Tentang
+                                                    Perusahaan</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">History Apply</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">CV</a>
+                                                    href="{{ route('loker-profile-perusahaan') }}">Lowongan
+                                                    Kerja</a>
                                             </li>
                                         </ul>
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -54,8 +53,8 @@
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
-                            <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-2 text-muted">
+                            <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
+                            <p class="mb-0 text-muted">
                                 PT. Intim Harmonis Foods Industri, better known as INAFOOD specializes in
                                 manufacturing biscuits and wafers. Our company started production in 1997
                                 with many various innovations and development intended to create superior
@@ -63,15 +62,18 @@
                                 principles that quality is our customer satisfaction, INAFOOD is committed
                                 to quality products to be better known as multinational company
                             </p>
-                            <h6 class="fw-bold mb-1">Alamat</h6>
+                            <br>
+                            <h6 class="fw-bold mb-2">Alamat</h6>
                             <p>Jl.apokaden</p>
-                            <h6 class="fw-bold mb-1">Akun Linked.In</h6>
-                            <a href="#" class="d-block mb-4 text-primary">
-                                Klik di sini untuk melihat profile Linked.In saya
+                            <a href="" class="d-flex align-items-center gap-1">
+                                <i class="bx bx-current-location"></i>
+                                <span>View on google maps</span>
                             </a>
-                            <h6 class="fw-bold mb-1">Email</h6>
-                            <p class="mb-4">betutu@gmail.com</p>
-                            <h6 class="fw-bold mb-1">No.Telp</h6>
+                            <br>
+                            <h6 class="fw-bold mb-2">Email</h6>
+                            <p>betutu@gmail.com</p>
+                            <br>
+                            <h6 class="fw-bold mb-2">No.Telp</h6>
                             <p>0897868365463</p>
                         </div>
                     </div>

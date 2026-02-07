@@ -45,6 +45,8 @@
                                             data-bs-toggle="dropdown"><i
                                                 class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ route('profile-pencari-kerja') }}"><i
+                                                    class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
                                             <a class="dropdown-item" href="{{ route('detail-apply-perusahaan') }}"><i
                                                     class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
                                             <button type="button" class="dropdown-item" data-bs-toggle="modal"

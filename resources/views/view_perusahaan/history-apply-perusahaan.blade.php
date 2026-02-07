@@ -27,7 +27,6 @@
                                 <th>Jabatan</th>
                                 <th>No.Telp</th>
                                 <th>Email</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>

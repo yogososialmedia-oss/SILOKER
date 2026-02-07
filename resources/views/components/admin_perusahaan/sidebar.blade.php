@@ -22,9 +22,23 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('admin.verifikasi-perusahaan') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                <div class="text-truncate" data-i18n="Basic">Verifikasi Perusahaan</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div class="text-truncate" data-i18n="Dashboards">Perusahaan</div>
+            </a>
+            <ul class="menu-sub">
+                <a href="{{ route('admin.verifikasi-perusahaan') }}" class="menu-link">
+                    <div class="text-truncate" data-i18n="Basic">Verifikasi Perusahaan</div>
+                </a>
+                <a href="{{ route('perusahaan.loker.create') }}" class="menu-link">
+                    <div class="text-truncate" data-i18n="Analytics">Daftar Perusahaan</div>
+                </a>
+            </ul>
+        </li>
+        <li class="menu-item ">
+            <a href="{{ route('perusahaan.loker') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div class="text-truncate" data-i18n="Analytics">Daftar Loker</div>
             </a>
         </li>
         <li class="menu-item active">

@@ -21,10 +21,11 @@
 <body>
     {{-- navbar --}}
     <x-pencari_kerja.navbar>
-        
     </x-pencari_kerja.navbar>
 
-    {{ $slot }}
+    <div class="container mt-5 pt-4">
+        {{ $slot }}
+    </div>
     <!-- / Layout page -->
 
     <!-- Overlay -->

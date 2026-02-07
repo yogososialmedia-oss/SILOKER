@@ -124,7 +124,7 @@
                                             id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     <div class="col-mb text-end">
-                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                        <button type="submit" class="btn btn-warning">Edit</button>
                                     </div>
                                 </div>
                             </form>

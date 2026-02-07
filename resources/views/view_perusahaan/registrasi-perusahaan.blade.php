@@ -143,12 +143,12 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
-                                    <input name="Alamat" type="text" class="form-control">
+                                    <input name="Alamat" type="text" class="form-control" placeholder="Tambahkan alamat detail perusahaan seperti nama Jalan atau lainya">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Google Maps</label>
-                                    <input name="GoogleMaps" class="form-control">
+                                    <input name="GoogleMaps" class="form-control" placeholder="Tambahkan link google maps lokasi perusahaan">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">

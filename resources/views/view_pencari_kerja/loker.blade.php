@@ -82,210 +82,40 @@
 
                             <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
 
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+
+                                <!-- LOGO -->
+                                <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                                    style="width:60px; height:60px;" class="img-fluid rounded"alt="">
+
+                                <!-- INFO -->
+                                <div class="flex-grow-1">
+
+                                    <h6 class="mb-1 d-flex align-items-center gap-2">
+                                        <span class="fw-bold text-dark" style="cursor:pointer;"
+                                            onclick="window.location.href='{{ route('index-perusahaan') }}';">
+                                            DEYSTORY
+                                        </span>
+
+                                        <!-- ICON i -->
+                                        <span
+                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                            style="width:16px; height:16px; font-size:10px; cursor:pointer;"
+                                            onclick="window.location.href='{{ route('index-perusahaan') }}';">
+                                            i
+                                        </span>
+                                    </h6>
+
+                                    <p class="mb-1 small">Job Opportunity</p>
+
+                                    <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                         <i class="bx bx-location-plus"></i>
                                         <span>Jakarta</span>
                                     </p>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Administrasi</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
 
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
                                 </div>
                             </div>
-                            <h5 class="mb-3">Administrasi</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
 
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Administrasi</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Administrasi</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Administrasi</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
-                            <div class="row align-items-center mb-3">
-                                <div class="col-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        class="img-fluid rounded" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <h5 class="mb-1">DEYSTORY</h5>
-                                    <p class="mb-1">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
                             <h5 class="mb-3">Administrasi</h5>
                             <div class="row">
                                 <div class="col-6">

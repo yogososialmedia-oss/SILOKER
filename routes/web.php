@@ -64,7 +64,7 @@ Route::view('/test4','view_perusahaan.edit-profile-perusahaan')->name('edit-prof
 Route::view('/test5','view_perusahaan.daftar-loker-perusahaan')->name('daftar-loker-perusahaan');
 Route::view('/test6','view_perusahaan.edit-loker-perusahaan')->name('edit-loker-perusahaan');
 Route::view('/test7','view_perusahaan.daftar-apply-perusahaan')->name('daftar-apply-perusahaan');
-Route::view('/test8','view_perusahaan.detail-loker-perusahaan')->name('detail-loker-perusahaan');
+Route::view('/test8','view_perusahaan.tampilan-loker-perusahaan')->name('tampilan-loker-perusahaan');
 Route::view('/test9','view_perusahaan.detail-apply-perusahaan')->name('detail-apply-perusahaan');
 
 Route::view('/test10','view_admin.verifikasi-perusahaan')->name('verifikasi-perusahaan');
@@ -75,3 +75,7 @@ Route::view('/test13','view_admin.dashboard')->name('dashboard');
 Route::view('/test14','view_pencari_kerja.loker')->name('loker');
 Route::view('/test15','view_perusahaan.registrasi-perusahaan')->name('registrasi-perusahaan');
 Route::view('/test16','view_pencari_kerja.registrasi-pencari-kerja')->name('registrasi-pencari-kerja');
+Route::view('/test17','view_pencari_kerja.profile-pencari-kerja')->name('profile-pencari-kerja');
+Route::view('/test18','view_pencari_kerja.edit-profile-pencari-kerja')->name('edit-profile-pencari-kerja');
+Route::view('/test19','view_pencari_kerja.history-apply-pencari-kerja')->name('history-apply-pencari-kerja');
+Route::view('/test20','view_pencari_kerja.profile-perusahaan')->name('profile-perusahaan');

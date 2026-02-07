@@ -49,8 +49,8 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="{{ route('edit-loker-perusahaan') }}"><i
                                                             class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="{{ route('detail-loker-perusahaan') }}"><i
-                                                            class="icon-base bx bx-show me-2"></i>Detail Loker</a>
+                                                    <a class="dropdown-item" href="{{ route('tampilan-loker-perusahaan') }}"><i
+                                                            class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
                                                     <a class="dropdown-item" href="{{ route('perusahaan.apply') }}"><i
                                                             class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
                                                 </div>

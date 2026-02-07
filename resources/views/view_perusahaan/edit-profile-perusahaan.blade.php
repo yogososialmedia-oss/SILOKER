@@ -82,7 +82,7 @@
                     rows="3"></textarea>
                 </div>
                 <div class="col-mb text-end">
-                  <button type="submit" class="btn btn-primary">Registrasi</button>
+                  <button type="submit" class="btn btn-warning">Edit</button>
                 </div>
             </form>
           </div>

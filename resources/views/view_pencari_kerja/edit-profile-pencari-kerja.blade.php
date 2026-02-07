@@ -10,8 +10,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama</label>
-                                    <input name="NamaPencariKerja" class="form-control"
-                                        placeholder="Tambahkan nama anda">
+                                    <input name="NamaPencariKerja" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -21,29 +20,32 @@
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input name="Email" class="form-control">
+                                    <div class="form-text"></div>
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">No.Telp</label>
-                                    <input name="NoTelp" class="form-control"
-                                        placeholder="Tambahkan nomor telepon anda">
+                                    <input name="NoTelp" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
-                                    <input name="Alamat" type="text" class="form-control"
-                                        placeholder="Tambahkan alamat lengkap anda">
+                                    <input name="Alamat" type="text" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Linked.id</label>
                                     <input name="LinkedIn" class="form-control"
                                         placeholder="Tambahkan link profile linked.id anda">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Upload CV</label>
                                     <input name="UploadCv" type="file" class="form-control">
                                     <div class="form-text"></div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Foto Profile</label>
                                     <input name="FotoProfile" type="file" class="form-control">
                                     <div class="form-text"></div>
@@ -53,18 +55,9 @@
                                     <textarea name="TentangSaya" class="form-control"
                                         id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input name="Email" class="form-control" placeholder="Tambahkan alamat email anda">
-                                    <div class="form-text"></div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input name="Password" class="form-control" placeholder="Buat password anda">
-                                    <div class="form-text"></div>
-                                </div>
+                                
                                 <div class="col-mb text-end">
-                                    <button type="submit" class="btn btn-primary">Registrasi</button>
+                                    <button type="submit" class="btn btn-warning">Edit</button>
                                 </div>
                         </form>
                     </div>
