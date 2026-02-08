@@ -4,17 +4,23 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3 ">
-                <div class="card-header d-flex justify-content-end">
+                <div class="card-header d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h5 class="mb-0 fw-bold">Daftar Apply</h5>
+                    </div>
+
                     <div class="btn-group">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Download
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                         </ul>
                     </div>
+
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0" id="table-apply">
@@ -31,31 +37,37 @@
                         </thead>
 
                         <tbody>
-                            @foreach ( $apply as $data_apply )
-                            <tr>
-                                <td>{{ $data_apply->tanggal_apply }}</td>
-                                <td>nim</td>
-                                <td>I Made Yogo Sujanardhana</td>
-                                <td>Cititex</td>
-                                <td>{{ $data_apply->loker->jabatan }}</td>
-                                <td><span class="badge bg-label-info me-1">Diterima</span></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown"><i
-                                                class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('profile-pencari-kerja') }}"><i
-                                                    class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
-                                            <a class="dropdown-item" href="{{ route('detail-apply-perusahaan') }}"><i
-                                                    class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
-                                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#modalCenter" href="javascript:void(0);"><i
-                                                    class="icon-base bx bx-show me-2"></i>Update Status</button>
+                            @foreach ($apply as $data_apply)
+                                <tr>
+                                    <td>{{ $data_apply->tanggal_apply }}</td>
+                                    <td>nim</td>
+                                    <td>I Made Yogo Sujanardhana</td>
+                                    <td>Cititex</td>
+                                    <td>{{ $data_apply->loker->jabatan }}</td>
+                                    <td>
+                                        <span class="badge bg-label-warning me-1">Pending</span>
+                                        <span class="badge bg-label-info me-1">Interview</span>
+                                        <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                        <span class="badge bg-label-success me-1">Diterima</span>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown"><i
+                                                    class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('profile-pencari-kerja-perusahaan') }}"><i
+                                                        class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
+                                                <a class="dropdown-item" href="{{ route('detail-apply-perusahaan') }}"><i
+                                                        class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
+                                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modalCenter" href="javascript:void(0);"><i
+                                                        class="icon-base bx bx-show me-2 "></i>Update Status</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -69,7 +81,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Update Status</h5>
+                        <h5 class="modal-title fw-bold" id="modalCenterTitle">Update Status</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -79,6 +91,7 @@
                                 <select class="form-select" id="exampleFormControlSelect1"
                                     aria-label="Default select example">
                                     <option selected>Pilih Status</option>
+                                    <option value="0">Pending</option>
                                     <option value="1">Interview</option>
                                     <option value="2">Tidak Diterima</option>
                                     <option value="3">Diterima</option>

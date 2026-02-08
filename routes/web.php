@@ -79,3 +79,4 @@ Route::view('/test17','view_pencari_kerja.profile-pencari-kerja')->name('profile
 Route::view('/test18','view_pencari_kerja.edit-profile-pencari-kerja')->name('edit-profile-pencari-kerja');
 Route::view('/test19','view_pencari_kerja.history-apply-pencari-kerja')->name('history-apply-pencari-kerja');
 Route::view('/test20','view_pencari_kerja.profile-perusahaan')->name('profile-perusahaan');
+Route::view('/test21','view_perusahaan.profile-pencari-kerja-perusahaan')->name('profile-pencari-kerja-perusahaan');

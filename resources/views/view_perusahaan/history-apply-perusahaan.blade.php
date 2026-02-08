@@ -4,17 +4,23 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3 ">
-                <div class="card-header d-flex justify-content-end">
+                <div class="card-header d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h5 class="mb-0 fw-bold">Daftar Loker</h5>
+                    </div>
+
                     <div class="btn-group">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Download
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                         </ul>
                     </div>
+
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0" id="table-apply">
@@ -27,6 +33,7 @@
                                 <th>Jabatan</th>
                                 <th>No.Telp</th>
                                 <th>Email</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +45,12 @@
                                 <td>Admin</td>
                                 <td>082247275901</td>
                                 <td>yogogaming@gmail.com</td>
-                                <td><span class="badge bg-label-info me-1">Diterima</span></td>
+                                <td>
+                                    <span class="badge bg-label-warning me-1">Pending</span>
+                                    <span class="badge bg-label-info me-1">Interview</span>
+                                    <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                    <span class="badge bg-label-success me-1">Diterima</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,9 +71,9 @@
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->   
+        <!-- / Footer -->
 
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-</x-admin_perusahaan.layout>    
+</x-admin_perusahaan.layout>

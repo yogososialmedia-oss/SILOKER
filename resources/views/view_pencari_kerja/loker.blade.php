@@ -78,32 +78,25 @@
                 <!-- CARD LOKER -->
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
+                        <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
                         <div class="card-body">
-
                             <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-
                             <div class="d-flex align-items-start gap-3 mb-3">
-
-                                <!-- LOGO -->
                                 <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                    style="width:60px; height:60px;" class="img-fluid rounded"alt="">
-
-                                <!-- INFO -->
+                                    style="width:60px; height:60px;" class="img-fluid rounded" alt="">
                                 <div class="flex-grow-1">
 
                                     <h6 class="mb-1 d-flex align-items-center gap-2">
-                                        <span class="fw-bold text-dark" style="cursor:pointer;"
-                                            onclick="window.location.href='{{ route('index-perusahaan') }}';">
-                                            DEYSTORY
-                                        </span>
 
-                                        <!-- ICON i -->
-                                        <span
-                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                                            style="width:16px; height:16px; font-size:10px; cursor:pointer;"
-                                            onclick="window.location.href='{{ route('index-perusahaan') }}';">
-                                            i
-                                        </span>
+                                        <a href="{{ route('index-perusahaan') }}"
+                                            class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                            DEYSTORY
+                                        </a>
+
+                                        <a href="{{ route('index-perusahaan') }}"
+                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
+                                            style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
+
                                     </h6>
 
                                     <p class="mb-1 small">Job Opportunity</p>

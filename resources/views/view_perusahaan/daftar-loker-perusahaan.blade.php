@@ -6,18 +6,21 @@
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="card pb-3 ">
-                        <div class="card-header d-flex justify-content-end">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <h5 class="mb-0 fw-bold">Daftar Loker</h5>
+                            </div>
+
                             <div class="btn-group">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Download
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                                 </ul>
                             </div>
+
                         </div>
+
                         <div class="table-responsive">
                             <table class="table mb-0" id="daftar-loker-perusahaan">
                                 <thead>
@@ -32,33 +35,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $loker as $data_loker )
-                                    <tr>
-                                        <td>{{ $data_loker->perusahaanMitra->nama_perusahaan}}</td>
-                                        <td>{{ $data_loker->jabatan }}</td>
-                                        <td>{{ $data_loker->tipe_loker }}</td>
-                                        <td><span class="badge bg-label-warning me-1">Closed</span>
-                                        </td>
-                                        <td>{{ $data_loker->perusahaanMitra->no_telp_perusahaan }}</td>
-                                        <td>{{ $data_loker->perusahaanMitra->email_perusahaan }}</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown"><i
-                                                        class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('edit-loker-perusahaan') }}"><i
-                                                            class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
-                                                    <a class="dropdown-item" href="{{ route('tampilan-loker-perusahaan') }}"><i
-                                                            class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
-                                                    <a class="dropdown-item" href="{{ route('perusahaan.apply') }}"><i
-                                                            class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
+                                    @foreach ($loker as $data_loker)
+                                        <tr>
+                                            <td>{{ $data_loker->perusahaanMitra->nama_perusahaan}}</td>
+                                            <td>{{ $data_loker->jabatan }}</td>
+                                            <td>{{ $data_loker->tipe_loker }}</td>
+                                            <td>
+                                                <span class="badge bg-label-warning me-1">Closed</span>
+                                                <span class="badge bg-label-primary me-1">Open</span>
+                                            </td>
+                                            <td>{{ $data_loker->perusahaanMitra->no_telp_perusahaan }}</td>
+                                            <td>{{ $data_loker->perusahaanMitra->email_perusahaan }}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown"><i
+                                                            class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('edit-loker-perusahaan') }}"><i
+                                                                class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('tampilan-loker-perusahaan') }}"><i
+                                                                class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
+                                                        <a class="dropdown-item" href="{{ route('perusahaan.apply') }}"><i
+                                                                class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
-                                    
+
                                 </tbody>
                             </table>
                         </div>
