@@ -40,15 +40,20 @@
                             @foreach ($apply as $data_apply)
                                 <tr>
                                     <td>{{ $data_apply->tanggal_apply }}</td>
-                                    <td>nim</td>
-                                    <td>I Made Yogo Sujanardhana</td>
-                                    <td>Cititex</td>
+                                    <td>{{ $data_apply->pencariKerja->nim }}</td>
+                                    <td>{{ $data_apply->pencariKerja->nama_pencari_kerja }}</td>
+                                    <td>{{ $data_apply->perusahaanMitra->nama_perusahaan }}</td>
                                     <td>{{ $data_apply->loker->jabatan }}</td>
                                     <td>
-                                        <span class="badge bg-label-warning me-1">Pending</span>
-                                        <span class="badge bg-label-info me-1">Interview</span>
-                                        <span class="badge bg-label-danger me-1">Tidak Diterima</span>
-                                        <span class="badge bg-label-success me-1">Diterima</span>
+                                        @if ($data_apply->status == 'pending')
+                                            <span class="badge bg-label-warning me-1">Pending</span>
+                                        @elseif ($data_apply->status == 'interview')
+                                            <span class="badge bg-label-info me-1">Interview</span>
+                                        @elseif ($data_apply->status == 'tidak diterima')
+                                            <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                        @elseif ($data_apply->status == 'diterima')
+                                            <span class="badge bg-label-success me-1">Diterima</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="dropdown">

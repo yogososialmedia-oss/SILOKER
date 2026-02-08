@@ -41,8 +41,11 @@
                                             <td>{{ $data_loker->jabatan }}</td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
-                                                <span class="badge bg-label-warning me-1">Closed</span>
-                                                <span class="badge bg-label-primary me-1">Open</span>
+                                                @if (now()->between($data_loker->tanggal_mulai_loker, $data_loker->tanggal_berakhir_loker))
+                                                    <span class="badge bg-label-info">Open</span>
+                                                @else
+                                                    <span class="badge bg-label-warning">Closed</span>
+                                                @endif
                                             </td>
                                             <td>{{ $data_loker->perusahaanMitra->no_telp_perusahaan }}</td>
                                             <td>{{ $data_loker->perusahaanMitra->email_perusahaan }}</td>
@@ -65,7 +68,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>

@@ -7,7 +7,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
-                        <h5 class="mb-0 fw-bold">Verifikasi Perusahaan</h5>
+                        <h5 class="mb-0 fw-bold">Daftar Perusahaan</h5>
                     </div>
 
                     <div class="btn-group">
@@ -36,33 +36,28 @@
                         </thead>
 
                         <tbody>
-                            @foreach($status_akun as $akun)
-                                <tr>
-                                    <td>{{$akun->created_at}}</td>
-                                    <td>{{$akun->nama_perusahaan}}</td>
-                                    <td>{{$akun->email_perusahaan}}</td>
-                                    <td>{{$akun->no_npwp}}</td>
-                                    <td>
-                                        <span class="badge bg-label-warning me-1">{{$akun->status_akun}}</span></td>
-                                        <span class="badge bg-label-danger me-1">{{$akun->status_akun}}</span></td>
-                                        <span class="badge bg-label-success me-1">{{$akun->status_akun}}</span></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown"><i
-                                                    class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('detail-verifikasi-perusahaan') }}"><i
-                                                        class="icon-base bx bx-edit-alt me-2"></i>Detail Verifikasi</a>
-                                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#modalCenter" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-show me-2"></i>Update Status</button>
-                                            </div>
+                            <tr>
+                                <td>11/12/2026</td>
+                                <td>Cititex</td>
+                                <td>cititex@gmail.com</td>
+                                <td>132434</td>
+                                <td>
+                                    <span class="badge bg-label-danger me-1">Verifikasi Gagal</span>
+                                    <span class="badge bg-label-success me-1">Terverifikasi</span>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown"><i
+                                                class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{{ route('index-perusahaan') }}"><i
+                                                    class="icon-base bx bx-user-circle me-2"></i>Profile Perusahaan</a>
                                         </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
