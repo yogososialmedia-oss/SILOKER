@@ -1,4 +1,4 @@
-<nav  class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+{{-- <nav  class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
         <span class="app-brand-text demo menu-text fw-bold text-white me-5">
             Career Center
@@ -32,4 +32,46 @@
             </div>
         </div>
     </div>
+</nav> --}}
+<nav class="navbar navbar-expand-lg fixed-top navbar-beranda">
+    <div class="container-fluid px-4">
+        <span class="navbar-brand fw-bold brand-text-beranda">
+            Career Center<span class="dot-beranda">.</span>
+        </span>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-7">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar-ex-7">
+            <div class="navbar-nav me-auto ms-4 menu-beranda">
+                <a class="nav-link" href="javascript:void(0)">Home</a>
+                <a class="nav-link" href="javascript:void(0)">About</a>
+                <a class="nav-link" href="{{ route('loker') }}">Loker</a>
+            </div>
+
+            <div class="navbar-nav ms-auto">
+                <ul class="navbar-nav align-items-center gap-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle login-link-beranda" href="javascript:void(0)"
+                            data-bs-toggle="dropdown">
+                            Login
+                        </a>
+                        <div class="dropdown-menu dropdown-beranda">
+                            <a class="dropdown-item" href="{{ route('admin.login') }}">Admin</a>
+                            <a class="dropdown-item" href="{{ route('perusahaan.login') }}">Perusahaan</a>
+                            <a class="dropdown-item" href="{{ route('pencarikerja.login') }}">Pencari Kerja</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link profile-link-beranda" href="javascript:void(0)">
+                            <i class="bx bx-user"></i> Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </nav>
+

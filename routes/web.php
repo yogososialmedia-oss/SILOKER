@@ -82,3 +82,4 @@ Route::view('/test20','view_pencari_kerja.profile-perusahaan')->name('profile-pe
 Route::view('/test21','view_perusahaan.profile-pencari-kerja-perusahaan')->name('profile-pencari-kerja-perusahaan');
 Route::view('/test22','view_admin.daftar-perusahaan')->name('daftar-perusahaan');
 Route::view('/test23','view_admin.daftar-loker')->name('daftar-loker');
+Route::view('/test24','view_pencari_kerja.beranda')->name('beranda');

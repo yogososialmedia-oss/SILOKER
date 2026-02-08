@@ -25,6 +25,11 @@
 <link rel="stylesheet" href="{{ asset('admin-perusahaan/assets/datatable/datatables.css') }}">
 
 
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+
+
 <!-- Page CSS -->
 
 

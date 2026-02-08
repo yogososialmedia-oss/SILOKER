@@ -12,7 +12,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            {{-- <form action="" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -132,7 +132,143 @@
                                         <button type="submit" class="btn btn-warning">Edit</button>
                                     </div>
                                 </div>
+                            </form> --}}
+                            <form action="{{ route('update-loker-perusahaan', $loker->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="row">
+
+                                    <!-- Nama Perusahaan -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Nama Perusahaan</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}" readonly>
+                                    </div>
+
+                                    <!-- Jabatan -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Jabatan</label>
+                                        <input name="jabatan" type="text" class="form-control"
+                                            value="{{ old('jabatan', $loker->jabatan) }}">
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $loker->perusahaanMitra->email_perusahaan }}" readonly>
+                                    </div>
+
+                                    <!-- No Telp -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">No. Telp</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $loker->perusahaanMitra->no_telp_perusahaan }}" readonly>
+                                    </div>
+
+                                    <!-- Tanggal Mulai -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Tanggal Mulai</label>
+                                        <input name="tanggal_mulai" type="date" class="form-control"
+                                            value="{{ old('tanggal_mulai', $loker->tanggal_mulai) }}">
+                                    </div>
+
+                                    <!-- Tanggal Berakhir -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Tanggal Selesai</label>
+                                        <input name="tanggal_berakhir" type="date" class="form-control"
+                                            value="{{ old('tanggal_berakhir', $loker->tanggal_berakhir) }}">
+                                    </div>
+
+                                    <!-- Logo -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Logo Perusahaan</label>
+                                        <input name="logo_perusahaan" type="file" class="form-control">
+                                    </div>
+
+                                    <!-- Poster -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Poster Loker</label>
+                                        <input name="poster_loker" type="file" class="form-control">
+                                    </div>
+
+                                    <!-- Provinsi -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Provinsi</label>
+                                        <select name="provinsi" class="form-select">
+                                            <option value="Bali" {{ $loker->provinsi == 'Bali' ? 'selected' : '' }}>Bali
+                                            </option>
+                                            <option value="Medan" {{ $loker->provinsi == 'Medan' ? 'selected' : '' }}>
+                                                Medan</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Kabupaten -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Kabupaten</label>
+                                        <input name="kabupaten" type="text" class="form-control"
+                                            value="{{ old('kabupaten', $loker->kabupaten) }}">
+                                    </div>
+
+                                    <!-- Kecamatan -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Kecamatan</label>
+                                        <input name="kecamatan" type="text" class="form-control"
+                                            value="{{ old('kecamatan', $loker->kecamatan) }}">
+                                    </div>
+
+                                    <!-- Alamat -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Alamat</label>
+                                        <input name="alamat" type="text" class="form-control"
+                                            value="{{ old('alamat', $loker->alamat) }}">
+                                    </div>
+
+                                    <!-- Model Kerja -->
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Model Kerja</label>
+                                        <select name="model_kerja" class="form-select">
+                                            <option value="Work From Office" {{ $loker->model_kerja == 'Work From Office' ? 'selected' : '' }}>WFO</option>
+                                            <option value="Work From Home" {{ $loker->model_kerja == 'Work From Home' ? 'selected' : '' }}>WFH</option>
+                                            <option value="Hybrid" {{ $loker->model_kerja == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Tipe Loker -->
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Tipe Loker</label>
+                                        <select name="tipe_loker" class="form-select">
+                                            <option value="Job Opportunity" {{ $loker->tipe_loker == 'Job Opportunity' ? 'selected' : '' }}>Job</option>
+                                            <option value="Internship" {{ $loker->tipe_loker == 'Internship' ? 'selected' : '' }}>Internship</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Pendidikan -->
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Minimal Pendidikan</label>
+                                        <select name="minimal_pendidikan" class="form-select">
+                                            <option value="{{ $loker->minimal_pendidikan }}" selected>
+                                                {{ $loker->minimal_pendidikan }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Kualifikasi -->
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Kualifikasi</label>
+                                        <textarea name="kualifikasi" class="form-control"
+                                            rows="4">{{ old('kualifikasi', $loker->kualifikasi) }}</textarea>
+                                    </div>
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-warning">Update Loker</button>
+                                    </div>
+
+                                </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
