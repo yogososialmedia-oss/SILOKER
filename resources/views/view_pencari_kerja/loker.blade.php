@@ -77,7 +77,7 @@
 
                 <!-- CARD LOKER -->
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100">
+                    <div class="card h-100 loker-card-beranda">
                         <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
                         <div class="card-body">
                             <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>

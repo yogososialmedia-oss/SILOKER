@@ -31975,118 +31975,283 @@ body:not(.modal-open) .layout-content-navbar .layout-navbar {
 
 /* ====================Mulai Edit Yogo====================*/
 
+html {
+  scroll-behavior: smooth;
+}
+
 .content-wrapper-user {
   padding-top: 70px;
-  /* sesuaikan tinggi navbar */
 }
 
-/* Beranda */
+/* ==================== HERO ==================== */
 .hero-beranda {
-    background-color: #3f75c7;
-    padding: 120px 0 0px;
-    color: #fff;
-}
-.hero-text-beranda h1 {
-    font-size: 100px;
-    font-weight: 900;
-    line-height: 1.2;
-    color: #ffffff;
+  background-color: #3f75c7;
+  padding: 100px 0 0px;
+  color: #fff;
 }
 
+.hero-text-beranda h1 {
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #ffffff;
+}
 
 .hero-text-beranda p {
-    margin-top: 0px;
-    max-width: 600px;
-    font-size: 15px;
-    color: #ffffff;
+  max-width: 600px;
+  font-size: 15px;
+  color: #ffffff;
 }
 
 .hero-image-beranda {
-    max-height: 600px;
+  max-height: 600px;
 }
 
-/* LOKER  */
+/* ==================== LOKER ==================== */
 .loker-beranda {
-    padding: 80px 0;
+  padding: 80px 0;
 }
 
 .loker-card-beranda {
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    transition: 0.3s;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
 }
 
 .loker-card-beranda:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .loker-info-beranda small {
-    color: #6c757d;
+  color: #6c757d;
 }
 
-/* FOOTER */
+/* ==================== FOOTER / ABOUT ==================== */
+
 .footer-beranda {
-    background-color: #3f75c7;
-    color: #fff;
-    padding: 80px 0;
+  background-color: #3f75c7;
+  width: 100%;
+  color: #ffffff;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 450px;
 }
+
+
+
+/* ==================== FORCE FOOTER TEXT WHITE ==================== */
+.footer-beranda h1 {
+  color: #ffffff !important;
+}
+
 
 .footer-image-beranda {
-    max-height: 300px;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  max-height: 320px;
 }
-/* NAVBAR */
+
+.footer-text-beranda {
+  position: relative;
+  z-index: 2;
+}
+
+/* =====================================================
+    NAVBAR BERANDA – FINAL CLEAN VERSION
+   ===================================================== */
+
 .navbar-beranda {
+  background-color: #3f75c7;
+  padding: 14px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================= BRAND ================= */
+.navbar-beranda .navbar-brand {
+  color: #ffffff !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  opacity: 1 !important;
+}
+
+.navbar-beranda .dot-beranda {
+  color: #facc15;
+  font-size: 2rem;
+  margin-left: 2px;
+}
+
+.hero-exclamation {
+    color: #FFC800;
+}
+
+
+/* ================= MENU KIRI ================= */
+.navbar-beranda .menu-beranda .nav-link {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navbar-beranda .menu-beranda .nav-link:hover,
+.navbar-beranda .menu-beranda .nav-link.active {
+  color: #ffffff !important;
+}
+
+/* ================= MENU KANAN ================= */
+.navbar-beranda .login-link-beranda,
+.navbar-beranda .profile-link-beranda {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navbar-beranda .login-link-beranda:hover,
+.navbar-beranda .profile-link-beranda:hover {
+  color: #ffffff !important;
+}
+
+/* ================= DROPDOWN DESKTOP ================= */
+.navbar-beranda .dropdown-menu {
+  margin-top: 8px;
+  border-radius: 8px;
+  min-width: 200px;
+  border: none;
+}
+
+.navbar-beranda .dropdown-item {
+  font-weight: 500;
+}
+
+.navbar-beranda .dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+/* ================= TOGGLER ================= */
+.navbar-beranda .navbar-toggler {
+  border: none;
+}
+
+.navbar-beranda .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ================= Bottom ================= */
+.btn-outline-info {
+    color: #3f75c7;
+    border-color: #3f75c7;
+}
+
+.btn-outline-info:hover {
     background-color: #3f75c7;
-    padding: 14px 0;
-    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    border-color: #3f75c7;
 }
 
-/* BRAND */
-.brand-text-beranda {
-    color: #ffffff !important;
-    font-size: 1.4rem;
-    letter-spacing: 0.4px;
+.loker-card-beranda .badge.bg-primary {
+    background-color: #3f75c7 !important;
 }
 
-.brand-text-beranda:hover {
-    color: #ffffff !important; /* tetap putih */
-    cursor: default;
-}
+/* ============LOKER CARD=================== */
 
-/* Titik kuning */
-.dot-beranda {
-    color: #facc15;
-    font-size: 2rem;
-    line-height: 0;
+/* huruf i pad loker */
+.loker-card-beranda .badge {
+    z-index: 5;
+    position: relative;
 }
-
-/* MENU */
-/* default: redup */
-.menu-beranda .nav-link,
-.login-link-beranda,
-.profile-link-beranda {
-    color: rgba(255, 255, 255, 0.55) !important;
-    font-weight: 500;
-    transition: color 0.25s ease;
+.loker-card-beranda .badge {
+    pointer-events: auto;
 }
-
-/* hover: putih terang (hanya item itu) */
-.menu-beranda .nav-link:hover,
-.login-link-beranda:hover,
-.profile-link-beranda:hover {
-    color: #ffffff !important;
-}
-
-/* optional: kalau ada halaman aktif */
-.menu-beranda .nav-link.active {
-    color: #ffffff !important;
-}
-
-/* DROPDOWN*/
-.dropdown-beranda {
-    border-radius: 10px;
-    border: none;
+/* Badge i supaya selalu di atas stretched link */
+.loker-card-beranda .badge {
+    position: relative !important; 
+    z-index: 99 !important;       
+    pointer-events: auto !important; 
+    background-color: #3f75c7;    
+    color: #fff;
 }
 
 
+
+
+
+
+
+
+/* =====================================================
+    RESPONSIVE – MOBILE MODE
+   ===================================================== */
+@media (max-width: 991.98px) {
+
+  /* Gambar Footer dan text posisi */
+  .footer-beranda {
+    text-align: center;
+    padding-bottom: 200px;
+    /* ruang buat gambar */
+  }
+
+  .footer-image-beranda {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 240px;
+    height: auto;
+  }
+
+  @media (max-width: 991.98px) {
+
+    .footer-text-beranda {
+      margin-bottom: 180px;
+      /* ruang aman sebelum gambar */
+    }
+  }
+
+  /* Collapse ke kanan */
+  .navbar-beranda .navbar-collapse {
+    text-align: right;
+  }
+
+  /* Semua menu jadi kolom kanan */
+  .navbar-beranda .navbar-nav {
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .navbar-beranda .menu-beranda {
+    margin-left: 0 !important;
+  }
+
+  /* Spasi item */
+  .navbar-beranda .nav-link {
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  /* Dropdown mobile jadi normal flow */
+  .navbar-beranda .dropdown-menu {
+    position: static !important;
+    float: none;
+    width: 100%;
+    margin-top: 4px;
+    box-shadow: none;
+    text-align: right;
+  }
+}
+
+/* ==================== FORCE FULL WIDTH FIX ==================== */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.hero-beranda,
+.footer-beranda {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
