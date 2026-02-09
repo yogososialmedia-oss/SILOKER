@@ -15,6 +15,12 @@ class ProfilePerusahaanController extends Controller
         
     }
 
+    public function lokerprofile()
+    {
+        $info_perusahaan = Auth::guard('perusahaanmitra') ->user();
+        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
+        
+    }
     /**
      * Show the form for creating a new resource.
      */

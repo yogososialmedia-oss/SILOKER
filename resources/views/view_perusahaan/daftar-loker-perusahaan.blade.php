@@ -56,12 +56,12 @@
                                                             class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('edit-loker-perusahaan') }}"><i
+                                                            href="{{ route('perusahaan.loker.edit', $data_loker->id) }}"><i
                                                                 class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
                                                         <a class="dropdown-item"
                                                             href="{{ route('tampilan-loker-perusahaan') }}"><i
                                                                 class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
-                                                        <a class="dropdown-item" href="{{ route('perusahaan.apply') }}"><i
+                                                        <a class="dropdown-item" href="{{ route('perusahaan.apply.loker', $data_loker->id) }}"><i
                                                                 class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
                                                     </div>
                                                 </div>

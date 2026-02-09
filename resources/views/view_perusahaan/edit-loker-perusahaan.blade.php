@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                             </form> --}}
-                            <form action="{{ route('update-loker-perusahaan', $loker->id) }}" method="POST"
+                            <form action="{{ route('perusahaan.loker.edit', $loker->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -172,20 +172,14 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
                                         <input name="tanggal_mulai" type="date" class="form-control"
-                                            value="{{ old('tanggal_mulai', $loker->tanggal_mulai) }}">
+                                            value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                     </div>
 
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
                                         <input name="tanggal_berakhir" type="date" class="form-control"
-                                            value="{{ old('tanggal_berakhir', $loker->tanggal_berakhir) }}">
-                                    </div>
-
-                                    <!-- Logo -->
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Logo Perusahaan</label>
-                                        <input name="logo_perusahaan" type="file" class="form-control">
+                                            value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}">
                                     </div>
 
                                     <!-- Poster -->
@@ -198,25 +192,33 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
                                         <select name="provinsi" class="form-select">
-                                            <option value="Bali" {{ $loker->provinsi == 'Bali' ? 'selected' : '' }}>Bali
-                                            </option>
-                                            <option value="Medan" {{ $loker->provinsi == 'Medan' ? 'selected' : '' }}>
-                                                Medan</option>
+                                            <option value="Bali"{{ $loker->provinsi == 'Bali' ? 'selected' : '' }}>Bali</option>
+                                            <option value="Banda Aceh"{{ $loker->provinsi == 'Banda Aceh' ? 'selected' : '' }}>Banda Aceh</option>
+                                            <option value="Medan"{{ $loker->provinsi == 'Medan' ? 'selected' : '' }}>Medan</option>
+                                            <option value="Jakarta"{{ $loker->provinsi == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
                                         </select>
                                     </div>
 
                                     <!-- Kabupaten -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kabupaten</label>
-                                        <input name="kabupaten" type="text" class="form-control"
-                                            value="{{ old('kabupaten', $loker->kabupaten) }}">
+                                        <select name="kabupaten" class="form-select">
+                                            <option value="Tabanan"{{ $loker->kabupaten == 'Tabanan' ? 'selected' : '' }}>Tabanan</option>
+                                            <option value="Buleleng"{{ $loker->kabupaten == 'Buleleng' ? 'selected' : '' }}>Buleleng</option>
+                                            <option value="Badung"{{ $loker->kabupaten == 'Badung' ? 'selected' : '' }}>Badung</option>
+                                            <option value="Jakarta Selatan"{{ $loker->kabupaten == 'Jakarta Selatan' ? 'selected' : '' }}>Jakarta Selatan</option>
+                                        </select>
                                     </div>
 
                                     <!-- Kecamatan -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kecamatan</label>
-                                        <input name="kecamatan" type="text" class="form-control"
-                                            value="{{ old('kecamatan', $loker->kecamatan) }}">
+                                        <select name="kecamatan" class="form-select">
+                                            <option value="Kediri"{{ $loker->kecamatan == 'Kediri' ? 'selected' : '' }}>Kediri</option>
+                                            <option value="Kerambitan"{{ $loker->kecamatan == 'Kerambitan' ? 'selected' : '' }}>Kerambitan</option>
+                                            <option value="Selemadeg"{{ $loker->kecamatan == 'Selemadeg' ? 'selected' : '' }}>Selemadeg</option>
+                                            <option value="Cilandak"{{ $loker->kecamatan == 'Cilandak' ? 'selected' : '' }}>Cilandak</option>
+                                        </select>
                                     </div>
 
                                     <!-- Alamat -->
@@ -230,8 +232,8 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Model Kerja</label>
                                         <select name="model_kerja" class="form-select">
-                                            <option value="Work From Office" {{ $loker->model_kerja == 'Work From Office' ? 'selected' : '' }}>WFO</option>
-                                            <option value="Work From Home" {{ $loker->model_kerja == 'Work From Home' ? 'selected' : '' }}>WFH</option>
+                                            <option value="WFH" {{ $loker->model_kerja == 'WFH' ? 'selected' : '' }}>WFH</option>
+                                            <option value="WFO" {{ $loker->model_kerja == 'WFO' ? 'selected' : '' }}>WFO</option>
                                             <option value="Hybrid" {{ $loker->model_kerja == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                                         </select>
                                     </div>
@@ -240,8 +242,8 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Tipe Loker</label>
                                         <select name="tipe_loker" class="form-select">
-                                            <option value="Job Opportunity" {{ $loker->tipe_loker == 'Job Opportunity' ? 'selected' : '' }}>Job</option>
-                                            <option value="Internship" {{ $loker->tipe_loker == 'Internship' ? 'selected' : '' }}>Internship</option>
+                                            <option value="job_opportunity" {{ $loker->tipe_loker == 'job_opportunity' ? 'selected' : '' }}>Job</option>
+                                            <option value="internship" {{ $loker->tipe_loker == 'internship' ? 'selected' : '' }}>Internship</option>
                                         </select>
                                     </div>
 
@@ -249,9 +251,13 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Minimal Pendidikan</label>
                                         <select name="minimal_pendidikan" class="form-select">
-                                            <option value="{{ $loker->minimal_pendidikan }}" selected>
-                                                {{ $loker->minimal_pendidikan }}
-                                            </option>
+                                            <option value="SMA/Sederajat" {{ $loker->minimal_pendidikan == 'SMA/Sederajat' ? 'selected' : '' }}>SMA/Sederajat</option>
+                                            <option value="D1" {{ $loker->minimal_pendidikan == 'D1' ? 'selected' : '' }}>D1</option>
+                                            <option value="D2" {{ $loker->minimal_pendidikan == 'D2' ? 'selected' : '' }}>D2</option>
+                                            <option value="D3" {{ $loker->minimal_pendidikan == 'D3' ? 'selected' : '' }}>D3</option>
+                                            <option value="S1" {{ $loker->minimal_pendidikan == 'S1' ? 'selected' : '' }}>S1</option>
+                                            <option value="S2" {{ $loker->minimal_pendidikan == 'S2' ? 'selected' : '' }}>S2</option>
+                                            <option value="S3" {{ $loker->minimal_pendidikan == 'S3' ? 'selected' : '' }}>S3</option>
                                         </select>
                                     </div>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerController;
 use App\Http\Controllers\Perusahaan\ApplyController as PerusahaanApplyController;
 use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
@@ -23,10 +24,13 @@ Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])
 Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/profile', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
     Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
+    Route::get('/perusahaan/loker/porfile', [ProfilePerusahaanController::class, 'lokerprofile'])->name('perusahaan.loker.profile');
     Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
     Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
+    Route::get('/perusahaan/apply/daftar/{id}', [PerusahaanApplyController::class, 'daftarapplyloker'])->name('perusahaan.apply.loker');
     Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
     Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
+    Route::get('/perusahaan/loker/edit/{id}', [PerusahaanLokerController::class, 'edit'])->name('perusahaan.loker.edit');
 });
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');

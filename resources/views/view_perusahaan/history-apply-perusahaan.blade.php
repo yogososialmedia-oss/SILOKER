@@ -37,21 +37,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>01/02/2026</td>
-                                <td>220030087</td>
-                                <td>I Made Yogo Sujanardhana</td>
-                                <td>Cititex</td>
-                                <td>Admin</td>
-                                <td>082247275901</td>
-                                <td>yogogaming@gmail.com</td>
-                                <td>
-                                    <span class="badge bg-label-warning me-1">Pending</span>
-                                    <span class="badge bg-label-info me-1">Interview</span>
-                                    <span class="badge bg-label-danger me-1">Tidak Diterima</span>
-                                    <span class="badge bg-label-success me-1">Diterima</span>
-                                </td>
-                            </tr>
+                            @foreach ($apply as $data_apply)
+                                <tr>
+                                    <td>{{ $data_apply->tanggal_apply }}</td>
+                                    <td>{{ $data_apply->pencariKerja->nim }}</td>
+                                    <td>{{ $data_apply->pencariKerja->nama_pencari_kerja }}</td>
+                                    <td>{{ $data_apply->perusahaanMitra->nama_perusahaan }}</td>
+                                    <td>{{ $data_apply->loker->jabatan }}</td>
+                                    <td>{{ $data_apply->pencariKerja->no_telp_pencari_kerja}}</td>
+                                    <td>{{ $data_apply->pencariKerja->email_pencari_kerja }}</td>
+                                    <td>
+                                        @if ($data_apply->status == 'pending')
+                                            <span class="badge bg-label-warning me-1">Pending</span>
+                                        @elseif ($data_apply->status == 'interview')
+                                            <span class="badge bg-label-info me-1">Interview</span>
+                                        @elseif ($data_apply->status == 'tidak diterima')
+                                            <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                        @elseif ($data_apply->status == 'diterima')
+                                            <span class="badge bg-label-success me-1">Diterima</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -28,11 +28,11 @@
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('index-perusahaan') }}">Tentang
+                        <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
                           Perusahaan</a>
                       </li>
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('loker-profile-perusahaan') }}">Lowongan
+                        <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan
                           Kerja</a>
                       </li>
                     </ul>

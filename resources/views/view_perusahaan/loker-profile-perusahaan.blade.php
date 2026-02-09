@@ -28,11 +28,11 @@
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('index-perusahaan') }}">Tentang
+                        <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
                           Perusahaan</a>
                       </li>
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('loker-profile-perusahaan') }}">Lowongan
+                        <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan
                           Kerja</a>
                       </li>
                     </ul>
@@ -49,7 +49,7 @@
         {{-- Card Loker --}}
         <div class="col-md-6 mb-5">
           <div class="card h-100">
-            <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
+            <a href="{{ route('perusahaan.loker.profile') }}" class="stretched-link"></a>
             <div class="card-body">
               <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
               <div class="d-flex align-items-start gap-3 mb-3">

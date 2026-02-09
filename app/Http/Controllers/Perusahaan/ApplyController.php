@@ -14,6 +14,12 @@ class ApplyController extends Controller
     public function index()
     {
         $apply = Apply::with('loker')->get();
+        return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
+    }
+
+    public function daftarapplyloker($id)
+    {
+        $apply = Apply::with('loker')->where('id_loker', $id)->get();
         return view('view_perusahaan.daftar-apply-perusahaan', compact('apply'));
     }
 

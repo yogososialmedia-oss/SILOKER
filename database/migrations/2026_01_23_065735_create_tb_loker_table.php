@@ -24,8 +24,10 @@ return new class extends Migration
             $table->integer('interaksi')->default(0);
             $table->enum('tipe_loker', ['job_opportunity', 'internship']);
             $table->text('deskripsi');
+            $table->string('provinsi');
             $table->string('kabupaten');
             $table->string('kecamatan');
+            $table->text('alamat');
             $table->enum('minimal_pendidikan', ['SMA/sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3']);
             $table->enum('model_kerja', ['WFH', 'WFO', 'Hybrid']);
             $table->timestamps();

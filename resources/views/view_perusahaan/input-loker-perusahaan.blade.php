@@ -52,11 +52,6 @@
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Logo Perusahaan</label>
-                                        <input name="LogoPerusahaan" type="file" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
                                         <input name="PosterLoker" type="file" class="form-control">
                                         <div class="form-text"></div>
@@ -97,8 +92,8 @@
                                         <label for="defaultSelect" class="form-label">Model Kerja</label>
                                         <select name="ModelKerja" id="defaultSelect" class="form-select">
                                             <option>Pilih model kerja</option>
-                                            <option value="Work From Office">Work From Office</option>
-                                            <option value="Work From Home">Work From Home</option>
+                                            <option value="WFH">Work From Home</option>
+                                            <option value="WFO">Work From Office</option>
                                             <option value="Hybrid">Hybrid</option>
                                         </select>
                                     </div>
@@ -106,22 +101,22 @@
                                         <label for="defaultSelect" class="form-label">Tipe loker</label>
                                         <select name="TipeLoker" id="defaultSelect" class="form-select">
                                             <option>Pilih tipe loker</option>
-                                            <option value="Job Opportunity">Job Opportunity</option>
-                                            <option value="Internship">Internship</option>
+                                            <option value="job_opportunity">Job Opportunity</option>
+                                            <option value="internship">Internship</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <label for="defaultSelect" class="form-label">Minimal Pendidikan</label>
                                         <select name="MinimalPendidikan" id="defaultSelect" class="form-select">
-                                            <option>Pilih minimal pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/ Sederajat">Minimal Pendidikan SMA/
+                                            <option>Pilih Minimal Pendidikan</option>
+                                            <option value="SMA/Sederajat">SMA/
                                                 Sederajat</option>
-                                            <option value="Minimal Pendidikan D1">Minimal Pendidikan D1</option>
-                                            <option value="Minimal Pendidikan D2">Minimal Pendidikan D2</option>
-                                            <option value="Minimal Pendidikan D3">Minimal Pendidikan D3</option>
-                                            <option value="Minimal Pendidikan S1">Minimal Pendidikan S1</option>
-                                            <option value="Minimal Pendidikan S2">Minimal Pendidikan S2</option>
-                                            <option value="Minimal Pendidikan S3">Minimal Pendidikan S3</option>
+                                            <option value="D1">D1</option>
+                                            <option value="D2">D2</option>
+                                            <option value="D3">D3</option>
+                                            <option value="S1">S1</option>
+                                            <option value="S2">S2</option>
+                                            <option value="S3">S3</option>
                                         </select>
                                     </div>
 
