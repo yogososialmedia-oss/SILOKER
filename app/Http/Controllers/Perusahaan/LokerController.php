@@ -14,7 +14,7 @@ class LokerController extends Controller
      */
     public function index()
     {
-        $loker = Loker::with('perusahaanMitra')->get();
+        $loker = Loker::with('perusahaanMitra') ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->user()->id)->get();
         return view('view_perusahaan.daftar-loker-perusahaan', compact('loker'));
     }
 
@@ -32,9 +32,54 @@ class LokerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $authPerusahaan = Auth::guard('perusahaanmitra')->user();
+        $validatedData = $request->validate([
+            'email_perusahaan' => 'required|email',
+            'no_telp_perusahaan' => 'required|string',
+            'jabatan' => 'required|string',
+            'tanggal_mulai_loker' => 'required|date',
+            'tanggal_berakhir_loker' => 'required|date|after_or_equal:tanggal_mulai_loker',
+            'poster_loker' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'provinsi' => 'required|string',
+            'kabupaten' => 'required|string',
+            'kecamatan' => 'required|string',
+            'alamat' => 'required|string',
+            'model_kerja' => 'required|string|in:WFH,WFO,Hybrid',
+            'tipe_loker' => 'required|string|in:job_opportunity,internship',
+            'minimal_pendidikan' => 'required|string|in:SMA/Sederajat,D1,D2,D3,S1,S2,S3',
+            'deskripsi' => 'required|string',
+        ],
+        [
+            'email_perusahaan.email' => 'The email format is invalid.',
+            'tanggal_mulai_loker.date' => 'The start date must be a valid date.',
+            'tanggal_berakhir_loker.date' => 'The end date must be a valid date.',
+            'tanggal_berakhir_loker.after_or_equal' => 'The end date must be a date after or equal to the start date.',
+            'model_kerja.in' => 'The selected model kerja is invalid.',
+            'tipe_loker.in' => 'The selected tipe loker is invalid.',
+            'minimal_pendidikan.in' => 'The selected minimal pendidikan is invalid.',
+        ]);
+        $posterFile = $request->file('poster_loker');
+        $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
+        $posterFile->storeAs('poster_loker', $posterFilename , 'public');
+        Loker::create([
+            'id_perusahaan_mitra' => $authPerusahaan->id,
+            'email_perusahaan' => $validatedData['email_perusahaan'],
+            'no_telp_perusahaan' => $validatedData['no_telp_perusahaan'],
+            'jabatan' => $validatedData['jabatan'],
+            'tanggal_mulai_loker' => $validatedData['tanggal_mulai_loker'],
+            'tanggal_berakhir_loker' => $validatedData['tanggal_berakhir_loker'],
+            'poster_loker' => $posterFilename,
+            'provinsi' => $validatedData['provinsi'],
+            'kabupaten' => $validatedData['kabupaten'],
+            'kecamatan' => $validatedData['kecamatan'],
+            'alamat' => $validatedData['alamat'],
+            'model_kerja' => $validatedData['model_kerja'],
+            'tipe_loker' => $validatedData['tipe_loker'],
+            'minimal_pendidikan' => $validatedData['minimal_pendidikan'],
+            'deskripsi' => $validatedData['deskripsi'],
+        ]);
+        return redirect()->route('perusahaan.loker')->with('success', 'Lowongan kerja berhasil ditambahkan.');
     }
-
     /**
      * Display the specified resource.
      */
@@ -58,7 +103,7 @@ class LokerController extends Controller
     public function update(Request $request, string $id)
     {
         $authPerusahaan = Auth::guard('perusahaanmitra')->user();
-        $loker = Loker::where('id', $id)->where('id_perusahaan_mitra', $authPerusahaan->id)->first();
+        $loker = Loker::where('id', $id)->where('id_perusahaan_mitra', $authPerusahaan->id)->firstOrFail();
         $validatedData = $request->validate([
             'email_perusahaan' => 'required|email',
             'no_telp_perusahaan' => 'required|string',
@@ -85,11 +130,20 @@ class LokerController extends Controller
             'minimal_pendidikan.in' => 'The selected minimal pendidikan is invalid.',
         ]);
 
-        $loker->nama_perusahaan = $validatedData['NamaPerusahaan'];
-        $loker->no_telp_perusahaan = $validatedData['NoTelp'];
-        $loker->jabatan = $validatedData['Jabatan'];
-        $loker->tanggal_mulai_loker = $validatedData['TanggalMulaiLoker'];
-        $loker->tanggal_berakhir_loker = $validatedData['TanggalBerakhirLoker'];
+        $loker->id_perusahaan_mitra = $authPerusahaan->id;
+        $loker->email_perusahaan = $validatedData['email_perusahaan'];
+        $loker->no_telp_perusahaan = $validatedData['no_telp_perusahaan'];
+        $loker->jabatan = $validatedData['jabatan'];
+        $loker->tanggal_mulai_loker = $validatedData['tanggal_mulai_loker'];
+        $loker->tanggal_berakhir_loker = $validatedData['tanggal_berakhir_loker'];
+        $loker->provinsi = $validatedData['provinsi'];
+        $loker->kabupaten = $validatedData['kabupaten'];
+        $loker->kecamatan = $validatedData['kecamatan'];
+        $loker->alamat = $validatedData['alamat'];
+        $loker->model_kerja = $validatedData['model_kerja'];
+        $loker->tipe_loker = $validatedData['tipe_loker'];
+        $loker->minimal_pendidikan = $validatedData['minimal_pendidikan'];
+        $loker->deskripsi = $validatedData['deskripsi'];
         if ($request->hasFile('poster_loker')) {
             $posterPath = storage_path('app/public/poster_loker/' . $loker->poster_loker);
             if (file_exists($posterPath)) {
@@ -97,19 +151,11 @@ class LokerController extends Controller
             }
             $posterFile = $request->file('poster_loker');
             $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
-            $posterFile->storeAs('public/poster_loker', $posterFilename);
+            $posterFile->storeAs('poster_loker', $posterFilename , 'public');
             $loker->poster_loker = $posterFilename;
-            }
-        $loker->provinsi = $validatedData['Provinsi'];
-        $loker->kabupaten = $validatedData['Kabupaten'];
-        $loker->kecamatan = $validatedData['Kecamatan'];
-        $loker->alamat = $validatedData['Alamat'];
-        $loker->model_kerja = $validatedData['ModelKerja'];
-        $loker->tipe_loker = $validatedData['TipeLoker'];
-        $loker->minimal_pendidikan = $validatedData['MinimalPendidikan'];
-        $loker->deskripsi = $validatedData['Deskripsi'];
+        }
         $loker->save();
-        return redirect()->route('perusahaan.loker.index')->with('success', 'Lowongan kerja berhasil diperbarui.');
+        return redirect()->route('perusahaan.loker')->with('success', 'Lowongan kerja berhasil diperbarui.');
     }
 
 

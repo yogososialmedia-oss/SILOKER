@@ -110,7 +110,7 @@ class ProfilePerusahaanController extends Controller
             }
             $logoFile = $request->file('logo');
             $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
-            $logoFile->storeAs('public/logo_perusahaan', $logoFilename);
+            $logoFile->storeAs('logo_perusahaan', $logoFilename , 'public');
             $authPerusahaan->logo_perusahaan = $logoFilename;
             }
         // Update banner perusahaan jika ada file yang diunggah
@@ -121,7 +121,7 @@ class ProfilePerusahaanController extends Controller
             }
             $bannerFile = $request->file('banner');
             $bannerFilename = time() . '_' . $bannerFile->getClientOriginalName();
-            $bannerFile->storeAs('public/banner_perusahaan', $bannerFilename);
+            $bannerFile->storeAs('banner_perusahaan', $bannerFilename , 'public');
             $authPerusahaan->banner_perusahaan = $bannerFilename;
             }
         $authPerusahaan->save();

@@ -31,6 +31,8 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
     Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
     Route::get('/perusahaan/loker/edit/{id}', [PerusahaanLokerController::class, 'edit'])->name('perusahaan.loker.edit');
+    Route::put('/perusahaan/loker/update/{id}', [PerusahaanLokerController::class, 'update'])->name('perusahaan.loker.update');
+    Route::post('/perusahaan/loker/store', [PerusahaanLokerController::class, 'store'])->name('perusahaan.loker.store');
 });
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');

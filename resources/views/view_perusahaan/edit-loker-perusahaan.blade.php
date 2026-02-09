@@ -12,134 +12,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {{-- <form action="" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Perusahaan</label>
-                                        <input name="NamaPerusahaan" type="text" class="form-control"
-                                            placeholder="Tambahkan nama perusahaan">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Jabatan</label>
-                                        <input name="Jabatan" type="text" class="form-control"
-                                            placeholder="Tambahkan jabatan">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
-                                        <input name="Email" type="text" class="form-control"
-                                            placeholder="Tambahkan email perusahaan">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">No.Telp</label>
-                                        <input name="NoTelp" type="text" class="form-control"
-                                            placeholder="Tambahkan nomor telepon perusahaan">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Mulai</label>
-                                        <input name="TanggalMulai" type="date" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Selesai</label>
-                                        <input name="TanggalSelesai" type="date" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Logo Perusahaan</label>
-                                        <input name="LogoPerusahaan" type="file" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Poster Loker</label>
-                                        <input name="PosterLoker" type="file" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <label for="defaultSelect" class="form-label">Provinsi</label>
-                                        <select name="Provinsi" id="defaultSelect" class="form-select">
-                                            <option>Pilih provinsi</option>
-                                            <option value="Bali">Bali</option>
-                                            <option value="Banda Aceh">Banda Aceh</option>
-                                            <option value="Medan">Medan</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <label for="defaultSelect" class="form-label">Kabupaten</label>
-                                        <select name="Kabupaten" id="defaultSelect" class="form-select">
-                                            <option>Pilih kabupaten</option>
-                                            <option value="Tabanan">Tabanan</option>
-                                            <option value="Buleleng">Buleleng</option>
-                                            <option value="Badung">Badung</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <label for="defaultSelect" class="form-label">Kecamatan</label>
-                                        <select name="Kecamatan" id="defaultSelect" class="form-select">
-                                            <option>Pilih kecamatan</option>
-                                            <option value="Tabanan">Kediri</option>
-                                            <option value="Buleleng">Kerambitan</option>
-                                            <option value="Badung">Selemadeg</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
-                                        <input name="Alamat" type="text" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-4 mb-4">
-                                        <label for="defaultSelect" class="form-label">Model Kerja</label>
-                                        <select name="ModelKerja" id="defaultSelect" class="form-select">
-                                            <option>Pilih model kerja</option>
-                                            <option value="Work From Office">Work From Office</option>
-                                            <option value="Work From Home">Work From Home</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4 mb-4">
-                                        <label for="defaultSelect" class="form-label">Tipe loker</label>
-                                        <select name="TipeLoker" id="defaultSelect" class="form-select">
-                                            <option>Pilih tipe loker</option>
-                                            <option value="Job Opportunity">Job Opportunity</option>
-                                            <option value="Internship">Internship</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4 mb-4">
-                                        <label for="defaultSelect" class="form-label">Minimal Pendidikan</label>
-                                        <select name="MinimalPendidikan" id="defaultSelect" class="form-select">
-                                            <option>Pilih minimal pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/ Sederajat">Minimal Pendidikan SMA/
-                                                Sederajat</option>
-                                            <option value="Minimal Pendidikan D1">Minimal Pendidikan D1</option>
-                                            <option value="Minimal Pendidikan D2">Minimal Pendidikan D2</option>
-                                            <option value="Minimal Pendidikan D3">Minimal Pendidikan D3</option>
-                                            <option value="Minimal Pendidikan S1">Minimal Pendidikan S1</option>
-                                            <option value="Minimal Pendidikan S2">Minimal Pendidikan S2</option>
-                                            <option value="Minimal Pendidikan S3">Minimal Pendidikan S3</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12 mb-4">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Kualifikasi</label>
-                                        <textarea name="Kualifikasi" class="form-control"
-                                            id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
-                                    <div class="col-mb text-end">
-                                        <button type="submit" class="btn btn-warning">Edit</button>
-                                    </div>
-                                </div>
-                            </form> --}}
-                            <form action="{{ route('perusahaan.loker.edit', $loker->id) }}" method="POST"
+                            <form action="{{ route('perusahaan.loker.update', $loker->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="row">
-
                                     <!-- Nama Perusahaan -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
@@ -157,28 +35,28 @@
                                     <!-- Email -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $loker->perusahaanMitra->email_perusahaan }}" readonly>
+                                        <input name="email_perusahaan" type="text" class="form-control"
+                                            value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
                                     </div>
 
                                     <!-- No Telp -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No. Telp</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $loker->perusahaanMitra->no_telp_perusahaan }}" readonly>
+                                        <input type="text" name="no_telp_perusahaan" class="form-control"
+                                            value="{{ $loker->perusahaanMitra->no_telp_perusahaan }}">
                                     </div>
 
                                     <!-- Tanggal Mulai -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input name="tanggal_mulai" type="date" class="form-control"
+                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" min="{{ now()->toDateString() }}"
                                             value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                     </div>
 
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input name="tanggal_berakhir" type="date" class="form-control"
+                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control"
                                             value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}">
                                     </div>
 
@@ -264,8 +142,8 @@
                                     <!-- Kualifikasi -->
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Kualifikasi</label>
-                                        <textarea name="kualifikasi" class="form-control"
-                                            rows="4">{{ old('kualifikasi', $loker->kualifikasi) }}</textarea>
+                                        <textarea name="deskripsi" class="form-control"
+                                            rows="4">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
                                     </div>
 
                                     <div class="text-end">
@@ -300,4 +178,18 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
+    @push('scripjs')
+        <script> document.addEventListener('DOMContentLoaded', function () {
+            const tanggalMulai = document.getElementById('tanggal_mulai');
+            const tanggalSelesai = document.getElementById('tanggal_selesai');
+            tanggalMulai.addEventListener('change', function () {
+                tanggalSelesai.min = this.value;
+                // kalau tanggal selesai lebih kecil, reset
+                    if (tanggalSelesai.value && tanggalSelesai.value < this.value) {
+                        tanggalSelesai.value = '';
+                    }
+                });
+            });
+            </script>
+    @endpush
 </x-admin_perusahaan.layout>
