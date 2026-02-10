@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\DaftarLokerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerController;
+use App\Http\Controllers\PencariKerja\ProfileController;
 use App\Http\Controllers\Perusahaan\ApplyController as PerusahaanApplyController;
 use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
 use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
 use App\Http\Controllers\Perusahaan\ProfilePerusahaanController;
+use App\Http\Controllers\Perusahaan\RegistrasiPerusahaanController;
 use App\Models\Apply;
 use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])->name('pencarikerja.loker.index');
+Route::get('/pencarikerja/beranda', [PencariKerjaLokerController::class, 'showBeranda'])->name('pencarikerja.beranda');
+Route::get('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'index'])->name('perusahaan.registrasi');
+Route::post('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'store'])->name('perusahaan.registrasi.post');
 
 
 
@@ -38,9 +44,13 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class,'index'])->name('admin.dashboard');
     Route::get('/admin/verifikasi-perusahaan', [VerifikasiPerusahaanController::class,'index'])->name('admin.verifikasi-perusahaan');
+    Route::get('/admin/daftar-perusahaan', [VerifikasiPerusahaanController::class,'showDaftarPerusahaan'])->name('admin.daftar-perusahaan');
+    Route::get('/admin/daftar-loker', [DaftarLokerController::class,'index'])->name('admin.daftar-loker');
+    Route::get('/admin/verifikasi-perusahaan/detail/{id}', [VerifikasiPerusahaanController::class,'showDetailVerifikasi'])->name('admin.detail-verifikasi-perusahaan');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
-    
+    Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
+    Route::get('/pencarikerja/profile/edit', [PencariKerjaLokerController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
 });
 
 Route::middleware('guestPencariKerja')->group(function () {

@@ -15,6 +15,14 @@ class LokerController extends Controller
         return view('view_pencari_kerja.loker');
     }
 
+    public function showBeranda()
+    {
+        return view('view_pencari_kerja.beranda');
+    }
+    public function showHistoryApply()
+    {
+        return view('view_pencari_kerja.history-apply-pencari-kerja');
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -19,19 +19,22 @@ class PerusahaanMitra extends Authenticatable
      */
     protected $table = 'tb_perusahaan_mitra';
     protected $fillable = [
-        'nama_perusahaan',
-        'email_perusahaan',
-        'no_telp_perusahaan',
-        'alamat_perusahaan',
-        'logo',
-        'banner_perusahaan',
-        'password_perusahaan',
-        'no_npwp',
-        'tentang_perusahaan',
-        'google_maps',
-        'status_akun',
-        'deskripsi_status',
-    ];
+    'nama_perusahaan',
+    'email_perusahaan',
+    'provinsi',
+    'kabupaten',
+    'kecamatan',
+    'no_telp_perusahaan',
+    'alamat_perusahaan',
+    'logo',
+    'banner_perusahaan',
+    'password_perusahaan',
+    'no_npwp',
+    'tentang_perusahaan',
+    'google_maps',
+    'status_akun',
+    'deskripsi_status',
+];
     
 
     /**

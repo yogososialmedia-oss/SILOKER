@@ -17,9 +17,9 @@
             <!-- MENU KIRI -->
             <div class="navbar-nav ms-4 menu-beranda">
                 <!-- Contoh jika route beranda namanya 'beranda' -->
-                <a class="nav-link" href="{{ route('beranda') }}#home">Home</a>
-                <a class="nav-link" href="{{ route('beranda') }}#about">About</a>
-                <a class="nav-link" href="{{ route('loker') }}">Loker</a>
+                <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#home">Home</a>
+                <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#about">About</a>
+                <a class="nav-link" href="{{ route('pencarikerja.loker.index') }}">Loker</a>
             </div>
 
             <!-- MENU KANAN -->
@@ -39,7 +39,7 @@
                 </div>
 
                 <!-- PROFILE -->
-                <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('profile-pencari-kerja') }}">
+                <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('pencarikerja.profile') }}">
                     <i class="bx bx-user"></i> Profile
                 </a>
 

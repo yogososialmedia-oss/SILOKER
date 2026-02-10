@@ -29,11 +29,11 @@
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
                                                 <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">Tentang Saya</a>
+                                                    href="{{ route('pencarikerja.profile') }}">Tentang Saya</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">History Apply</a>
+                                                    href="{{ route('pencarikerja.history-apply') }}">History Apply</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="navbar-brand"

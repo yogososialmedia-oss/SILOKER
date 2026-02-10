@@ -52,9 +52,7 @@
                                                 data-bs-toggle="dropdown"><i
                                                     class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('detail-verifikasi-perusahaan') }}"><i
-                                                        class="icon-base bx bx-edit-alt me-2"></i>Detail Verifikasi</a>
+                                                <a class="dropdown-item" href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}"> <i class="icon-base bx bx-edit-alt me-2"></i> Detail Verifikasi </a>
                                                 <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
                                                         class="icon-base bx bx-show me-2"></i>Update Status</button>
@@ -131,7 +129,7 @@
         </div>
         <!-- Content wrapper -->
 
-        @push('scripjs')
+        @push('script')
             <script>
                 document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
                     const extraForms = document.querySelectorAll('.extra-form');

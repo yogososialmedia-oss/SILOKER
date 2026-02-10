@@ -3,32 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PerusahaanMitra;
 use Illuminate\Http\Request;
 
-class VerifikasiPerusahaanController extends Controller
+class DaftarLokerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $status_akun = PerusahaanMitra::where('status_akun', 'pending')->get();
-        
-        return view('view_admin.verifikasi-perusahaan', compact('status_akun'));
+        return view('view_admin.daftar-loker');
     }
-    public function showDaftarPerusahaan()
-    {
-        $perusahaanMitra = PerusahaanMitra::where('status_akun', 'verified')->get();
-        
-        return view('view_admin.daftar-perusahaan', compact('perusahaanMitra'));
-    }
-    public function showDetailVerifikasi($id)
-    {
-        $perusahaanMitra = PerusahaanMitra::findOrFail($id);
-        return view('view_admin.detail-verifikasi-perusahaan', compact('perusahaanMitra'));
-    }
-    
 
     /**
      * Show the form for creating a new resource.
