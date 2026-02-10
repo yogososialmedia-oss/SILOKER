@@ -35,6 +35,8 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
     Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
     Route::get('/perusahaan/apply/daftar/{id}', [PerusahaanApplyController::class, 'daftarapplyloker'])->name('perusahaan.apply.loker');
+    Route::get('/perusahaan/apply/detail/{id}', [PerusahaanApplyController::class, 'detailapplyperusahaan'])->name('perusahaan.detail-apply');
+    Route::get('/perusahaan/apply/profile-pelamar/{id}', [PerusahaanApplyController::class, 'showProfilePelamar'])->name('perusahaan.apply.profile-pelamar');
     Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
     Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
     Route::get('/perusahaan/loker/edit/{id}', [PerusahaanLokerController::class, 'edit'])->name('perusahaan.loker.edit');
@@ -50,7 +52,7 @@ Route::middleware(['isAdmin'])->group(function () {
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
-    Route::get('/pencarikerja/profile/edit', [PencariKerjaLokerController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
+    Route::get('/pencarikerja/profile/history-apply', [ProfileController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
 });
 
 Route::middleware('guestPencariKerja')->group(function () {

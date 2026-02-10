@@ -22,6 +22,16 @@ class ApplyController extends Controller
         $apply = Apply::with('loker')->where('id_loker', $id)->get();
         return view('view_perusahaan.daftar-apply-perusahaan', compact('apply'));
     }
+    public function detailapplyperusahaan($id)
+    {
+        $apply = Apply::with('loker')->findOrFail($id);
+        return view('view_perusahaan.detail-apply-perusahaan', compact('apply'));
+    }
+    public function showProfilePelamar($id)
+    {
+        $apply = Apply::findOrFail($id);
+        return view('view_perusahaan.profile-pencari-kerja-perusahaan', compact('apply'));
+    }
 
     /**
      * Show the form for creating a new resource.
