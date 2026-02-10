@@ -17,7 +17,6 @@
 
 
 </head>
-
 <body>
     {{-- navbar --}}
     <x-pencari_kerja.navbar>
@@ -33,6 +32,5 @@
 
     @include('impor.admin_perusahaan.js')
     @stack('scripjs')
-
-
+</body>
 </html>

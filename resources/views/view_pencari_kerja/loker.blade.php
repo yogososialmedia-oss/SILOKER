@@ -77,9 +77,9 @@
 
                 <!-- CARD LOKER -->
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100 loker-card-beranda">
+                    <div class="card h-100 loker-card-beranda position-relative">
                         <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
-                        <div class="card-body">
+                        <div class="card-body position-relative">
                             <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
                             <div class="d-flex align-items-start gap-3 mb-3">
                                 <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
@@ -87,29 +87,34 @@
                                 <div class="flex-grow-1">
 
                                     <h6 class="mb-1 d-flex align-items-center gap-2">
-
                                         <a href="{{ route('index-perusahaan') }}"
                                             class="fw-bold text-dark text-decoration-none position-relative z-3">
                                             DEYSTORY
                                         </a>
-
                                         <a href="{{ route('index-perusahaan') }}"
                                             class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
                                             style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
-
                                     </h6>
 
                                     <p class="mb-1 small">Job Opportunity</p>
-
                                     <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                         <i class="bx bx-location-plus"></i>
                                         <span>Jakarta</span>
                                     </p>
-
                                 </div>
                             </div>
+                            <h5 class="mb-3 position-relative">
+                                Administrasi
+                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-primary position-absolute"
+                                    style="top:10px; left:200px;">
+                                    Open
+                                </a>
+                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-danger position-absolute"
+                                    style="top:10px; left:200px;">
+                                    Close
+                                </a>
+                            </h5>
 
-                            <h5 class="mb-3">Administrasi</h5>
                             <div class="row">
                                 <div class="col-6">
                                     <p class="d-flex align-items-center gap-1 mb-1">
