@@ -21,6 +21,13 @@ class ProfilePerusahaanController extends Controller
         return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
         
     }
+
+    public function tampilanloker()
+    {
+        $info_perusahaan = Auth::guard('perusahaanmitra') ->user();
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan'));
+        
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -83,7 +90,7 @@ class ProfilePerusahaanController extends Controller
             'Email.required' => 'Email wajib diisi.',
             'Email.email' => 'Format email tidak valid.',
             'NoTelp.required' => 'Nomor Telepon wajib diisi.',
-            'NoNpwp.required' => 'Nomor NPWP wajib diisi.',
+            'NoNpwp.string' => 'Format NPWP tidak valid.',
             'GoogleMaps.string' => 'Format Google Maps tidak valid.',
             'logo.image' => 'Logo Perusahaan harus berupa gambar.',
             'banner.image' => 'Banner Perusahaan harus berupa gambar.',
@@ -104,14 +111,14 @@ class ProfilePerusahaanController extends Controller
         $authPerusahaan->tentang_perusahaan = $validatedData['TentangPerusahaan'] ?? $authPerusahaan->tentang_perusahaan;
 
         if ($request->hasFile('logo')) {
-            $logoPath = storage_path('app/public/logo_perusahaan/' . $authPerusahaan->logo_perusahaan);
+            $logoPath = storage_path('app/public/logo_perusahaan/' . $authPerusahaan->logo);
             if (file_exists($logoPath)) {
                 unlink($logoPath); // Hapus file logo lama
             }
             $logoFile = $request->file('logo');
             $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
             $logoFile->storeAs('logo_perusahaan', $logoFilename , 'public');
-            $authPerusahaan->logo_perusahaan = $logoFilename;
+            $authPerusahaan->logo = $logoFilename;
             }
         // Update banner perusahaan jika ada file yang diunggah
         if ($request->hasFile('banner')) {

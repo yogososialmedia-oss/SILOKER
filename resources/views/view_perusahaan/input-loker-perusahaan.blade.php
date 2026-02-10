@@ -42,15 +42,16 @@
                                             value="{{ $info_perusahaan->no_telp_perusahaan }}">
                                         <div class="form-text"></div>
                                     </div>
+                                    <!-- Tanggal Mulai -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control"min="{{ now()->toDateString() }}">
-                                        <div class="form-text"></div>
+                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" min="{{ now()->toDateString() }}">
                                     </div>
+
+                                    <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
                                         <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control">
-                                        <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
@@ -156,7 +157,7 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-    @push('scripjs')
+    @stack('scripts')
         <script> document.addEventListener('DOMContentLoaded', function () {
             const tanggalMulai = document.getElementById('tanggal_mulai');
             const tanggalSelesai = document.getElementById('tanggal_selesai');
@@ -169,5 +170,4 @@
                 });
             });
             </script>
-    @endpush
 </x-admin_perusahaan.layout>

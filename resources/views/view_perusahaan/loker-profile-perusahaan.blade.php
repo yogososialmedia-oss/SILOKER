@@ -38,7 +38,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('edit-profile-perusahaan') }}">Edit Profile</a>
+                        <a class="navbar-brand" href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
                       </li>
                     </ul>
                   </div>
@@ -49,7 +49,7 @@
         {{-- Card Loker --}}
         <div class="col-md-6 mb-5">
           <div class="card h-100">
-            <a href="{{ route('perusahaan.loker.profile') }}" class="stretched-link"></a>
+            <a href="{{ route('perusahaan.loker.tampilan') }}" class="stretched-link"></a>
             <div class="card-body">
               <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
               <div class="d-flex align-items-start gap-3 mb-3">
@@ -59,12 +59,12 @@
 
                   <h6 class="mb-1 d-flex align-items-center gap-2">
 
-                    <a href="{{ route('index-perusahaan') }}"
+                    <a href="{{ route('perusahaan.profile') }}"
                       class="fw-bold text-dark text-decoration-none position-relative z-3">
                       DEYSTORY
                     </a>
 
-                    <a href="{{ route('index-perusahaan') }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3" 
+                    <a href="{{ route('perusahaan.profile') }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3" 
                       style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
 
                   </h6>
