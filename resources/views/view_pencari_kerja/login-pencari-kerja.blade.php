@@ -51,38 +51,51 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container-fluid">
-            <span class="app-brand-text demo menu-text fw-bold text-white me-5">
-                Career Center
+    <nav class="navbar navbar-expand-lg fixed-top navbar-beranda navbar-dark">
+        <div class="container-fluid px-4">
+
+            <!-- BRAND -->
+            <span class="navbar-brand fw-bold brand-text-beranda">
+                Career Center<span class="dot-beranda hero-exclamation">.</span>
             </span>
+
+            <!-- BURGER -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-7">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- COLLAPSE -->
             <div class="collapse navbar-collapse" id="navbar-ex-7">
-                <div class="navbar-nav me-auto ms-4">
-                    <a class="nav-item nav-link active" href="javascript:void(0)">Home</a>
-                    <a class="nav-item nav-link" href="javascript:void(0)">About</a>
-                    <a class="nav-item nav-link" href="javascript:void(0)">Loker</a>
+
+                <!-- MENU KIRI -->
+                <div class="navbar-nav ms-4 menu-beranda">
+                    <!-- Contoh jika route beranda namanya 'beranda' -->
+                    <a class="nav-link" href="{{ route('beranda') }}#home">Home</a>
+                    <a class="nav-link" href="{{ route('beranda') }}#about">About</a>
+                    <a class="nav-link" href="{{ route('loker') }}">Loker</a>
                 </div>
-                <div class="navbar-nav ms-lg-auto" id="navbar-ex-15">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
-                                data-trigger="hover">Login</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0)">Admin</a>
-                                <a class="dropdown-item" href="javascript:void(0)">Perusahaan</a>
-                                <a class="dropdown-item" href="javascript:void(0)">Pencari Kerja</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)"><i
-                                    class="icon-base navbar-icon bx bx-user"></i>
-                                Profile</a>
-                        </li>
-                    </ul>
+
+                <!-- MENU KANAN -->
+                <div class="navbar-nav ms-auto align-items-lg-center menu-kanan">
+
+                    <!-- LOGIN DROPDOWN -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle login-link-beranda" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-beranda">
+                            <li><a class="dropdown-item" href="{{ route('admin.login') }}">Admin</a></li>
+                            <li><a class="dropdown-item" href="{{ route('perusahaan.login') }}">Perusahaan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pencarikerja.login') }}">Pencari Kerja</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- PROFILE -->
+                    <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('profile-pencari-kerja') }}">
+                        <i class="bx bx-user"></i> Profile
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -104,8 +117,8 @@
                                 <input type="text" class="form-control" id="email" name="email-username"
                                     placeholder="Enter your email" autofocus />
                             </div>
-                            <div class="mb-6 form-password-toggle">
-                                <label class="form-label" for="password">Password</label>
+                            <div class="mb-6 form-password-toggle ">
+                                <label class="form-label " for="password">Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"

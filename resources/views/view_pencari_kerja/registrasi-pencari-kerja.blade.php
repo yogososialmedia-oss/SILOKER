@@ -1,6 +1,6 @@
 <x-pencari_kerja.layout>
     <!-- Content wrapper -->
-    <div class="container-xxl flex-grow-1 container-p-y mt-5">
+    <div class="container-xxl flex-grow-1 container-p-y mt-5 content-wrapper-user">
         <div class="row">
             <div class="col-12">
                 <div class="card">

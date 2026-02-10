@@ -9,7 +9,7 @@
 [data-bs-theme=light] {
   --bs-blue: #007bff;
   --bs-indigo: #6610f2;
-  --bs-purple: #696cff;
+  --bs-purple: #3f75c7;
   --bs-pink: #e83e8c;
   --bs-red: #ff3e1d;
   --bs-orange: #fd7e14;
@@ -33,7 +33,7 @@
   --bs-gray-700: #646e78;
   --bs-gray-800: #4e5965;
   --bs-gray-900: #384551;
-  --bs-primary: #696cff;
+  --bs-primary: #3f75c7;
   --bs-secondary: #8592a3;
   --bs-success: #71dd37;
   --bs-info: #03c3ec;
@@ -42,7 +42,7 @@
   --bs-light: #dbdee0;
   --bs-dark: #2b2c40;
   --bs-gray: #91979f;
-  --bs-primary-rgb: 105, 108, 255;
+  --bs-primary-rgb: 63, 117, 199;
   --bs-secondary-rgb: 133, 146, 163;
   --bs-success-rgb: 113, 221, 55;
   --bs-info-rgb: 3, 195, 236;
@@ -51,7 +51,7 @@
   --bs-light-rgb: 219, 222, 224;
   --bs-dark-rgb: 43, 44, 64;
   --bs-gray-rgb: 145, 151, 159;
-  --bs-primary-text-emphasis: #2a2b66;
+  --bs-primary-text-emphasis: #3f75c7;
   --bs-secondary-text-emphasis: #353a41;
   --bs-success-text-emphasis: #2d5816;
   --bs-info-text-emphasis: #014e5e;
@@ -100,10 +100,10 @@
   --bs-tertiary-bg: #e9eaec;
   --bs-tertiary-bg-rgb: 233, 234, 236;
   --bs-heading-color: #384551;
-  --bs-link-color: #696cff;
+  --bs-link-color: #3f75c7;
   --bs-link-color-rgb: 105, 108, 255;
   --bs-link-decoration: none;
-  --bs-link-hover-color: #5f61e6;
+  --bs-link-hover-color: #3f75c7;
   --bs-link-hover-color-rgb: 95, 97, 230;
   --bs-code-color: #e83e8c;
   --bs-highlight-color: #646e78;
@@ -148,7 +148,7 @@
   --bs-tertiary-color-rgb: 189, 193, 197;
   --bs-tertiary-bg: #434f5b;
   --bs-tertiary-bg-rgb: 67, 79, 91;
-  --bs-primary-text-emphasis: #a5a7ff;
+  --bs-primary-text-emphasis: #3f75c7;
   --bs-secondary-text-emphasis: #b6bec8;
   --bs-success-text-emphasis: #aaeb87;
   --bs-info-text-emphasis: #68dbf4;
@@ -156,7 +156,7 @@
   --bs-danger-text-emphasis: #ff8b77;
   --bs-light-text-emphasis: #e9eaec;
   --bs-dark-text-emphasis: #bdc1c5;
-  --bs-primary-bg-subtle: #151633;
+  --bs-primary-bg-subtle: #3f75c7;
   --bs-secondary-bg-subtle: #1b1d21;
   --bs-success-bg-subtle: #172c0b;
   --bs-info-bg-subtle: #01272f;
@@ -164,7 +164,7 @@
   --bs-danger-bg-subtle: #330c06;
   --bs-light-bg-subtle: #4e5965;
   --bs-dark-bg-subtle: #384552;
-  --bs-primary-border-subtle: #3f4199;
+  --bs-primary-border-subtle: #5985c7;
   --bs-secondary-border-subtle: #505862;
   --bs-success-border-subtle: #448521;
   --bs-info-border-subtle: #02758e;
@@ -3275,9 +3275,9 @@ progress {
   color: var(--bs-heading-color);
   background-color: transparent;
   border-color: var(--bs-primary);
+  box-shadow: none;
   outline: 0;
-  -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-primary-rgb), 0.4);
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-primary-rgb), 0.4);
+  
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -3516,8 +3516,6 @@ textarea.form-control-lg {
 .form-select:focus {
   border-color: var(--bs-primary);
   outline: 0;
-  -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-primary-rgb), 0.4);
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-primary-rgb), 0.4);
 }
 
 .form-select[multiple],
@@ -4398,19 +4396,18 @@ fieldset:disabled .btn {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #696cff;
-  --bs-btn-border-color: #696cff;
+  --bs-btn-bg: #3f75c7;
+  --bs-btn-border-color: #3f75c7;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #5f61e6;
-  --bs-btn-hover-border-color: #5456cc;
+  --bs-btn-hover-bg: #3f75c7;
+  --bs-btn-hover-border-color: #3f75c7;
   --bs-btn-focus-shadow-rgb: 128, 130, 255;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #5f61e6;
-  --bs-btn-active-border-color: #4f51bf;
-  --bs-btn-active-shadow: none;
+  --bs-btn-active-bg: #3f75c7;
+  --bs-btn-active-border-color: #3f75c7
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #696cff;
-  --bs-btn-disabled-border-color: #696cff;
+  --bs-btn-disabled-bg: #3f75c7;
+  --bs-btn-disabled-border-color: #3f75c7;
 }
 
 .btn-secondary {
@@ -6792,7 +6789,7 @@ fieldset:disabled .btn {
   --bs-progress-border-radius: 50rem;
   --bs-progress-box-shadow: var(--bs-box-shadow-inset);
   --bs-progress-bar-color: var(--bs-white);
-  --bs-progress-bar-bg: #696cff;
+  --bs-progress-bar-bg: #3f75c7;
   --bs-progress-bar-transition: width 0.6s ease;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9646,8 +9643,8 @@ fieldset:disabled .btn {
 /* Custom colors
 ******************************************************************************* */
 :root {
-  --bs-primary: #696cff;
-  --bs-primary-rgb: 105, 108, 255;
+  --bs-primary: #3f75c7;
+  --bs-primary-rgb: 63, 117, 199;
   --bs-secondary: #8592a3;
   --bs-secondary-rgb: 133, 146, 163;
   --bs-success: #71dd37;
@@ -11278,10 +11275,6 @@ img[data-app-light-img][data-app-dark-img] {
   /* Outline */
 }
 
-.btn:not(:focus, :active) {
-  -webkit-box-shadow: var(--bs-btn-box-shadow);
-  box-shadow: var(--bs-btn-box-shadow);
-}
 
 .btn-group .btn,
 .input-group .btn {
@@ -31983,24 +31976,63 @@ html {
   padding-top: 70px;
 }
 
-/* ==================== HERO ==================== */
-.hero-beranda {
+
+/* ==================== LOGIN==================== */
+/* Ganti warna link menjadi biru */
+.text-center a {
+    color: #3f75c7;      
+    text-decoration: none; 
+}
+
+/* Hover tetap biru */
+.text-center a:hover {
+    color: #3f75c7; 
+    text-decoration: underline; 
+}
+
+/* Checkbox biru saat dicentang */
+.form-check-input:checked {
+    background-color: #3f75c7; 
+    border-color: #3f75c7;     
+}
+
+/* Label tetap biru saat checkbox dicentang */
+.form-check-input:checked + .form-check-label {
+    color: #3f75c7;
+}
+/* DEFAULT border biru */
+.form-blue {
+    border-color: #3f75c7 !important;
+}
+
+/* FOCUS border + shadow */
+.form-blue:focus {
+    border-color: #3f75c7 !important;
+    box-shadow: 0 0 0 0.25rem rgba(63, 117, 199, 0.25) !important;
+}
+
+/* Jika ada di input-group (icon di samping) */
+.input-group .form-blue:focus {
+    z-index: 1; /* supaya outline muncul di atas icon */
+}
+
+/* ==================== HOME ==================== */
+.home-beranda {
   background-color: #3f75c7;
   padding: 100px 0 0px;
   color: #fff;
 }
 
-.hero-text-beranda h1 {
+.home-text-beranda h1 {
+  margin-top: -200px;
   font-size: 100px;
   font-weight: 900;
   line-height: 1.1;
   color: #ffffff;
 }
 
-.hero-text-beranda p {
-  max-width: 600px;
-  font-size: 15px;
-  color: #ffffff;
+.tanda-seru-color {
+    color: #FFC800;
 }
 
 .hero-image-beranda {
@@ -32023,9 +32055,6 @@ html {
   transform: translateY(-5px);
 }
 
-.loker-info-beranda small {
-  color: #6c757d;
-}
 
 /* ==================== FOOTER / ABOUT ==================== */
 
@@ -32033,25 +32062,21 @@ html {
   background-color: #3f75c7;
   width: 100%;
   color: #ffffff;
-  padding: 100px 0;
+  padding: 300px 0;
   position: relative;
   overflow: hidden;
   min-height: 450px;
 }
 
-
-
-/* ==================== FORCE FOOTER TEXT WHITE ==================== */
 .footer-beranda h1 {
   color: #ffffff !important;
 }
-
 
 .footer-image-beranda {
   position: absolute;
   bottom: 0;
   right: 5%;
-  max-height: 320px;
+  max-height: 600px;
 }
 
 .footer-text-beranda {
@@ -32060,7 +32085,7 @@ html {
 }
 
 /* =====================================================
-    NAVBAR BERANDA – FINAL CLEAN VERSION
+    NAVBAR BERANDA 
    ===================================================== */
 
 .navbar-beranda {
@@ -32083,11 +32108,6 @@ html {
   font-size: 2rem;
   margin-left: 2px;
 }
-
-.hero-exclamation {
-    color: #FFC800;
-}
-
 
 /* ================= MENU KIRI ================= */
 .navbar-beranda .menu-beranda .nav-link {
@@ -32132,6 +32152,11 @@ html {
 }
 
 /* ================= TOGGLER ================= */
+
+.navbar-beranda .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 .navbar-beranda .navbar-toggler {
   border: none;
 }
@@ -32140,21 +32165,22 @@ html {
   box-shadow: none;
 }
 
-/* ================= Bottom ================= */
-.btn-outline-info {
-    color: #3f75c7;
-    border-color: #3f75c7;
-}
-
-.btn-outline-info:hover {
-    background-color: #3f75c7;
-    color: #ffffff;
-    border-color: #3f75c7;
-}
 
 .loker-card-beranda .badge.bg-primary {
     background-color: #3f75c7 !important;
 }
+
+.nav-link {
+    color: rgba(255,255,255,0.7); /* redup */
+    transition: color 0.3s;
+}
+
+.nav-link.active {
+    color: #fff; /* putih */
+    font-weight: bold;
+}
+
+
 
 /* ============LOKER CARD=================== */
 
@@ -32176,12 +32202,6 @@ html {
 }
 
 
-
-
-
-
-
-
 /* =====================================================
     RESPONSIVE – MOBILE MODE
    ===================================================== */
@@ -32199,14 +32219,15 @@ html {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 240px;
+    max-height: 600px;
     height: auto;
   }
 
   @media (max-width: 991.98px) {
 
     .footer-text-beranda {
-      margin-bottom: 180px;
+      margin-top: -250px;
+      margin-bottom: 400px;
       /* ruang aman sebelum gambar */
     }
   }
@@ -32250,7 +32271,7 @@ body {
   overflow-x: hidden;
 }
 
-.hero-beranda,
+.home-beranda,
 .footer-beranda {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
