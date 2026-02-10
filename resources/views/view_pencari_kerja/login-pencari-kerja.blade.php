@@ -154,6 +154,14 @@
     </div>
 
     <!-- / Content -->
+    <!-- FOOTER -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+            <div class="footer-container d-flex justify-content-between py-4">
+                ©2026 Yogo & Wahyu
+            </div>
+        </div>
+    </footer>
 
     <!-- Core JS -->
 

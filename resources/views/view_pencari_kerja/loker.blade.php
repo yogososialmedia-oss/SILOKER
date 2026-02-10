@@ -76,7 +76,7 @@
             <div class="row">
 
                 <!-- CARD LOKER -->
-                <div class="col-md-4 mb-5">
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                     <div class="card h-100 loker-card-beranda position-relative">
                         <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
                         <div class="card-body position-relative">
@@ -103,27 +103,31 @@
                                     </p>
                                 </div>
                             </div>
-                            <h5 class="mb-3 position-relative">
-                                Administrasi
-                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-primary position-absolute"
-                                    style="top:10px; left:200px;">
-                                    Open
-                                </a>
-                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-danger position-absolute"
-                                    style="top:10px; left:200px;">
-                                    Close
-                                </a>
-                            </h5>
 
                             <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                <div class="col-9">
+                                    <h5 class="mb-3 position-relative">Administrasi</h5>
+                                </div>
+                                <div class="col-3">
+                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                        class="badge bg-primary position-relative ">
+                                        Open
+                                    </a>
+                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                        class="badge bg-danger position-relative ">
+                                        Close
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
                                         <i class="bx bx-buildings"></i>
                                         <span>Work From Office</span>
                                     </p>
                                 </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                <div class=" col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
                                         <i class="bx bx-book-reader"></i>
                                         <span>Minimal Pendidikan S1</span>
                                     </p>
@@ -149,12 +153,6 @@
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">5</a>
                     </li>
                     <li class="page-item next">
                         <a class="page-link" href="#"><i class="icon-base bx bx-chevron-right icon-sm"></i></a>

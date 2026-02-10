@@ -5,14 +5,16 @@
             <div class="container">
                 <div class="row align-items-center">
 
-                    <div class="col-lg-6 home-text-beranda ">
+                    <div class="col-lg-6 home-text-beranda">
                         <h1>
                             FIND YOUR<br>
                             DREAM JOB<span class="tanda-seru-color">!</span>
                         </h1>
-                        <p>
-                            Temukan peluang karier terbaik sesuai dengan keahlian dan passionmu, jelajahi berbagai
-                            lowongan pekerjaan dan raih masa depan yang lebih cerah.
+                        <p class="home-desc">
+                            Temukan peluang karier terbaik yang selaras dengan keahlian, minat, dan passionmu.
+                            Jelajahi berbagai lowongan pekerjaan dari perusahaan terpercaya, kembangkan potensi
+                            diri, serta raih masa depan yang lebih cerah dan berkelanjutan melalui langkah karier
+                            yang tepat.
                         </p>
                     </div>
 
@@ -34,12 +36,10 @@
             <h3 class="text-center mb-5 fw-bold" style="color: #3f75c7">
                 INFORMASI LOWONGAN KERJA
             </h3>
-
-
             <div class="row g-4">
 
                 <!-- CARD -->
-                <div class="col-md-4 mb-5">
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                     <div class="card h-100 loker-card-beranda position-relative">
                         <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
                         <div class="card-body position-relative">
@@ -66,27 +66,31 @@
                                     </p>
                                 </div>
                             </div>
-                            <h5 class="mb-3 position-relative">
-                                Administrasi
-                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-primary position-absolute"
-                                    style="top:10px; left:200px;">
-                                    Open
-                                </a>
-                                <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-danger position-absolute"
-                                    style="top:10px; left:200px;">
-                                    Close
-                                </a>
-                            </h5>
 
                             <div class="row">
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                <div class="col-9">
+                                    <h5 class="mb-3 position-relative">Administrasi</h5>
+                                </div>
+                                <div class="col-3">
+                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                        class="badge bg-primary position-relative ">
+                                        Open
+                                    </a>
+                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                        class="badge bg-danger position-relative ">
+                                        Close
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
                                         <i class="bx bx-buildings"></i>
                                         <span>Work From Office</span>
                                     </p>
                                 </div>
-                                <div class="col-6">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                <div class=" col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
                                         <i class="bx bx-book-reader"></i>
                                         <span>Minimal Pendidikan S1</span>
                                     </p>
@@ -98,7 +102,7 @@
             </div>
 
             <div class="text-center mt-5">
-                <a href="{{ route('loker') }}" class="btn btn-outline-info px-4">
+                <a href="{{ route('loker') }}" class="btn btn-outline-primary px-4">
                     Selanjutnya
                 </a>
             </div>
@@ -113,14 +117,21 @@
                 <div class="row align-items-center">
 
                     <!-- TEXT -->
-                    <div class="col-lg-6 footer-text-beranda">
-                        <h1 class="fw-bold">CAREER CENTER</h1>
-                        <p>
-                            Career Center ITB STIKOM Bali merupakan website yang didedikasikan
-                            untuk membantu mahasiswa maupun alumni menemukan pekerjaan impian.
+                    <div class="col-12 col-lg-6 footer-text-beranda">
+                        <h1 class="fw-bold footer-title">CAREER CENTER</h1>
+
+                        <p class="footer-desc">
+                            Career Center ITB STIKOM Bali merupakan sebuah platform digital yang didedikasikan
+                            untuk membantu mahasiswa aktif maupun alumni ITB STIKOM Bali dalam menemukan dan
+                            mengembangkan peluang karier yang sesuai dengan minat, bakat, dan kompetensi mereka.
+                        </p>
+
+                        <p class="footer-desc">
+                            Selain sebagai media pencarian kerja, Career Center ITB STIKOM Bali juga berperan
+                            sebagai jembatan penghubung antara dunia pendidikan dan dunia industri, guna
+                            meningkatkan kesiapan lulusan dalam menghadapi persaingan dunia kerja.
                         </p>
                     </div>
-
 
                     <!-- AVATAR / IMAGE -->
                     <div class="col-lg-6 order-2 order-lg-2 text-center mt-4 mt-lg-0">
