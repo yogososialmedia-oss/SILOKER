@@ -49,15 +49,13 @@
                                     <!-- Tanggal Mulai -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" min="{{ now()->toDateString() }}"
-                                            value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
+                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}" min="{{ now()->toDateString() }}">
                                     </div>
 
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control"
-                                            value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}">
+                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control" value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}" min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                     </div>
 
                                     <!-- Poster -->
@@ -178,18 +176,30 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-    @push('scripjs')
-        <script> document.addEventListener('DOMContentLoaded', function () {
-            const tanggalMulai = document.getElementById('tanggal_mulai');
-            const tanggalSelesai = document.getElementById('tanggal_selesai');
-            tanggalMulai.addEventListener('change', function () {
-                tanggalSelesai.min = this.value;
-                // kalau tanggal selesai lebih kecil, reset
-                    if (tanggalSelesai.value && tanggalSelesai.value < this.value) {
-                        tanggalSelesai.value = '';
-                    }
-                });
-            });
-            </script>
-    @endpush
+    @push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const mulai = document.getElementById('tanggal_mulai');
+    const selesai = document.getElementById('tanggal_selesai');
+
+    function syncTanggal() {
+        if (!mulai.value) {
+            selesai.disabled = true;
+            selesai.value = '';
+            return;
+        }
+
+        selesai.disabled = false;
+        selesai.min = mulai.value;
+
+        if (selesai.value && selesai.value < mulai.value) {
+            selesai.value = '';
+        }
+    }
+
+    syncTanggal();
+    mulai.addEventListener('change', syncTanggal);
+});
+</script>
+@endpush
 </x-admin_perusahaan.layout>

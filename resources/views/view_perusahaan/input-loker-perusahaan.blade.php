@@ -51,7 +51,7 @@
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control">
+                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date"class="form-control" disabled>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
@@ -157,17 +157,31 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-    @stack('scripts')
-        <script> document.addEventListener('DOMContentLoaded', function () {
-            const tanggalMulai = document.getElementById('tanggal_mulai');
-            const tanggalSelesai = document.getElementById('tanggal_selesai');
-            tanggalMulai.addEventListener('change', function () {
-                tanggalSelesai.min = this.value;
-                // kalau tanggal selesai lebih kecil, reset
-                    if (tanggalSelesai.value && tanggalSelesai.value < this.value) {
-                        tanggalSelesai.value = '';
-                    }
-                });
-            });
-            </script>
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const mulai = document.getElementById('tanggal_mulai');
+    const selesai = document.getElementById('tanggal_selesai');
+    const today = new Date().toISOString().split('T')[0];
+
+    function syncTanggal() {
+        if (!mulai.value) {
+            selesai.disabled = true;
+            selesai.value = '';
+            return;
+        }
+
+        selesai.disabled = false;
+        selesai.min = mulai.value > today ? mulai.value : today;
+
+        if (selesai.value && selesai.value < selesai.min) {
+            selesai.value = '';
+        }
+    }
+
+    syncTanggal();
+    mulai.addEventListener('change', syncTanggal);
+});
+</script>
+@endpush
 </x-admin_perusahaan.layout>

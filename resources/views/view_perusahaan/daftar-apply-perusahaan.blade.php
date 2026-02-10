@@ -158,7 +158,7 @@
     </div>
     <!-- Content wrapper -->
 
-    @push('scripjs')
+    @push('scripts')
         <script>
             document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
                 const extraForms = document.querySelectorAll('.extra-form');
