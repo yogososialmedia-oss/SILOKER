@@ -38,7 +38,7 @@
                         <tbody>
                             @foreach($status_akun as $akun)
                                 <tr>
-                                    <td>{{$akun->created_at}}</td>
+                                    <td>{{$akun->created_at->format('d/m/Y') }}</td>
                                     <td>{{$akun->nama_perusahaan}}</td>
                                     <td>{{$akun->email_perusahaan}}</td>
                                     <td>{{$akun->no_npwp}}</td>

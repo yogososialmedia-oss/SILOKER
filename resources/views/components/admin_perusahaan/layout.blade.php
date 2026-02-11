@@ -61,7 +61,12 @@
     </div>
 
     @include('impor.admin_perusahaan.js')
-    @stack('scripts')
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@stack('scripts')
 </body>
+
 
 </html>

@@ -39,29 +39,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Cititex</td>
-                                        <td>Admin</td>
-                                        <td>Job Opportunity</td>
-                                        <td>
-                                            <span class="badge bg-label-info me-1">Open</span>
-                                        </td>
-                                        <td>098754345678</td>
-                                        <td>cititex@gmail.com</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown"><i
-                                                        class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.loker.tampilan') }}"><i
-                                                            class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
+                                    @foreach ($daftarLoker as $loker)
+                                        <tr>
+                                            <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
+                                            <td>{{ $loker->jabatan }}</td>
+                                            <td>{{ $loker->tipe_loker }}</td>
+                                            <td>
+                                                @if (now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
+                                                    <span class="badge bg-label-success">Open</span>
+                                                @else
+                                                    <span class="badge bg-label-danger">Closed</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $loker->no_telp_perusahaan }}</td>
+                                            <td>{{ $loker->email_perusahaan }}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown">
+                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.loker.tampilan', $loker->id) }}">
+                                                            <i class="icon-base bx bx-show me-2"></i>
+                                                            Tampilan Loker
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

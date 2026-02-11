@@ -49,7 +49,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/daftar-perusahaan', [VerifikasiPerusahaanController::class,'showDaftarPerusahaan'])->name('admin.daftar-perusahaan');
     Route::get('/admin/daftar-loker', [DaftarLokerController::class,'index'])->name('admin.daftar-loker');
     Route::get('/admin/verifikasi-perusahaan/detail/{id}', [VerifikasiPerusahaanController::class,'showDetailVerifikasi'])->name('admin.detail-verifikasi-perusahaan');
-    Route::get('/admin/loker/tampilan', [DaftarLokerController::class, 'showTampilanLoker'])->name('admin.loker.tampilan');
+    Route::get('/admin/loker/tampilan/{id}', [DaftarLokerController::class, 'showTampilanLoker'])->name('admin.loker.tampilan');
     Route::get('/admin/profile-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showProfilePerusahaan'])->name('admin.profile-perusahaan');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
