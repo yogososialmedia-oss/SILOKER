@@ -1,11 +1,12 @@
-<x-admin_perusahaan.layout>
-    <div class="content-wrapper">
+<x-pencari_kerja.layout>
+    <!-- Content wrapper -->
+    <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0 fw-bold">Detail Apply</h5>
+                            <h5 class="mb-0 fw-bold">DETAIL APPLY</h5>
                         </div>
 
                         <div class="card-body">
@@ -59,13 +60,18 @@
                 </div>
             </div>
         </div>
+    <!-- Content wrapper -->
 
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl py-4">
-                ©2026 Yogo & Wahyu
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+            <div
+                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                    ©2026 Yogo & Wahyu
+                </div>
             </div>
-        </footer>
-    </div>
-</x-admin_perusahaan.layout>
-
-
+        </div>
+    </footer>
+    <!-- / Footer -->
+</x-pencari_kerja.layout>

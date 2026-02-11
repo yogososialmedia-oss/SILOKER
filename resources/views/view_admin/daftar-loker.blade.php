@@ -22,9 +22,7 @@
                                     <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                                 </ul>
                             </div>
-
                         </div>
-
                         <div class="table-responsive">
                             <table class="table mb-0" id="daftar-loker-perusahaan">
                                 <thead>

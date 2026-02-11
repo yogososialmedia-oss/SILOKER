@@ -1,16 +1,11 @@
 <x-pencari_kerja.layout>
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
-        <!-- Content -->
+    <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
-                        <!-- Thumbnail / Banner -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
                             style="height:280px; object-fit:cover;">
-
-                        <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
                                 class="rounded-circle mb-2"
@@ -28,22 +23,25 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('pencarikerja.profile') }}">Tentang Saya</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}"
+                                                    href="{{ route('pencarikerja.profile') }}">
+                                                    Tentang Saya
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('pencarikerja.history-apply') }}">History Apply</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">CV</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}"
+                                                    href="{{ route('pencarikerja.history-apply') }}">
+                                                    History Apply
+                                                </a>
                                             </li>
                                         </ul>
+
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
+                                                <a href="{{ route('pencarikerja.profile.edit') }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    Edit Profile
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -85,10 +83,7 @@
                                                             class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('pencarikerja.profile.edit') }}"><i
-                                                                class="icon-base bx bx-show me-2"></i>Detail Apply</a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('pencarikerja.profile.perusahaan') }}"><i
+                                                            href="{{ route('profile-perusahaan-pencari-kerja') }}"><i
                                                                 class="icon-base bx bx-user-circle me-2"></i>Profile
                                                             Perusahaan</a>
                                                     </div>
@@ -101,24 +96,25 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- / Content -->
-
-                <!-- Footer -->
-                <footer class="content-footer footer bg-footer-theme">
-                    <div class="container-xxl">
-                        <div
-                            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©2026 Yogo & Wahyu
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- / Footer -->
-
-                <div class="content-backdrop fade"></div>
             </div>
-            <!-- Content wrapper -->
+        </div>
+
+        <!-- / Content -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+                <div
+                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- / Footer -->
+
+        <div class="content-backdrop fade"></div>
+    </div>
+    <!-- Content wrapper -->
 </x-pencari_kerja.layout>

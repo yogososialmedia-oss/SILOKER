@@ -32105,6 +32105,37 @@ html {
 }
 
 /* =====================================================
+    NAVBAR PROFILE
+   ===================================================== */
+.nav-underline {
+    color: #6c757d; /* abu saat belum aktif */
+    position: relative;
+    padding-bottom: 6px;
+    transition: color 0.2s ease;
+}
+
+.nav-underline:hover {
+    color:  #000;
+}
+
+/* underline aktif */
+.nav-underline.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.nav-underline.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+}
+
+
+/* =====================================================
     NAVBAR BERANDA 
    ===================================================== */
 
