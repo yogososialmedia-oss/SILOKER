@@ -74,7 +74,7 @@
                                             <td>Cititex</td>
                                             <td>Admin</td>
                                             <td>Job Opportunity</td>
-                                            <td><span class="badge bg-label-primary me-1">Diterima</span>
+                                            <td><span class="badge bg-label-success me-1">Diterima</span>
                                             </td>
                                             <td>081237654376</td>
                                             <td>cititex@gmail.com</td>
@@ -86,7 +86,7 @@
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
                                                             href="{{ route('pencarikerja.profile.edit') }}"><i
-                                                                class="icon-base bx bx-show me-2"></i>Detail Loker</a>
+                                                                class="icon-base bx bx-show me-2"></i>Detail Apply</a>
                                                         <a class="dropdown-item"
                                                             href="{{ route('pencarikerja.profile.perusahaan') }}"><i
                                                                 class="icon-base bx bx-user-circle me-2"></i>Profile

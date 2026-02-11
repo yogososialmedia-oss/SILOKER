@@ -105,7 +105,7 @@
                                     </div>
 
                                     <!-- Model Kerja -->
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Model Kerja</label>
                                         <select name="model_kerja" class="form-select">
                                             <option value="WFH" {{ $loker->model_kerja == 'WFH' ? 'selected' : '' }}>WFH</option>
@@ -115,7 +115,7 @@
                                     </div>
 
                                     <!-- Tipe Loker -->
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Tipe Loker</label>
                                         <select name="tipe_loker" class="form-select">
                                             <option value="job_opportunity" {{ $loker->tipe_loker == 'job_opportunity' ? 'selected' : '' }}>Job</option>
@@ -124,7 +124,7 @@
                                     </div>
 
                                     <!-- Pendidikan -->
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label class="form-label">Minimal Pendidikan</label>
                                         <select name="minimal_pendidikan" class="form-select">
                                             <option value="SMA/Sederajat" {{ $loker->minimal_pendidikan == 'SMA/Sederajat' ? 'selected' : '' }}>SMA/Sederajat</option>
@@ -145,7 +145,7 @@
                                     </div>
 
                                     <div class="text-end">
-                                        <button type="submit" class="btn btn-warning">Update Loker</button>
+                                        <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
                                     </div>
 
                                 </div>

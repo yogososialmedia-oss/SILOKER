@@ -90,7 +90,7 @@
                                         <input name="alamat" type="text" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-4 mb-4">
+                                    <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Model Kerja</label>
                                         <select name="model_kerja" id="defaultSelect" class="form-select">
                                             <option>Pilih model kerja</option>
@@ -99,7 +99,7 @@
                                             <option value="Hybrid">Hybrid</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-4">
+                                    <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Tipe loker</label>
                                         <select name="tipe_loker" id="defaultSelect" class="form-select">
                                             <option>Pilih tipe loker</option>
@@ -107,7 +107,7 @@
                                             <option value="internship">Internship</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-4">
+                                    <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Minimal Pendidikan</label>
                                         <select name="minimal_pendidikan" id="defaultSelect" class="form-select">
                                             <option>Pilih Minimal Pendidikan</option>

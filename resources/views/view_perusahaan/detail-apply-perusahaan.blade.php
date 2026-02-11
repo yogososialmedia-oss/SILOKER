@@ -110,7 +110,7 @@
                                     <input type="text" class="form-control"
                                         value="{{ $apply->linkedin ?? '-' }}" readonly>
                                 </div>
->
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (Jika Mahasiswa STIKOM)</label>
                                     <input type="text" class="form-control"
@@ -129,7 +129,7 @@
                                         value="{{ $apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control"
                                         value="{{ $apply->pencariKerja->alamat_pencari_kerja ?? '-' }}" readonly>
