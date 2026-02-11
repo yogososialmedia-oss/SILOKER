@@ -43,7 +43,7 @@
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
                                                 <a class="navbar-brand"
-                                                    href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
+                                                    href="{{ route('pencarikerja.profile.edit') }}">Edit Profile</a>
                                             </li>
                                         </ul>
                                     </div>

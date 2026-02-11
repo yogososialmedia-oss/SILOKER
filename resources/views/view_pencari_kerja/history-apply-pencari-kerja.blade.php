@@ -85,10 +85,10 @@
                                                             class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('detail-loker-perusahaan') }}"><i
+                                                            href="{{ route('pencarikerja.profile.edit') }}"><i
                                                                 class="icon-base bx bx-show me-2"></i>Detail Loker</a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.apply') }}"><i
+                                                            href="{{ route('pencarikerja.profile.perusahaan') }}"><i
                                                                 class="icon-base bx bx-user-circle me-2"></i>Profile
                                                             Perusahaan</a>
                                                     </div>

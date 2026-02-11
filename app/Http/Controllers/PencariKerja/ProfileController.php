@@ -14,9 +14,17 @@ class ProfileController extends Controller
     {
         return view('view_pencari_kerja.profile-pencari-kerja');
     }
+    public function showEditProfilePencariKerja()
+    {
+        return view('view_pencari_kerja.edit-profile-pencari-kerja');
+    }
     public function showHistoryApply()
     {
         return view('view_pencari_kerja.history-apply-pencari-kerja');
+    }
+    public function showProfilePerusahaanpencariKerja()
+    {
+        return view('view_pencari_kerja.profile-perusahaan');
     }
     /**
      * Show the form for creating a new resource.

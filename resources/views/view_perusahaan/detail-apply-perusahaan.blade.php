@@ -96,7 +96,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->nama_lengkap ?? '-' }}" readonly>
+                                        value="{{ $apply->pencariKerja->nama_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -120,19 +120,19 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->email ?? '-' }}" readonly>
+                                        value="{{ $apply->pencariKerja->email_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->no_telp ?? '-' }}" readonly>
+                                        value="{{ $apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->alamat ?? '-' }}" readonly>
+                                        value="{{ $apply->pencariKerja->alamat_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <!-- CV -->
