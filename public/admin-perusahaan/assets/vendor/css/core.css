@@ -59,7 +59,7 @@
   --bs-danger-text-emphasis: #66190c;
   --bs-light-text-emphasis: #646e78;
   --bs-dark-text-emphasis: #646e78;
-  --bs-primary-bg-subtle: #e7e7ff;
+  --bs-primary-bg-subtle: #679cec3b;
   --bs-secondary-bg-subtle: #ebeef0;
   --bs-success-bg-subtle: #e8fadf;
   --bs-info-bg-subtle: #d7f5fc;
@@ -13002,12 +13002,7 @@ li:not(:first-child) .dropdown-item,
   color: var(--bs-pagination-focus-color);
 }
 
-.pagination .page-item.active .page-link,
-.pagination li.active>a:not(.page-link) {
-  -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-pagination-box-shadow-color), 0.4);
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(var(--bs-pagination-box-shadow-color), 0.4);
-  color: var(--bs-pagination-active-color);
-}
+
 
 /* Pagination next, prev, first & last css padding */
 .page-item.disabled .page-link,
