@@ -61,7 +61,9 @@
     </div>
 
     @include('impor.admin_perusahaan.js')
-    @stack('scripts')
+
+@stack('scripts')
 </body>
+
 
 </html>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loker;
+use App\Models\PerusahaanMitra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
@@ -12,7 +15,33 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        return view('view_admin.dashboard');
+        // Total loker
+        $totalLoker = Loker::count();
+
+        // Total perusahaan
+        $totalPerusahaan = PerusahaanMitra::count();
+
+        // Data grafik loker per bulan
+        $lokerPerBulan = Loker::select(
+                DB::raw('MONTH(created_at) as bulan'),
+                DB::raw('COUNT(*) as total')
+            )
+            ->groupBy('bulan')
+            ->orderBy('bulan')
+            ->get();
+
+        // Ambil loker terbaru untuk tabel
+        $lokerTerbaru = Loker::with('perusahaanMitra')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('view_admin.dashboard', compact(
+            'totalLoker',
+            'totalPerusahaan',
+            'lokerPerBulan',
+            'lokerTerbaru'
+        ));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loker;
 use Illuminate\Http\Request;
 
 class DaftarLokerController extends Controller
@@ -12,11 +13,13 @@ class DaftarLokerController extends Controller
      */
     public function index()
     {
-        return view('view_admin.daftar-loker');
+        $daftarLoker = Loker::with('perusahaanMitra')->latest()->get();
+        return view('view_admin.daftar-loker', compact('daftarLoker'));
     }
-    public function showTampilanLoker()
+    public function showTampilanLoker($id)
     {
-        return view('view_perusahaan.tampilan-loker-perusahaan');
+        $loker = Loker::findOrFail($id);
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('loker'));
     }
     /**
      * Show the form for creating a new resource.

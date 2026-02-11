@@ -36,28 +36,35 @@
                         </thead>
 
                         <tbody>
+                            @foreach ($perusahaanMitra as $perusahaan)
                             <tr>
-                                <td>11/12/2026</td>
-                                <td>Cititex</td>
-                                <td>cititex@gmail.com</td>
-                                <td>132434</td>
+                                <td>{{ $perusahaan->created_at->format('d/m/Y') }}</td>
+                                <td>{{ $perusahaan->nama_perusahaan }}</td>
+                                <td>{{ $perusahaan->email_perusahaan }}</td>
+                                <td>{{ $perusahaan->no_npwp }}</td>
                                 <td>
-                                    <span class="badge bg-label-danger me-1">Verifikasi Gagal</span>
-                                    <span class="badge bg-label-success me-1">Terverifikasi</span>
+                                    @if ($perusahaan->status_akun == 'pending')
+                                        <span class="badge bg-label-warning">Belum Terverifikasi</span>
+                                    @elseif ($perusahaan->status_akun == 'verified')
+                                        <span class="badge bg-label-success">Terverifikasi</span>
+                                    @elseif ($perusahaan->status_akun == 'rejected')
+                                        <span class="badge bg-label-danger">Verifikasi Gagal</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown"><i
-                                                class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item"
-                                                href="{{ route('admin.profile-perusahaan') }}"><i
-                                                    class="icon-base bx bx-user-circle me-2"></i>Profile Perusahaan</a>
+                                            <a class="dropdown-item" href="{{ route('admin.profile-perusahaan', $perusahaan->id) }}">
+                                                <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

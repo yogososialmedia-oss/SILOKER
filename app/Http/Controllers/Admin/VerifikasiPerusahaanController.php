@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loker;
 use App\Models\PerusahaanMitra;
 use Illuminate\Http\Request;
 
@@ -14,13 +15,11 @@ class VerifikasiPerusahaanController extends Controller
     public function index()
     {
         $status_akun = PerusahaanMitra::where('status_akun', 'pending')->get();
-        
         return view('view_admin.verifikasi-perusahaan', compact('status_akun'));
     }
     public function showDaftarPerusahaan()
     {
-        $perusahaanMitra = PerusahaanMitra::where('status_akun', 'verified')->get();
-        
+        $perusahaanMitra = PerusahaanMitra::all();   
         return view('view_admin.daftar-perusahaan', compact('perusahaanMitra'));
     }
     public function showDetailVerifikasi($id)
@@ -30,8 +29,13 @@ class VerifikasiPerusahaanController extends Controller
     }
     public function showProfilePerusahaan($id)
     {
-        $perusahaanMitra = PerusahaanMitra::findOrFail($id);
-        return view('view_admin.profile-perusahaan', compact('perusahaanMitra'));
+        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+        return view('view_perusahaan.index-perusahaan', compact('info_perusahaan'));
+    }
+    public function showLowonganKerjaPerusahaan($id)
+    {
+        $info_perusahaan = Loker::with('perusahaanMitra')->findOrFail($id);
+        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
     }
     
 

@@ -31,16 +31,23 @@
                         <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
                           Perusahaan</a>
                       </li>
+                      @if (Auth::guard('perusahaanmitra')->user())
+                        <li class="nav-item">
+                          <a class="navbar-brand" href="{{ route('admin.lowongan-kerja-perusahaan') }}">Lowongan Kerja</a>
+                        </li>
+                      @elseif (Auth::guard('admin')->user())
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan
-                          Kerja</a>
+                        <a class="navbar-brand" href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">Lowongan Kerja</a>
                       </li>
+                      @endif
                     </ul>
+                    @if (Auth::guard('perusahaanmitra')->user())
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                       <li class="nav-item">
                         <a class="navbar-brand" href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
                       </li>
                     </ul>
+                    @endif
                   </div>
               </nav>
             </div>

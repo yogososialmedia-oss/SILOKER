@@ -40,39 +40,22 @@
                     </thead>
                     
                     <tbody>
+                        @foreach ($lokerTerbaru as $index => $loker)
                         <tr>
-                        <th scope="row">1</th>
-                        <td>Cititex</td>
-                        <td>Admin</td>
-                        <td>Job Opportunity</td>
-                        <td>082348945873</td>
-                        <td>cititex@gmail.com</td>
-                        <td>100</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Warga Lokal</td>
-                        <td>Operational</td>
-                        <td>Job Opportunity</td>
-                        <td>0825678092</td>
-                        <td>wargalokal@gmail.com</td>
-                        <td>70</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Cak Iwan</td>
-                        <td>Back End Developer</td>
-                        <td>Job Opportunity</td>
-                        <td>081468759032</td>
-                        <td>cakiwan@gmail.com</td>
-                        <td>50</td>
-                        <td>10</td>
-                    </tr>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
+                            <td>{{ $loker->jabatan }}</td>
+                            <td>{{ $loker->tipe_loker }}</td>
+                            <td>{{ $loker->no_telp_perusahaan }}</td>
+                            <td>{{ $loker->email_perusahaan }}</td>
+                            <td>{{ $loker->tayangan ?? 0 }}</td>
+                            <td>{{ $loker->interaksi ?? 0 }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
 </x-admin_perusahaan.layout>
