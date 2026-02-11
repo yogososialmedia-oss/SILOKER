@@ -43,13 +43,13 @@
                         @foreach ($lokerTerbaru as $index => $loker)
                         <tr>
                             <th scope="row">{{ $index + 1 }}</th>
-                            <td>{{ $loker->nama_perusahaan }}</td>
+                            <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
                             <td>{{ $loker->jabatan }}</td>
-                            <td>{{ $loker->tipe }}</td>
+                            <td>{{ $loker->tipe_loker }}</td>
                             <td>{{ $loker->no_telp_perusahaan }}</td>
                             <td>{{ $loker->email_perusahaan }}</td>
                             <td>{{ $loker->tayangan ?? 0 }}</td>
-                            <td>{{ $loker->apply ?? 0 }}</td>
+                            <td>{{ $loker->interaksi ?? 0 }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -57,31 +57,5 @@
             </div>
         </div>
     </div>
-
-    @push('scripjs')
-<script>
-    const ctx = document.getElementById('grafik_loker');
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                @foreach ($lokerPerBulan as $data)
-                    "Bulan {{ $data->bulan }}",
-                @endforeach
-            ],
-            datasets: [{
-                label: 'Jumlah Loker',
-                data: [
-                    @foreach ($lokerPerBulan as $data)
-                        {{ $data->total }},
-                    @endforeach
-                ],
-                borderWidth: 1
-            }]
-        }
-    });
-</script>
-@endpush
 
 </x-admin_perusahaan.layout>

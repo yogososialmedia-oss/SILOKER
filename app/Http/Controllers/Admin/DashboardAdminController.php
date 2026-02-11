@@ -31,7 +31,10 @@ class DashboardAdminController extends Controller
             ->get();
 
         // Ambil loker terbaru untuk tabel
-        $lokerTerbaru = Loker::latest()->take(5)->get();
+        $lokerTerbaru = Loker::with('perusahaanMitra')
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('view_admin.dashboard', compact(
             'totalLoker',
