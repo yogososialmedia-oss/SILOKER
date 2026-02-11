@@ -52,7 +52,7 @@
                                                 class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="{{ route('index-perusahaan') }}"><i
+                                                href="{{ route('admin.profile-perusahaan') }}"><i
                                                     class="icon-base bx bx-user-circle me-2"></i>Profile Perusahaan</a>
                                         </div>
                                     </div>

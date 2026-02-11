@@ -14,7 +14,10 @@ class DaftarLokerController extends Controller
     {
         return view('view_admin.daftar-loker');
     }
-
+    public function showTampilanLoker()
+    {
+        return view('view_perusahaan.tampilan-loker-perusahaan');
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -55,7 +55,7 @@
                                                         class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('tampilan-loker-perusahaan') }}"><i
+                                                        href="{{ route('admin.loker.tampilan') }}"><i
                                                             class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
                                                 </div>
                                             </div>

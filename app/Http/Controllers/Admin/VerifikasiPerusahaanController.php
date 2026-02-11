@@ -28,6 +28,11 @@ class VerifikasiPerusahaanController extends Controller
         $perusahaanMitra = PerusahaanMitra::findOrFail($id);
         return view('view_admin.detail-verifikasi-perusahaan', compact('perusahaanMitra'));
     }
+    public function showProfilePerusahaan($id)
+    {
+        $perusahaanMitra = PerusahaanMitra::findOrFail($id);
+        return view('view_admin.profile-perusahaan', compact('perusahaanMitra'));
+    }
     
 
     /**
