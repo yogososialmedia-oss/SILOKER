@@ -5,7 +5,9 @@
         <div class="card">
           <div class="card-body">
 
-            <form action="{{ route('perusahaan.profile.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('perusahaan.profile.update') }}" 
+                  method="POST" 
+                  enctype="multipart/form-data">
               @csrf
               @method('PUT')
 
@@ -15,28 +17,28 @@
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Nama Perusahaan</label>
                   <input name="NamaPerusahaan" class="form-control"
-                    value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan) }}">
+                    value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}">
                 </div>
 
                 {{-- NPWP --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">No NPWP</label>
                   <input name="NoNpwp" class="form-control"
-                    value="{{ old('NoNpwp', $info_perusahaan->no_npwp) }}">
+                    value="{{ old('NoNpwp', $info_perusahaan->no_npwp ?? '') }}">
                 </div>
 
                 {{-- Email --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Email</label>
                   <input name="Email" class="form-control"
-                    value="{{ old('Email', $info_perusahaan->email_perusahaan) }}">
+                    value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}">
                 </div>
 
                 {{-- No Telp --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">No. Telp</label>
                   <input name="NoTelp" class="form-control"
-                    value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan) }}">
+                    value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}">
                 </div>
 
                 {{-- Provinsi --}}
@@ -46,7 +48,7 @@
                     <option value="">Pilih provinsi</option>
                     @foreach (['Bali', 'Banda Aceh', 'Medan'] as $prov)
                       <option value="{{ $prov }}"
-                        {{ old('Provinsi', $info_perusahaan->provinsi) == $prov ? 'selected' : '' }}>
+                        {{ old('Provinsi', $info_perusahaan->provinsi ?? '') == $prov ? 'selected' : '' }}>
                         {{ $prov }}
                       </option>
                     @endforeach
@@ -60,7 +62,7 @@
                     <option value="">Pilih kabupaten</option>
                     @foreach (['Tabanan', 'Buleleng', 'Badung'] as $kab)
                       <option value="{{ $kab }}"
-                        {{ old('Kabupaten', $info_perusahaan->kabupaten) == $kab ? 'selected' : '' }}>
+                        {{ old('Kabupaten', $info_perusahaan->kabupaten ?? '') == $kab ? 'selected' : '' }}>
                         {{ $kab }}
                       </option>
                     @endforeach
@@ -74,7 +76,7 @@
                     <option value="">Pilih kecamatan</option>
                     @foreach (['Kediri', 'Kerambitan', 'Selemadeg'] as $kec)
                       <option value="{{ $kec }}"
-                        {{ old('Kecamatan', $info_perusahaan->kecamatan) == $kec ? 'selected' : '' }}>
+                        {{ old('Kecamatan', $info_perusahaan->kecamatan ?? '') == $kec ? 'selected' : '' }}>
                         {{ $kec }}
                       </option>
                     @endforeach
@@ -85,14 +87,14 @@
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Alamat</label>
                   <input name="Alamat" class="form-control"
-                    value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan) }}">
+                    value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}">
                 </div>
 
                 {{-- Google Maps --}}
                 <div class="col-md-4 mb-3">
                   <label class="form-label">Google Maps</label>
                   <input name="GoogleMaps" class="form-control"
-                    value="{{ old('GoogleMaps', $info_perusahaan->google_maps) }}">
+                    value="{{ old('GoogleMaps', $info_perusahaan->google_maps ?? '') }}">
                 </div>
 
                 {{-- Logo --}}
@@ -110,7 +112,7 @@
                 {{-- Tentang Perusahaan --}}
                 <div class="col-12 mb-4">
                   <label class="form-label">Tentang Perusahaan</label>
-                  <textarea name="TentangPerusahaan" class="form-control" rows="4">{{ old('TentangPerusahaan', $info_perusahaan->tentang_perusahaan) }}</textarea>
+                  <textarea name="TentangPerusahaan" class="form-control" rows="4">{{ old('TentangPerusahaan', $info_perusahaan->tentang_perusahaan ?? '') }}</textarea>
                 </div>
 
                 {{-- Submit --}}
@@ -119,8 +121,10 @@
                     Simpan Perubahan
                   </button>
                 </div>
+
               </div>
             </form>
+
           </div>
         </div>
       </div>

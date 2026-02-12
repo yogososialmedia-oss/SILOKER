@@ -52,6 +52,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/loker/tampilan/{id}', [DaftarLokerController::class, 'showTampilanLoker'])->name('admin.loker.tampilan');
     Route::get('/admin/profile-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showProfilePerusahaan'])->name('admin.profile-perusahaan');
     Route::get('/admin/lowongan-kerja-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showLowonganKerjaPerusahaan'])->name('admin.lowongan-kerja-perusahaan');
+    Route::get('/admin/tampilan-loker/{id}', [VerifikasiPerusahaanController::class,'showTampilanLoker'])->name('admin.tampilan-loker');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');

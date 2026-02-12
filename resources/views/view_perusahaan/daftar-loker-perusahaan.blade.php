@@ -35,34 +35,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $perusahaan = auth()->guard('perusahaanmitra')->user();
+                                    @endphp
+
                                     @foreach ($loker as $data_loker)
                                         <tr>
-                                            <td>{{ $data_loker->perusahaanMitra->nama_perusahaan}}</td>
+                                            <td>{{ $perusahaan->nama_perusahaan }}</td>
                                             <td>{{ $data_loker->jabatan }}</td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
-                                                @if (now()->between($data_loker->tanggal_mulai_loker, $data_loker->tanggal_berakhir_loker))
+                                                @if (\Carbon\Carbon::now()->between(
+                                                        \Carbon\Carbon::parse($data_loker->tanggal_mulai_loker),
+                                                        \Carbon\Carbon::parse($data_loker->tanggal_berakhir_loker)))
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
                                                     <span class="badge bg-label-warning">Closed</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $data_loker->perusahaanMitra->no_telp_perusahaan }}</td>
-                                            <td>{{ $data_loker->perusahaanMitra->email_perusahaan }}</td>
+                                            <td>{{ $perusahaan->no_telp_perusahaan }}</td>
+                                            <td>{{ $perusahaan->email_perusahaan }}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown"><i
-                                                            class="icon-base bx bx-dots-vertical-rounded"></i></button>
+                                                        data-bs-toggle="dropdown">
+                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                                    </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.loker.edit', $data_loker->id) }}"><i
-                                                                class="icon-base bx bx-edit-alt me-2"></i>Edit</a>
+                                                            href="{{ route('perusahaan.loker.edit', $data_loker->id) }}">
+                                                            <i class="icon-base bx bx-edit-alt me-2"></i>Edit
+                                                        </a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.loker.tampilan') }}"><i
-                                                                class="icon-base bx bx-show me-2"></i>Tampilan Loker</a>
-                                                        <a class="dropdown-item" href="{{ route('perusahaan.apply.loker', $data_loker->id) }}"><i
-                                                                class="icon-base bx bx-user-pin me-2"></i>Daftar Apply</a>
+                                                            href="{{ route('perusahaan.loker.tampilan') }}">
+                                                            <i class="icon-base bx bx-show me-2"></i>Tampilan Loker
+                                                        </a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('perusahaan.apply.loker', $data_loker->id) }}">
+                                                            <i class="icon-base bx bx-user-pin me-2"></i>Daftar Apply
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

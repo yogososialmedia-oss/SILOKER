@@ -90,12 +90,6 @@
                             <li><a class="dropdown-item" href="{{ route('pencarikerja.login') }}">Pencari Kerja</a></li>
                         </ul>
                     </div>
-
-                    <!-- PROFILE -->
-                    <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('pencarikerja.profile') }}">
-                        <i class="bx bx-user"></i> Profile
-                    </a>
-
                 </div>
             </div>
         </div>

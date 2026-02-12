@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Perusahaan;
 use App\Http\Controllers\Controller;
 use App\Models\Apply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplyController extends Controller
 {
@@ -12,10 +13,17 @@ class ApplyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $apply = Apply::with('loker')->get();
-        return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
-    }
+{
+    $perusahaanId = Auth::guard('perusahaanmitra')->id();
+
+    $apply = Apply::with(['loker', 'pencariKerja'])
+        ->whereHas('loker', function ($query) use ($perusahaanId) {
+            $query->where('id_perusahaan_mitra', $perusahaanId);
+        })
+        ->get();
+
+    return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
+}
 
     public function daftarapplyloker($id)
     {
