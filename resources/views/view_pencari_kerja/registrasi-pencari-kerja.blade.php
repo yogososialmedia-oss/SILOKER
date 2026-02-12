@@ -6,6 +6,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="card-header">
+                                <h5 class="mb-0 fw-bold ">FORM REGISTRASI</h5>
+                            </div>
                             <form action="" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">

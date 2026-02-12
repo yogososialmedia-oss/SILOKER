@@ -32105,6 +32105,39 @@ html {
 }
 
 /* =====================================================
+    NAVBAR  ADMIN-PERUSAHAAN
+   ===================================================== */
+  /* ================= NAVBAR BLUE ================= */
+.navbar-blue-custom {
+    background: linear-gradient(135deg, #3f75c7, #2f5fb3);
+    box-shadow: 0 8px 24px rgba(63, 117, 199, 0.35);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+/* icon menu */
+.navbar-blue-custom .bx-menu {
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+.navbar-blue-custom .dropdown-item {
+    color: #fff;
+    background: transparent;
+    border-radius: 10px;
+    padding: 10px 16px;
+    transition: all 0.25s ease;
+}
+
+/* hover logout */
+.navbar-blue-custom .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+
+/* =====================================================
     NAVBAR PROFILE
    ===================================================== */
 .nav-underline {
@@ -32134,6 +32167,17 @@ html {
     background-color: #000;
 }
 
+.custom-brand-text {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.5rem; 
+    color: #3f75c7; 
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+.dot-beranda.hero-exclamation {
+    color: #facc15; 
+}
 
 /* =====================================================
     NAVBAR BERANDA 
@@ -32247,9 +32291,6 @@ html {
     margin-top: 4px;
 }
 
-
-
-
 /* ============LOKER CARD=================== */
 
 /* huruf i pad loker */
@@ -32340,7 +32381,5 @@ body {
   margin-left: calc(-50vw + 50%);
 }
 
-.select2-results__option--highlighted {
-    background-color: #3f75c7 !important;
-    color: #fff;
-}
+
+

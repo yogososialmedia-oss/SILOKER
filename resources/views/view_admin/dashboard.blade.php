@@ -6,7 +6,7 @@
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Jumlah Lowongan</h5>
+                                <h5 class="card-title fw-bold">JUMLAH LOWONGAN</h5>
                                 <canvas id="grafik_loker"></canvas>
                             </div>
                         </div>
@@ -14,7 +14,7 @@
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Jumlah Interaksi</h5>
+                                <h5 class="card-title fw-bold ">JUMLAH INTERAKSI</h5>
                                 <canvas id="grafik_interaksi"></canvas>
                             </div>
                         </div>
@@ -23,7 +23,11 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header"></div>
+            <div class="card-header">
+                <div>
+                    <h5 class="card-title fw-bold ">LOWONGAN TERPOPULER</h5>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table mb-0">
                     <thead>
@@ -38,19 +42,19 @@
                             <th>Apply</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         @foreach ($lokerTerbaru as $index => $loker)
-                        <tr>
-                            <th scope="row">{{ $index + 1 }}</th>
-                            <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                            <td>{{ $loker->jabatan }}</td>
-                            <td>{{ $loker->tipe_loker }}</td>
-                            <td>{{ $loker->no_telp_perusahaan }}</td>
-                            <td>{{ $loker->email_perusahaan }}</td>
-                            <td>{{ $loker->tayangan ?? 0 }}</td>
-                            <td>{{ $loker->interaksi ?? 0 }}</td>
-                        </tr>
+                            <tr>
+                                <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
+                                <td>{{ $loker->jabatan }}</td>
+                                <td>{{ $loker->tipe_loker }}</td>
+                                <td>{{ $loker->no_telp_perusahaan }}</td>
+                                <td>{{ $loker->email_perusahaan }}</td>
+                                <td>{{ $loker->tayangan ?? 0 }}</td>
+                                <td>{{ $loker->interaksi ?? 0 }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

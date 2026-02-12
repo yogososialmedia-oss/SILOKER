@@ -19,10 +19,12 @@
                 <!-- Contoh jika route beranda namanya 'beranda' -->
                 <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#home">Home</a>
                 <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#about">About</a>
-                <a class="nav-link {{ request()->routeIs('pencarikerja.loker.*') ? 'active text-white' : '' }}"
+                <a class="nav-link 
+    {{ request()->routeIs('pencarikerja.loker.*') || request()->routeIs('tampilan-loker-pencari-kerja') ? 'active text-white' : '' }}"
                     href="{{ route('pencarikerja.loker.index') }}">
                     Loker
                 </a>
+
             </div>
 
             <!-- MENU KANAN -->
@@ -43,10 +45,10 @@
                 <!-- PROFILE -->
                 <a class="nav-link profile-link-beranda ms-lg-3
                     {{ request()->routeIs(
-                    'pencarikerja.profile',
-                    'pencarikerja.history-apply',
-                    'pencarikerja.profile.edit'
-                    ) ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
+    'pencarikerja.profile',
+    'pencarikerja.history-apply',
+    'pencarikerja.profile.edit'
+) ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
                     <i class="bx bx-user"></i> Profile
                 </a>
 

@@ -129,6 +129,13 @@
                                             class="icon-base bx bx-hide"></i></span>
                                 </div>
                             </div>
+                            @if($errors->has('email-username'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ $errors->first('email-username') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            @endif
+
                             <div class="mb-8">
                                 <div class="d-flex justify-content-between">
                                     <div class="form-check mb-0">

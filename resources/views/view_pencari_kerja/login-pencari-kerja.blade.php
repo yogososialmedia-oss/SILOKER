@@ -110,6 +110,7 @@
                         <div class="app-brand justify-content-center mb-6">
                             <a class="app-brand-text demo text-heading fw-bold">Login Pencari Kerja</a>
                         </div>
+
                         <form id="formAuthentication" class="mb-6" action="" method="POST">
                             @csrf
                             <div class="mb-6">
@@ -127,6 +128,12 @@
                                             class="icon-base bx bx-hide"></i></span>
                                 </div>
                             </div>
+                            @if($errors->has('email-username'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ $errors->first('email-username') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            @endif
                             <div class="mb-8">
                                 <div class="d-flex justify-content-between">
                                     <div class="form-check mb-0">

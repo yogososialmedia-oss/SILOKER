@@ -7,14 +7,10 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
-                        <h5 class="mb-0 fw-bold">Verifikasi Perusahaan</h5>
+                        <h5 class="mb-0 fw-bold">VERIFIKASI PERUSAHAAN</h5>
                     </div>
 
                     <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Download
-                        </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
