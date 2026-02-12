@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\PencariKerja\LokerController as PencariKerjaLokerController;
 use App\Http\Controllers\PencariKerja\ProfileController;
+use App\Http\Controllers\PencariKerja\RegistrasiPencariKerjaController;
 use App\Http\Controllers\Perusahaan\ApplyController as PerusahaanApplyController;
 use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
 use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
@@ -23,6 +24,8 @@ Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])
 Route::get('/pencarikerja/beranda', [PencariKerjaLokerController::class, 'showBeranda'])->name('pencarikerja.beranda');
 Route::get('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'index'])->name('perusahaan.registrasi');
 Route::post('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'store'])->name('perusahaan.registrasi.post');
+Route::get('/registrasi-pencari-kerja', [RegistrasiPencariKerjaController::class, 'index'])->name('pencarikerja.register');
+Route::post('/registrasi-pencari-kerja/store', [RegistrasiPencariKerjaController::class, 'store'])->name('pencarikerja.register.store');
 
 
 

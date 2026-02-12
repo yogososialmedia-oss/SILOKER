@@ -21,6 +21,9 @@ class PencariKerjaSeeder extends Seeder
         'password_pencari_kerja' => bcrypt('password'),
         'cv' => 'cv_andi.pdf',
         'nim' => '123456789',
+        'deskripsi_diri' => 'Saya seorang pencari kerja yang bersemangat dan memiliki pengalaman di bidang IT.',
+        'pendidikan_terakhir' => 'S1',
+        'linkedin' => 'https://www.linkedin.com/in/andi',
         'foto_pencari_kerja' => 'foto_andi.jpg',
         ]);
 
@@ -32,6 +35,9 @@ class PencariKerjaSeeder extends Seeder
         'password_pencari_kerja' => bcrypt('password'),
         'cv' => 'cv_andi.pdf',
         'nim' => '123456789',
+        'deskripsi_diri' => 'Saya seorang pencari kerja yang bersemangat dan memiliki pengalaman di bidang IT.',
+        'pendidikan_terakhir' => 'S1',
+        'linkedin' => 'https://www.linkedin.com/in/andi',
         'foto_pencari_kerja' => 'foto_andi.jpg',
         ]);
 
@@ -43,6 +49,9 @@ class PencariKerjaSeeder extends Seeder
         'password_pencari_kerja' => bcrypt('password'),
         'cv' => 'cv_andi.pdf',
         'nim' => '123456789',
+        'deskripsi_diri' => 'Saya seorang pencari kerja yang bersemangat dan memiliki pengalaman di bidang IT.',
+        'pendidikan_terakhir' => 'S1',
+        'linkedin' => 'https://www.linkedin.com/in/andi',
         'foto_pencari_kerja' => 'foto_andi.jpg',
         ]);
     }
