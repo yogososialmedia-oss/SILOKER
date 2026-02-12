@@ -33,11 +33,24 @@ class RegistrasiPerusahaanController extends Controller
         $request->validate([
         'NamaPerusahaan' => 'required',
         'Email' => 'required|email|unique:tb_perusahaan_mitra,email_perusahaan',
-        'Password' => 'required|min:6',
+        'Password' => 'required|min:8',
         'Provinsi' => 'required',
         'Kabupaten' => 'required',
         'Kecamatan' => 'required',
-    ]);
+    ],
+    [
+        'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi',
+        'Email.required' => 'Email wajib diisi',
+        'Email.email' => 'Format email tidak valid',
+        'Email.unique' => 'Email sudah terdaftar',
+        'Password.required' => 'Password wajib diisi',
+        'Password.min' => 'Password minimal 8 karakter',
+        'Provinsi.required' => 'Provinsi wajib diisi',
+        'Kabupaten.required' => 'Kabupaten wajib diisi',
+        'Kecamatan.required' => 'Kecamatan wajib diisi',
+    ]  
+
+    );
 
     PerusahaanMitra::create([
         'nama_perusahaan'    => $request->NamaPerusahaan,
