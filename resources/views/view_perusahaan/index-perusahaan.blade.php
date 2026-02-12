@@ -33,7 +33,7 @@
                       </li>
                       @if (Auth::guard('perusahaanmitra')->user())
                         <li class="nav-item">
-                          <a class="navbar-brand" href="{{ route('admin.lowongan-kerja-perusahaan') }}">Lowongan Kerja</a>
+                          <a class="navbar-brand" href="{{ route('perusahaan.loker') }}">Lowongan Kerja</a>
                         </li>
                       @elseif (Auth::guard('admin')->user())
                       <li class="nav-item">
