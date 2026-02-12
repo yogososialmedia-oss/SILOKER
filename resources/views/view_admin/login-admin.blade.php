@@ -103,7 +103,7 @@
                 <div class="card px-sm-6 px-0">
                     <div class="card-body">
                         <div class="app-brand justify-content-center mb-6">
-                            <a class="app-brand-text demo text-heading fw-bold">Login Admin</a>
+                            <a class="app-brand-text demo text-heading fw-bold">ADMIN</a>
                         </div>
                         <form id="formAuthentication" class="mb-6" action="{{ route('admin.login.post') }}"
                             method="POST">
