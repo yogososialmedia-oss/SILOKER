@@ -28,22 +28,34 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('pencarikerja.profile') }}">Tentang Saya</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}"
+                                                    href="{{ route('pencarikerja.profile') }}">
+                                                    Tentang Saya
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('pencarikerja.history-apply') }}">History Apply</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('profile-pencari-kerja') }}">CV</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}"
+                                                    href="{{ route('pencarikerja.history-apply') }}">
+                                                    History Apply
+                                                </a>
                                             </li>
                                         </ul>
-                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                                            <li class="nav-item me-2">
+                                                <a href="{{ route('pencarikerja.profile.edit') }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    Edit Profile
+                                                </a>
+                                            </li>
+
+                                            <!-- LOGOUT -->
                                             <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('pencarikerja.profile.edit') }}">Edit Profile</a>
+                                                <form action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        Logout
+                                                    </button>
+                                                </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -69,10 +81,39 @@
                             <a href="#" class="d-block mb-4 text-primary">
                                 Klik di sini untuk melihat profile Linked.In saya
                             </a>
+                            <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
+                            <p>S1</p>
                             <h6 class="fw-bold mb-1">Email</h6>
                             <p class="mb-4">betutu@gmail.com</p>
                             <h6 class="fw-bold mb-1">No.Telp</h6>
                             <p>0897868365463</p>
+                            <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
+                            <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal"
+                                data-bs-target="#modalCV">
+                                Lihat CV
+                            </button>
+                            <!-- MODAL CV -->
+                            <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCVLabel">Curriculum Vitae</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body p-0">
+                                            <iframe src="{{ asset('storage/cv/cv.pdf') }}" width="100%" height="600px"
+                                                style="border:none;">
+                                            </iframe>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

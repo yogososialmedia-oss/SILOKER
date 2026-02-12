@@ -56,12 +56,12 @@
                     <select class="form-select">
                         <option selected>Pilih minimal pendidikan</option>
                         <option>SMA / Sederajat</option>
-                        <option>D1</option>
-                        <option>D2</option>
-                        <option>D3</option>
-                        <option>S1</option>
-                        <option>S2</option>
-                        <option>S3</option>
+                        <option>Minimal Pendidikan D1</option>
+                        <option>Minimal Pendidikan D2</option>
+                        <option>Minimal Pendidikan D3</option>
+                        <option>Minimal Pendidikan S1</option>
+                        <option>Minimal Pendidikan S2</option>
+                        <option>Minimal Pendidikan S3</option>
                     </select>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <!-- CARD LOKER -->
                 <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                     <div class="card h-100 loker-card-beranda position-relative">
-                        <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
+                        <a href="{{ route('tampilan-loker-pencari-kerja') }}" class="stretched-link"></a>
                         <div class="card-body position-relative">
                             <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
                             <div class="d-flex align-items-start gap-3 mb-3">
@@ -87,13 +87,13 @@
                                 <div class="flex-grow-1">
 
                                     <h6 class="mb-1 d-flex align-items-center gap-2">
-                                        <a href="{{ route('index-perusahaan') }}"
+                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
                                             class="fw-bold text-dark text-decoration-none position-relative z-3">
                                             DEYSTORY
                                         </a>
-                                        <a href="{{ route('index-perusahaan') }}"
-                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
-                                            style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
+                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}" 
+                                            class="badge rounded-circle bg-primary  d-flex align-items-center justify-content-center position-relative z-3"
+                                            style="width:16px; height:16px; font-size:10px; ">i</a>
                                     </h6>
 
                                     <p class="mb-1 small">Job Opportunity</p>
@@ -109,11 +109,11 @@
                                     <h5 class="mb-3 position-relative">Administrasi</h5>
                                 </div>
                                 <div class="col-3">
-                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
                                         class="badge bg-primary position-relative ">
                                         Open
                                     </a>
-                                    <a href="{{ route('loker', ['id' => 1]) }}"
+                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
                                         class="badge bg-danger position-relative ">
                                         Close
                                     </a>
