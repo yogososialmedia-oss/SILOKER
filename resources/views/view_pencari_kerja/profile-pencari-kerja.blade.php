@@ -41,24 +41,23 @@
                                             </li>
                                         </ul>
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        <li class="nav-item me-2">
-            <a href="{{ route('pencarikerja.profile.edit') }}"
-                class="btn btn-sm btn-warning">
-                Edit Profile
-            </a>
-        </li>
+                                            <li class="nav-item me-2">
+                                                <a href="{{ route('pencarikerja.profile.edit') }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    Edit Profile
+                                                </a>
+                                            </li>
 
-        <!-- LOGOUT -->
-        <li class="nav-item">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit"
-                    class="btn btn-sm btn-danger">
-                    Logout
-                </button>
-            </form>
-        </li>
-    </ul>
+                                            <!-- LOGOUT -->
+                                            <li class="nav-item">
+                                                <form action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        Logout
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
                                     </div>
                             </nav>
                         </div>
