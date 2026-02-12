@@ -14,7 +14,8 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama</label>
-                                        <input name="NamaPencariKerja" class="form-control">
+                                        <input name="NamaPencariKerja" class="form-control"
+                                            placeholder="Tambahkan nama lengkap anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -25,17 +26,20 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="Email" class="form-control">
+                                        <input name="Email" class="form-control"
+                                            placeholder="Tambahkan alamat email anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="NoTelp" class="form-control">
+                                        <input name="NoTelp" class="form-control"
+                                            placeholder="Tambahkan nomor telepon anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="Alamat" type="text" class="form-control">
+                                        <input name="Alamat" type="text" class="form-control"
+                                            placeholder="Tambahkan alamat lengkap anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">

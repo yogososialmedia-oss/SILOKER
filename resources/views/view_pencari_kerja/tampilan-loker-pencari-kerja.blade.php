@@ -24,15 +24,15 @@
                                     <h5 class="mb-3 position-relative">Administrasi</h5>
                                 </div>
                                 <div class="col-3">
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-primary position-relative ">
+                                    <span class="badge bg-primary position-relative">
                                         Open
-                                    </a>
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-danger position-relative ">
+                                    </span>
+
+                                    <span class="badge bg-danger position-relative">
                                         Close
-                                    </a>
+                                    </span>
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-mb-12">
