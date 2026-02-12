@@ -39,16 +39,24 @@
                                     <td>{{$akun->email_perusahaan}}</td>
                                     <td>{{$akun->no_npwp}}</td>
                                     <td>
-                                        <span class="badge bg-label-warning me-1">{{$akun->status_akun}}</span></td>
-                                        <span class="badge bg-label-danger me-1">{{$akun->status_akun}}</span></td>
-                                        <span class="badge bg-label-success me-1">{{$akun->status_akun}}</span></td>
+                                        @if($akun->status_akun == 'Pending')
+                                            <span class="badge bg-label-warning me-1">{{$akun->status_akun}}</span>
+                                        @elseif($akun->status_akun == 'Verifikasi Gagal')
+                                            <span class="badge bg-label-danger me-1">{{$akun->status_akun}}</span>
+                                        @elseif($akun->status_akun == 'Terverifikasi')
+                                            <span class="badge bg-label-success me-1">{{$akun->status_akun}}</span>
+                                        @endif
+                                    </td>
+
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                 data-bs-toggle="dropdown"><i
                                                     class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}"> <i class="icon-base bx bx-edit-alt me-2"></i> Detail Verifikasi </a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}"> <i
+                                                        class="icon-base bx bx-edit-alt me-2"></i> Detail Verifikasi </a>
                                                 <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
                                                         class="icon-base bx bx-show me-2"></i>Update Status</button>

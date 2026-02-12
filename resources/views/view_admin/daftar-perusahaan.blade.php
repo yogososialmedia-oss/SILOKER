@@ -37,33 +37,33 @@
 
                         <tbody>
                             @foreach ($perusahaanMitra as $perusahaan)
-                            <tr>
-                                <td>{{ $perusahaan->created_at->format('d/m/Y') }}</td>
-                                <td>{{ $perusahaan->nama_perusahaan }}</td>
-                                <td>{{ $perusahaan->email_perusahaan }}</td>
-                                <td>{{ $perusahaan->no_npwp }}</td>
-                                <td>
-                                    @if ($perusahaan->status_akun == 'pending')
-                                        <span class="badge bg-label-warning">Belum Terverifikasi</span>
-                                    @elseif ($perusahaan->status_akun == 'verified')
-                                        <span class="badge bg-label-success">Terverifikasi</span>
-                                    @elseif ($perusahaan->status_akun == 'rejected')
-                                        <span class="badge bg-label-danger">Verifikasi Gagal</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('admin.profile-perusahaan', $perusahaan->id) }}">
-                                                <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
-                                            </a>
+                                <tr>
+                                    <td>{{ $perusahaan->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $perusahaan->nama_perusahaan }}</td>
+                                    <td>{{ $perusahaan->email_perusahaan }}</td>
+                                    <td>{{ $perusahaan->no_npwp }}</td>
+                                    <td>
+                                        @if ($perusahaan->status_akun == 'verified')
+                                            <span class="badge bg-label-success">Terverifikasi</span>
+                                        @elseif ($perusahaan->status_akun == 'rejected')
+                                            <span class="badge bg-label-danger">Verifikasi Gagal</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.profile-perusahaan', $perusahaan->id) }}">
+                                                    <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

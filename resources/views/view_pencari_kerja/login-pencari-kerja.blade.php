@@ -151,7 +151,7 @@
 
                         <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="{{ route('pencarikerja.register') }}">
+                            <a class="btn btn-outline-primary" href="{{ route('pencarikerja.register') }}">
                                 <span>Create an account</span>
                             </a>
                         </p>

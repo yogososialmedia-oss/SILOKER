@@ -1,145 +1,150 @@
 <x-pencari_kerja.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-header">
-                                <h5 class="mb-0 fw-bold ">FORM REGISTRASI</h5>
+
+                            <div class="card-header mb-4">
+                                <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
                             </div>
-                            <form action="{{ route('pencarikerja.register.store') }}" method="POST" enctype="multipart/form-data">
+
+                            <form action="{{ route('pencarikerja.register.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="row">
+
+                                    {{-- NAMA --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input name="nama_pencari_kerja" class="form-control"
+                                        <input name="nama_pencari_kerja"
+                                            value="{{ old('nama_pencari_kerja') }}"
+                                            class="form-control @error('nama_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan nama lengkap anda">
-                                        <div class="form-text"></div>
+                                        @error('nama_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
+                                    {{-- NIM --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">NIM (jika mahasiswa stikom)</label>
-                                        <input name="nim" class="form-control"
-                                            placeholder="Tambahkan NIM (jika mahasiswa stikom)">
-                                        <div class="form-text"></div>
+                                        <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
+                                        <input name="nim" value="{{ old('nim') }}" class="form-control"
+                                            placeholder="Tambahkan NIM ">
                                     </div>
+
+                                    {{-- NO TELP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No.Telp</label>
-                                        <input name="no_telp_pencari_kerja" class="form-control"
-                                            placeholder="Tambahkan nomor telepon anda">
-                                        <div class="form-text"></div>
+                                        <label class="form-label">No. Telp</label>
+                                        <input name="no_telp_pencari_kerja"
+                                            value="{{ old('no_telp_pencari_kerja') }}"
+                                            class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror"
+                                            placeholder="Tambahkan nomor telepon">
+                                        @error('no_telp_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
+                                    {{-- ALAMAT --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="alamat_pencari_kerja" type="text" class="form-control"
-                                            placeholder="Tambahkan alamat lengkap anda">
-                                        <div class="form-text"></div>
+                                        <input name="alamat_pencari_kerja"
+                                            value="{{ old('alamat_pencari_kerja') }}"
+                                            class="form-control @error('alamat_pencari_kerja') is-invalid @enderror"
+                                            placeholder="Tambahkan alamat lengkap">
+                                        @error('alamat_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
-                                        <select name="pendidikan_terakhir" id="defaultSelect" class="form-select">
-                                            <option>Pilih Pendidikan Terakhir</option>
-                                            <option value="SMA/Sederajat">SMA/Sederajat</option>
-                                            <option value="D1">D1</option>
-                                            <option value="D2">D2</option>
-                                            <option value="D3">D3</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                            <option value="S3">S3</option>
+
+                                    {{-- PENDIDIKAN --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Pendidikan Terakhir</label>
+                                        <select name="pendidikan_terakhir" class="form-select">
+                                            <option value="">Pilih Pendidikan</option>
+                                            @foreach (['SMA/Sederajat','D1','D2','D3','S1','S2','S3'] as $p)
+                                                <option value="{{ $p }}"
+                                                    {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>
+                                                    {{ $p }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
+
+                                    {{-- LINKEDIN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Linked.id</label>
-                                        <input name="linkedin" class="form-control"
-                                            placeholder="Tambahkan link profile linked.id anda">
-                                        <div class="form-text"></div>
+                                        <label class="form-label">LinkedIn</label>
+                                        <input name="linkedin" value="{{ old('linkedin') }}"
+                                            class="form-control" placeholder="Tambahkan link profile Linked.In">
                                     </div>
+
+                                    {{-- CV --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Upload CV</label>
-                                        <input name="cv" type="file" class="form-control">
-                                        <div class="form-text"></div>
+                                        <label class="form-label">Upload CV (PDF)</label>
+                                        <input name="cv" type="file"
+                                            class="form-control @error('cv') is-invalid @enderror">
+                                        @error('cv')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
+                                    {{-- FOTO --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Foto Profile</label>
-                                        <input name="foto_pencari_kerja" type="file" class="form-control">
-                                        <div class="form-text"></div>
+                                        <input name="foto_pencari_kerja" type="file"
+                                            class="form-control @error('foto_pencari_kerja') is-invalid @enderror">
+                                        @error('foto_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="col-md-12 mb-6">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Tentang Saya</label>
+
+                                    {{-- DESKRIPSI --}}
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Tentang Saya</label>
                                         <textarea name="deskripsi_diri" class="form-control"
-                                            id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            rows="3">{{ old('deskripsi_diri') }}</textarea>
                                     </div>
+
+                                    {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_pencari_kerja" class="form-control"
-                                            placeholder="Tambahkan alamat email anda">
-                                        <div class="form-text"></div>
+                                        <input name="email_pencari_kerja"
+                                            value="{{ old('email_pencari_kerja') }}"
+                                            class="form-control @error('email_pencari_kerja') is-invalid @enderror"
+                                            placeholder="Tambahkan email anda">
+                                        @error('email_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
+                                    {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
-
-                                        <input name="password_pencari_kerja" class="form-control" placeholder="Buat password anda">
-
-                                        <div class="form-text"></div>
-
-                                        <div class="mt-3">
-                                            <p class="mb-1">Ketentuan Password :</p>
-
-                                            <ul class="small mt-2" id="passwordRules">
-                                                <li id="rule-lower">✔ Minimal 1 huruf kecil</li>
-                                                <li id="rule-upper">✔ Minimal 1 huruf besar</li>
-                                                <li id="rule-number">✔ Minimal 1 angka</li>
-                                                <li id="rule-length">✔ Minimal 8 karakter</li>
-                                            </ul>
-                                        </div>
+                                        <input type="password" name="password_pencari_kerja"
+                                            class="form-control @error('password_pencari_kerja') is-invalid @enderror"
+                                            placeholder="Buat password minimal 8 karakter">
+                                        @error('password_pencari_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
-                                    <div class="col-mb text-end">
-                                        <button type="submit" class="btn btn-primary">Registrasi</button>
+                                    {{-- SUBMIT --}}
+                                    <div class="col-12 text-end mt-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            Registrasi
+                                        </button>
                                     </div>
 
+                                </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Content wrapper -->
-
-    <!-- Footer -->
-    <footer class="content-footer footer bg-footer-theme">
-        <div class="container-xxl">
-            <div
-                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                    ©2026 Yogo & Wahyu
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- / Footer -->
-
-    <script>
-        const passwordInput = document.querySelector('input[name="Password"]');
-
-        passwordInput.addEventListener('input', function () {
-            const value = this.value;
-
-            document.getElementById('rule-lower').style.color =
-                /[a-z]/.test(value) ? 'green' : 'gray';
-
-            document.getElementById('rule-upper').style.color =
-                /[A-Z]/.test(value) ? 'green' : 'gray';
-
-            document.getElementById('rule-number').style.color =
-                /[0-9]/.test(value) ? 'green' : 'gray';
-
-            document.getElementById('rule-length').style.color =
-                value.length >= 8 ? 'green' : 'gray';
-        });
-    </script>
 
 </x-pencari_kerja.layout>

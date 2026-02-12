@@ -113,12 +113,12 @@
                                             <option>Pilih Minimal Pendidikan</option>
                                             <option value="SMA/Sederajat">SMA/
                                                 Sederajat</option>
-                                            <option value="D1">D1</option>
-                                            <option value="D2">D2</option>
-                                            <option value="D3">D3</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                            <option value="S3">S3</option>
+                                            <option value="D1">Minimal Pendidikan D1</option>
+                                            <option value="D2">Minimal Pendidikan D2</option>
+                                            <option value="D3">Minimal Pendidikan D3</option>
+                                            <option value="S1">Minimal Pendidikan S1</option>
+                                            <option value="S2">Minimal Pendidikan S2</option>
+                                            <option value="S3">Minimal Pendidikan S3</option>
                                         </select>
                                     </div>
 

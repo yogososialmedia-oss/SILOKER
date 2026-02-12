@@ -145,7 +145,7 @@
 
                         <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="{{ route('perusahaan.registrasi') }}">
+                            <a class="btn btn-outline-primary" href="{{ route('perusahaan.registrasi') }}">
                                 <span>Create an account</span>
                             </a>
                         </p>

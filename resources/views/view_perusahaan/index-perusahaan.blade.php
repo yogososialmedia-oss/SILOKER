@@ -18,6 +18,7 @@
               <a href="">Verifikasi</a>
               <a href="">Verifikasi Gagal</a>
               <p>Terverifikasi</p>
+              <p>Pending</p>
             </div>
             <div class="bg-white p-4">
               <nav class="navbar navbar-expand-lg py-1">
