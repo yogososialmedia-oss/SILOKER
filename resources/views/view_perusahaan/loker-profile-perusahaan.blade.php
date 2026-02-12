@@ -27,19 +27,34 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      @if (Auth::guard('perusahaanmitra')->user())
                       <li class="nav-item">
                         <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
                           Perusahaan</a>
                       </li>
+                      @elseif (Auth::guard('admin')->user())
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan
-                          Kerja</a>
+                        <a class="navbar-brand" href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">Tentang
+                          Perusahaan</a>
                       </li>
+                      @endif
+                      @if (Auth::guard('perusahaanmitra')->user())
+                        <li class="nav-item">
+                          <a class="navbar-brand" href="{{ route('perusahaan.loker') }}">Lowongan Kerja</a>
+                        </li>
+                      @elseif (Auth::guard('admin')->user())
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">Lowongan Kerja</a>
+                      </li>
+                      @endif
                     </ul>
+                    @if (Auth::guard('perusahaanmitra')->user())
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                       <li class="nav-item">
                         <a class="navbar-brand" href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
                       </li>
+                    </ul>
+                    @endif
                     </ul>
                   </div>
               </nav>
@@ -47,26 +62,25 @@
           </div>
         </div>
         {{-- Card Loker --}}
+        @if (Auth::guard('perusahaanmitra')->user())
         <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
           <div class="card h-100 loker-card-beranda position-relative">
-            <a href="{{ route('tampilan-loker-perusahaan') }}" class="stretched-link"></a>
+            <a href="{{ route('perusahaan.loker.tampilan') }}" class="stretched-link"></a>
             <div class="card-body position-relative">
               <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
               <div class="d-flex align-items-start gap-3 mb-3">
                 <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" style="width:60px; height:60px;"
                   class="img-fluid rounded" alt="">
                 <div class="flex-grow-1">
-
                   <h6 class="mb-1 d-flex align-items-center gap-2">
-                    <a href="{{ route('index-perusahaan') }}"
+                    <a href="{{ route('perusahaan.loker.tampilan') }}"
                       class="fw-bold text-dark text-decoration-none position-relative z-3">
                       DEYSTORY
                     </a>
-                    <a href="{{ route('index-perusahaan') }}"
+                    <a href="{{ route('perusahaan.loker.tampilan') }}"
                       class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
                       style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
                   </h6>
-
                   <p class="mb-1 small">Job Opportunity</p>
                   <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                     <i class="bx bx-location-plus"></i>
@@ -74,7 +88,6 @@
                   </p>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-9">
                   <h5 class="mb-3 position-relative">Administrasi</h5>
@@ -105,8 +118,66 @@
             </div>
           </div>
         </div>
-      </div>
+        
+        @elseif (Auth::guard('admin')->user())
+        <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
+          <div class="card h-100 loker-card-beranda position-relative">
+            <a href="{{ route('admin.tampilan-loker', $info_perusahaan->id) }}" class="stretched-link"></a>
+            <div class="card-body position-relative">
+              <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
+              <div class="d-flex align-items-start gap-3 mb-3">
+                <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" style="width:60px; height:60px;"
+                  class="img-fluid rounded" alt="">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1 d-flex align-items-center gap-2">
+                    <a href="{{ route('admin.tampilan-loker', $info_perusahaan->id) }}"
+                      class="fw-bold text-dark text-decoration-none position-relative z-3">
+                      DEYSTORY
+                    </a>
+                    <a href="{{ route('admin.tampilan-loker', $info_perusahaan->id) }}"
+                      class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
+                      style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
+                  </h6>
+                  <p class="mb-1 small">Job Opportunity</p>
+                  <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
+                    <i class="bx bx-location-plus"></i>
+                    <span>Jakarta</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-9">
+                  <h5 class="mb-3 position-relative">Administrasi</h5>
+                </div>
+                <div class="col-3">
+                  <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-primary position-relative ">
+                    Open
+                  </a>
+                  <a href="{{ route('loker', ['id' => 1]) }}" class="badge bg-danger position-relative ">
+                    Close
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 ">
+                  <p class="d-flex align-items-start gap-2 mb-1">
+                    <i class="bx bx-buildings"></i>
+                    <span>Work From Office</span>
+                  </p>
+                </div>
+                <div class=" col-md-12 ">
+                  <p class="d-flex align-items-start gap-2 mb-1">
+                    <i class="bx bx-book-reader"></i>
+                    <span>Minimal Pendidikan S1</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endif
 
+      </div>
     </div>
   </div>
 

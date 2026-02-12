@@ -37,8 +37,11 @@ class VerifikasiPerusahaanController extends Controller
         $info_perusahaan = Loker::with('perusahaanMitra')->findOrFail($id);
         return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
     }
-    
-
+    public function showTampilanLoker($id)
+    {
+        $info_perusahaan = Loker::findOrFail($id);
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan'));
+    }
     /**
      * Show the form for creating a new resource.
      */

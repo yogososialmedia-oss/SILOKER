@@ -43,6 +43,7 @@
                 </div>
 
                 <!-- PROFILE -->
+                    @if ((Auth::guard('pencarikerja')->user()))
                 <a class="nav-link profile-link-beranda ms-lg-3
                     {{ request()->routeIs(
     'pencarikerja.profile',
@@ -51,6 +52,7 @@
 ) ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
                     <i class="bx bx-user"></i> Profile
                 </a>
+                @endif
 
 
 

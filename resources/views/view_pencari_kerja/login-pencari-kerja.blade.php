@@ -92,9 +92,11 @@
                     </div>
 
                     <!-- PROFILE -->
+                    @if ((Auth::guard('pencarikerja')->user()))
                     <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('profile-pencari-kerja') }}">
                         <i class="bx bx-user"></i> Profile
                     </a>
+                    @endif
 
                 </div>
             </div>

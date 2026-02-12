@@ -18,8 +18,8 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
                                         <input name="nama_perusahaan" type="text" class="form-control"
-                                            value="{{ $info_perusahaan->nama_perusahaan }}"
-                                            placeholder="Tambahkan nama perusahaan">
+                                            value="{{ $info_perusahaan->nama_perusahaan ?? '' }}"
+                                            placeholder="Tambahkan nama perusahaan" readonly>
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -30,16 +30,16 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_perusahaan" type="text" class="form-control"
+                                        <input name="email_perusahaan" type="email" class="form-control"
                                             placeholder="Tambahkan email perusahaan"
-                                            value="{{ $info_perusahaan->email_perusahaan }}">
+                                            value="{{ $info_perusahaan->email_perusahaan ?? '' }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
                                         <input name="no_telp_perusahaan" type="text" class="form-control"
                                             placeholder="Tambahkan nomor telepon perusahaan"
-                                            value="{{ $info_perusahaan->no_telp_perusahaan }}">
+                                            value="{{ $info_perusahaan->no_telp_perusahaan ?? '' }}">
                                         <div class="form-text"></div>
                                     </div>
                                     <!-- Tanggal Mulai -->
@@ -60,8 +60,8 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Provinsi</label>
-                                        <select name="provinsi" id="defaultSelect" class="form-select">
-                                            <option>Pilih provinsi</option>
+                                        <select name="provinsi" id="ProvinsiSelect" class="form-select">
+                                            <option value="">Pilih Provinsi</option>
                                             <option value="Bali">Bali</option>
                                             <option value="Banda Aceh">Banda Aceh</option>
                                             <option value="Medan">Medan</option>
@@ -69,8 +69,8 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Kabupaten</label>
-                                        <select name="kabupaten" id="defaultSelect" class="form-select">
-                                            <option>Pilih kabupaten</option>
+                                        <select name="kabupaten" id="KabupatenSelect" class="form-select">
+                                            <option value="">Pilih Kabupaten</option>
                                             <option value="Tabanan">Tabanan</option>
                                             <option value="Buleleng">Buleleng</option>
                                             <option value="Badung">Badung</option>
@@ -78,8 +78,8 @@
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Kecamatan</label>
-                                        <select name="kecamatan" id="defaultSelect" class="form-select">
-                                            <option>Pilih kecamatan</option>
+                                        <select name="kecamatan" id="KecamatanSelect" class="form-select">
+                                            <option value="">Pilih Kecamatan</option>
                                             <option value="Tabanan">Kediri</option>
                                             <option value="Buleleng">Kerambitan</option>
                                             <option value="Badung">Selemadeg</option>

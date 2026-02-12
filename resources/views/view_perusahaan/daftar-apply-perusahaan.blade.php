@@ -42,7 +42,7 @@
                                     <td>{{ $data_apply->tanggal_apply }}</td>
                                     <td>{{ $data_apply->pencariKerja->nim }}</td>
                                     <td>{{ $data_apply->pencariKerja->nama_pencari_kerja }}</td>
-                                    <td>{{ $data_apply->perusahaanMitra->nama_perusahaan }}</td>
+                                    <td>{{ $data_apply->loker->perusahaanMitra->nama_perusahaan }}</td>
                                     <td>{{ $data_apply->loker->jabatan }}</td>
                                     <td>
                                         @if ($data_apply->status == 'pending')

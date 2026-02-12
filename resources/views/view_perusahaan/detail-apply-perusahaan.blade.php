@@ -8,18 +8,23 @@
                             <h5 class="mb-0 fw-bold">Detail Apply</h5>
                         </div>
                         <div class="card-body">
+                            @php
+                                $pelamar = $apply->pencariKerja ?? null;
+                                $loker = $apply->loker ?? null;
+                            @endphp
+
                             <div class="row">
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->nama_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->nama_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Jabatan</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->loker->jabatan ?? '-' }}" readonly>
+                                        value="{{ $loker?->jabatan ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -31,25 +36,25 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (Jika Mahasiswa STIKOM)</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->nim ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->nim ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->email_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->email_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $apply->pencariKerja->alamat_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
                             </div>

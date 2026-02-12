@@ -14,7 +14,7 @@
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
               <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-              <h4 class="fw-bold mb-0 text-white">{{$info_perusahaan->nama_perusahaan}}</h4>
+              <h4 class="fw-bold mb-0 text-white">{{ $info_perusahaan->nama_perusahaan ?? '-' }}</h4>
               <a href="">Verifikasi</a>
               <a href="">Verifikasi Gagal</a>
               <p>Terverifikasi</p>
@@ -27,13 +27,20 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      @if (Auth::guard('perusahaanmitra')->user())
                       <li class="nav-item">
                         <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
                           Perusahaan</a>
                       </li>
+                      @elseif (Auth::guard('admin')->user())
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">Tentang
+                          Perusahaan</a>
+                      </li>
+                      @endif
                       @if (Auth::guard('perusahaanmitra')->user())
                         <li class="nav-item">
-                          <a class="navbar-brand" href="{{ route('perusahaan.loker') }}">Lowongan Kerja</a>
+                          <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan Kerja</a>
                         </li>
                       @elseif (Auth::guard('admin')->user())
                       <li class="nav-item">
@@ -53,31 +60,34 @@
             </div>
           </div>
         </div>
+        {{-- DETAIL PERUSAHAAN --}}
         <div class="col-12 mb-5">
           <div class="card">
             <div class="bg-white p-4">
+
               <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
-              <p class="mb-0 text-muted">
-                PT. Intim Harmonis Foods Industri, better known as INAFOOD specializes in
-                manufacturing biscuits and wafers. Our company started production in 1997
-                with many various innovations and development intended to create superior
-                quality products according to consumer choice. By holding one of the
-                principles that quality is our customer satisfaction, INAFOOD is committed
-                to quality products to be better known as multinational company
+              <p class="mb-3 text-muted">
+                {{ $info_perusahaan->tentang_perusahaan ?? '-' }}
               </p>
-              <br>
+
               <h6 class="fw-bold mb-2">Alamat</h6>
-              <p>Jl.apokaden</p>
-              <a href="" class="d-flex align-items-center gap-1">
+              <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
+
+              @if(!empty($info_perusahaan->alamat_perusahaan))
+              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}"
+                target="_blank" 
+                class="d-flex align-items-center gap-1 mb-3"> 
                 <i class="bx bx-current-location"></i>
-                <span>View on google maps</span>
+                <span>View on Google Maps</span>
               </a>
-              <br>
+              @endif
+
               <h6 class="fw-bold mb-2">Email</h6>
-              <p>betutu@gmail.com</p>
-              <br>
-              <h6 class="fw-bold mb-2">No.Telp</h6>
-              <p>0897868365463</p>
+              <p>{{ $info_perusahaan->email_perusahaan ?? '-' }}</p>
+
+              <h6 class="fw-bold mb-2">No. Telp</h6>
+              <p>{{ $info_perusahaan->no_telp_perusahaan ?? '-' }}</p>
+
             </div>
           </div>
         </div>
