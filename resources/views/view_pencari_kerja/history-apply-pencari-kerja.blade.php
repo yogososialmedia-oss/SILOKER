@@ -36,12 +36,22 @@
                                             </li>
                                         </ul>
 
-                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                            <li class="nav-item">
+                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                                            <li class="nav-item me-2">
                                                 <a href="{{ route('pencarikerja.profile.edit') }}"
                                                     class="btn btn-sm btn-warning">
                                                     Edit Profile
                                                 </a>
+                                            </li>
+
+                                            <!-- LOGOUT -->
+                                            <li class="nav-item">
+                                                <form action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        Logout
+                                                    </button>
+                                                </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -72,7 +82,11 @@
                                             <td>Cititex</td>
                                             <td>Admin</td>
                                             <td>Job Opportunity</td>
-                                            <td><span class="badge bg-label-success me-1">Diterima</span>
+                                            <td>
+                                                <span class="badge bg-label-warning me-1">Pending</span>
+                                                <span class="badge bg-label-info me-1">Interview</span>
+                                                <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                                <span class="badge bg-label-success me-1">Diterima</span>
                                             </td>
                                             <td>081237654376</td>
                                             <td>cititex@gmail.com</td>

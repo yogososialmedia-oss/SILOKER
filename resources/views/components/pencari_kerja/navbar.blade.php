@@ -23,12 +23,10 @@
                     href="{{ route('pencarikerja.loker.index') }}">
                     Loker
                 </a>
-
             </div>
 
             <!-- MENU KANAN -->
             <div class="navbar-nav ms-auto align-items-lg-center menu-kanan">
-
                 <!-- LOGIN DROPDOWN -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle login-link-beranda" href="#" role="button"
@@ -43,9 +41,16 @@
                 </div>
 
                 <!-- PROFILE -->
-                <a class="nav-link profile-link-beranda ms-lg-3" href="{{ route('pencarikerja.profile') }}">
+                <a class="nav-link profile-link-beranda ms-lg-3
+                    {{ request()->routeIs(
+                    'pencarikerja.profile',
+                    'pencarikerja.history-apply',
+                    'pencarikerja.profile.edit'
+                    ) ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
                     <i class="bx bx-user"></i> Profile
                 </a>
+
+
 
             </div>
         </div>

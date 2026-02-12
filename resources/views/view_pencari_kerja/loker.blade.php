@@ -56,12 +56,12 @@
                     <select class="form-select">
                         <option selected>Pilih minimal pendidikan</option>
                         <option>SMA / Sederajat</option>
-                        <option>D1</option>
-                        <option>D2</option>
-                        <option>D3</option>
-                        <option>S1</option>
-                        <option>S2</option>
-                        <option>S3</option>
+                        <option>Minimal Pendidikan D1</option>
+                        <option>Minimal Pendidikan D2</option>
+                        <option>Minimal Pendidikan D3</option>
+                        <option>Minimal Pendidikan S1</option>
+                        <option>Minimal Pendidikan S2</option>
+                        <option>Minimal Pendidikan S3</option>
                     </select>
                 </div>
             </div>

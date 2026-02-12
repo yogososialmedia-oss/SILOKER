@@ -56,6 +56,18 @@
                                         <span>Minimal Pendidikan S1</span>
                                     </p>
                                 </div>
+                                <div>
+                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                        <i class="bx bx-show icon-sm"></i>
+                                        <span>50</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                        <i class="bx bx-file icon-sm"></i>
+                                        <span>30</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
