@@ -19,7 +19,11 @@
                 <!-- Contoh jika route beranda namanya 'beranda' -->
                 <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#home">Home</a>
                 <a class="nav-link" href="{{ route('pencarikerja.beranda') }}#about">About</a>
-                <a class="nav-link" href="{{ route('pencarikerja.loker.index') }}">Loker</a>
+                <a class="nav-link {{ request()->routeIs('pencarikerja.loker.*') ? 'active text-white' : '' }}"
+                    href="{{ route('pencarikerja.loker.index') }}">
+                    Loker
+                </a>
+
             </div>
 
             <!-- MENU KANAN -->

@@ -19,29 +19,44 @@
                                     class="badge rounded-circle d-flex align-items-center justify-content-center position-relative z-3 "
                                     style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
                             </h4>
-                            <h5 class="card-title mb-1">Admin</h5>
-                            <H6 class="mb-1">Job Opportunity</H6>
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-location-plus icon-sm"></i>
-                                <span>Jakarta</span>
-                            </p>
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-buildings icon-sm"></i>
-                                <span>Work From Office</span>
-                            </p>
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-book-reader icon-sm"></i>
-                                <span>Minimal Pendidikan S1</span>
-                            </p>
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-show icon-sm"></i>
-                                <span>50</span>
-                            </p>
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-file icon-sm"></i>
-                                <span>30</span>
-                            </p>
-
+                            <div class="row">
+                                <div class="col-9">
+                                    <h5 class="mb-3 position-relative">Administrasi</h5>
+                                </div>
+                                <div class="col-3">
+                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
+                                        class="badge bg-primary position-relative ">
+                                        Open
+                                    </a>
+                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
+                                        class="badge bg-danger position-relative ">
+                                        Close
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-mb-12">
+                                    <H6 class="mb-1">Job Opportunity</H6>
+                                </div>
+                                <div class="col-mb-12">
+                                    <p class="d-flex align-items-center gap-1 mb-1">
+                                        <i class="bx bx-location-plus icon-sm"></i>
+                                        <span>Jakarta</span>
+                                    </p>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
+                                        <i class="bx bx-buildings"></i>
+                                        <span>Work From Office</span>
+                                    </p>
+                                </div>
+                                <div class=" col-md-12 ">
+                                    <p class="d-flex align-items-start gap-2 mb-1">
+                                        <i class="bx bx-book-reader"></i>
+                                        <span>Minimal Pendidikan S1</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

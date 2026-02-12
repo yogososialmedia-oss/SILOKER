@@ -74,6 +74,8 @@
                             <a href="#" class="d-block mb-4 text-primary">
                                 Klik di sini untuk melihat profile Linked.In saya
                             </a>
+                            <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
+                            <p>S1</p>
                             <h6 class="fw-bold mb-1">Email</h6>
                             <p class="mb-4">betutu@gmail.com</p>
                             <h6 class="fw-bold mb-1">No.Telp</h6>
