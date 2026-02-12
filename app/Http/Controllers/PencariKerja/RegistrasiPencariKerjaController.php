@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\PencariKerja;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\PencariKerja;
+use Illuminate\Support\Facades\Hash;
+
+class RegistrasiPencariKerjaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('view_pencari_kerja.registrasi-pencari-kerja');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_pencari_kerja' => 'required|string',
+            'email_pencari_kerja' => 'required|email|unique:tb_pencari_kerja,email_pencari_kerja',
+            'password_pencari_kerja' => 'required|min:8',
+            'alamat_pencari_kerja' => 'required',
+            'no_telp_pencari_kerja' => 'required',
+            'cv' => 'nullable|mimes:pdf',
+            'foto_pencari_kerja' => 'nullable|image|mimes:jpg,jpeg,png',
+        ],
+        [
+            'nama_pencari_kerja.required' => 'Nama Lengkap wajib diisi.',
+            'email_pencari_kerja.required' => 'Email wajib diisi.',
+            'email_pencari_kerja.email' => 'Format email tidak valid.',
+            'email_pencari_kerja.unique' => 'Email sudah terdaftar.',
+            'password_pencari_kerja.required' => 'Password wajib diisi.',
+            'password_pencari_kerja.min' => 'Password minimal 8 karakter.',
+            'alamat_pencari_kerja.required' => 'Alamat wajib diisi.',
+            'no_telp_pencari_kerja.required' => 'No Telp wajib diisi.',
+            'cv.mimes' => 'CV harus berupa file PDF.',
+            'foto_pencari_kerja.image' => 'Foto Profile harus berupa gambar.',
+            'foto_pencari_kerja.mimes' => 'Foto Profile harus berformat JPG, JPEG, atau PNG.',
+        ]
+        );
+
+        // Upload CV
+        $cvPath = null;
+        if ($request->hasFile('cv')) {
+            $cvPath = $request->file('cv')->store('cv', 'public');
+        }
+
+        // Upload Foto
+        $fotoPath = null;
+        if ($request->hasFile('foto_pencari_kerja')) {
+            $fotoPath = $request->file('foto_pencari_kerja')->store('foto_pencari_kerja', 'public');
+        }
+
+        PencariKerja::create([
+            'nama_pencari_kerja' => $request->nama_pencari_kerja,
+            'alamat_pencari_kerja' => $request->alamat_pencari_kerja,
+            'no_telp_pencari_kerja' => $request->no_telp_pencari_kerja,
+            'email_pencari_kerja' => $request->email_pencari_kerja,
+            'password_pencari_kerja' => Hash::make($request->password_pencari_kerja),
+            'nim' => $request->nim,
+            'cv' => $cvPath,
+            'foto_pencari_kerja' => $fotoPath,
+        ]);
+
+        return redirect()->route('pencarikerja.login')
+            ->with('success', 'Registrasi berhasil!');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

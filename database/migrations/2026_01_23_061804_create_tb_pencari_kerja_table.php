@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('cv')->nullable();
             $table->integer('nim')->nullable();
             $table->string('foto_pencari_kerja')->nullable();
+            $table->text('deskripsi_diri')->nullable();
+            $table->enum('pendidikan_terakhir', ['SMA/sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
         });
     }

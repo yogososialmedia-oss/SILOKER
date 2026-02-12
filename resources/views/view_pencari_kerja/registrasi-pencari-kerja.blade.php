@@ -9,30 +9,30 @@
                             <div class="card-header">
                                 <h5 class="mb-0 fw-bold ">FORM REGISTRASI</h5>
                             </div>
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('pencarikerja.register.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input name="NamaPencariKerja" class="form-control"
+                                        <input name="nama_pencari_kerja" class="form-control"
                                             placeholder="Tambahkan nama lengkap anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa stikom)</label>
-                                        <input name="Nim" class="form-control"
+                                        <input name="nim" class="form-control"
                                             placeholder="Tambahkan NIM (jika mahasiswa stikom)">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="NoTelp" class="form-control"
+                                        <input name="no_telp_pencari_kerja" class="form-control"
                                             placeholder="Tambahkan nomor telepon anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="Alamat" type="text" class="form-control"
+                                        <input name="alamat_pencari_kerja" type="text" class="form-control"
                                             placeholder="Tambahkan alamat lengkap anda">
                                         <div class="form-text"></div>
                                     </div>
@@ -51,35 +51,35 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Linked.id</label>
-                                        <input name="LinkedIn" class="form-control"
+                                        <input name="linkedin" class="form-control"
                                             placeholder="Tambahkan link profile linked.id anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Upload CV</label>
-                                        <input name="UploadCv" type="file" class="form-control">
+                                        <input name="cv" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Foto Profile</label>
-                                        <input name="FotoProfile" type="file" class="form-control">
+                                        <input name="foto_pencari_kerja" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-12 mb-6">
                                         <label for="exampleFormControlTextarea1" class="form-label">Tentang Saya</label>
-                                        <textarea name="TentangSaya" class="form-control"
+                                        <textarea name="deskripsi_diri" class="form-control"
                                             id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="Email" class="form-control"
+                                        <input name="email_pencari_kerja" class="form-control"
                                             placeholder="Tambahkan alamat email anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
 
-                                        <input name="Password" class="form-control" placeholder="Buat password anda">
+                                        <input name="password_pencari_kerja" class="form-control" placeholder="Buat password anda">
 
                                         <div class="form-text"></div>
 

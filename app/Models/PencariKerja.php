@@ -26,6 +26,9 @@ class PencariKerja extends Authenticatable
         'password_pencari_kerja',
         'cv',
         'nim',
+        'deskripsi_diri',
+        'pendidikan_terakhir',
+        'linkedin',
         'foto_pencari_kerja',
     ];
 
