@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'guestPerusahaanMitra' => App\Http\Middleware\guestPerusahaanMitra::class,
             'guestPencariKerja' => App\Http\Middleware\guestPencariKerja::class,
             'authAny' => App\Http\Middleware\authAny::class,
+            'verified.perusahaan' => App\Http\Middleware\CheckPerusahaanVerified::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

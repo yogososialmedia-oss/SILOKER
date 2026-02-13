@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LokerController extends Controller
 {
@@ -93,7 +94,7 @@ class LokerController extends Controller
      */
     public function edit(string $id)
     {
-        $loker = Loker::with('perusahaanMitra')->where('id', $id)->first();
+        $loker = Loker::where('id', $id)->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->id())->firstOrFail();
         return view('view_perusahaan.edit-loker-perusahaan', compact('loker'));
     }
 
@@ -147,7 +148,7 @@ class LokerController extends Controller
         if ($request->hasFile('poster_loker')) {
             $posterPath = storage_path('app/public/poster_loker/' . $loker->poster_loker);
             if (file_exists($posterPath)) {
-                unlink($posterPath); // Hapus file poster lama
+                Storage::disk('public')->delete('poster_loker/'.$loker->poster_loker); // Hapus file poster lama
             }
             $posterFile = $request->file('poster_loker');
             $posterFilename = time() . '_' . $posterFile->getClientOriginalName();

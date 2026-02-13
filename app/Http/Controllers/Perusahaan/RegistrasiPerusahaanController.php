@@ -41,8 +41,8 @@ class RegistrasiPerusahaanController extends Controller
         'Kecamatan' => 'required',
         'Alamat' => 'required',
         'GoogleMaps' => 'required',
-        'Logo' => 'nullable',
-        'BannerPerusahaan' => 'nullable',
+        'Logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        'BannerPerusahaan' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         'TentangPerusahaan' => 'required',
 
     ],

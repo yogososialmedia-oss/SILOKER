@@ -48,6 +48,6 @@ class PerusahaanMitra extends Authenticatable
     
     public function loker()
     {
-        return $this->hasMany(Loker::class, 'id_loker');
+        return $this->hasMany(Loker::class, 'id_perusahaan_mitra');
     }
 }
