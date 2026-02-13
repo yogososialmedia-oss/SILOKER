@@ -116,20 +116,14 @@
               <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
 
               @if(!empty($info_perusahaan->alamat_perusahaan))
-<<<<<<< HEAD
-                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}" target="_blank"
-                  class="d-flex align-items-center gap-1 mb-3">
-                  <i class="bx bx-current-location"></i>
-                  <span>View on Google Maps</span>
-                </a>
-=======
+
               <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
                 target="_blank" 
                 class="d-flex align-items-center gap-1 mb-3"> 
                 <i class="bx bx-current-location"></i>
                 <span>View on Google Maps</span>
               </a>
->>>>>>> origin/Backend
+
               @endif
 
               <h6 class="fw-bold mb-2">Email</h6>
