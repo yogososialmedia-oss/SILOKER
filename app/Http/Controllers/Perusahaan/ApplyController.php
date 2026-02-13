@@ -13,26 +13,41 @@ class ApplyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $perusahaanId = Auth::guard('perusahaanmitra')->id();
+    {
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-    $apply = Apply::with(['loker', 'pencariKerja'])
-        ->whereHas('loker', function ($query) use ($perusahaanId) {
-            $query->where('id_perusahaan_mitra', $perusahaanId);
-        })
-        ->get();
+        $apply = Apply::with(['loker', 'pencariKerja'])
+            ->whereHas('loker', function ($query) use ($perusahaanId) {
+                $query->where('id_perusahaan_mitra', $perusahaanId);
+            })
+            ->get();
 
-    return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
-}
+        return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
+    }
 
     public function daftarapplyloker($id)
     {
-        $apply = Apply::with('loker')->where('id_loker', $id)->get();
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
+
+        $apply = Apply::with('loker')
+            ->where('id_loker', $id)
+            ->whereHas('loker', function ($query) use ($perusahaanId) {
+                $query->where('id_perusahaan_mitra', $perusahaanId);
+            })
+            ->get();
+
         return view('view_perusahaan.daftar-apply-perusahaan', compact('apply'));
     }
     public function detailapplyperusahaan($id)
     {
-        $apply = Apply::with('loker')->findOrFail($id);
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
+
+        $apply = Apply::where('id', $id)
+            ->whereHas('loker', function ($query) use ($perusahaanId) {
+                $query->where('id_perusahaan_mitra', $perusahaanId);
+            })
+            ->firstOrFail();
+
         return view('view_perusahaan.detail-apply-perusahaan', compact('apply'));
     }
     public function showProfilePelamar($id)

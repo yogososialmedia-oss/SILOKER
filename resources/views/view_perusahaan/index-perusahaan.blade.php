@@ -75,7 +75,7 @@
               <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
 
               @if(!empty($info_perusahaan->alamat_perusahaan))
-              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}"
+              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
                 target="_blank" 
                 class="d-flex align-items-center gap-1 mb-3"> 
                 <i class="bx bx-current-location"></i>
