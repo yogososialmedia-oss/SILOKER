@@ -14,51 +14,92 @@
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
               <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-              <h4 class="fw-bold mb-0 text-white">{{ $info_perusahaan->nama_perusahaan ?? '-' }}</h4>
-              <a href="">Verifikasi</a>
-              <a href="">Verifikasi Gagal</a>
-              <p>Terverifikasi</p>
-              <p>Pending</p>
+
+              <h4 class="fw-bold mb-0 text-white">
+                {{ $info_perusahaan->nama_perusahaan ?? '-' }}
+              </h4>
+
+              @if ($info_perusahaan->status_verifikasi === 'pending')
+                <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
+
+              @elseif ($info_perusahaan->status_verifikasi === 'rejected')
+                <p class="text-danger mb-0">Verifikasi Gagal</p>
+
+              @elseif ($info_perusahaan->status_verifikasi === 'approved')
+                <p class="text-primary mb-0">Terverifikasi</p>
+              @endif
             </div>
+
             <div class="bg-white p-4">
               <nav class="navbar navbar-expand-lg py-1">
                 <div class="container-fluid">
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
                     <span class="navbar-toggler-icon"></span>
                   </button>
+
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      @if (Auth::guard('perusahaanmitra')->user())
-                      <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('perusahaan.profile') }}">Tentang
-                          Perusahaan</a>
-                      </li>
-                      @elseif (Auth::guard('admin')->user())
-                      <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">Tentang
-                          Perusahaan</a>
-                      </li>
-                      @endif
+
+                      {{-- Tentang --}}
                       @if (Auth::guard('perusahaanmitra')->user())
                         <li class="nav-item">
-                          <a class="navbar-brand" href="{{ route('perusahaan.loker.profile') }}">Lowongan Kerja</a>
+                          <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}"
+                            href="{{ route('perusahaan.profile') }}">
+                            Tentang Perusahaan
+                          </a>
                         </li>
                       @elseif (Auth::guard('admin')->user())
-                      <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">Lowongan Kerja</a>
-                      </li>
+                        <li class="nav-item">
+                          <a class="navbar-brand nav-underline {{ request()->routeIs('admin.profile-perusahaan') ? 'active' : '' }}"
+                            href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">
+                            Tentang Perusahaan
+                          </a>
+                        </li>
                       @endif
+
+                      {{-- Menu kedua --}}
+                      @if (Auth::guard('perusahaanmitra')->user())
+                        <li class="nav-item">
+                          <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}"
+                            href="{{ route('perusahaan.loker.profile') }}">
+                            Lowongan Kerja
+                          </a>
+                        </li>
+                      @elseif (Auth::guard('admin')->user())
+                        <li class="nav-item">
+                          <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}"
+                            href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
+                            Lowongan Kerja
+                          </a>
+                        </li>
+                      @endif
+
                     </ul>
-                    @if (Auth::guard('perusahaanmitra')->user())
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                      @if (Auth::guard('perusahaanmitra')->user())
+                        <li class="nav-item me-2">
+                          <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-sm btn-warning">
+                            Edit Profile
+                          </a>
+                        </li>
+                      @endif
+
+                      {{-- LOGOUT --}}
                       <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                          @csrf
+                          <button type="submit" class="btn btn-sm btn-danger">
+                            Logout
+                          </button>
+                        </form>
                       </li>
                     </ul>
-                    @endif
+
                   </div>
               </nav>
             </div>
+
           </div>
         </div>
         {{-- DETAIL PERUSAHAAN --}}
@@ -75,12 +116,11 @@
               <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
 
               @if(!empty($info_perusahaan->alamat_perusahaan))
-              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
-                target="_blank" 
-                class="d-flex align-items-center gap-1 mb-3"> 
-                <i class="bx bx-current-location"></i>
-                <span>View on Google Maps</span>
-              </a>
+                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}" target="_blank"
+                  class="d-flex align-items-center gap-1 mb-3">
+                  <i class="bx bx-current-location"></i>
+                  <span>View on Google Maps</span>
+                </a>
               @endif
 
               <h6 class="fw-bold mb-2">Email</h6>
