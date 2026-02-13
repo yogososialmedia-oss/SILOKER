@@ -15,11 +15,22 @@
                             <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">dgwe</h4>
-                            <a href="">Verifikasi</a>
-                            <a href="">Verifikasi Gagal</a>
-                            <p>Terverifikasi</p>
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $info_perusahaan->nama_perusahaan ?? '-' }}
+                            </h4>
+
+                            @if ($info_perusahaan->status_verifikasi === 'pending')
+                                <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
+
+                            @elseif ($info_perusahaan->status_verifikasi === 'rejected')
+                                <p class="text-danger mb-0">Verifikasi Gagal</p>
+
+                            @elseif ($info_perusahaan->status_verifikasi === 'approved')
+                                <p class="text-primary mb-0">Terverifikasi</p>
+                            @endif 
                         </div>
+
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
@@ -27,54 +38,79 @@
                                         data-bs-target="#navbar-ex-15">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
+
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            <li class="nav-item">
-                                                <a class="navbar-brand" href="{{ route('index-perusahaan') }}">Tentang
-                                                    Perusahaan</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('loker-profile-perusahaan') }}">Lowongan
-                                                    Kerja</a>
-                                            </li>
+
+                                            {{-- Tentang --}}
+                                            @if (Auth::guard('perusahaanmitra')->user())
+                                                <li class="nav-item">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}"
+                                                        href="{{ route('perusahaan.profile') }}">
+                                                        Tentang Perusahaan
+                                                    </a>
+                                                </li>
+                                            @elseif (Auth::guard('admin')->user())
+                                                <li class="nav-item">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.profile-perusahaan') ? 'active' : '' }}"
+                                                        href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">
+                                                        Tentang Perusahaan
+                                                    </a>
+                                                </li>
+                                            @endif
+
+                                            {{-- Menu kedua --}}
+                                            @if (Auth::guard('perusahaanmitra')->user())
+                                                <li class="nav-item">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}"
+                                                        href="{{ route('perusahaan.loker.profile') }}">
+                                                        Lowongan Kerja
+                                                    </a>
+                                                </li>
+                                            @elseif (Auth::guard('admin')->user())
+                                                <li class="nav-item">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}"
+                                                        href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
+                                                        Lowongan Kerja
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
-                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                            <li class="nav-item">
-                                                <a class="navbar-brand"
-                                                    href="{{ route('perusahaan.profile.edit') }}">Edit Profile</a>
-                                            </li>
-                                        </ul>
+
                                     </div>
                             </nav>
                         </div>
+
                     </div>
                 </div>
+                {{-- DETAIL PERUSAHAAN --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
+
                             <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
-                            <p class="mb-0 text-muted">
-                                PT. Intim Harmonis Foods Industri, better known as INAFOOD specializes in
-                                manufacturing biscuits and wafers. Our company started production in 1997
-                                with many various innovations and development intended to create superior
-                                quality products according to consumer choice. By holding one of the
-                                principles that quality is our customer satisfaction, INAFOOD is committed
-                                to quality products to be better known as multinational company
+                            <p class="mb-3 text-muted">
+                                {{ $info_perusahaan->tentang_perusahaan ?? '-' }}
                             </p>
-                            <br>
+
                             <h6 class="fw-bold mb-2">Alamat</h6>
-                            <p>Jl.apokaden</p>
-                            <a href="" class="d-flex align-items-center gap-1">
-                                <i class="bx bx-current-location"></i>
-                                <span>View on google maps</span>
-                            </a>
-                            <br>
+                            <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
+
+                            @if(!empty($info_perusahaan->alamat_perusahaan))
+                                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}"
+                                    target="_blank" class="d-flex align-items-center gap-1 mb-3">
+                                    <i class="bx bx-current-location"></i>
+                                    <span>View on Google Maps</span>
+                                </a>
+                            @endif
+
                             <h6 class="fw-bold mb-2">Email</h6>
-                            <p>betutu@gmail.com</p>
-                            <br>
-                            <h6 class="fw-bold mb-2">No.Telp</h6>
-                            <p>0897868365463</p>
+                            <p>{{ $info_perusahaan->email_perusahaan ?? '-' }}</p>
+
+                            <h6 class="fw-bold mb-2">No. Telp</h6>
+                            <p>{{ $info_perusahaan->no_telp_perusahaan ?? '-' }}</p>
+
                         </div>
                     </div>
                 </div>
