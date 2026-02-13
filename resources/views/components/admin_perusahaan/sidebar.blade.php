@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index-perusahaan.html" class="app-brand-link custom-brand-link">
+        <a class="app-brand-link custom-brand-link">
             <span class="custom-brand-text">Career Center
                 <span class="dot-beranda hero-exclamation">.</span>
             </span>

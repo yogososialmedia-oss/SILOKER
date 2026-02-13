@@ -32312,6 +32312,37 @@ html {
 
 
 /* =====================================================
+    CSS NOTIFIKASI
+   ===================================================== */
+
+.alert-wrapper {
+    overflow: hidden;
+    transition: max-height 0.7s ease, margin 0.7s ease;
+    max-height: 200px;
+    margin-bottom: 1rem;
+}
+
+.alert-wrapper.hide {
+    max-height: 0;
+    margin-bottom: 0;
+}
+
+.alert-smooth {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.alert-smooth.hide {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+
+
+
+
+/* =====================================================
     RESPONSIVE – MOBILE MODE
    ===================================================== */
 @media (max-width: 991.98px) {

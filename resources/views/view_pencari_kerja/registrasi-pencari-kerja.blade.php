@@ -4,11 +4,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
 
-                            <div class="card-header mb-4">
-                                <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
-                            </div>
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
+                                </div>
+                        </div>
+
+
+                        <div class="card-body">
 
                             <form action="{{ route('pencarikerja.register.store') }}" method="POST"
                                 enctype="multipart/form-data">
@@ -145,6 +149,18 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl">
+                    <div
+                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©2026 Yogo & Wahyu
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        <!-- / Footer -->
     </div>
 
 </x-pencari_kerja.layout>

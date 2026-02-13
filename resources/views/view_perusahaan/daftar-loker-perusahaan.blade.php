@@ -5,11 +5,22 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12 mb-5">
+
+                    @if (session('success'))
+                        <div id="successAlert" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                            <i class="bx bx-check-circle me-2"></i>
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+
+
+
                     <div class="card pb-3 ">
                         <div class="card-header d-flex justify-content-between align-items-center">
 
                             <div>
-                                <h5 class="mb-0 fw-bold">Daftar Loker</h5>
+                                <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
                             </div>
 
                             <div class="btn-group">
@@ -45,9 +56,12 @@
                                             <td>{{ $data_loker->jabatan }}</td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
-                                                @if (\Carbon\Carbon::now()->between(
-                                                        \Carbon\Carbon::parse($data_loker->tanggal_mulai_loker),
-                                                        \Carbon\Carbon::parse($data_loker->tanggal_berakhir_loker)))
+                                                @if (
+                                                        \Carbon\Carbon::now()->between(
+                                                            \Carbon\Carbon::parse($data_loker->tanggal_mulai_loker),
+                                                            \Carbon\Carbon::parse($data_loker->tanggal_berakhir_loker)
+                                                        )
+                                                    )
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
                                                     <span class="badge bg-label-warning">Closed</span>
@@ -101,6 +115,26 @@
             </div>
         </footer>
         <!-- / Footer -->
+
+        @push('scripts')
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const alert = document.getElementById('successAlert');
+                    if (alert) {
+                        setTimeout(() => {
+                            alert.classList.remove('show');
+                            alert.classList.add('fade');
+
+                            setTimeout(() => alert.remove(), 300);
+                        }, 3000);
+                    }
+                });
+            </script>
+        @endpush
+
+
+
+
 
         <div class="content-backdrop fade"></div>
     </div>
