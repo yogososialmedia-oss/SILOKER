@@ -6,9 +6,9 @@
                     <div class="card">
 
                         <div class="card-header d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
-                                </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
+                            </div>
                         </div>
 
 
@@ -23,8 +23,7 @@
                                     {{-- NAMA --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input name="nama_pencari_kerja"
-                                            value="{{ old('nama_pencari_kerja') }}"
+                                        <input name="nama_pencari_kerja" value="{{ old('nama_pencari_kerja') }}"
                                             class="form-control @error('nama_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan nama lengkap anda">
                                         @error('nama_pencari_kerja')
@@ -42,8 +41,7 @@
                                     {{-- NO TELP --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No. Telp</label>
-                                        <input name="no_telp_pencari_kerja"
-                                            value="{{ old('no_telp_pencari_kerja') }}"
+                                        <input name="no_telp_pencari_kerja" value="{{ old('no_telp_pencari_kerja') }}"
                                             class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan nomor telepon">
                                         @error('no_telp_pencari_kerja')
@@ -54,8 +52,7 @@
                                     {{-- ALAMAT --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="alamat_pencari_kerja"
-                                            value="{{ old('alamat_pencari_kerja') }}"
+                                        <input name="alamat_pencari_kerja" value="{{ old('alamat_pencari_kerja') }}"
                                             class="form-control @error('alamat_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan alamat lengkap">
                                         @error('alamat_pencari_kerja')
@@ -68,10 +65,8 @@
                                         <label class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" class="form-select">
                                             <option value="">Pilih Pendidikan</option>
-                                            @foreach (['SMA/Sederajat','D1','D2','D3','S1','S2','S3'] as $p)
-                                                <option value="{{ $p }}"
-                                                    {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>
-                                                    {{ $p }}
+                                            @foreach (['SMA/Sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'] as $p)
+                                                <option value="{{ $p }}" {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>{{ $p }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -80,28 +75,38 @@
                                     {{-- LINKEDIN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">LinkedIn</label>
-                                        <input name="linkedin" value="{{ old('linkedin') }}"
-                                            class="form-control" placeholder="Tambahkan link profile Linked.In">
+                                        <input name="linkedin" value="{{ old('linkedin') }}" class="form-control"
+                                            placeholder="Tambahkan link profile Linked.In">
                                     </div>
 
                                     {{-- CV --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Upload CV (PDF)</label>
-                                        <input name="cv" type="file"
-                                            class="form-control @error('cv') is-invalid @enderror">
-                                        @error('cv')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <label class="form-label">
+                                            Upload CV (Format: PDF · Maksimal 2MB)
+                                        </label>
+
+                                        <input id="cvInput" name="cv" type="file"
+                                            class="form-control file-input-unified" accept="application/pdf">
+
+                                        <small class="file-helper text-danger d-none" id="cvError">
+                                            Ukuran file terlalu besar. Maksimal 2MB.
+                                        </small>
                                     </div>
+
 
                                     {{-- FOTO --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Foto Profile</label>
-                                        <input name="foto_pencari_kerja" type="file"
-                                            class="form-control @error('foto_pencari_kerja') is-invalid @enderror">
-                                        @error('foto_pencari_kerja')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <label class="form-label">
+                                            Foto Profile (Format: JPG / PNG · Maksimal 2MB)
+                                        </label>
+
+                                        <input id="fotoProfileInput" name="foto_pencari_kerja" type="file"
+                                            class="form-control file-input-unified"
+                                            accept="image/png,image/jpg,image/jpeg">
+
+                                        <small class="file-helper text-danger d-none" id="fotoProfileError">
+                                            Ukuran file terlalu besar. Maksimal 2MB.
+                                        </small>
                                     </div>
 
                                     {{-- DESKRIPSI --}}
@@ -114,8 +119,7 @@
                                     {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_pencari_kerja"
-                                            value="{{ old('email_pencari_kerja') }}"
+                                        <input name="email_pencari_kerja" value="{{ old('email_pencari_kerja') }}"
                                             class="form-control @error('email_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan email anda">
                                         @error('email_pencari_kerja')
@@ -150,17 +154,62 @@
             </div>
         </div>
         <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-                <div class="container-xxl">
-                    <div
-                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                        <div class="mb-2 mb-md-0">
-                            ©2026 Yogo & Wahyu
-                        </div>
+        <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+                <div
+                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
                     </div>
                 </div>
-            </footer>
+            </div>
+        </footer>
         <!-- / Footer -->
+
+        <script>
+            document.getElementById('fotoProfileInput').addEventListener('change', function () {
+                const file = this.files[0];
+                const maxSize = 2 * 1024 * 1024;
+                const error = document.getElementById('fotoProfileError');
+
+                if (!file) return;
+
+                if (file.size > maxSize) {
+                    error.classList.remove('d-none');
+                    this.value = '';
+                } else {
+                    error.classList.add('d-none');
+                }
+            });
+        </script>
+
+        <script>
+            document.getElementById('cvInput').addEventListener('change', function () {
+                const file = this.files[0];
+                const maxSize = 2 * 1024 * 1024;
+                const error = document.getElementById('cvError');
+
+                if (!file) return;
+
+                if (file.size > maxSize) {
+                    error.classList.remove('d-none');
+                    this.value = '';
+                    return;
+                }
+
+                // validasi format PDF
+                if (file.type !== 'application/pdf') {
+                    error.textContent = 'CV harus berformat PDF';
+                    error.classList.remove('d-none');
+                    this.value = '';
+                    return;
+                }
+
+                error.classList.add('d-none');
+            });
+        </script>
+
+
     </div>
 
 </x-pencari_kerja.layout>

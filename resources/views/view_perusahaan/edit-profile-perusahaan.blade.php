@@ -5,11 +5,11 @@
         <div class="card">
 
           <div class="card-header d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="mb-0 fw-bold">EDIT PROFILE</h5>
-              </div>
+            <div>
+              <h5 class="mb-0 fw-bold">EDIT PROFILE</h5>
             </div>
-            
+          </div>
+
           <div class="card-body">
 
             <form action="{{ route('perusahaan.profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -101,11 +101,13 @@
 
                 {{-- Logo --}}
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Logo</label>
-                  <input id="logoInput" name="logo" type="file" class="form-control"
+                  <label class="form-label">Logo Perusahaan (Format: JPG / PNG · Maksimal 2MB)</label>
+
+                  <input id="logoInput" name="logo" type="file" class="form-control file-input-unified"
                     accept="image/png,image/jpg,image/jpeg">
-                  <small class="text-muted">
-                    Format: JPG/PNG · Maksimal 2MB
+
+                  <small class="file-helper text-danger d-none" id="logoError">
+                    Ukuran file terlalu besar. Maksimal 2MB.
                   </small>
                 </div>
 
@@ -142,24 +144,22 @@
     <!-- / Footer -->
 
     <script>
-      function validateFileSize(input, maxSizeMB) {
-        const file = input.files[0];
+      document.getElementById('logoInput').addEventListener('change', function () {
+        const file = this.files[0];
+        const maxSize = 2 * 1024 * 1024;
+        const error = document.getElementById('logoError');
+
         if (!file) return;
 
-        const maxSize = maxSizeMB * 1080 * 1080;
-
         if (file.size > maxSize) {
-          alert(`Ukuran file terlalu besar. Maksimal ${maxSizeMB}MB`);
-          input.value = '';
+          error.classList.remove('d-none');
+          this.value = '';
+        } else {
+          error.classList.add('d-none');
         }
-      }
-
-      // LOGO max 2MB
-      document.getElementById('logoInput').addEventListener('change', function () {
-        validateFileSize(this, 2);
       });
-
     </script>
+
 
   </div>
 </x-admin_perusahaan.layout>

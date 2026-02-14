@@ -32179,6 +32179,7 @@ html {
     color: #facc15; 
 }
 
+
 /* =====================================================
     NAVBAR BERANDA 
    ===================================================== */
@@ -32398,19 +32399,6 @@ html {
   }
 }
 
-
-/* ==================== FORCE FULL WIDTH FIX ==================== */
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.home-beranda,
-.footer-beranda {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-}
 
 
 

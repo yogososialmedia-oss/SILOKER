@@ -133,13 +133,19 @@
 
                                     {{-- Logo --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Logo</label>
-                                        <input id="logoInput" name="logo" type="file" class="form-control"
+                                        <label class="form-label">Logo Perusahaan (Format: JPG / PNG · Maksimal
+                                            2MB)</label>
+
+                                        <input id="logoInput" name="logo" type="file"
+                                            class="form-control file-input-unified"
                                             accept="image/png,image/jpg,image/jpeg">
-                                        <small class="text-muted">
-                                            Format: JPG/PNG · Maksimal 2MB
+
+                                        <small class="file-helper text-danger d-none" id="logoError">
+                                            Ukuran file terlalu besar. Maksimal 2MB.
                                         </small>
                                     </div>
+
+
 
                                     {{-- TENTANG --}}
                                     <div class="col-12 mb-3">
@@ -187,39 +193,35 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-                <div class="container-xxl">
-                    <div
-                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                        <div class="mb-2 mb-md-0">
-                            ©2026 Yogo & Wahyu
-                        </div>
+        </div>
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+                <div
+                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
                     </div>
                 </div>
-            </footer>
-            <!-- / Footer -->
+            </div>
+        </footer>
+        <!-- / Footer -->
+        <script>
+            document.getElementById('logoInput').addEventListener('change', function () {
+                const file = this.files[0];
+                const maxSize = 2 * 1024 * 1024;
+                const error = document.getElementById('logoError');
 
-            <script>
-                function validateFileSize(input, maxSizeMB) {
-                    const file = input.files[0];
-                    if (!file) return;
+                if (!file) return;
 
-                    const maxSize = maxSizeMB * 1080 * 1080;
-
-                    if (file.size > maxSize) {
-                        alert(`Ukuran file terlalu besar. Maksimal ${maxSizeMB}MB`);
-                        input.value = '';
-                    }
+                if (file.size > maxSize) {
+                    error.classList.remove('d-none');
+                    this.value = '';
+                } else {
+                    error.classList.add('d-none');
                 }
-
-                // LOGO max 2MB
-                document.getElementById('logoInput').addEventListener('change', function () {
-                    validateFileSize(this, 2);
-                });
-
-            </script>
-        </div>
+            });
+        </script>
     </div>
 
 </x-pencari_kerja.layout>
