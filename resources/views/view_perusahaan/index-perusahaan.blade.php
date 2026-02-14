@@ -14,45 +14,49 @@
           </div>
         @endif
 
-        <div class="col-12 mb-5">
+        {{-- CARD THUMBNAIL / HEADER --}}
+        <div class="col-12 mb-4">
           <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
-            <!-- Thumbnail / Banner -->
             <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
               style="height:280px; object-fit:cover;">
 
-            <!-- Overlay Logo & Nama -->
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
               <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-
               <h4 class="fw-bold mb-0 text-white">
                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
               </h4>
 
               @if ($info_perusahaan->status_akun === 'pending')
                 <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
-
               @elseif ($info_perusahaan->status_akun === 'terverifikasi')
                 <p class="text-white mb-0">Terverifikasi</p>
-
               @elseif ($info_perusahaan->status_akun === 'verifikasi_gagal')
                 <p class="text-danger mb-0">Verifikasi Gagal</p>
               @endif
             </div>
+          </div>
+        </div>
 
+        {{-- CARD NAVBAR PROFILE --}}
+        <div class="col-12 mb-5">
+          <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
             <div class="bg-white p-4">
               <nav class="navbar navbar-expand-lg py-1">
                 <div class="container-fluid">
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
+                  <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbar-ex-15">
                     <span class="navbar-toggler-icon"></span>
                   </button>
 
+
                   <div class="collapse navbar-collapse" id="navbar-ex-15">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
+
 
                       {{-- Tentang --}}
                       @if (Auth::guard('perusahaanmitra')->user())
-                        <li class="nav-item">
+                        <li class="nav-item mb-2">
                           <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}"
                             href="{{ route('perusahaan.profile') }}">
                             Tentang Perusahaan
@@ -69,14 +73,14 @@
 
                       {{-- Menu kedua --}}
                       @if (Auth::guard('perusahaanmitra')->user())
-                        <li class="nav-item">
+                        <li class="nav-item mb-2">
                           <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}"
                             href="{{ route('perusahaan.loker.profile') }}">
                             Lowongan Kerja
                           </a>
                         </li>
                       @elseif (Auth::guard('admin')->user())
-                        <li class="nav-item">
+                        <li class="nav-item mb-2">
                           <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}"
                             href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
                             Lowongan Kerja
@@ -86,7 +90,7 @@
 
                     </ul>
 
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end ">
                       @if (Auth::guard('perusahaanmitra')->user())
                         <li class="nav-item me-2">
                           <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-sm btn-warning">
@@ -94,70 +98,61 @@
                           </a>
                         </li>
                       @endif
+                    </ul>
+
                   </div>
+                </div>
               </nav>
             </div>
-
           </div>
         </div>
-        {{-- DETAIL PERUSAHAAN --}}
+
+        {{-- CARD DETAIL PROFIL --}}
         <div class="col-12 mb-5">
-          <div class="card">
-            <div class="bg-white p-4">
+          <div class="card shadow-sm rounded-4 p-4">
+            <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
+            <p class="mb-3 text-muted">{{ $info_perusahaan->tentang_perusahaan ?? '-' }}</p>
 
-              <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
-              <p class="mb-3 text-muted">
-                {{ $info_perusahaan->tentang_perusahaan ?? '-' }}
-              </p>
+            <h6 class="fw-bold mb-2">Alamat</h6>
+            <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
+            @if(!empty($info_perusahaan->alamat_perusahaan))
+              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
+                target="_blank" class="d-flex align-items-center gap-1 mb-3">
+                <i class="bx bx-current-location"></i>
+                <span>View on Google Maps</span>
+              </a>
+            @endif
 
-              <h6 class="fw-bold mb-2">Alamat</h6>
-              <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
+            <h6 class="fw-bold mb-2">Email</h6>
+            <p>{{ $info_perusahaan->email_perusahaan ?? '-' }}</p>
 
-              @if(!empty($info_perusahaan->alamat_perusahaan))
-                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
-                  target="_blank" class="d-flex align-items-center gap-1 mb-3">
-                  <i class="bx bx-current-location"></i>
-                  <span>View on Google Maps</span>
-                </a>
-              @endif
-
-              <h6 class="fw-bold mb-2">Email</h6>
-              <p>{{ $info_perusahaan->email_perusahaan ?? '-' }}</p>
-
-              <h6 class="fw-bold mb-2">No. Telp</h6>
-              <p>{{ $info_perusahaan->no_telp_perusahaan ?? '-' }}</p>
-
-            </div>
+            <h6 class="fw-bold mb-2">No. Telp</h6>
+            <p>{{ $info_perusahaan->no_telp_perusahaan ?? '-' }}</p>
           </div>
         </div>
+
       </div>
     </div>
-
-    <!-- / Content -->
 
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
       <div class="container-xxl">
         <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-          <div class="mb-2 mb-md-0">
-            ©2026 Yogo & Wahyu
-          </div>
+          <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
         </div>
       </div>
     </footer>
-    <!-- / Footer -->
 
     <script>
-    setTimeout(() => {
+      setTimeout(() => {
         const alert = document.getElementById('autoAlert');
         if (alert) {
-            alert.classList.remove('show');
-            alert.classList.add('fade');
-            setTimeout(() => alert.remove(), 300);
+          alert.classList.remove('show');
+          alert.classList.add('fade');
+          setTimeout(() => alert.remove(), 300);
         }
-    }, 3000); // 3 detik
-</script>
-
+      }, 3000);
+    </script>
 
     <div class="content-backdrop fade"></div>
   </div>
