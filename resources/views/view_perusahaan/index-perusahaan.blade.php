@@ -19,14 +19,14 @@
                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
               </h4>
 
-              @if ($info_perusahaan->status_verifikasi === 'pending')
+              @if ($info_perusahaan->status_akun === 'pending')
                 <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
 
-              @elseif ($info_perusahaan->status_verifikasi === 'rejected')
-                <p class="text-danger mb-0">Verifikasi Gagal</p>
+              @elseif ($info_perusahaan->status_akun === 'terverifikasi')
+                <p class="text-white mb-0">Terverifikasi</p>
 
-              @elseif ($info_perusahaan->status_verifikasi === 'approved')
-                <p class="text-primary mb-0">Terverifikasi</p>
+              @elseif ($info_perusahaan->status_akun === 'verifikasi_gagal')
+                <p class="text-danger mb-0">Verifikasi Gagal</p>
               @endif
             </div>
 

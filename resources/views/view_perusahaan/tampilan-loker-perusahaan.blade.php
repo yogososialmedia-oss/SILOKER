@@ -11,11 +11,11 @@
                         <div class="card-body">
                             <p class="text-end mb-1 fs-9">11 Jan 2026 - 21 Jan 2026 </p>
                             <h4 class="mb-1 d-flex align-items-center gap-2">
-                                <a href="{{ route('index-perusahaan') }}"
+                                <a href="{{ route('perusahaan.profile') }}"
                                     class="fw-bold text-dark text-decoration-none position-relative z-3">
                                     DEYSTORY
                                 </a>
-                                <a href="{{ route('index-perusahaan') }}"
+                                <a href="{{ route('perusahaan.profile') }}"
                                     class="badge rounded-circle d-flex align-items-center justify-content-center position-relative z-3 "
                                     style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
                             </h4>
