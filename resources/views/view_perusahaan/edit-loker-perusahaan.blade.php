@@ -8,14 +8,13 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="mb-0 fw-bold">Edit Loker</h5>
+                                <h5 class="mb-0 fw-bold">EDIT LOKER</h5>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('perusahaan.loker.update', $loker->id) }}" 
-                                method="POST"  
-                                enctype="multipart/form-data">  
+                            <form action="{{ route('perusahaan.loker.update', $loker->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
@@ -52,30 +51,36 @@
                                     <!-- Tanggal Mulai -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input id="tanggal_mulai"
-                                            name="tanggal_mulai_loker"   
-                                            type="date"   
-                                            class="form-control"   
-                                            value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}"   
-                                            min="{{ now()->toDateString() }}">   
+                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date"
+                                            class="form-control"
+                                            value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}"
+                                            min="{{ now()->toDateString() }}">
                                     </div>
 
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai"
-                                            name="tanggal_berakhir_loker"   
-                                            type="date"   
-                                            class="form-control"   
-                                            value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}"   
-                                            min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">   
+                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date"
+                                            class="form-control"
+                                            value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}"
+                                            min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                     </div>
 
                                     <!-- Poster -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Poster Loker</label>
-                                        <input name="poster_loker" type="file" class="form-control">
+                                        <label class="form-label">
+                                            Poster Loker
+                                            <small class="text-muted">(Maks. 2MB)</small>
+                                        </label>
+
+                                        <input name="poster_loker" type="file" class="form-control" id="posterLoker"
+                                            accept="image/*">
+
+                                        <small class="text-danger d-none" id="posterError">
+                                            Ukuran file terlalu besar. Maksimal 2MB.
+                                        </small>
                                     </div>
+
 
                                     <!-- Provinsi -->
                                     <div class="col-md-6 mb-3">
@@ -83,9 +88,12 @@
                                         @php $provinsi = old('provinsi', $loker->provinsi); @endphp
                                         <select name="provinsi" class="form-select">
                                             <option value="Bali" {{ $provinsi == 'Bali' ? 'selected' : '' }}>Bali</option>
-                                            <option value="Banda Aceh" {{ $provinsi == 'Banda Aceh' ? 'selected' : '' }}>Banda Aceh</option>
-                                            <option value="Medan" {{ $provinsi == 'Medan' ? 'selected' : '' }}>Medan</option>
-                                            <option value="Jakarta" {{ $provinsi == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                            <option value="Banda Aceh" {{ $provinsi == 'Banda Aceh' ? 'selected' : '' }}>
+                                                Banda Aceh</option>
+                                            <option value="Medan" {{ $provinsi == 'Medan' ? 'selected' : '' }}>Medan
+                                            </option>
+                                            <option value="Jakarta" {{ $provinsi == 'Jakarta' ? 'selected' : '' }}>Jakarta
+                                            </option>
                                         </select>
                                     </div>
 
@@ -94,9 +102,12 @@
                                         <label class="form-label">Kabupaten</label>
                                         @php $kabupaten = old('kabupaten', $loker->kabupaten); @endphp
                                         <select name="kabupaten" class="form-select">
-                                            <option value="Tabanan" {{ $kabupaten == 'Tabanan' ? 'selected' : '' }}>Tabanan</option>
-                                            <option value="Buleleng" {{ $kabupaten == 'Buleleng' ? 'selected' : '' }}>Buleleng</option>
-                                            <option value="Badung" {{ $kabupaten == 'Badung' ? 'selected' : '' }}>Badung</option>
+                                            <option value="Tabanan" {{ $kabupaten == 'Tabanan' ? 'selected' : '' }}>
+                                                Tabanan</option>
+                                            <option value="Buleleng" {{ $kabupaten == 'Buleleng' ? 'selected' : '' }}>
+                                                Buleleng</option>
+                                            <option value="Badung" {{ $kabupaten == 'Badung' ? 'selected' : '' }}>Badung
+                                            </option>
                                             <option value="Jakarta Selatan" {{ $kabupaten == 'Jakarta Selatan' ? 'selected' : '' }}>Jakarta Selatan</option>
                                         </select>
                                     </div>
@@ -106,10 +117,14 @@
                                         <label class="form-label">Kecamatan</label>
                                         @php $kecamatan = old('kecamatan', $loker->kecamatan); @endphp
                                         <select name="kecamatan" class="form-select">
-                                            <option value="Kediri" {{ $kecamatan == 'Kediri' ? 'selected' : '' }}>Kediri</option>
-                                            <option value="Kerambitan" {{ $kecamatan == 'Kerambitan' ? 'selected' : '' }}>Kerambitan</option>
-                                            <option value="Selemadeg" {{ $kecamatan == 'Selemadeg' ? 'selected' : '' }}>Selemadeg</option>
-                                            <option value="Cilandak" {{ $kecamatan == 'Cilandak' ? 'selected' : '' }}>Cilandak</option>
+                                            <option value="Kediri" {{ $kecamatan == 'Kediri' ? 'selected' : '' }}>Kediri
+                                            </option>
+                                            <option value="Kerambitan" {{ $kecamatan == 'Kerambitan' ? 'selected' : '' }}>
+                                                Kerambitan</option>
+                                            <option value="Selemadeg" {{ $kecamatan == 'Selemadeg' ? 'selected' : '' }}>
+                                                Selemadeg</option>
+                                            <option value="Cilandak" {{ $kecamatan == 'Cilandak' ? 'selected' : '' }}>
+                                                Cilandak</option>
                                         </select>
                                     </div>
 
@@ -127,7 +142,8 @@
                                         <select name="model_kerja" class="form-select">
                                             <option value="WFH" {{ $model == 'WFH' ? 'selected' : '' }}>WFH</option>
                                             <option value="WFO" {{ $model == 'WFO' ? 'selected' : '' }}>WFO</option>
-                                            <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
+                                            <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid
+                                            </option>
                                         </select>
                                     </div>
 
@@ -137,7 +153,8 @@
                                         @php $tipe = old('tipe_loker', $loker->tipe_loker); @endphp
                                         <select name="tipe_loker" class="form-select">
                                             <option value="job_opportunity" {{ $tipe == 'job_opportunity' ? 'selected' : '' }}>Job</option>
-                                            <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>Internship</option>
+                                            <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>
+                                                Internship</option>
                                         </select>
                                     </div>
 
@@ -180,7 +197,8 @@
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
-                <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div
+                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                     <div class="mb-2 mb-md-0">
                         ©2026 Yogo & Wahyu
                     </div>
@@ -191,31 +209,48 @@
         <div class="content-backdrop fade"></div>
     </div>
 
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const mulai = document.getElementById('tanggal_mulai');
-    const selesai = document.getElementById('tanggal_selesai');
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const mulai = document.getElementById('tanggal_mulai');
+                const selesai = document.getElementById('tanggal_selesai');
 
-    function syncTanggal() {
-        if (!mulai.value) {
-            selesai.disabled = true;
-            selesai.value = '';
-            return;
-        }
+                function syncTanggal() {
+                    if (!mulai.value) {
+                        selesai.disabled = true;
+                        selesai.value = '';
+                        return;
+                    }
 
-        selesai.disabled = false;
-        selesai.min = mulai.value;
+                    selesai.disabled = false;
+                    selesai.min = mulai.value;
 
-        if (selesai.value && selesai.value < mulai.value) {
-            selesai.value = '';
-        }
-    }
+                    if (selesai.value && selesai.value < mulai.value) {
+                        selesai.value = '';
+                    }
+                }
 
-    syncTanggal();
-    mulai.addEventListener('change', syncTanggal);
-});
-</script>
-@endpush
+                syncTanggal();
+                mulai.addEventListener('change', syncTanggal);
+            });
+        </script>
+
+        <script>
+            document.getElementById('posterLoker').addEventListener('change', function () {
+                const file = this.files[0];
+                const maxSize = 2 * 1024 * 1024; // 2MB
+                const error = document.getElementById('posterError');
+
+                if (!file) return;
+
+                if (file.size > maxSize) {
+                    error.classList.remove('d-none');
+                    this.value = ''; // reset input
+                } else {
+                    error.classList.add('d-none');
+                }
+            });
+        </script>
+    @endpush
 
 </x-admin_perusahaan.layout>

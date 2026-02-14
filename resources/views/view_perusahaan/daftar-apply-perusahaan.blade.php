@@ -7,7 +7,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
-                        <h5 class="mb-0 fw-bold">Daftar Apply</h5>
+                        <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
 
                     <div class="btn-group">

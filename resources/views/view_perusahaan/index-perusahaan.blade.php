@@ -4,6 +4,16 @@
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
       <div class="row">
+
+        {{-- NOTIFIKASI --}}
+        @if (session('success'))
+          <div class="col-12">
+            <div id="autoAlert" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+              {{ session('success') }}
+            </div>
+          </div>
+        @endif
+
         <div class="col-12 mb-5">
           <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
             <!-- Thumbnail / Banner -->
@@ -84,18 +94,6 @@
                           </a>
                         </li>
                       @endif
-
-                      {{-- LOGOUT --}}
-                      <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
-                          @csrf
-                          <button type="submit" class="btn btn-sm btn-danger">
-                            Logout
-                          </button>
-                        </form>
-                      </li>
-                    </ul>
-
                   </div>
               </nav>
             </div>
@@ -116,12 +114,11 @@
               <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
 
               @if(!empty($info_perusahaan->alamat_perusahaan))
-              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
-                target="_blank" 
-                class="d-flex align-items-center gap-1 mb-3"> 
-                <i class="bx bx-current-location"></i>
-                <span>View on Google Maps</span>
-              </a>
+                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
+                  target="_blank" class="d-flex align-items-center gap-1 mb-3">
+                  <i class="bx bx-current-location"></i>
+                  <span>View on Google Maps</span>
+                </a>
               @endif
 
               <h6 class="fw-bold mb-2">Email</h6>
@@ -149,6 +146,18 @@
       </div>
     </footer>
     <!-- / Footer -->
+
+    <script>
+    setTimeout(() => {
+        const alert = document.getElementById('autoAlert');
+        if (alert) {
+            alert.classList.remove('show');
+            alert.classList.add('fade');
+            setTimeout(() => alert.remove(), 300);
+        }
+    }, 3000); // 3 detik
+</script>
+
 
     <div class="content-backdrop fade"></div>
   </div>

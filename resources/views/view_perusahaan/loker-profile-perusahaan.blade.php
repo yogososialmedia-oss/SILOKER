@@ -84,18 +84,6 @@
                           </a>
                         </li>
                       @endif
-
-                      {{-- LOGOUT --}}
-                      <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
-                          @csrf
-                          <button type="submit" class="btn btn-sm btn-danger">
-                            Logout
-                          </button>
-                        </form>
-                      </li>
-                    </ul>
-
                   </div>
               </nav>
             </div>
