@@ -25,9 +25,9 @@ class LokerSeeder extends Seeder
         'kabupaten' => 'Jakarta Selatan',
         'kecamatan' => 'Cilandak',
         'alamat' => 'Jl. Raya Cilandak No. 123',
-        'model_kerja' => 'WFO',
+        'model_kerja' => 'Work From Office',
         'tipe_loker' => 'internship',
-        'minimal_pendidikan' => 'S1',
+        'minimal_pendidikan' => 'Minimal Pendidikan S1',
         'deskripsi' => 'Mencari Software Engineer yang berpengalaman di bidang pengembangan perangkat lunak.',
         ]);
 
@@ -43,9 +43,9 @@ class LokerSeeder extends Seeder
         'kabupaten' => 'Jakarta Selatan',
         'kecamatan' => 'Cilandak',
         'alamat' => 'Jl. Raya Cilandak No. 123',
-        'model_kerja' => 'WFH',
+        'model_kerja' => 'Work From Home',
         'tipe_loker' => 'internship',
-        'minimal_pendidikan' => 'S1',
+        'minimal_pendidikan' => 'Minimal Pendidikan S1',
         'deskripsi' => 'Mencari Software Engineer yang berpengalaman di bidang pengembangan perangkat lunak.',
         ]);
 
@@ -63,7 +63,7 @@ class LokerSeeder extends Seeder
         'alamat' => 'Jl. Raya Cilandak No. 123',
         'model_kerja' => 'Hybrid',
         'tipe_loker' => 'internship',
-        'minimal_pendidikan' => 'S1',
+        'minimal_pendidikan' => 'Minimal Pendidikan S1',
         'deskripsi' => 'Mencari Software Engineer yang berpengalaman di bidang pengembangan perangkat lunak.',
         ]);
     }

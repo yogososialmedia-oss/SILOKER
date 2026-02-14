@@ -64,12 +64,9 @@
                                 </div>
 
                                 <div class="col-12 text-end mt-3">
-                                        <button type="submit" class="btn btn-secondary px-4">
-                                            <a href="{{ route('perusahaan.profile.edit') }}"></a>
-                                            <span>
+                                            <a href="{{ route('perusahaan.apply.loker', $loker->id) }}" class="btn btn-secondary">
                                                 Kembali
-                                            </span>
-                                        </button>
+                                        </a>
                                 </div>
                             </div>
 

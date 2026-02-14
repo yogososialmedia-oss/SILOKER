@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('nim')->nullable();
             $table->string('foto_pencari_kerja')->nullable();
             $table->text('deskripsi_diri')->nullable();
-            $table->enum('pendidikan_terakhir', ['SMA/sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->enum('pendidikan_terakhir', ['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'])->nullable();
             $table->string('linkedin')->nullable();
             $table->timestamps();
         });

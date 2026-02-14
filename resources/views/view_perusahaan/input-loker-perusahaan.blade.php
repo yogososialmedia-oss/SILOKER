@@ -154,8 +154,8 @@
                                         <select name="model_kerja"
                                             class="form-select @error('model_kerja') is-invalid @enderror">
                                             <option value="">Pilih model kerja</option>
-                                            <option value="WFH" {{ old('model_kerja')=='WFH'?'selected':'' }}>WFH</option>
-                                            <option value="WFO" {{ old('model_kerja')=='WFO'?'selected':'' }}>WFO</option>
+                                            <option value="Work From Home" {{ old('model_kerja')=='Work From Home'?'selected':'' }}>Work From Home</option>
+                                            <option value="Work From Office" {{ old('model_kerja')=='Work From Office'?'selected':'' }}>Work From Office</option>
                                             <option value="Hybrid" {{ old('model_kerja')=='Hybrid'?'selected':'' }}>Hybrid</option>
                                         </select>
                                         @error('model_kerja')
@@ -183,13 +183,13 @@
                                         <select name="minimal_pendidikan"
                                             class="form-select @error('minimal_pendidikan') is-invalid @enderror">
                                             <option value="">Pilih Minimal Pendidikan</option>
-                                            <option value="SMA/Sederajat" {{ old('minimal_pendidikan')=='SMA/Sederajat'?'selected':'' }}>SMA/Sederajat</option>
-                                            <option value="D1" {{ old('minimal_pendidikan')=='D1'?'selected':'' }}>D1</option>
-                                            <option value="D2" {{ old('minimal_pendidikan')=='D2'?'selected':'' }}>D2</option>
-                                            <option value="D3" {{ old('minimal_pendidikan')=='D3'?'selected':'' }}>D3</option>
-                                            <option value="S1" {{ old('minimal_pendidikan')=='S1'?'selected':'' }}>S1</option>
-                                            <option value="S2" {{ old('minimal_pendidikan')=='S2'?'selected':'' }}>S2</option>
-                                            <option value="S3" {{ old('minimal_pendidikan')=='S3'?'selected':'' }}>S3</option>
+                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ old('minimal_pendidikan')=='Minimal Pendidikan SMA/Sederajat'?'selected':'' }}>Minimal Pendidikan SMA/Sederajat</option>
+                                            <option value="Minimal Pendidikan D1" {{ old('minimal_pendidikan')=='Minimal Pendidikan D1'?'selected':'' }}>Minimal Pendidikan D1</option>
+                                            <option value="Minimal Pendidikan D2" {{ old('minimal_pendidikan')=='Minimal Pendidikan D2'?'selected':'' }}>Minimal Pendidikan D2</option>
+                                            <option value="Minimal Pendidikan D3" {{ old('minimal_pendidikan')=='Minimal Pendidikan D3'?'selected':'' }}>Minimal Pendidikan D3</option>
+                                            <option value="Minimal Pendidikan S1" {{ old('minimal_pendidikan')=='Minimal Pendidikan S1'?'selected':'' }}>Minimal Pendidikan S1</option>
+                                            <option value="Minimal Pendidikan S2" {{ old('minimal_pendidikan')=='Minimal Pendidikan S2'?'selected':'' }}>Minimal Pendidikan S2</option>
+                                            <option value="Minimal Pendidikan S3" {{ old('minimal_pendidikan')=='Minimal Pendidikan S3'?'selected':'' }}>Minimal Pendidikan S3</option>
                                         </select>
                                         @error('minimal_pendidikan')
                                             <div class="invalid-feedback">{{ $message }}</div>

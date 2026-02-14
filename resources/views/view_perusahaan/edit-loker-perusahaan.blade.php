@@ -167,8 +167,8 @@
                                         @php $model = old('model_kerja', $loker->model_kerja); @endphp
                                         <select name="model_kerja" class="form-select">
                                             <option value="">Pilih model kerja</option>
-                                            <option value="WFH" {{ $model == 'WFH' ? 'selected' : '' }}>WFH</option>
-                                            <option value="WFO" {{ $model == 'WFO' ? 'selected' : '' }}>WFO</option>
+                                            <option value="Work From Home" {{ $model == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
+                                            <option value="Work From Office" {{ $model == 'Work From Office' ? 'selected' : '' }}>Work From Office</option>
                                             <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid
                                             </option>
                                         </select>
@@ -183,7 +183,7 @@
                                         @php $tipe = old('tipe_loker', $loker->tipe_loker); @endphp
                                         <select name="tipe_loker" class="form-select">
                                             <option value="">Pilih tipe loker</option>
-                                            <option value="job_opportunity" {{ $tipe == 'job_opportunity' ? 'selected' : '' }}>Job</option>
+                                            <option value="job_opportunity" {{ $tipe == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity</option>
                                             <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>
                                                 Internship</option>
                                         </select>
@@ -197,14 +197,14 @@
                                         <label class="form-label">Minimal Pendidikan</label>
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
                                         <select name="minimal_pendidikan" class="form-select">
-                                            <option value="">Pilih pendidikan</option>
-                                            <option value="SMA/Sederajat" {{ $pendidikan == 'SMA/Sederajat' ? 'selected' : '' }}>SMA/Sederajat</option>
-                                            <option value="D1" {{ $pendidikan == 'D1' ? 'selected' : '' }}>D1</option>
-                                            <option value="D2" {{ $pendidikan == 'D2' ? 'selected' : '' }}>D2</option>
-                                            <option value="D3" {{ $pendidikan == 'D3' ? 'selected' : '' }}>D3</option>
-                                            <option value="S1" {{ $pendidikan == 'S1' ? 'selected' : '' }}>S1</option>
-                                            <option value="S2" {{ $pendidikan == 'S2' ? 'selected' : '' }}>S2</option>
-                                            <option value="S3" {{ $pendidikan == 'S3' ? 'selected' : '' }}>S3</option>
+                                            <option value="">Pilih Minimal Pendidikan</option>
+                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ $pendidikan == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat</option>
+                                            <option value="Minimal Pendidikan D1" {{ $pendidikan == 'Minimal Pendidikan D1' ? 'selected' : '' }}>Minimal Pendidikan D1</option>
+                                            <option value="Minimal Pendidikan D2" {{ $pendidikan == 'Minimal Pendidikan D2' ? 'selected' : '' }}>Minimal Pendidikan D2</option>
+                                            <option value="Minimal Pendidikan D3" {{ $pendidikan == 'Minimal Pendidikan D3' ? 'selected' : '' }}>Minimal Pendidikan D3</option>
+                                            <option value="Minimal Pendidikan S1" {{ $pendidikan == 'Minimal Pendidikan S1' ? 'selected' : '' }}>Minimal Pendidikan S1</option>
+                                            <option value="Minimal Pendidikan S2" {{ $pendidikan == 'Minimal Pendidikan S2' ? 'selected' : '' }}>Minimal Pendidikan S2</option>
+                                            <option value="Minimal Pendidikan S3" {{ $pendidikan == 'Minimal Pendidikan S3' ? 'selected' : '' }}>Minimal Pendidikan S3</option>
                                         </select>
                                         @error('minimal_pendidikan')
                                             <small class="text-danger">{{ $message }}</small>

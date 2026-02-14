@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->text('alamat');
-            $table->enum('minimal_pendidikan', ['SMA/sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3']);
-            $table->enum('model_kerja', ['WFH', 'WFO', 'Hybrid']);
+            $table->enum('minimal_pendidikan', ['Minimal Pendidikan SMA/sederajat', 'Minimal Pendidikan D1', 'Minimal Pendidikan D2', 'Minimal Pendidikan D3', 'Minimal Pendidikan S1', 'Minimal Pendidikan S2', 'Minimal Pendidikan S3']);
+            $table->enum('model_kerja', ['Work From Home', 'Work From Office', 'Hybrid']);
             $table->timestamps();
         });
     }

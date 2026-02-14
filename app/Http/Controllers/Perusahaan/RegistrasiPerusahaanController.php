@@ -42,7 +42,6 @@ class RegistrasiPerusahaanController extends Controller
         'Alamat' => 'required',
         'GoogleMaps' => 'required',
         'Logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-        'BannerPerusahaan' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         'TentangPerusahaan' => 'required',
 
     ],
@@ -74,7 +73,6 @@ class RegistrasiPerusahaanController extends Controller
         'no_telp_perusahaan' => $request->NoTelp,
         'alamat_perusahaan'  => $request->Alamat,
         'logo'               => $request->Logo,
-        'banner_perusahaan'  => $request->BannerPerusahaan,
         'password_perusahaan'=> Hash::make($request->Password),
         'no_npwp'            => $request->NoNpwp,
         'google_maps'        => $request->GoogleMaps,

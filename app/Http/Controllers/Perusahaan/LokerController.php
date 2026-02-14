@@ -45,9 +45,9 @@ class LokerController extends Controller
             'kabupaten' => 'required|string',
             'kecamatan' => 'required|string',
             'alamat' => 'required|string',
-            'model_kerja' => 'required|string|in:WFH,WFO,Hybrid',
+            'model_kerja' => 'required|string|in:Work From Home,Work From Office,Hybrid',
             'tipe_loker' => 'required|string|in:job_opportunity,internship',
-            'minimal_pendidikan' => 'required|string|in:SMA/Sederajat,D1,D2,D3,S1,S2,S3',
+            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/Sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
             'deskripsi' => 'required|string',
         ],
         [
@@ -142,23 +142,45 @@ class LokerController extends Controller
             'kabupaten' => 'required|string',
             'kecamatan' => 'required|string',
             'alamat' => 'required|string',
-            'model_kerja' => 'required|string|in:WFH,WFO,Hybrid',
+            'model_kerja' => 'required|string|in:Work From Home,Work From Office,Hybrid',
             'tipe_loker' => 'required|string|in:job_opportunity,internship',
-            'minimal_pendidikan' => 'required|string|in:SMA/Sederajat,D1,D2,D3,S1,S2,S3',
+            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/Sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
             'deskripsi' => 'required|string',
         ],
         [
-            'poster_loker.required' => 'Poster loker wajib diisi.',
+            'email_perusahaan.required' => 'Email wajib diisi.',
+            'email_perusahaan.email' => 'Format email tidak valid.',
+
+            'no_telp_perusahaan.required' => 'Nomor telepon wajib diisi.',
+
+            'jabatan.required' => 'Jabatan wajib diisi.',
+
+            'tanggal_mulai_loker.required' => 'Tanggal mulai wajib diisi.',
+            'tanggal_mulai_loker.date' => 'Format tanggal mulai tidak valid.',
+
+            'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
+            'tanggal_berakhir_loker.date' => 'Format tanggal selesai tidak valid.',
+            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
+
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Format poster harus JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',
-            'email_perusahaan.email' => 'Email sudah terdaftar.',
-            'tanggal_mulai_loker.date' => 'Tanggal loker dimulai wajib diisi.',
-            'tanggal_berakhir_loker.date' => 'Tanggal loker berakhir wajib diisi.',
-            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal berakhir hasus setelah tanggal dimulai.',
-            'model_kerja.in' => 'Model kerja wajib diisi.',
-            'tipe_loker.in' => 'Tipe loker wajib diisi',
-            'minimal_pendidikan.in' => 'Minimal pendidikan wajib diisi',
+
+            'provinsi.required' => 'Provinsi wajib dipilih.',
+            'kabupaten.required' => 'Kabupaten wajib dipilih.',
+            'kecamatan.required' => 'Kecamatan wajib dipilih.',
+            'alamat.required' => 'Alamat wajib diisi.',
+
+            'model_kerja.required' => 'Model kerja wajib dipilih.',
+            'model_kerja.in' => 'Model kerja tidak valid.',
+
+            'tipe_loker.required' => 'Tipe loker wajib dipilih.',
+            'tipe_loker.in' => 'Tipe loker tidak valid.',
+
+            'minimal_pendidikan.required' => 'Minimal pendidikan wajib dipilih.',
+            'minimal_pendidikan.in' => 'Minimal pendidikan tidak valid.',
+
+            'deskripsi.required' => 'Kualifikasi wajib diisi.',
         ]);
 
         $loker->id_perusahaan_mitra = $authPerusahaan->id;
@@ -188,7 +210,6 @@ class LokerController extends Controller
         $loker->save();
         return redirect()->route('perusahaan.loker')->with('success', 'Lowongan kerja berhasil diperbarui.');
     }
-
 
     /**
      * Remove the specified resource from storage.

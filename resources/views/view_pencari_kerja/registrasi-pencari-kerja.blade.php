@@ -65,7 +65,7 @@
                                         <label class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" class="form-select">
                                             <option value="">Pilih Pendidikan</option>
-                                            @foreach (['SMA/Sederajat', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'] as $p)
+                                            @foreach (['Pendidikan Terakhir SMA/Sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
                                                 <option value="{{ $p }}" {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>{{ $p }}
                                                 </option>
                                             @endforeach

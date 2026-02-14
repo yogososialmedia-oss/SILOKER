@@ -52,13 +52,13 @@
                                         <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" id="defaultSelect" class="form-select">
                                             <option>Pilih Pendidikan Terakhir</option>
-                                            <option value="SMA/Sederajat">SMA/Sederajat</option>
-                                            <option value="D1">D1</option>
-                                            <option value="D2">D2</option>
-                                            <option value="D3">D3</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                            <option value="S3">S3</option>
+                                            <option value="Pendidikan Terakhir SMA/Sederajat">Pendidikan Terakhir SMA/Sederajat</option>
+                                            <option value="Pendidikan Terakhir D1">Pendidikan Terakhir D1</option>
+                                            <option value="Pendidikan Terakhir D2">Pendidikan Terakhir D2</option>
+                                            <option value="Pendidikan Terakhir D3">Pendidikan Terakhir D3</option>
+                                            <option value="Pendidikan Terakhir S1">Pendidikan Terakhir S1</option>
+                                            <option value="Pendidikan Terakhir S2">Pendidikan Terakhir S2</option>
+                                            <option value="Pendidikan Terakhir S3">Pendidikan Terakhir S3</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3">

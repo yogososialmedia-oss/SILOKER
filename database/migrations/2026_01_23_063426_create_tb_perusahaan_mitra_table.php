@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('no_telp_perusahaan');
             $table->text('alamat_perusahaan');
             $table->string('logo')->nullable();
-            $table->string('banner_perusahaan')->nullable();
             $table->string('password_perusahaan');
             $table->string('no_npwp');
             $table->text('google_maps')->nullable();

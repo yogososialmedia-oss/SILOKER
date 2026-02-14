@@ -36,7 +36,7 @@
                             <th>Nama Perusahaan</th>
                             <th>Jabatan</th>
                             <th>Tipe</th>
-                            <th>No.WA</th>
+                            <th>No.Telp</th>
                             <th>Email</th>
                             <th>Tayangan</th>
                             <th>Apply</th>

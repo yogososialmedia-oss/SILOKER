@@ -79,7 +79,6 @@ class ProfilePerusahaanController extends Controller
             'NoNpwp' => 'nullable',
             'GoogleMaps' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'TentangPerusahaan' => 'nullable|string',
         ], [
             'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
@@ -93,7 +92,6 @@ class ProfilePerusahaanController extends Controller
             'NoNpwp.string' => 'Format NPWP tidak valid.',
             'GoogleMaps.string' => 'Format Google Maps tidak valid.',
             'logo.image' => 'Logo Perusahaan harus berupa gambar.',
-            'banner.image' => 'Banner Perusahaan harus berupa gambar.',
             'TentangPerusahaan.string' => 'Format Tentang Perusahaan tidak valid.',
         ]);
         // Update logo perusahaan jika ada file yang diunggah
@@ -119,17 +117,6 @@ class ProfilePerusahaanController extends Controller
             $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
             $logoFile->storeAs('logo_perusahaan', $logoFilename , 'public');
             $authPerusahaan->logo = $logoFilename;
-            }
-        // Update banner perusahaan jika ada file yang diunggah
-        if ($request->hasFile('banner')) {
-            $bannerPath = storage_path('app/public/banner_perusahaan/' . $authPerusahaan->banner_perusahaan);
-            if (file_exists($bannerPath)) {
-                unlink($bannerPath); // Hapus file banner lama
-            }
-            $bannerFile = $request->file('banner');
-            $bannerFilename = time() . '_' . $bannerFile->getClientOriginalName();
-            $bannerFile->storeAs('banner_perusahaan', $bannerFilename , 'public');
-            $authPerusahaan->banner_perusahaan = $bannerFilename;
             }
         $authPerusahaan->save();
 
