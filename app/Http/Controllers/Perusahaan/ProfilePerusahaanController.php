@@ -17,16 +17,26 @@ class ProfilePerusahaanController extends Controller
 
     public function lokerprofile()
     {
-        $info_perusahaan = Auth::guard('perusahaanmitra') ->user();
-        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
-        
+        $info_perusahaan = Auth::guard('perusahaanmitra')->user();
+
+        abort_if(!$info_perusahaan, 403);
+
+        $loker = $info_perusahaan->loker;
+
+        return view('view_perusahaan.loker-profile-perusahaan',
+            compact('info_perusahaan', 'loker'));
     }
 
     public function tampilanloker()
     {
-        $info_perusahaan = Auth::guard('perusahaanmitra') ->user();
-        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan'));
-        
+        $info_perusahaan = Auth::guard('perusahaanmitra')->user();
+
+        abort_if(!$info_perusahaan, 403);
+
+        $loker = $info_perusahaan->loker; // ambil semua loker perusahaan
+
+        return view('view_perusahaan.tampilan-loker-perusahaan',
+            compact('info_perusahaan', 'loker'));
     }
     /**
      * Show the form for creating a new resource.

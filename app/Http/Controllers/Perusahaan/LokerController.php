@@ -15,7 +15,10 @@ class LokerController extends Controller
      */
     public function index()
     {
-        $loker = Loker::with('perusahaanMitra') ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->user()->id)->get();
+        $loker = Loker::with('perusahaanMitra')
+        ->withCount('apply')
+        ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->id())
+        ->get();
         return view('view_perusahaan.daftar-loker-perusahaan', compact('loker'));
     }
 
@@ -47,7 +50,7 @@ class LokerController extends Controller
             'alamat' => 'required|string',
             'model_kerja' => 'required|string|in:Work From Home,Work From Office,Hybrid',
             'tipe_loker' => 'required|string|in:job_opportunity,internship',
-            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/Sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
+            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
             'deskripsi' => 'required|string',
         ],
         [
@@ -144,7 +147,7 @@ class LokerController extends Controller
             'alamat' => 'required|string',
             'model_kerja' => 'required|string|in:Work From Home,Work From Office,Hybrid',
             'tipe_loker' => 'required|string|in:job_opportunity,internship',
-            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/Sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
+            'minimal_pendidikan' => 'required|string|in:Minimal Pendidikan SMA/sederajat,Minimal Pendidikan D1,Minimal Pendidikan D2,Minimal Pendidikan D3,Minimal Pendidikan S1,Minimal Pendidikan S2,Minimal Pendidikan S3',
             'deskripsi' => 'required|string',
         ],
         [

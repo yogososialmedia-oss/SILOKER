@@ -41,4 +41,8 @@ class PencariKerja extends Authenticatable
         'password_pencari_kerja',
     ];
     
+    public function apply()
+    {
+        return $this->hasMany(Apply::class, 'id_pencari_kerja');
+    }
 }

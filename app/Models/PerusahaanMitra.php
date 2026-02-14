@@ -49,4 +49,23 @@ class PerusahaanMitra extends Authenticatable
     {
         return $this->hasMany(Loker::class, 'id_perusahaan_mitra');
     }
+    public function apply()
+    {
+        return $this->hasManyThrough(
+            Apply::class,
+            Loker::class,
+            'id_perusahaan_mitra', // foreign key di loker
+            'id_loker',            // foreign key di apply
+            'id',                  // local key perusahaan
+            'id'                   // local key loker
+        );
+    }
+    public function getLogoUrlAttribute()
+    {
+        if (!$this->logo) {
+            return asset('admin-perusahaan/assets/img/avatars/logo.png');
+        }
+
+        return asset('storage/logo_perusahaan/' . $this->logo);
+    }
 }

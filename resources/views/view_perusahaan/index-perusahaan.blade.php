@@ -17,23 +17,37 @@
         {{-- CARD THUMBNAIL / HEADER --}}
         <div class="col-12 mb-4">
           <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
-            <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
+            <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}"
+              class="card-img-top"
               style="height:280px; object-fit:cover;">
 
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-              <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}" class="rounded-circle mb-2"
+              <img src="{{ $info_perusahaan->logo 
+                ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
+                : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
               <h4 class="fw-bold mb-0 text-white">
                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
               </h4>
 
-              @if ($info_perusahaan->status_akun === 'pending')
-                <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
-              @elseif ($info_perusahaan->status_akun === 'terverifikasi')
-                <p class="text-white mb-0">Terverifikasi</p>
-              @elseif ($info_perusahaan->status_akun === 'verifikasi_gagal')
-                <p class="text-danger mb-0">Verifikasi Gagal</p>
-              @endif
+              @php
+                  $statusClass = [
+                      'pending' => 'text-warning',
+                      'terverifikasi' => 'text-white',
+                      'verifikasi_gagal' => 'text-danger'
+                  ];
+
+                  $statusText = [
+                      'pending' => 'Verifikasi Dalam Proses',
+                      'terverifikasi' => 'Terverifikasi',
+                      'verifikasi_gagal' => 'Verifikasi Gagal'
+                  ];
+              @endphp
+
+              <p class="{{ $statusClass[$info_perusahaan->status_akun] ?? 'text-secondary' }} mb-0">
+                  {{ $statusText[$info_perusahaan->status_akun] ?? '-' }}
+              </p>
             </div>
           </div>
         </div>
@@ -114,13 +128,19 @@
             <p class="mb-3 text-muted">{{ $info_perusahaan->tentang_perusahaan ?? '-' }}</p>
 
             <h6 class="fw-bold mb-2">Alamat</h6>
-            <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
-            @if(!empty($info_perusahaan->alamat_perusahaan))
-              <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
-                target="_blank" class="d-flex align-items-center gap-1 mb-3">
-                <i class="bx bx-current-location"></i>
-                <span>View on Google Maps</span>
-              </a>
+            <p>
+                {{ $info_perusahaan->alamat_perusahaan ?? '-' }} <br>
+                {{ $info_perusahaan->kecamatan ?? '' }}
+                {{ $info_perusahaan->kabupaten ?? '' }}
+                {{ $info_perusahaan->provinsi ?? '' }}
+            </p>
+            @if(!empty($info_perusahaan->google_maps))
+                <a href="{{ $info_perusahaan->google_maps }}"
+                  target="_blank"
+                  class="d-flex align-items-center gap-1 mb-3">
+                    <i class="bx bx-current-location"></i>
+                    <span>View on Google Maps</span>
+                </a>
             @endif
 
             <h6 class="fw-bold mb-2">Email</h6>
@@ -132,8 +152,6 @@
         </div>
 
       </div>
-    </div>
-
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
       <div class="container-xxl">

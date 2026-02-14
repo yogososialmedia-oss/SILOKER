@@ -23,10 +23,16 @@ class Loker extends Model
         'tipe_loker',
         'minimal_pendidikan',
         'deskripsi',
+        'tayangan',
+        'interaksi',
     ];
 
     public function perusahaanMitra()
     {
         return $this->belongsTo(PerusahaanMitra::class, 'id_perusahaan_mitra');
+    }
+    public function apply()
+    {
+        return $this->hasMany(Apply::class, 'id_loker');
     }
 }

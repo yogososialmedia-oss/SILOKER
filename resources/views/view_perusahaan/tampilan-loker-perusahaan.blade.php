@@ -1,86 +1,93 @@
 <x-admin_perusahaan.layout>
     <!-- Content wrapper -->
-   <div class="content-wrapper">
+<div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
+                @foreach($loker as $item)
                 <div class="col-lg-4 mb-5">
-                    <div class="card loker-card-beranda">
-                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top"
-                            alt="...">
+                    <div class="card loker-card-beranda h-100">
+
+                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}"
+                            class="card-img-top" alt="">
+
                         <div class="card-body">
-                            <p class="text-end mb-1 fs-9">11 Jan 2026 - 21 Jan 2026 </p>
+
+                            {{-- Tanggal --}}
+                            <p class="text-end mb-1 fs-9">
+                                {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }}
+                                -
+                                {{ \Carbon\Carbon::parse($item->tanggal_berakhir_loker)->format('d M Y') }}
+                            </p>
+
+                            {{-- Nama Perusahaan --}}
                             <h4 class="mb-1 d-flex align-items-center gap-2">
                                 <a href="{{ route('perusahaan.profile') }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
-                                    DEYSTORY
+                                    class="fw-bold text-dark text-decoration-none">
+                                    {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
-                                <a href="{{ route('perusahaan.profile') }}"
-                                    class="badge rounded-circle d-flex align-items-center justify-content-center position-relative z-3 "
-                                    style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
                             </h4>
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5 class="mb-3 position-relative">Administrasi</h5>
-                                </div>
-                                <div class="col-3">
-                                    <span class="badge bg-primary position-relative">
-                                        Open
-                                    </span>
 
-                                    <span class="badge bg-danger position-relative">
-                                        Close
-                                    </span>
+                            {{-- Jabatan + Status --}}
+                            <div class="d-flex align-items-center mb-3">
+
+                                <h5 class="mb-0">
+                                    {{ $item->jabatan }}
+                                </h5>
+
+                                <div class="ms-auto pe-4">
+                                    @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
+                                        <span class="badge bg-primary fs-6 px-3 py-2">
+                                            Open
+                                        </span>
+                                    @else
+                                        <span class="badge bg-danger fs-6 px-3 py-2">
+                                            Close
+                                        </span>
+                                    @endif
                                 </div>
 
                             </div>
-                            <div class="row">
-                                <div class="col-mb-12">
-                                    <H6 class="mb-1">Job Opportunity</H6>
-                                </div>
-                                <div class="col-mb-12">
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-location-plus icon-sm"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class=" col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-show icon-sm"></i>
-                                        <span>50</span>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="d-flex align-items-center gap-1 mb-1">
-                                        <i class="bx bx-file icon-sm"></i>
-                                        <span>30</span>
-                                    </p>
-                                </div>
-                            </div>
+
+                            {{-- Detail --}}
+                            <h6 class="mb-1">
+                                {{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
+                            </h6>
+
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-location-plus icon-sm"></i>
+                                <span>{{ $item->kabupaten }}</span>
+                            </p>
+
+                            <p class="d-flex align-items-start gap-2 mb-1">
+                                <i class="bx bx-buildings"></i>
+                                <span>{{ $item->model_kerja }}</span>
+                            </p>
+
+                            <p class="d-flex align-items-start gap-2 mb-1">
+                                <i class="bx bx-book-reader"></i>
+                                <span>{{ $item->minimal_pendidikan }}</span>
+                            </p>
+
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-file icon-sm"></i>
+                                <span>{{ $item->apply_count ?? 0 }} Pelamar</span>
+                            </p>
+
                         </div>
                     </div>
                 </div>
+                @endforeach
+
                 <div class="col-lg-8 mb-5">
-                    <div class="card loker-card-beranda ">
+                    <div class="card loker-card-beranda">
                         <div class="card-body">
 
-                            <!-- konten card -->
+                            <h4 class="mb-3">Kualifikasi</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Semakin panjang text, card akan otomatis menyesuaikan.
+                                {!! nl2br(e($loker->first()->deskripsi ?? '-')) !!}
                             </p>
+
                         </div>
                     </div>
                 </div>

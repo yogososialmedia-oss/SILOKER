@@ -43,7 +43,6 @@ class RegistrasiPerusahaanController extends Controller
         'GoogleMaps' => 'required',
         'Logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         'TentangPerusahaan' => 'required',
-
     ],
     [
         'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
@@ -63,6 +62,14 @@ class RegistrasiPerusahaanController extends Controller
     ]  
 
     );
+    
+    $logoFilename = null;
+
+    if ($request->hasFile('Logo')) {
+        $logoFile = $request->file('Logo');
+        $logoFilename = time().'_'.$logoFile->getClientOriginalName();
+        $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
+    }
 
     PerusahaanMitra::create([
         'nama_perusahaan'    => $request->NamaPerusahaan,
@@ -72,7 +79,7 @@ class RegistrasiPerusahaanController extends Controller
         'kecamatan'          => $request->Kecamatan,
         'no_telp_perusahaan' => $request->NoTelp,
         'alamat_perusahaan'  => $request->Alamat,
-        'logo'               => $request->Logo,
+        'logo'               => $logoFilename,
         'password_perusahaan'=> Hash::make($request->Password),
         'no_npwp'            => $request->NoNpwp,
         'google_maps'        => $request->GoogleMaps,

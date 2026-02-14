@@ -16,7 +16,10 @@ class ApplyController extends Controller
     {
         $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-        $apply = Apply::with(['loker', 'pencariKerja'])
+        $apply = Apply::with([
+            'loker.perusahaanMitra',
+            'pencariKerja'
+        ])
             ->whereHas('loker', function ($query) use ($perusahaanId) {
                 $query->where('id_perusahaan_mitra', $perusahaanId);
             })
@@ -52,12 +55,24 @@ class ApplyController extends Controller
     }
     public function showProfilePelamar($id)
     {
-        $apply = Apply::findOrFail($id);
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
+
+        $apply = Apply::where('id', $id)
+            ->whereHas('loker', function ($query) use ($perusahaanId) {
+                $query->where('id_perusahaan_mitra', $perusahaanId);
+            })
+            ->firstOrFail();
         return view('view_perusahaan.profile-pencari-kerja-perusahaan', compact('apply'));
     }
     public function showHistoryApply($id)
     {
-        $apply = Apply::findOrFail($id);
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
+
+        $apply = Apply::where('id', $id)
+            ->whereHas('loker', function ($query) use ($perusahaanId) {
+                $query->where('id_perusahaan_mitra', $perusahaanId);
+            })
+            ->firstOrFail();
         return view('view_perusahaan.history-apply-pencari-kerja', compact('apply'));
     }
 
