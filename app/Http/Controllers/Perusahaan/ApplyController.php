@@ -55,6 +55,11 @@ class ApplyController extends Controller
         $apply = Apply::findOrFail($id);
         return view('view_perusahaan.profile-pencari-kerja-perusahaan', compact('apply'));
     }
+    public function showHistoryApply($id)
+    {
+        $apply = Apply::findOrFail($id);
+        return view('view_perusahaan.history-apply-pencari-kerja', compact('apply'));
+    }
 
     /**
      * Show the form for creating a new resource.

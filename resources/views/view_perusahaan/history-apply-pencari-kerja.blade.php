@@ -23,14 +23,14 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}"
-                                                    href="{{ route('pencarikerja.profile') }}">
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.profile-pelamar', $apply->id) ? 'active' : '' }}"
+                                                    href="{{ route('perusahaan.apply.profile-pelamar', $apply->id) }}">
                                                     Tentang Saya
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}"
-                                                    href="{{ route('pencarikerja.history-apply') }}">
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.history', $apply->id) ? 'active' : '' }}"
+                                                    href="{{ route('perusahaan.apply.history', $apply->id) }}">
                                                     History Apply
                                                 </a>
                                             </li>
@@ -78,7 +78,7 @@
                                                             class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('profile-perusahaan-pencari-kerja') }}"><i
+                                                            href="{{ route('perusahaan.profile') }}"><i
                                                                 class="icon-base bx bx-user-circle me-2"></i>Profile
                                                             Perusahaan</a>
                                                     </div>
