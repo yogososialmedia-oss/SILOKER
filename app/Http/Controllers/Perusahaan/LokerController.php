@@ -51,17 +51,39 @@ class LokerController extends Controller
             'deskripsi' => 'required|string',
         ],
         [
-            'poster_loker.required' => 'Poster loker wajib diisi.',
+            'email_perusahaan.required' => 'Email wajib diisi.',
+            'email_perusahaan.email' => 'Format email tidak valid.',
+
+            'no_telp_perusahaan.required' => 'Nomor telepon wajib diisi.',
+
+            'jabatan.required' => 'Jabatan wajib diisi.',
+
+            'tanggal_mulai_loker.required' => 'Tanggal mulai wajib diisi.',
+            'tanggal_mulai_loker.date' => 'Format tanggal mulai tidak valid.',
+
+            'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
+            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
+
+            'poster_loker.required' => 'Poster loker wajib diupload.',
             'poster_loker.image' => 'Poster harus berupa gambar.',
-            'poster_loker.mimes' => 'Format poster harus JPG atau PNG.',
+            'poster_loker.mimes' => 'Poster harus format JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',
-            'email_perusahaan.email' => 'Email sudah terdaftar.',
-            'tanggal_mulai_loker.date' => 'Tanggal loker dimulai wajib diisi.',
-            'tanggal_berakhir_loker.date' => 'Tanggal loker berakhir wajib diisi.',
-            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal berakhir hasus setelah tanggal dimulai.',
-            'model_kerja.in' => 'Model kerja wajib diisi.',
-            'tipe_loker.in' => 'Tipe loker wajib diisi',
-            'minimal_pendidikan.in' => 'Minimal pendidikan wajib diisi',
+
+            'provinsi.required' => 'Provinsi wajib dipilih.',
+            'kabupaten.required' => 'Kabupaten wajib dipilih.',
+            'kecamatan.required' => 'Kecamatan wajib dipilih.',
+            'alamat.required' => 'Alamat wajib diisi.',
+
+            'model_kerja.required' => 'Model kerja wajib dipilih.',
+            'model_kerja.in' => 'Model kerja tidak valid.',
+
+            'tipe_loker.required' => 'Tipe loker wajib dipilih.',
+            'tipe_loker.in' => 'Tipe loker tidak valid.',
+
+            'minimal_pendidikan.required' => 'Minimal pendidikan wajib dipilih.',
+            'minimal_pendidikan.in' => 'Minimal pendidikan tidak valid.',
+
+            'deskripsi.required' => 'Kualifikasi wajib diisi.',
         ]);
         $posterFile = $request->file('poster_loker');
         $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
