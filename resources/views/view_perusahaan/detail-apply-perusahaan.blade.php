@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0 fw-bold">Detail Apply</h5>
+                            <h5 class="mb-0 fw-bold">DETAIL APPLY</h5>
                         </div>
                         <div class="card-body">
                             @php
@@ -51,13 +51,28 @@
                                         value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Curriculum Vitae (CV)</label>
+                                    <input type="file" class="form-control"
+                                        value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control"
                                         value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
+                                <div class="col-12 text-end mt-3">
+                                        <button type="submit" class="btn btn-secondary px-4">
+                                            <a href="{{ route('perusahaan.profile.edit') }}"></a>
+                                            <span>
+                                                Kembali
+                                            </span>
+                                        </button>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

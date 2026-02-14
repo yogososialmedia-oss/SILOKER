@@ -12,9 +12,6 @@
                         </div>
                     @endif
 
-
-
-
                     <div class="card pb-3 ">
                         <div class="card-header d-flex justify-content-between align-items-center">
 
@@ -129,6 +126,17 @@
                     }
                 });
             </script>
+            <script>
+                setTimeout(() => {
+                    const alert = document.getElementById('alert-success');
+                    if (alert) {
+                        alert.classList.remove('show');
+                        alert.classList.add('fade');
+                        setTimeout(() => alert.remove(), 300);
+                    }
+                }, 3000); // 3 detik
+            </script>
+
         @endpush
 
 

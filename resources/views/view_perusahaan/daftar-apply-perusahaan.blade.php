@@ -96,7 +96,6 @@
                                 <select class="form-select" id="exampleFormControlSelect1"
                                     aria-label="Default select example">
                                     <option selected>Pilih Status</option>
-                                    <option value="0">Pending</option>
                                     <option value="1">Interview</option>
                                     <option value="2">Tidak Diterima</option>
                                     <option value="3">Diterima</option>

@@ -69,8 +69,8 @@
                                     <!-- Poster -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">
-                                            Poster Loker
-                                            <small class="text-muted">(Maks. 2MB)</small>
+                                            Poster Loker (Format: JPG / PNG · Maksimal
+                                            2MB)
                                         </label>
 
                                         <input name="poster_loker" type="file" class="form-control" id="posterLoker"
