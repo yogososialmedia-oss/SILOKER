@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="mb-0 fw-bold">Input Loker</h5>
+                                <h5 class="mb-0 fw-bold">INPUT LOKER</h5>
                             </div>
                         </div>
                         <div class="card-body">

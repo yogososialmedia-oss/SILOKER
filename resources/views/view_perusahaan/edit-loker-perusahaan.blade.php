@@ -19,7 +19,6 @@
                                 @method('PUT')
 
                                 <div class="row">
-
                                     <!-- Nama Perusahaan -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
@@ -32,6 +31,9 @@
                                         <label class="form-label">Jabatan</label>
                                         <input name="jabatan" type="text" class="form-control"
                                             value="{{ old('jabatan', $loker->jabatan) }}">
+                                        @error('jabatan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Email -->
@@ -39,6 +41,9 @@
                                         <label class="form-label">Email</label>
                                         <input name="email_perusahaan" type="text" class="form-control"
                                             value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
+                                        @error('email_perusahaan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- No Telp -->
@@ -46,6 +51,9 @@
                                         <label class="form-label">No. Telp</label>
                                         <input type="text" name="no_telp_perusahaan" class="form-control"
                                             value="{{ old('no_telp_perusahaan', $loker->perusahaanMitra->no_telp_perusahaan ?? '') }}">
+                                        @error('no_telp_perusahaan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Tanggal Mulai -->
@@ -55,6 +63,9 @@
                                             class="form-control"
                                             value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}"
                                             min="{{ now()->toDateString() }}">
+                                        @error('tanggal_mulai_loker')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Tanggal Berakhir -->
@@ -64,29 +75,30 @@
                                             class="form-control"
                                             value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}"
                                             min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
+                                        @error('tanggal_berakhir_loker')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Poster -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">
-                                            Poster Loker (Format: JPG / PNG · Maksimal
-                                            2MB)
-                                        </label>
-
+                                        <label class="form-label">Poster Loker (Format: JPG / PNG · Maksimal
+                                            2MB)</label>
                                         <input name="poster_loker" type="file" class="form-control" id="posterLoker"
                                             accept="image/*">
-
-                                        <small class="text-danger d-none" id="posterError">
-                                            Ukuran file terlalu besar. Maksimal 2MB.
-                                        </small>
+                                        <small class="text-danger d-none" id="posterError">Ukuran file terlalu besar.
+                                            Maksimal 2MB.</small>
+                                        @error('poster_loker')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
-
 
                                     <!-- Provinsi -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
                                         @php $provinsi = old('provinsi', $loker->provinsi); @endphp
                                         <select name="provinsi" class="form-select">
+                                            <option value="">Pilih provinsi</option>
                                             <option value="Bali" {{ $provinsi == 'Bali' ? 'selected' : '' }}>Bali</option>
                                             <option value="Banda Aceh" {{ $provinsi == 'Banda Aceh' ? 'selected' : '' }}>
                                                 Banda Aceh</option>
@@ -95,6 +107,9 @@
                                             <option value="Jakarta" {{ $provinsi == 'Jakarta' ? 'selected' : '' }}>Jakarta
                                             </option>
                                         </select>
+                                        @error('provinsi')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Kabupaten -->
@@ -102,6 +117,7 @@
                                         <label class="form-label">Kabupaten</label>
                                         @php $kabupaten = old('kabupaten', $loker->kabupaten); @endphp
                                         <select name="kabupaten" class="form-select">
+                                            <option value="">Pilih kabupaten</option>
                                             <option value="Tabanan" {{ $kabupaten == 'Tabanan' ? 'selected' : '' }}>
                                                 Tabanan</option>
                                             <option value="Buleleng" {{ $kabupaten == 'Buleleng' ? 'selected' : '' }}>
@@ -110,6 +126,9 @@
                                             </option>
                                             <option value="Jakarta Selatan" {{ $kabupaten == 'Jakarta Selatan' ? 'selected' : '' }}>Jakarta Selatan</option>
                                         </select>
+                                        @error('kabupaten')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Kecamatan -->
@@ -117,6 +136,7 @@
                                         <label class="form-label">Kecamatan</label>
                                         @php $kecamatan = old('kecamatan', $loker->kecamatan); @endphp
                                         <select name="kecamatan" class="form-select">
+                                            <option value="">Pilih kecamatan</option>
                                             <option value="Kediri" {{ $kecamatan == 'Kediri' ? 'selected' : '' }}>Kediri
                                             </option>
                                             <option value="Kerambitan" {{ $kecamatan == 'Kerambitan' ? 'selected' : '' }}>
@@ -126,6 +146,9 @@
                                             <option value="Cilandak" {{ $kecamatan == 'Cilandak' ? 'selected' : '' }}>
                                                 Cilandak</option>
                                         </select>
+                                        @error('kecamatan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Alamat -->
@@ -133,6 +156,9 @@
                                         <label class="form-label">Alamat</label>
                                         <input name="alamat" type="text" class="form-control"
                                             value="{{ old('alamat', $loker->alamat) }}">
+                                        @error('alamat')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Model Kerja -->
@@ -140,11 +166,15 @@
                                         <label class="form-label">Model Kerja</label>
                                         @php $model = old('model_kerja', $loker->model_kerja); @endphp
                                         <select name="model_kerja" class="form-select">
+                                            <option value="">Pilih model kerja</option>
                                             <option value="WFH" {{ $model == 'WFH' ? 'selected' : '' }}>WFH</option>
                                             <option value="WFO" {{ $model == 'WFO' ? 'selected' : '' }}>WFO</option>
                                             <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid
                                             </option>
                                         </select>
+                                        @error('model_kerja')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Tipe Loker -->
@@ -152,10 +182,14 @@
                                         <label class="form-label">Tipe Loker</label>
                                         @php $tipe = old('tipe_loker', $loker->tipe_loker); @endphp
                                         <select name="tipe_loker" class="form-select">
+                                            <option value="">Pilih tipe loker</option>
                                             <option value="job_opportunity" {{ $tipe == 'job_opportunity' ? 'selected' : '' }}>Job</option>
                                             <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>
                                                 Internship</option>
                                         </select>
+                                        @error('tipe_loker')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Pendidikan -->
@@ -163,6 +197,7 @@
                                         <label class="form-label">Minimal Pendidikan</label>
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
                                         <select name="minimal_pendidikan" class="form-select">
+                                            <option value="">Pilih pendidikan</option>
                                             <option value="SMA/Sederajat" {{ $pendidikan == 'SMA/Sederajat' ? 'selected' : '' }}>SMA/Sederajat</option>
                                             <option value="D1" {{ $pendidikan == 'D1' ? 'selected' : '' }}>D1</option>
                                             <option value="D2" {{ $pendidikan == 'D2' ? 'selected' : '' }}>D2</option>
@@ -171,6 +206,9 @@
                                             <option value="S2" {{ $pendidikan == 'S2' ? 'selected' : '' }}>S2</option>
                                             <option value="S3" {{ $pendidikan == 'S3' ? 'selected' : '' }}>S3</option>
                                         </select>
+                                        @error('minimal_pendidikan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Kualifikasi -->
@@ -178,6 +216,9 @@
                                         <label class="form-label">Kualifikasi</label>
                                         <textarea name="deskripsi" class="form-control"
                                             rows="4">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
+                                        @error('deskripsi')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <div class="text-end">
