@@ -32312,6 +32312,7 @@ html {
 }
 
 
+
 /* =====================================================
     CSS NOTIFIKASI
    ===================================================== */
@@ -32338,9 +32339,6 @@ html {
     opacity: 0;
     transform: translateY(-8px);
 }
-
-
-
 
 
 /* =====================================================
@@ -32401,4 +32399,20 @@ html {
 
 
 
+/* =====================================================
+    BERANDA FULL BIRU
+   ===================================================== */
+.home-beranda,
+.footer-beranda {
+    width: 100vw; /* paksa lebar viewport penuh */
+    margin-left: calc(-50vw + 50%); /* pusatkan section */
+    margin-right: calc(-50vw + 50%);
+    background-color: #3f75c7; /* biru utama */
+    color: #fff;
+}
+
+/* padding tetap aman untuk konten */
+.home-beranda {
+    padding: -10px 15px 50px; 
+}
 
