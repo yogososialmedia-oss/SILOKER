@@ -51,17 +51,17 @@ class LokerController extends Controller
             'deskripsi' => 'required|string',
         ],
         [
-            'poster_loker.required' => 'Poster loker wajib diupload.',
+            'poster_loker.required' => 'Poster loker wajib diisi.',
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Format poster harus JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',
-            'email_perusahaan.email' => 'The email format is invalid.',
-            'tanggal_mulai_loker.date' => 'The start date must be a valid date.',
-            'tanggal_berakhir_loker.date' => 'The end date must be a valid date.',
-            'tanggal_berakhir_loker.after_or_equal' => 'The end date must be a date after or equal to the start date.',
-            'model_kerja.in' => 'The selected model kerja is invalid.',
-            'tipe_loker.in' => 'The selected tipe loker is invalid.',
-            'minimal_pendidikan.in' => 'The selected minimal pendidikan is invalid.',
+            'email_perusahaan.email' => 'Email sudah terdaftar.',
+            'tanggal_mulai_loker.date' => 'Tanggal loker dimulai wajib diisi.',
+            'tanggal_berakhir_loker.date' => 'Tanggal loker berakhir wajib diisi.',
+            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal berakhir hasus setelah tanggal dimulai.',
+            'model_kerja.in' => 'Model kerja wajib diisi.',
+            'tipe_loker.in' => 'Tipe loker wajib diisi',
+            'minimal_pendidikan.in' => 'Minimal pendidikan wajib diisi',
         ]);
         $posterFile = $request->file('poster_loker');
         $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
@@ -126,17 +126,17 @@ class LokerController extends Controller
             'deskripsi' => 'required|string',
         ],
         [
-            'poster_loker.required' => 'Poster loker wajib diupload.',
+            'poster_loker.required' => 'Poster loker wajib diisi.',
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Format poster harus JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',
-            'email_perusahaan.email' => 'The email format is invalid.',
-            'tanggal_mulai_loker.date' => 'The start date must be a valid date.',
-            'tanggal_berakhir_loker.date' => 'The end date must be a valid date.',
-            'tanggal_berakhir_loker.after_or_equal' => 'The end date must be a date after or equal to the start date.',
-            'model_kerja.in' => 'The selected model kerja is invalid.',
-            'tipe_loker.in' => 'The selected tipe loker is invalid.',
-            'minimal_pendidikan.in' => 'The selected minimal pendidikan is invalid.',
+            'email_perusahaan.email' => 'Email sudah terdaftar.',
+            'tanggal_mulai_loker.date' => 'Tanggal loker dimulai wajib diisi.',
+            'tanggal_berakhir_loker.date' => 'Tanggal loker berakhir wajib diisi.',
+            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal berakhir hasus setelah tanggal dimulai.',
+            'model_kerja.in' => 'Model kerja wajib diisi.',
+            'tipe_loker.in' => 'Tipe loker wajib diisi',
+            'minimal_pendidikan.in' => 'Minimal pendidikan wajib diisi',
         ]);
 
         $loker->id_perusahaan_mitra = $authPerusahaan->id;

@@ -7,7 +7,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
-                        <h5 class="mb-0 fw-bold">Daftar Loker</h5>
+                        <h5 class="mb-0 fw-bold">HISTORY APPLY</h5>
                     </div>
 
                     <div class="btn-group">

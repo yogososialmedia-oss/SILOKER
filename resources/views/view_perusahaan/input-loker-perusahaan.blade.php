@@ -6,13 +6,12 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h5 class="mb-0 fw-bold">Input Loker</h5>
+                            <h5 class="mb-0 fw-bold">INPUT LOKER</h5>
                         </div>
 
                         <div class="card-body">
 
-                            <form action="{{ route('perusahaan.loker.store') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('perusahaan.loker.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
@@ -68,8 +67,8 @@
                                     {{-- Tanggal Berakhir --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date"
-                                            class="form-control" disabled value="{{ old('tanggal_berakhir_loker') }}">
+                                        <input id="tanggal_berakhir_loker" name="tanggal_berakhir_loker" type="date"
+                                            class="form-control" value="{{ old('tanggal_berakhir_loker') }}">
                                         @error('tanggal_berakhir_loker')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -80,8 +79,7 @@
                                         <label class="form-label">Poster Loker (Format: JPG / PNG· Maksimal 2MB)</label>
                                         <input name="poster_loker" type="file" class="form-control" id="posterLoker"
                                             accept="image/*">
-                                        <small id="posterError" class="text-danger d-none">Ukuran poster maksimal
-                                            2MB</small>
+                                        <small id="posterError" class="text-danger d-none">Ukuran poster maksimal 2MB</small>
                                         @error('poster_loker')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -92,11 +90,9 @@
                                         <label class="form-label">Provinsi</label>
                                         <select name="provinsi" class="form-select">
                                             <option value="">Pilih Provinsi</option>
-                                            <option value="Bali" {{ old('provinsi') == 'Bali' ? 'selected' : '' }}>Bali
-                                            </option>
+                                            <option value="Bali" {{ old('provinsi') == 'Bali' ? 'selected' : '' }}>Bali</option>
                                             <option value="Banda Aceh" {{ old('provinsi') == 'Banda Aceh' ? 'selected' : '' }}>Banda Aceh</option>
-                                            <option value="Medan" {{ old('provinsi') == 'Medan' ? 'selected' : '' }}>Medan
-                                            </option>
+                                            <option value="Medan" {{ old('provinsi') == 'Medan' ? 'selected' : '' }}>Medan</option>
                                         </select>
                                         @error('provinsi')
                                             <small class="text-danger">{{ $message }}</small>
@@ -108,11 +104,9 @@
                                         <label class="form-label">Kabupaten</label>
                                         <select name="kabupaten" class="form-select">
                                             <option value="">Pilih Kabupaten</option>
-                                            <option value="Tabanan" {{ old('kabupaten') == 'Tabanan' ? 'selected' : '' }}>
-                                                Tabanan</option>
+                                            <option value="Tabanan" {{ old('kabupaten') == 'Tabanan' ? 'selected' : '' }}>Tabanan</option>
                                             <option value="Buleleng" {{ old('kabupaten') == 'Buleleng' ? 'selected' : '' }}>Buleleng</option>
-                                            <option value="Badung" {{ old('kabupaten') == 'Badung' ? 'selected' : '' }}>
-                                                Badung</option>
+                                            <option value="Badung" {{ old('kabupaten') == 'Badung' ? 'selected' : '' }}>Badung</option>
                                         </select>
                                         @error('kabupaten')
                                             <small class="text-danger">{{ $message }}</small>
@@ -124,8 +118,7 @@
                                         <label class="form-label">Kecamatan</label>
                                         <select name="kecamatan" class="form-select">
                                             <option value="">Pilih Kecamatan</option>
-                                            <option value="Kediri" {{ old('kecamatan') == 'Kediri' ? 'selected' : '' }}>
-                                                Kediri</option>
+                                            <option value="Kediri" {{ old('kecamatan') == 'Kediri' ? 'selected' : '' }}>Kediri</option>
                                             <option value="Kerambitan" {{ old('kecamatan') == 'Kerambitan' ? 'selected' : '' }}>Kerambitan</option>
                                             <option value="Selemadeg" {{ old('kecamatan') == 'Selemadeg' ? 'selected' : '' }}>Selemadeg</option>
                                         </select>
@@ -149,12 +142,9 @@
                                         <label class="form-label">Model Kerja</label>
                                         <select name="model_kerja" class="form-select">
                                             <option value="">Pilih model kerja</option>
-                                            <option value="WFH" {{ old('model_kerja') == 'WFH' ? 'selected' : '' }}>WFH
-                                            </option>
-                                            <option value="WFO" {{ old('model_kerja') == 'WFO' ? 'selected' : '' }}>WFO
-                                            </option>
-                                            <option value="Hybrid" {{ old('model_kerja') == 'Hybrid' ? 'selected' : '' }}>
-                                                Hybrid</option>
+                                            <option value="WFH" {{ old('model_kerja') == 'WFH' ? 'selected' : '' }}>WFH</option>
+                                            <option value="WFO" {{ old('model_kerja') == 'WFO' ? 'selected' : '' }}>WFO</option>
+                                            <option value="Hybrid" {{ old('model_kerja') == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                                         </select>
                                         @error('model_kerja')
                                             <small class="text-danger">{{ $message }}</small>
@@ -193,8 +183,7 @@
                                     {{-- Deskripsi --}}
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Kualifikasi</label>
-                                        <textarea name="deskripsi" class="form-control"
-                                            rows="3">{{ old('deskripsi') }}</textarea>
+                                        <textarea name="deskripsi" class="form-control" rows="3">{{ old('deskripsi') }}</textarea>
                                         @error('deskripsi')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -239,18 +228,16 @@
             // Tanggal Mulai & Berakhir
             document.addEventListener('DOMContentLoaded', function () {
                 const mulai = document.getElementById('tanggal_mulai');
-                const selesai = document.getElementById('tanggal_selesai');
+                const selesai = document.getElementById('tanggal_berakhir_loker');
                 const today = new Date().toISOString().split('T')[0];
 
                 function syncTanggal() {
                     if (!mulai.value) {
-                        selesai.disabled = true;
                         selesai.value = '';
+                        selesai.min = today;
                         return;
                     }
-                    selesai.disabled = false;
                     selesai.min = mulai.value > today ? mulai.value : today;
-                    if (selesai.value && selesai.value < selesai.min) selesai.value = '';
                 }
 
                 syncTanggal();
@@ -259,3 +246,4 @@
         </script>
     @endpush
 </x-admin_perusahaan.layout>
+
