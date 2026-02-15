@@ -1,6 +1,6 @@
 <x-admin_perusahaan.layout>
     <!-- Content wrapper -->
-<div class="content-wrapper">
+    <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
@@ -20,12 +20,20 @@
                             </p>
 
                             {{-- Nama Perusahaan --}}
-                            <h4 class="mb-1 d-flex align-items-center gap-2">
+                            <h5 class="mb-1 d-flex align-items-center gap-2">
                                 <a href="{{ route('perusahaan.profile') }}"
-                                    class="fw-bold text-dark text-decoration-none">
+                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
-                            </h4>
+
+                                {{-- Icon info --}}
+                                <a href="{{ route('perusahaan.profile') }}"
+                                    class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                                    style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                    i
+                                </a>
+                            </h5>
+
 
                             {{-- Jabatan + Status --}}
                             <div class="d-flex align-items-center mb-3">
@@ -77,14 +85,22 @@
                     <div class="card loker-card-beranda">
                         <div class="card-body">
 
-                            <h4 class="mb-3">Kualifikasi</h4>
-                            <p>
-                                {!! nl2br(e($loker->deskripsi ?? '-')) !!}
-                            </p>
+                            {{-- DESKRIPSI LOKER --}}
+                            <div class="loker-deskripsi mb-4">
+                                {!! $loker->deskripsi ?? '-' !!}
+                            </div>
+
+                            {{-- ACTION --}}
+                            <div class="d-flex justify-content-end pt-3 border-top">
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
+                            </div>
 
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
