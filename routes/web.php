@@ -34,6 +34,7 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/profile', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
     Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
     Route::get('/perusahaan/loker/porfile', [ProfilePerusahaanController::class, 'lokerprofile'])->name('perusahaan.loker.profile');
+    Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
 
     Route::middleware(['verified.perusahaan'])->group(function () {
         Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
@@ -44,7 +45,6 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
         Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
         Route::get('/perusahaan/apply/detail/{id}', [PerusahaanApplyController::class, 'detailapplyperusahaan'])->name('perusahaan.detail-apply');
         Route::get('/perusahaan/apply/profile-pelamar/{id}', [PerusahaanApplyController::class, 'showProfilePelamar'])->name('perusahaan.apply.profile-pelamar');
-        Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
         Route::put('/perusahaan/loker/update/{id}', [PerusahaanLokerController::class, 'update'])->name('perusahaan.loker.update');
         Route::post('/perusahaan/loker/store', [PerusahaanLokerController::class, 'store'])->name('perusahaan.loker.store');
         Route::get('/perusahaan/apply/history/{id}', [PerusahaanApplyController::class, 'showHistoryApply'])->name('perusahaan.apply.history');

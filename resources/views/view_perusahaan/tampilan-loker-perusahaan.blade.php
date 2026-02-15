@@ -27,14 +27,21 @@
                                 </a>
 
                                 {{-- Icon info --}}
+                                @if ((Auth::guard('perusahaanmitra')->user()))
                                 <a href="{{ route('perusahaan.profile') }}"
                                     class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
                                     style="width:16px; height:16px; font-size:10px; line-height:1;">
                                     i
                                 </a>
+                                @elseif((Auth::guard('admin')->user()))
+                                <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
+                                    class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                                    style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                    i
+                                </a>
+                                @endif
                             </h5>
-
-
+                            
                             {{-- Jabatan + Status --}}
                             <div class="d-flex align-items-center mb-3">
                                 <h5 class="mb-0">{{ $loker->jabatan }}</h5>

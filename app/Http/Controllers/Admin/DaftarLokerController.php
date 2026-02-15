@@ -18,8 +18,11 @@ class DaftarLokerController extends Controller
     }
     public function showTampilanLoker($id)
     {
-        $loker = Loker::findOrFail($id);
-        return view('view_perusahaan.tampilan-loker-perusahaan', compact('loker'));
+        $loker = Loker::with('perusahaanMitra')->findOrFail($id);
+
+        $info_perusahaan = $loker->perusahaanMitra; // <-- tambahkan ini
+
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('loker', 'info_perusahaan'));
     }
     /**
      * Show the form for creating a new resource.
