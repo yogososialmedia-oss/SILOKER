@@ -194,7 +194,7 @@
                                     {{-- Deskripsi --}}
                                     <div class="col-md-12 mb-4">
                                         <label class="form-label">Kualifikasi</label>
-                                        <textarea name="deskripsi"
+                                        <textarea id="editor" name="deskripsi"
                                             class="form-control @error('deskripsi') is-invalid @enderror"
                                             rows="3">{{ old('deskripsi') }}</textarea>
                                         @error('deskripsi')
@@ -328,5 +328,31 @@
             });
         </script>
     @endpush
+
+    @push('scripts')
+        {{-- CKEditor 5 --}}
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    toolbar: [
+                        'heading',
+                        '|',
+                        'bold', 'italic', 'underline',
+                        '|',
+                        'bulletedList', 'numberedList',
+                        '|',
+                        'link',
+                        '|',
+                        'undo', 'redo'
+                    ]
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
+
 
 </x-admin_perusahaan.layout>

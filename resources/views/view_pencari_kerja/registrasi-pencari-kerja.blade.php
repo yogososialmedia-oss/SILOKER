@@ -74,7 +74,7 @@
 
                                     {{-- LINKEDIN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">LinkedIn</label>
+                                        <label class="form-label">Linked.In</label>
                                         <input name="linkedin" value="{{ old('linkedin') }}" class="form-control"
                                             placeholder="Tambahkan link profile Linked.In">
                                     </div>

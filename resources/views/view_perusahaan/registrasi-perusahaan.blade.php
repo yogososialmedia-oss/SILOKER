@@ -97,7 +97,7 @@
                                         <label class="form-label">Alamat</label>
                                         <input type="text" name="Alamat" value="{{ old('Alamat') }}"
                                             class="form-control @error('Alamat') is-invalid @enderror"
-                                            placeholder="Tambahkan alamat lengkap perusahaan">
+                                            placeholder="Tambahkan alamat lengkap perusahaan seperti nama jalan atau lainya">
                                         @error('Alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

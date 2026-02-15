@@ -12,9 +12,9 @@
               style="height:280px; object-fit:cover;">
 
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-              <img src="{{ $info_perusahaan->logo 
-                ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
-                : asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg') }}"
+              <img src="{{ $info_perusahaan->logo
+  ? asset('storage/logo_perusahaan/' . $info_perusahaan->logo)
+  : asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg') }}"
                 class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
               <h4 class="fw-bold mb-0 text-white">
@@ -101,75 +101,82 @@
 
         @if (Auth::guard('perusahaanmitra')->user())
         @foreach($loker as $item)
-          <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
-            <div class="card h-100 loker-card-beranda position-relative">
+              <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
+                <div class="card h-100 loker-card-beranda position-relative">
 
-              {{-- LINK AREA --}}
-              <a href="{{ route('perusahaan.loker.tampilan', $item->id) }}" 
-                class="stretched-link"></a>
+                  {{-- LINK AREA --}}
+                  <a href="{{ route('perusahaan.loker.tampilan', $item->id) }}" class="stretched-link"></a>
 
-              <div class="card-body position-relative">
+                  <div class="card-body position-relative">
 
-              {{-- Tanggal --}}
-              <p class="text-end fs-9 mb-2">
-                {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }}
-                -
-                {{ \Carbon\Carbon::parse($item->tanggal_berakhir_loker)->format('d M Y') }}
-              </p>
+                    {{-- Tanggal --}}
+                    <p class="text-end fs-9 mb-2">
+                      {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }}
+                      -
+                      {{ \Carbon\Carbon::parse($item->tanggal_berakhir_loker)->format('d M Y') }}
+                    </p>
 
-              <div class="d-flex align-items-start gap-3 mb-3">
-                <img src="{{ $info_perusahaan->logo 
-                  ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
-                  : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                  style="width:60px; height:60px; object-fit:cover;"
-                  class="rounded shadow-sm" alt="">
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                      <img src="{{ $info_perusahaan->logo
+          ? asset('storage/logo_perusahaan/' . $info_perusahaan->logo)
+          : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                        style="width:60px; height:60px; object-fit:cover;" class="rounded shadow-sm" alt="">
 
-                <div class="flex-grow-1">
-                  <h6 class="mb-1 fw-bold">
-                    {{ $info_perusahaan->nama_perusahaan }}
-                  </h6>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1 d-flex align-items-center gap-2 fw-bold">
+                          <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
+                            class="text-dark text-decoration-none position-relative z-3">
+                            {{ $info_perusahaan->nama_perusahaan }}
+                          </a>
 
-                  <p class="mb-1 small">
-                    {{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
-                  </p>
+                          <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
+                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                            style="width:16px; height:16px; font-size:10px; line-height:1;">
+                            i
+                          </a>
+                        </h6>
 
-                  <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
-                    <i class="bx bx-location-plus"></i>
-                    <span>{{ $item->kabupaten }}</span>
-                  </p>
+                        <p class="mb-1 small">
+                          {{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
+                        </p>
+
+                        <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
+                          <i class="bx bx-location-plus"></i>
+                          <span>{{ $item->kabupaten }}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3">
+                      <h5 class="mb-0">
+                        {{ $item->jabatan }}
+                      </h5>
+
+                      <div class="ms-auto pe-5 me-2">
+                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
+                          <span class="badge bg-primary fs-6 px-3 py-2">
+                            Open
+                          </span>
+                        @else
+                          <span class="badge bg-danger fs-6 px-3 py-2">
+                            Close
+                          </span>
+                        @endif
+                      </div>
+                    </div>
+
+                    <p class="d-flex align-items-start gap-2 mb-1">
+                      <i class="bx bx-buildings"></i>
+                      <span>{{ $item->model_kerja }}</span>
+                    </p>
+
+                    <p class="d-flex align-items-start gap-2 mb-1">
+                      <i class="bx bx-book-reader"></i>
+                      <span>{{ $item->minimal_pendidikan }}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              <div class="d-flex align-items-center mb-3">
-                <h5 class="mb-0">
-                  {{ $item->jabatan }}
-                </h5>
-
-                <div class="ms-auto pe-5 me-2">
-                  @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                    <span class="badge bg-primary fs-6 px-3 py-2">
-                  Open
-              </span>
-                  @else
-                    <span class="badge bg-danger fs-6 px-3 py-2">
-                  Close
-              </span>
-                  @endif
-                </div>
-              </div>
-
-              <p class="d-flex align-items-start gap-2 mb-1">
-                <i class="bx bx-buildings"></i>
-                <span>{{ $item->model_kerja }}</span>
-              </p>
-
-              <p class="d-flex align-items-start gap-2 mb-1">
-                <i class="bx bx-book-reader"></i>
-                <span>{{ $item->minimal_pendidikan }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
         @endforeach
         
         @elseif (Auth::guard('admin')->user())
@@ -262,4 +269,3 @@
     <div class="content-backdrop fade"></div>
   </div>
 </x-admin_perusahaan.layout>
-
