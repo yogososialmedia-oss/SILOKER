@@ -86,6 +86,27 @@
                 hover: { filter: { type: 'none' } },
                 active: { filter: { type: 'none' } }
             },
+            tooltip: {
+                custom: function({ series, seriesIndex, w }) {
+                    var label = w.globals.labels[seriesIndex];
+                    var value = series[seriesIndex];
+
+                    // Balik warna background
+                    var bgColor = (seriesIndex === 0) ? '#F4C542' : '#3B82C4';
+
+                    return `
+                        <div style="
+                            background:${bgColor};
+                            color:white;
+                            padding:8px 12px;
+                            border-radius:6px;
+                            font-size:14px;
+                        ">
+                            ${label}: <strong>${value}</strong>
+                        </div>
+                    `;
+                }
+            },
             plotOptions: {
                 pie: {
                     donut: { size: '50%' }
@@ -115,6 +136,26 @@
             states: {
                 hover: { filter: { type: 'none' } },
                 active: { filter: { type: 'none' } }
+            },
+            tooltip: {
+                custom: function({ series, seriesIndex, w }) {
+                    var label = w.globals.labels[seriesIndex];
+                    var value = series[seriesIndex];
+
+                    var bgColor = (seriesIndex === 0) ? '#F4C542' : '#3B82C4';
+
+                    return `
+                        <div style="
+                            background:${bgColor};
+                            color:white;
+                            padding:8px 12px;
+                            border-radius:6px;
+                            font-size:14px;
+                        ">
+                            ${label}: <strong>${value}</strong>
+                        </div>
+                    `;
+                }
             },
             plotOptions: {
                 pie: {
