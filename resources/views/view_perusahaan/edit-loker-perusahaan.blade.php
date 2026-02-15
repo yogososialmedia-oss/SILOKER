@@ -178,12 +178,14 @@
                                     <!-- Kualifikasi -->
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Kualifikasi</label>
-                                        <textarea name="deskripsi" class="form-control"
-                                            rows="4">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
+                                        <textarea id="editor" name="deskripsi" class="form-control"
+                                            rows="6">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
+
                                         @error('deskripsi')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
+
 
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-warning">
@@ -292,5 +294,36 @@
             });
         </script>
     @endpush
+
+    @push('scripts')
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    toolbar: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strikethrough',
+                        '|',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'link',
+                        'blockQuote',
+                        '|',
+                        'undo',
+                        'redo'
+                    ]
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
+
 
 </x-admin_perusahaan.layout>
