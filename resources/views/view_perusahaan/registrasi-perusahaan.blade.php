@@ -55,15 +55,11 @@
                                     {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
-                                        <select name="Provinsi"
+                                        <select id="provinsi" name="Provinsi"
                                             class="form-select @error('Provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
-                                            <option value="Bali" {{ old('Provinsi') == 'Bali' ? 'selected' : '' }}>Bali
-                                            </option>
-                                            <option value="Banda Aceh" {{ old('Provinsi') == 'Banda Aceh' ? 'selected' : '' }}>Banda Aceh</option>
-                                            <option value="Medan" {{ old('Provinsi') == 'Medan' ? 'selected' : '' }}>Medan
-                                            </option>
                                         </select>
+
                                         @error('Provinsi')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -72,17 +68,11 @@
                                     {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kabupaten</label>
-                                        <select name="Kabupaten"
-                                            class="form-select @error('Kabupaten') is-invalid @enderror">
+                                        <select id="kabupaten" name="Kabupaten"
+                                            class="form-select @error('Kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
-                                            <option value="Tabanan" {{ old('Kabupaten') == 'Tabanan' ? 'selected' : '' }}>
-                                                Tabanan</option>
-                                            <option value="Buleleng" {{ old('Kabupaten') == 'Buleleng' ? 'selected' : '' }}>
-                                                Buleleng</option>
-                                            <option value="Badung" {{ old('Kabupaten') == 'Badung' ? 'selected' : '' }}>
-                                                Badung
-                                            </option>
                                         </select>
+
                                         @error('Kabupaten')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -91,16 +81,11 @@
                                     {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kecamatan</label>
-                                        <select name="Kecamatan"
-                                            class="form-select @error('Kecamatan') is-invalid @enderror">
+                                        <select id="kecamatan" name="Kecamatan"
+                                            class="form-select @error('Kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
-                                            <option value="Kediri" {{ old('Kecamatan') == 'Kediri' ? 'selected' : '' }}>
-                                                Kediri
-                                            </option>
-                                            <option value="Kerambitan" {{ old('Kecamatan') == 'Kerambitan' ? 'selected' : '' }}>Kerambitan</option>
-                                            <option value="Selemadeg" {{ old('Kecamatan') == 'Selemadeg' ? 'selected' : '' }}>
-                                                Selemadeg</option>
                                         </select>
+
                                         @error('Kecamatan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -206,22 +191,101 @@
             </div>
         </footer>
         <!-- / Footer -->
-        <script>
-            document.getElementById('logoInput').addEventListener('change', function () {
-                const file = this.files[0];
-                const maxSize = 2 * 1024 * 1024;
-                const error = document.getElementById('logoError');
+        @push('scripts')
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
 
-                if (!file) return;
+                    // =====================
+                    // ERROR FILE LOGO
+                    // =====================
+                    const logoInput = document.getElementById('logoInput');
+                    const logoError = document.getElementById('logoError');
 
-                if (file.size > maxSize) {
-                    error.classList.remove('d-none');
-                    this.value = '';
-                } else {
-                    error.classList.add('d-none');
-                }
-            });
-        </script>
+                    if (logoInput) {
+                        logoInput.addEventListener('change', function () {
+                            const file = this.files[0];
+                            const maxSize = 2 * 1024 * 1024;
+
+                            if (!file) return;
+
+                            if (file.size > maxSize) {
+                                logoError.classList.remove('d-none');
+                                this.value = '';
+                            } else {
+                                logoError.classList.add('d-none');
+                            }
+                        });
+                    }
+
+                    // =====================
+                    // WILAYAH INDONESIA API
+                    // =====================
+                    const provinsiSelect = document.getElementById('provinsi');
+                    const kabupatenSelect = document.getElementById('kabupaten');
+                    const kecamatanSelect = document.getElementById('kecamatan');
+
+                    if (!provinsiSelect || !kabupatenSelect || !kecamatanSelect) return;
+
+                    // LOAD PROVINSI
+                    fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                        .then(res => res.json())
+                        .then(data => {
+                            let option = '<option value="">Pilih Provinsi</option>';
+                            data.forEach(item => {
+                                option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                            });
+                            provinsiSelect.innerHTML = option;
+                        });
+
+                    // LOAD KABUPATEN
+                    provinsiSelect.addEventListener('change', function () {
+                        const provinsiId = this.selectedOptions[0]?.dataset.id;
+
+                        kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
+                        kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                        kabupatenSelect.disabled = true;
+                        kecamatanSelect.disabled = true;
+
+                        if (!provinsiId) return;
+
+                        fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
+                            .then(res => res.json())
+                            .then(data => {
+                                let option = '<option value="">Pilih Kabupaten</option>';
+                                data.forEach(item => {
+                                    option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                                });
+                                kabupatenSelect.innerHTML = option;
+                                kabupatenSelect.disabled = false;
+                            });
+                    });
+
+                    // LOAD KECAMATAN
+                    kabupatenSelect.addEventListener('change', function () {
+                        const kabupatenId = this.selectedOptions[0]?.dataset.id;
+
+                        kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                        kecamatanSelect.disabled = true;
+
+                        if (!kabupatenId) return;
+
+                        fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+                            .then(res => res.json())
+                            .then(data => {
+                                let option = '<option value="">Pilih Kecamatan</option>';
+                                data.forEach(item => {
+                                    option += `<option value="${item.name}">${item.name}</option>`;
+                                });
+                                kecamatanSelect.innerHTML = option;
+                                kecamatanSelect.disabled = false;
+                            });
+                    });
+
+                });
+            </script>
+        @endpush
+
+
     </div>
 
 </x-pencari_kerja.layout>

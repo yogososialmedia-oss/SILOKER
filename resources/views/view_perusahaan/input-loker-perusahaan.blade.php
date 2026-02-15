@@ -13,7 +13,8 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="{{ route('perusahaan.loker.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('perusahaan.loker.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
 
@@ -21,8 +22,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
                                         <input name="nama_perusahaan" type="text" class="form-control"
-                                            value="{{ $info_perusahaan->nama_perusahaan ?? '' }}"
-                                            readonly>
+                                            value="{{ $info_perusahaan->nama_perusahaan ?? '' }}" readonly>
                                     </div>
 
                                     {{-- Jabatan --}}
@@ -30,8 +30,7 @@
                                         <label class="form-label">Jabatan</label>
                                         <input name="jabatan" type="text"
                                             class="form-control @error('jabatan') is-invalid @enderror"
-                                            value="{{ old('jabatan') }}"
-                                            placeholder="Tambahkan jabatan">
+                                            value="{{ old('jabatan') }}" placeholder="Tambahkan jabatan">
                                         @error('jabatan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -64,8 +63,7 @@
                                         <label class="form-label">Tanggal Mulai</label>
                                         <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date"
                                             class="form-control @error('tanggal_mulai_loker') is-invalid @enderror"
-                                            min="{{ now()->toDateString() }}"
-                                            value="{{ old('tanggal_mulai_loker') }}">
+                                            min="{{ now()->toDateString() }}" value="{{ old('tanggal_mulai_loker') }}">
                                         @error('tanggal_mulai_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -95,13 +93,11 @@
                                     {{-- Provinsi --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Provinsi</label>
-                                        <select name="provinsi"
+                                        <select id="provinsi" name="provinsi"
                                             class="form-select @error('provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
-                                            <option value="Bali" {{ old('provinsi')=='Bali'?'selected':'' }}>Bali</option>
-                                            <option value="Banda Aceh" {{ old('provinsi')=='Banda Aceh'?'selected':'' }}>Banda Aceh</option>
-                                            <option value="Medan" {{ old('provinsi')=='Medan'?'selected':'' }}>Medan</option>
                                         </select>
+
                                         @error('provinsi')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -110,13 +106,11 @@
                                     {{-- Kabupaten --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kabupaten</label>
-                                        <select name="kabupaten"
-                                            class="form-select @error('kabupaten') is-invalid @enderror">
+                                        <select id="kabupaten" name="kabupaten"
+                                            class="form-select @error('kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
-                                            <option value="Tabanan" {{ old('kabupaten')=='Tabanan'?'selected':'' }}>Tabanan</option>
-                                            <option value="Buleleng" {{ old('kabupaten')=='Buleleng'?'selected':'' }}>Buleleng</option>
-                                            <option value="Badung" {{ old('kabupaten')=='Badung'?'selected':'' }}>Badung</option>
                                         </select>
+
                                         @error('kabupaten')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -125,13 +119,11 @@
                                     {{-- Kecamatan --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kecamatan</label>
-                                        <select name="kecamatan"
-                                            class="form-select @error('kecamatan') is-invalid @enderror">
+                                        <select id="kecamatan" name="kecamatan"
+                                            class="form-select @error('kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
-                                            <option value="Kediri" {{ old('kecamatan')=='Kediri'?'selected':'' }}>Kediri</option>
-                                            <option value="Kerambitan" {{ old('kecamatan')=='Kerambitan'?'selected':'' }}>Kerambitan</option>
-                                            <option value="Selemadeg" {{ old('kecamatan')=='Selemadeg'?'selected':'' }}>Selemadeg</option>
                                         </select>
+
                                         @error('kecamatan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -154,9 +146,10 @@
                                         <select name="model_kerja"
                                             class="form-select @error('model_kerja') is-invalid @enderror">
                                             <option value="">Pilih model kerja</option>
-                                            <option value="Work From Home" {{ old('model_kerja')=='Work From Home'?'selected':'' }}>Work From Home</option>
-                                            <option value="Work From Office" {{ old('model_kerja')=='Work From Office'?'selected':'' }}>Work From Office</option>
-                                            <option value="Hybrid" {{ old('model_kerja')=='Hybrid'?'selected':'' }}>Hybrid</option>
+                                            <option value="Work From Home" {{ old('model_kerja') == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
+                                            <option value="Work From Office" {{ old('model_kerja') == 'Work From Office' ? 'selected' : '' }}>Work From Office</option>
+                                            <option value="Hybrid" {{ old('model_kerja') == 'Hybrid' ? 'selected' : '' }}>
+                                                Hybrid</option>
                                         </select>
                                         @error('model_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -169,8 +162,9 @@
                                         <select name="tipe_loker"
                                             class="form-select @error('tipe_loker') is-invalid @enderror">
                                             <option value="">Pilih tipe loker</option>
-                                            <option value="job_opportunity" {{ old('tipe_loker')=='job_opportunity'?'selected':'' }}>Job Opportunity</option>
-                                            <option value="internship" {{ old('tipe_loker')=='internship'?'selected':'' }}>Internship</option>
+                                            <option value="job_opportunity" {{ old('tipe_loker') == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity
+                                            </option>
+                                            <option value="internship" {{ old('tipe_loker') == 'internship' ? 'selected' : '' }}>Internship</option>
                                         </select>
                                         @error('tipe_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -183,13 +177,14 @@
                                         <select name="minimal_pendidikan"
                                             class="form-select @error('minimal_pendidikan') is-invalid @enderror">
                                             <option value="">Pilih Minimal Pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ old('minimal_pendidikan')=='Minimal Pendidikan SMA/Sederajat'?'selected':'' }}>Minimal Pendidikan SMA/Sederajat</option>
-                                            <option value="Minimal Pendidikan D1" {{ old('minimal_pendidikan')=='Minimal Pendidikan D1'?'selected':'' }}>Minimal Pendidikan D1</option>
-                                            <option value="Minimal Pendidikan D2" {{ old('minimal_pendidikan')=='Minimal Pendidikan D2'?'selected':'' }}>Minimal Pendidikan D2</option>
-                                            <option value="Minimal Pendidikan D3" {{ old('minimal_pendidikan')=='Minimal Pendidikan D3'?'selected':'' }}>Minimal Pendidikan D3</option>
-                                            <option value="Minimal Pendidikan S1" {{ old('minimal_pendidikan')=='Minimal Pendidikan S1'?'selected':'' }}>Minimal Pendidikan S1</option>
-                                            <option value="Minimal Pendidikan S2" {{ old('minimal_pendidikan')=='Minimal Pendidikan S2'?'selected':'' }}>Minimal Pendidikan S2</option>
-                                            <option value="Minimal Pendidikan S3" {{ old('minimal_pendidikan')=='Minimal Pendidikan S3'?'selected':'' }}>Minimal Pendidikan S3</option>
+                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ old('minimal_pendidikan') == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat
+                                            </option>
+                                            <option value="Minimal Pendidikan D1" {{ old('minimal_pendidikan') == 'Minimal Pendidikan D1' ? 'selected' : '' }}>Minimal Pendidikan D1</option>
+                                            <option value="Minimal Pendidikan D2" {{ old('minimal_pendidikan') == 'Minimal Pendidikan D2' ? 'selected' : '' }}>Minimal Pendidikan D2</option>
+                                            <option value="Minimal Pendidikan D3" {{ old('minimal_pendidikan') == 'Minimal Pendidikan D3' ? 'selected' : '' }}>Minimal Pendidikan D3</option>
+                                            <option value="Minimal Pendidikan S1" {{ old('minimal_pendidikan') == 'Minimal Pendidikan S1' ? 'selected' : '' }}>Minimal Pendidikan S1</option>
+                                            <option value="Minimal Pendidikan S2" {{ old('minimal_pendidikan') == 'Minimal Pendidikan S2' ? 'selected' : '' }}>Minimal Pendidikan S2</option>
+                                            <option value="Minimal Pendidikan S3" {{ old('minimal_pendidikan') == 'Minimal Pendidikan S3' ? 'selected' : '' }}>Minimal Pendidikan S3</option>
                                         </select>
                                         @error('minimal_pendidikan')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -239,31 +234,99 @@
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const mulai = document.getElementById('tanggal_mulai');
-    const selesai = document.getElementById('tanggal_selesai');
-    const today = new Date().toISOString().split('T')[0];
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
 
-    function syncTanggal() {
-        if (!mulai.value) {
-            selesai.disabled = true;
-            selesai.value = '';
-            return;
-        }
+                // =========================
+                // TANGGAL (PUNYA KAMU)
+                // =========================
+                const mulai = document.getElementById('tanggal_mulai');
+                const selesai = document.getElementById('tanggal_selesai');
+                const today = new Date().toISOString().split('T')[0];
 
-        selesai.disabled = false;
-        selesai.min = mulai.value > today ? mulai.value : today;
+                function syncTanggal() {
+                    if (!mulai.value) {
+                        selesai.disabled = true;
+                        selesai.value = '';
+                        return;
+                    }
 
-        if (selesai.value && selesai.value < selesai.min) {
-            selesai.value = '';
-        }
-    }
+                    selesai.disabled = false;
+                    selesai.min = mulai.value > today ? mulai.value : today;
 
-    syncTanggal();
-    mulai.addEventListener('change', syncTanggal);
-});
-</script>
-@endpush
+                    if (selesai.value && selesai.value < selesai.min) {
+                        selesai.value = '';
+                    }
+                }
+
+                syncTanggal();
+                mulai.addEventListener('change', syncTanggal);
+
+                // =========================
+                // WILAYAH INDONESIA API
+                // =========================
+                const provinsi = document.getElementById('provinsi');
+                const kabupaten = document.getElementById('kabupaten');
+                const kecamatan = document.getElementById('kecamatan');
+
+                // LOAD PROVINSI
+                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        let opt = '<option value="">Pilih Provinsi</option>';
+                        data.forEach(item => {
+                            opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                        });
+                        provinsi.innerHTML = opt;
+                    });
+
+                // LOAD KABUPATEN
+                provinsi.addEventListener('change', function () {
+                    const id = this.selectedOptions[0]?.dataset.id;
+
+                    kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kabupaten.disabled = true;
+                    kecamatan.disabled = true;
+
+                    if (!id) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let opt = '<option value="">Pilih Kabupaten</option>';
+                            data.forEach(item => {
+                                opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                            });
+                            kabupaten.innerHTML = opt;
+                            kabupaten.disabled = false;
+                        });
+                });
+
+                // LOAD KECAMATAN
+                kabupaten.addEventListener('change', function () {
+                    const id = this.selectedOptions[0]?.dataset.id;
+
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kecamatan.disabled = true;
+
+                    if (!id) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let opt = '<option value="">Pilih Kecamatan</option>';
+                            data.forEach(item => {
+                                opt += `<option value="${item.name}">${item.name}</option>`;
+                            });
+                            kecamatan.innerHTML = opt;
+                            kecamatan.disabled = false;
+                        });
+                });
+
+            });
+        </script>
+    @endpush
+
 </x-admin_perusahaan.layout>

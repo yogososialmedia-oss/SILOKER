@@ -97,58 +97,27 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
                                         @php $provinsi = old('provinsi', $loker->provinsi); @endphp
-                                        <select name="provinsi" class="form-select">
-                                            <option value="">Pilih provinsi</option>
-                                            <option value="Bali" {{ $provinsi == 'Bali' ? 'selected' : '' }}>Bali</option>
-                                            <option value="Banda Aceh" {{ $provinsi == 'Banda Aceh' ? 'selected' : '' }}>
-                                                Banda Aceh</option>
-                                            <option value="Medan" {{ $provinsi == 'Medan' ? 'selected' : '' }}>Medan
-                                            </option>
-                                            <option value="Jakarta" {{ $provinsi == 'Jakarta' ? 'selected' : '' }}>Jakarta
-                                            </option>
+                                        <select name="provinsi" id="provinsi" class="form-select">
+                                            <option value="">Pilih Provinsi</option>
                                         </select>
-                                        @error('provinsi')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                     <!-- Kabupaten -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kabupaten</label>
                                         @php $kabupaten = old('kabupaten', $loker->kabupaten); @endphp
-                                        <select name="kabupaten" class="form-select">
-                                            <option value="">Pilih kabupaten</option>
-                                            <option value="Tabanan" {{ $kabupaten == 'Tabanan' ? 'selected' : '' }}>
-                                                Tabanan</option>
-                                            <option value="Buleleng" {{ $kabupaten == 'Buleleng' ? 'selected' : '' }}>
-                                                Buleleng</option>
-                                            <option value="Badung" {{ $kabupaten == 'Badung' ? 'selected' : '' }}>Badung
-                                            </option>
-                                            <option value="Jakarta Selatan" {{ $kabupaten == 'Jakarta Selatan' ? 'selected' : '' }}>Jakarta Selatan</option>
+                                        <select name="kabupaten" id="kabupaten" class="form-select" disabled>
+                                            <option value="">Pilih Kabupaten</option>
                                         </select>
-                                        @error('kabupaten')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                     <!-- Kecamatan -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kecamatan</label>
                                         @php $kecamatan = old('kecamatan', $loker->kecamatan); @endphp
-                                        <select name="kecamatan" class="form-select">
-                                            <option value="">Pilih kecamatan</option>
-                                            <option value="Kediri" {{ $kecamatan == 'Kediri' ? 'selected' : '' }}>Kediri
-                                            </option>
-                                            <option value="Kerambitan" {{ $kecamatan == 'Kerambitan' ? 'selected' : '' }}>
-                                                Kerambitan</option>
-                                            <option value="Selemadeg" {{ $kecamatan == 'Selemadeg' ? 'selected' : '' }}>
-                                                Selemadeg</option>
-                                            <option value="Cilandak" {{ $kecamatan == 'Cilandak' ? 'selected' : '' }}>
-                                                Cilandak</option>
+                                        <select name="kecamatan" id="kecamatan" class="form-select" disabled>
+                                            <option value="">Pilih Kecamatan</option>
                                         </select>
-                                        @error('kecamatan')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                     <!-- Alamat -->
@@ -172,9 +141,6 @@
                                             <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid
                                             </option>
                                         </select>
-                                        @error('model_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                     <!-- Tipe Loker -->
@@ -187,9 +153,6 @@
                                             <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>
                                                 Internship</option>
                                         </select>
-                                        @error('tipe_loker')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                     <!-- Pendidikan -->
@@ -198,7 +161,8 @@
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
                                         <select name="minimal_pendidikan" class="form-select">
                                             <option value="">Pilih Minimal Pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ $pendidikan == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat</option>
+                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ $pendidikan == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan
+                                                SMA/Sederajat</option>
                                             <option value="Minimal Pendidikan D1" {{ $pendidikan == 'Minimal Pendidikan D1' ? 'selected' : '' }}>Minimal Pendidikan D1</option>
                                             <option value="Minimal Pendidikan D2" {{ $pendidikan == 'Minimal Pendidikan D2' ? 'selected' : '' }}>Minimal Pendidikan D2</option>
                                             <option value="Minimal Pendidikan D3" {{ $pendidikan == 'Minimal Pendidikan D3' ? 'selected' : '' }}>Minimal Pendidikan D3</option>
@@ -249,47 +213,82 @@
 
         <div class="content-backdrop fade"></div>
     </div>
-
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const mulai = document.getElementById('tanggal_mulai');
-                const selesai = document.getElementById('tanggal_selesai');
 
-                function syncTanggal() {
-                    if (!mulai.value) {
-                        selesai.disabled = true;
-                        selesai.value = '';
-                        return;
-                    }
+                const provinsi = document.getElementById('provinsi');
+                const kabupaten = document.getElementById('kabupaten');
+                const kecamatan = document.getElementById('kecamatan');
 
-                    selesai.disabled = false;
-                    selesai.min = mulai.value;
+                const selectedProvinsi = "{{ old('provinsi', $loker->provinsi) }}";
+                const selectedKabupaten = "{{ old('kabupaten', $loker->kabupaten) }}";
+                const selectedKecamatan = "{{ old('kecamatan', $loker->kecamatan) }}";
 
-                    if (selesai.value && selesai.value < mulai.value) {
-                        selesai.value = '';
-                    }
+                // =====================
+                // LOAD PROVINSI
+                // =====================
+                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        let html = '<option value="">Pilih Provinsi</option>';
+                        data.forEach(item => {
+                            const selected = item.name === selectedProvinsi ? 'selected' : '';
+                            html += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
+                        });
+                        provinsi.innerHTML = html;
+
+                        if (selectedProvinsi) loadKabupaten();
+                    });
+
+                // =====================
+                // LOAD KABUPATEN
+                // =====================
+                function loadKabupaten() {
+                    const provinsiId = provinsi.selectedOptions[0].dataset.id;
+                    if (!provinsiId) return;
+
+                    kabupaten.disabled = true;
+                    kecamatan.disabled = true;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let html = '<option value="">Pilih Kabupaten</option>';
+                            data.forEach(item => {
+                                const selected = item.name === selectedKabupaten ? 'selected' : '';
+                                html += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
+                            });
+                            kabupaten.innerHTML = html;
+                            kabupaten.disabled = false;
+
+                            if (selectedKabupaten) loadKecamatan();
+                        });
                 }
 
-                syncTanggal();
-                mulai.addEventListener('change', syncTanggal);
-            });
-        </script>
+                // =====================
+                // LOAD KECAMATAN
+                // =====================
+                function loadKecamatan() {
+                    const kabupatenId = kabupaten.selectedOptions[0].dataset.id;
+                    if (!kabupatenId) return;
 
-        <script>
-            document.getElementById('posterLoker').addEventListener('change', function () {
-                const file = this.files[0];
-                const maxSize = 2 * 1024 * 1024; // 2MB
-                const error = document.getElementById('posterError');
-
-                if (!file) return;
-
-                if (file.size > maxSize) {
-                    error.classList.remove('d-none');
-                    this.value = ''; // reset input
-                } else {
-                    error.classList.add('d-none');
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let html = '<option value="">Pilih Kecamatan</option>';
+                            data.forEach(item => {
+                                const selected = item.name === selectedKecamatan ? 'selected' : '';
+                                html += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                            });
+                            kecamatan.innerHTML = html;
+                            kecamatan.disabled = false;
+                        });
                 }
+
+                provinsi.addEventListener('change', loadKabupaten);
+                kabupaten.addEventListener('change', loadKecamatan);
+
             });
         </script>
     @endpush

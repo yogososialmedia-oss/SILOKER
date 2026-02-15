@@ -61,40 +61,27 @@
                 {{-- Provinsi --}}
                 <div class="col-md-6 mb-4">
                   <label class="form-label">Provinsi</label>
-                  <select name="Provinsi" class="form-select">
+                  <select id="provinsi" name="Provinsi" class="form-select">
                     <option value="">Pilih provinsi</option>
-                    @foreach (['Bali', 'Banda Aceh', 'Medan'] as $prov)
-                      <option value="{{ $prov }}" {{ old('Provinsi', $info_perusahaan->provinsi ?? '') == $prov ? 'selected' : '' }}>
-                        {{ $prov }}
-                      </option>
-                    @endforeach
                   </select>
                 </div>
 
                 {{-- Kabupaten --}}
                 <div class="col-md-6 mb-4">
                   <label class="form-label">Kabupaten</label>
-                  <select name="Kabupaten" class="form-select">
+                  <select id="kabupaten" name="Kabupaten" class="form-select" disabled>
                     <option value="">Pilih kabupaten</option>
-                    @foreach (['Tabanan', 'Buleleng', 'Badung'] as $kab)
-                      <option value="{{ $kab }}" {{ old('Kabupaten', $info_perusahaan->kabupaten ?? '') == $kab ? 'selected' : '' }}>
-                        {{ $kab }}
-                      </option>
-                    @endforeach
                   </select>
+
                 </div>
 
                 {{-- Kecamatan --}}
                 <div class="col-md-6 mb-4">
                   <label class="form-label">Kecamatan</label>
-                  <select name="Kecamatan" class="form-select">
+                  <select id="kecamatan" name="Kecamatan" class="form-select" disabled>
                     <option value="">Pilih kecamatan</option>
-                    @foreach (['Kediri', 'Kerambitan', 'Selemadeg'] as $kec)
-                      <option value="{{ $kec }}" {{ old('Kecamatan', $info_perusahaan->kecamatan ?? '') == $kec ? 'selected' : '' }}>
-                        {{ $kec }}
-                      </option>
-                    @endforeach
                   </select>
+
                 </div>
 
                 {{-- Alamat --}}
@@ -163,22 +150,111 @@
     </footer>
     <!-- / Footer -->
 
-    <script>
-      document.getElementById('logoInput').addEventListener('change', function () {
-        const file = this.files[0];
-        const maxSize = 2 * 1024 * 1024;
-        const error = document.getElementById('logoError');
 
-        if (!file) return;
+    @push('scripts')
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-        if (file.size > maxSize) {
-          error.classList.remove('d-none');
-          this.value = '';
-        } else {
-          error.classList.add('d-none');
-        }
-      });
-    </script>
+          // =====================
+          // VALIDASI LOGO
+          // =====================
+          const logoInput = document.getElementById('logoInput');
+          const logoError = document.getElementById('logoError');
+
+          if (logoInput) {
+            logoInput.addEventListener('change', function () {
+              const file = this.files[0];
+              const maxSize = 2 * 1024 * 1024;
+
+              if (!file) return;
+
+              if (file.size > maxSize) {
+                logoError.classList.remove('d-none');
+                this.value = '';
+              } else {
+                logoError.classList.add('d-none');
+              }
+            });
+          }
+
+          // =====================
+          // WILAYAH INDONESIA API
+          // =====================
+          const provinsi = document.getElementById('provinsi');
+          const kabupaten = document.getElementById('kabupaten');
+          const kecamatan = document.getElementById('kecamatan');
+
+          // VALUE LAMA (EDIT PROFILE)
+          const oldProvinsi = "{{ old('Provinsi', $info_perusahaan->provinsi ?? '') }}";
+          const oldKabupaten = "{{ old('Kabupaten', $info_perusahaan->kabupaten ?? '') }}";
+          const oldKecamatan = "{{ old('Kecamatan', $info_perusahaan->kecamatan ?? '') }}";
+
+          // LOAD PROVINSI
+          fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            .then(res => res.json())
+            .then(data => {
+              let opt = '<option value="">Pilih provinsi</option>';
+              data.forEach(item => {
+                opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldProvinsi ? 'selected' : ''}>${item.name}</option>`;
+              });
+              provinsi.innerHTML = opt;
+
+              if (oldProvinsi) {
+                provinsi.dispatchEvent(new Event('change'));
+              }
+            });
+
+          // LOAD KABUPATEN
+          provinsi.addEventListener('change', function () {
+            const provId = this.selectedOptions[0]?.dataset.id;
+
+            kabupaten.innerHTML = '<option value="">Pilih kabupaten</option>';
+            kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
+            kabupaten.disabled = true;
+            kecamatan.disabled = true;
+
+            if (!provId) return;
+
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provId}.json`)
+              .then(res => res.json())
+              .then(data => {
+                let opt = '<option value="">Pilih kabupaten</option>';
+                data.forEach(item => {
+                  opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldKabupaten ? 'selected' : ''}>${item.name}</option>`;
+                });
+                kabupaten.innerHTML = opt;
+                kabupaten.disabled = false;
+
+                if (oldKabupaten) {
+                  kabupaten.dispatchEvent(new Event('change'));
+                }
+              });
+          });
+
+          // LOAD KECAMATAN
+          kabupaten.addEventListener('change', function () {
+            const kabId = this.selectedOptions[0]?.dataset.id;
+
+            kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
+            kecamatan.disabled = true;
+
+            if (!kabId) return;
+
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabId}.json`)
+              .then(res => res.json())
+              .then(data => {
+                let opt = '<option value="">Pilih kecamatan</option>';
+                data.forEach(item => {
+                  opt += `<option value="${item.name}" ${item.name === oldKecamatan ? 'selected' : ''}>${item.name}</option>`;
+                });
+                kecamatan.innerHTML = opt;
+                kecamatan.disabled = false;
+              });
+          });
+
+        });
+      </script>
+    @endpush
 
 
   </div>
