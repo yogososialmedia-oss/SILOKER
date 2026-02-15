@@ -7,7 +7,7 @@
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
                             style="height:280px; object-fit:cover;">
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
                             <h4 class="fw-bold mb-0 text-white">wqr</h4>

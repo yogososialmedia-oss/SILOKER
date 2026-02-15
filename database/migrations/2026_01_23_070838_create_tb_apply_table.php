@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreignId('id_perusahaan_mitra')->constrained('tb_perusahaan_mitra')->onDelete('cascade');
             $table->foreignId('id_loker')->constrained('tb_loker')->onDelete('cascade');
             $table->timestamps();
+            $table->date('tanggal_interview')->nullable();
+            $table->time('waktu_interview')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('alamat')->nullable();
         });
     }
 

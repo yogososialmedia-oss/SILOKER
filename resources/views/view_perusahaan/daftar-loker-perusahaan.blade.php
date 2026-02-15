@@ -77,7 +77,7 @@
                                                             <i class="icon-base bx bx-edit-alt me-2"></i>Edit
                                                         </a>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.loker.tampilan') }}">
+                                                            href="{{ route('perusahaan.loker.tampilan', $data_loker->id) }}">
                                                             <i class="icon-base bx bx-show me-2"></i>Tampilan Loker
                                                         </a>
                                                         <a class="dropdown-item"

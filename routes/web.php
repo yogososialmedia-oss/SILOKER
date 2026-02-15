@@ -41,7 +41,7 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::middleware(['verified.perusahaan'])->group(function () {
         Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
         Route::get('/perusahaan/loker/edit/{id}', [PerusahaanLokerController::class, 'edit'])->name('perusahaan.loker.edit');
-        Route::get('/perusahaan/loker/tampilan', [ProfilePerusahaanController::class, 'tampilanloker'])->name('perusahaan.loker.tampilan');
+        Route::get('/perusahaan/loker/tampilan/{id}', [ProfilePerusahaanController::class, 'tampilanloker'])->name('perusahaan.loker.tampilan');
         Route::get('/perusahaan/apply/daftar/{id}', [PerusahaanApplyController::class, 'daftarapplyloker'])->name('perusahaan.apply.loker');
         Route::get('/perusahaan/loker/create', [PerusahaanLokerController::class, 'create'])->name('perusahaan.loker.create');
         Route::get('/perusahaan/apply', [PerusahaanApplyController::class, 'index'])->name('perusahaan.apply');
@@ -51,6 +51,7 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
         Route::put('/perusahaan/loker/update/{id}', [PerusahaanLokerController::class, 'update'])->name('perusahaan.loker.update');
         Route::post('/perusahaan/loker/store', [PerusahaanLokerController::class, 'store'])->name('perusahaan.loker.store');
         Route::get('/perusahaan/apply/history/{id}', [PerusahaanApplyController::class, 'showHistoryApply'])->name('perusahaan.apply.history');
+        Route::post('/perusahaan/apply/update-status', [PerusahaanApplyController::class, 'updateStatus'])->name('perusahaan.apply.update-status');
     });
 });
 Route::middleware(['isAdmin'])->group(function () {

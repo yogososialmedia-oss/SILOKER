@@ -75,7 +75,6 @@ class ApplyController extends Controller
             ->firstOrFail();
         return view('view_perusahaan.history-apply-pencari-kerja', compact('apply'));
     }
-
     /**
      * Show the form for creating a new resource.
      */

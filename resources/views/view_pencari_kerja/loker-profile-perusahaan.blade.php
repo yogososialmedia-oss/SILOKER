@@ -12,7 +12,7 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
 {{-- 

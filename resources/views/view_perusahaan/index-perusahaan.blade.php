@@ -24,7 +24,7 @@
             <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
               <img src="{{ $info_perusahaan->logo 
                 ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
-                : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                : asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg') }}"
                 class="rounded-circle mb-2"
                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
               <h4 class="fw-bold mb-0 text-white">
@@ -126,21 +126,31 @@
           <div class="card shadow-sm rounded-4 p-4">
             <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
             <p class="mb-3 text-muted">{{ $info_perusahaan->tentang_perusahaan ?? '-' }}</p>
-
+            
             <h6 class="fw-bold mb-2">Alamat</h6>
-            <p>
-                {{ $info_perusahaan->alamat_perusahaan ?? '-' }} <br>
-                {{ $info_perusahaan->kecamatan ?? '' }}
-                {{ $info_perusahaan->kabupaten ?? '' }}
-                {{ $info_perusahaan->provinsi ?? '' }}
+            <p class="mb-2">
+                {{-- Alamat lengkap --}}
+                {{ $info_perusahaan->alamat_perusahaan ?? '-' }}
             </p>
+            @if($info_perusahaan->kecamatan || $info_perusahaan->kabupaten || $info_perusahaan->provinsi)
+            <p class="mb-2">
+                @php
+                    $parts = array_filter([
+                        $info_perusahaan->kecamatan,
+                        $info_perusahaan->kabupaten,
+                        $info_perusahaan->provinsi
+                    ]);
+                    echo implode(', ', $parts);
+                @endphp
+            </p>
+            @endif
+
+            {{-- Google Maps --}}
             @if(!empty($info_perusahaan->google_maps))
-                <a href="{{ $info_perusahaan->google_maps }}"
-                  target="_blank"
-                  class="d-flex align-items-center gap-1 mb-3">
-                    <i class="bx bx-current-location"></i>
-                    <span>View on Google Maps</span>
-                </a>
+            <a href="{{ $info_perusahaan->google_maps }}" target="_blank" class="d-flex align-items-center gap-1 mb-3">
+                <i class="bx bx-current-location"></i>
+                <span>View on Google Maps</span>
+            </a>
             @endif
 
             <h6 class="fw-bold mb-2">Email</h6>

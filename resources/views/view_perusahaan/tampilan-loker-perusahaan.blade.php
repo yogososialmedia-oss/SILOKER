@@ -4,20 +4,19 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-                @foreach($loker as $item)
                 <div class="col-lg-4 mb-5">
                     <div class="card loker-card-beranda h-100">
 
-                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}"
+                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
                             class="card-img-top" alt="">
 
                         <div class="card-body">
 
                             {{-- Tanggal --}}
                             <p class="text-end mb-1 fs-9">
-                                {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }}
+                                {{ \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('d M Y') }}
                                 -
-                                {{ \Carbon\Carbon::parse($item->tanggal_berakhir_loker)->format('d M Y') }}
+                                {{ \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('d M Y') }}
                             </p>
 
                             {{-- Nama Perusahaan --}}
@@ -30,54 +29,49 @@
 
                             {{-- Jabatan + Status --}}
                             <div class="d-flex align-items-center mb-3">
-
-                                <h5 class="mb-0">
-                                    {{ $item->jabatan }}
-                                </h5>
-
+                                <h5 class="mb-0">{{ $loker->jabatan }}</h5>
                                 <div class="ms-auto pe-4">
-                                    @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                                        <span class="badge bg-primary fs-6 px-3 py-2">
-                                            Open
-                                        </span>
+                                    @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
+                                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else
-                                        <span class="badge bg-danger fs-6 px-3 py-2">
-                                            Close
-                                        </span>
+                                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
                                     @endif
                                 </div>
-
                             </div>
 
                             {{-- Detail --}}
                             <h6 class="mb-1">
-                                {{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
+                                {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
                             </h6>
 
                             <p class="d-flex align-items-center gap-1 mb-1">
                                 <i class="bx bx-location-plus icon-sm"></i>
-                                <span>{{ $item->kabupaten }}</span>
+                                <span>{{ $loker->kabupaten }}</span>
                             </p>
 
                             <p class="d-flex align-items-start gap-2 mb-1">
                                 <i class="bx bx-buildings"></i>
-                                <span>{{ $item->model_kerja }}</span>
+                                <span>{{ $loker->model_kerja }}</span>
                             </p>
 
                             <p class="d-flex align-items-start gap-2 mb-1">
                                 <i class="bx bx-book-reader"></i>
-                                <span>{{ $item->minimal_pendidikan }}</span>
+                                <span>{{ $loker->minimal_pendidikan }}</span>
                             </p>
 
                             <p class="d-flex align-items-center gap-1 mb-1">
                                 <i class="bx bx-file icon-sm"></i>
-                                <span>{{ $item->apply_count ?? 0 }} Pelamar</span>
+                                <span>{{ $loker->apply_count ?? 0 }} Pelamar</span>
+                            </p>
+
+                            <p class="d-flex align-items-center gap-1 mb-1">
+                                <i class="bx bx-show icon-sm"></i>
+                                <span>{{ $loker->tayangan ?? 0 }} Tayangan</span>
                             </p>
 
                         </div>
                     </div>
                 </div>
-                @endforeach
 
                 <div class="col-lg-8 mb-5">
                     <div class="card loker-card-beranda">
@@ -85,7 +79,7 @@
 
                             <h4 class="mb-3">Kualifikasi</h4>
                             <p>
-                                {!! nl2br(e($loker->first()->deskripsi ?? '-')) !!}
+                                {!! nl2br(e($loker->deskripsi ?? '-')) !!}
                             </p>
 
                         </div>

@@ -27,16 +27,22 @@ class ProfilePerusahaanController extends Controller
             compact('info_perusahaan', 'loker'));
     }
 
-    public function tampilanloker()
+    public function tampilanloker($id)
     {
+        /** @var \App\Models\PerusahaanMitra $info_perusahaan */
         $info_perusahaan = Auth::guard('perusahaanmitra')->user();
-
         abort_if(!$info_perusahaan, 403);
 
-        $loker = $info_perusahaan->loker; // ambil semua loker perusahaan
+        $loker = $info_perusahaan->loker()->where('id', $id)->first();
+        abort_if(!$loker, 404);
 
-        return view('view_perusahaan.tampilan-loker-perusahaan',
-            compact('info_perusahaan', 'loker'));
+        $sessionKey = 'loker_viewed_' . $loker->id;
+        if (!session()->has($sessionKey)) {
+            $loker->increment('tayangan');
+            session([$sessionKey => true]);
+        }
+
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan', 'loker'));
     }
     /**
      * Show the form for creating a new resource.
