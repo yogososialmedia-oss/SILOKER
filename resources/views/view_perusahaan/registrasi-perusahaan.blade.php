@@ -191,7 +191,6 @@
             </div>
         </footer>
         <!-- / Footer -->
-        @push('scripts')
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
 
@@ -283,7 +282,7 @@
 
                 });
             </script>
-        @endpush
+
 
 
     </div>
