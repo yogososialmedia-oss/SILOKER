@@ -7,7 +7,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">JUMLAH LOWONGAN</h5>
-                                <canvas id="grafik_loker"></canvas>
+                                <div id="grafik_loker"></div>
                             </div>
                         </div>
                     </div>
@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold ">JUMLAH INTERAKSI</h5>
-                                <canvas id="grafik_interaksi"></canvas>
+                                <div id="grafik_interaksi"></div>
                             </div>
                         </div>
                     </div>
@@ -62,4 +62,70 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var optionsLoker = {
+            series: [{{ $totalOpen ?? 0 }}, {{ $totalClose ?? 0 }}],
+            chart: {
+                type: 'donut',
+                height: 550
+            },
+            labels: ['Open', 'Close'],
+            colors: ['#3B82C4', '#F4C542'],
+            legend: {
+                position: 'top',
+                fontSize: '14px'
+            },
+            dataLabels: {
+                enabled: false 
+            },
+            states: {
+                hover: { filter: { type: 'none' } },
+                active: { filter: { type: 'none' } }
+            },
+            plotOptions: {
+                pie: {
+                    donut: { size: '50%' }
+                }
+            }
+        };
+
+        var chartLoker = new ApexCharts(document.querySelector("#grafik_loker"), optionsLoker);
+        chartLoker.render();
+
+
+        var optionsInteraksi = {
+            series: [{{ $totalTayangan ?? 0 }}, {{ $totalApply ?? 0 }}],
+            chart: {
+                type: 'donut',
+                height: 550
+            },
+            labels: ['Tayangan', 'Apply'],
+            colors: ['#3B82C4', '#F4C542'],
+            legend: {
+                position: 'top',
+                fontSize: '14px'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            states: {
+                hover: { filter: { type: 'none' } },
+                active: { filter: { type: 'none' } }
+            },
+            plotOptions: {
+                pie: {
+                    donut: { size: '50%' }
+                }
+            }
+        };
+
+        var chartInteraksi = new ApexCharts(document.querySelector("#grafik_interaksi"), optionsInteraksi);
+        chartInteraksi.render();
+
+    });
+    </script>
 </x-admin_perusahaan.layout>

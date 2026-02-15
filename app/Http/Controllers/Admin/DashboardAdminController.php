@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use App\Models\PerusahaanMitra;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,35 +16,34 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        // Total loker
-        $totalLoker = Loker::count();
+        $today = Carbon::today();
 
-        // Total perusahaan
-        $totalPerusahaan = PerusahaanMitra::count();
+        // Loker OPEN
+        $totalOpen = Loker::whereDate('tanggal_mulai_loker', '<=', $today)
+            ->whereDate('tanggal_berakhir_loker', '>=', $today)
+            ->count();
 
-        // Data grafik loker per bulan
-        $lokerPerBulan = Loker::select(
-                DB::raw('MONTH(created_at) as bulan'),
-                DB::raw('COUNT(*) as total')
-            )
-            ->groupBy('bulan')
-            ->orderBy('bulan')
-            ->get();
+        // Loker CLOSE
+        $totalClose = Loker::whereDate('tanggal_berakhir_loker', '<', $today)
+            ->count();
 
-        // Ambil loker terbaru untuk tabel
+        // Total interaksi
+        $totalTayangan = Loker::sum('tayangan');
+        $totalApply = Loker::sum('interaksi');
+
         $lokerTerbaru = Loker::with('perusahaanMitra')
             ->latest()
             ->take(5)
             ->get();
 
         return view('view_admin.dashboard', compact(
-            'totalLoker',
-            'totalPerusahaan',
-            'lokerPerBulan',
+            'totalOpen',
+            'totalClose',
+            'totalTayangan',
+            'totalApply',
             'lokerTerbaru'
         ));
     }
-
     /**
      * Show the form for creating a new resource.
      */
