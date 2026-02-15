@@ -47,7 +47,7 @@ class RegistrasiPencariKerjaController extends Controller
             'password_pencari_kerja.required' => 'Password wajib diisi.',
             'password_pencari_kerja.min' => 'Password minimal 8 karakter.',
             'alamat_pencari_kerja.required' => 'Alamat wajib diisi.',
-            'no_telp_pencari_kerja.required' => 'No Telp wajib diisi.',
+            'no_telp_pencari_kerja.required' => 'No telepon wajib diisi.',
             'cv.mimes' => 'CV harus berupa file PDF.',
             'foto_pencari_kerja.image' => 'Foto Profile harus berupa gambar.',
             'foto_pencari_kerja.mimes' => 'Foto Profile harus berformat JPG, JPEG, atau PNG.',

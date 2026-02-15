@@ -43,7 +43,7 @@
 
                                     {{-- NO TELP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No Telp</label>
+                                        <label class="form-label">No Telepon</label>
                                         <input type="text" name="NoTelp" value="{{ old('NoTelp') }}"
                                             class="form-control @error('NoTelp') is-invalid @enderror"
                                             placeholder="Tambahkan nomor telepon perusahaan">
