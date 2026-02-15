@@ -94,6 +94,14 @@
             </div>
         </div>
     </nav>
+
+    @if (session('success'))
+        <div id="alert-success" class="alert alert-success text-center position-relative" style="margin-top: 80px;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <!-- Content -->
 
     <div class="container-xxl">
@@ -165,6 +173,18 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('alert-success');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 3000);
+    </script>
+
     <!-- Core JS -->
 
     <script src="{{ asset('admin-perusahaan/assets/vendor/libs/jquery/jquery.js')}}"></script>

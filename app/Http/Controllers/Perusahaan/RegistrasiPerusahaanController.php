@@ -87,7 +87,7 @@ class RegistrasiPerusahaanController extends Controller
         'status_akun'        => 'pending',
     ]);
 
-    return redirect()->route('perusahaan.login')->with('success', 'Registrasi berhasil');
+    return redirect()->route('perusahaan.login')->with('success', 'Registrasi berhasil, silahkan login');
     }
 
     /**

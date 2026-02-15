@@ -65,10 +65,10 @@
                                                     href="{{ route('perusahaan.apply.profile-pelamar', $data_apply->id) }}"><i
                                                         class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
                                                 <a class="dropdown-item" href="{{ route('perusahaan.detail-apply', $data_apply->id) }}"><i
-                                                        class="icon-base bx bx-edit-alt me-2"></i>Detail Apply</a>
+                                                        class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
                                                 <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-show me-2 "></i>Update Status</button>
+                                                        class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
                                             </div>
                                         </div>
                                     </td>
