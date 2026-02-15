@@ -34,13 +34,21 @@ class VerifikasiPerusahaanController extends Controller
     }
     public function showLowonganKerjaPerusahaan($id)
     {
-        $info_perusahaan = Loker::with('perusahaanMitra')->findOrFail($id);
-        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan'));
+        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+
+        $loker = Loker::where('id_perusahaan_mitra', $id)->get();
+        // pastikan nama foreign key sesuai di tabel kamu
+
+        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan', 'loker'));
     }
     public function showTampilanLoker($id)
     {
-        $info_perusahaan = Loker::findOrFail($id);
-        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan'));
+        $loker = Loker::with('perusahaanMitra')->findOrFail($id);
+
+        $info_perusahaan = $loker->perusahaanMitra;
+
+        return view('view_perusahaan.tampilan-loker-perusahaan',
+            compact('info_perusahaan', 'loker'));
     }
     /**
      * Show the form for creating a new resource.
