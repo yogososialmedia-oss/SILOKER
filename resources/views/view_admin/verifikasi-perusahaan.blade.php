@@ -3,9 +3,13 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+            @if (session('success'))
+                        <div id="successAlert" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
             <div class="card pb-3 ">
                 <div class="card-header d-flex justify-content-between align-items-center">
-
                     <div>
                         <h5 class="mb-0 fw-bold">VERIFIKASI PERUSAHAAN</h5>
                     </div>
@@ -16,12 +20,6 @@
                             <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                         </ul>
                     </div>
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0" id="table-apply">
@@ -50,7 +48,7 @@
 
                                         @if($status == 'pending')
                                             <span class="badge bg-label-warning me-1">Pending</span>
-                                        @elseif($status == 'verifikasi gagal')
+                                        @elseif($status == 'verifikasi_gagal')
                                             <span class="badge bg-label-danger me-1">Verifikasi Gagal</span>
                                         @elseif($status == 'terverifikasi')
                                             <span class="badge bg-label-success me-1">Terverifikasi</span>
@@ -89,94 +87,80 @@
 
         <!-- / Content -->
         <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Update Status</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{{ route('admin.update-status-perusahaan') }}">
+                    @csrf
+                    <input type="hidden" name="id" id="perusahaan_id">
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col mb-6">
-                                <form method="POST" action="{{ route('admin.update-status-perusahaan') }}">
-                                    @csrf
-                                    <input type="hidden" name="id" id="perusahaan_id">
-                                    <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
-                                    <select class="form-control" name="Status" id="exampleFormControlSelect1"
-                                        aria-label="Default select example">
-                                        <option value="" disabled selected>Pilih Status</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="terverifikasi">Terverifikasi</option>
-                                        <option value="verifikasi gagal">Verifikasi Gagal</option>
-                                    </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pilih status</label>
+                            <select class="form-control" name="Status" required>
+                                <option value="" disabled selected>Pilih Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="terverifikasi">Terverifikasi</option>
+                                <option value="verifikasi_gagal">Verifikasi Gagal</option>
+                            </select>
                         </div>
-                        <div class="alert alert-info" role="alert">
-                            Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait
-                            verifikasi perusahaan.
+                        <div class="alert alert-info">
+                            Form dibawah diperuntukan untuk mengirim email otomatis.
                         </div>
-                        <div class="col mb-6">
-                            <label for="exampleFormControlTextarea1" class="form-label">Tambahkan pesan</label>
-                            <textarea class="form-control" name="Pesan" id="exampleFormControlTextarea1"
-                                rows="3"></textarea>
+                        <div class="mb-3">
+                            <label class="form-label">Tambahkan pesan</label>
+                            <textarea class="form-control" name="Pesan" rows="3"></textarea>
                         </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="submit" class="btn btn-primary">Update Status</button>
-                        </div>
-                        </form>
-
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Update Status
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-                <div class="container-xxl">
-                    <div
-                        class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                        <div class="mb-2 mb-md-0">
-                            ©2026 Yogo & Wahyu
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- / Footer -->
-
-            <div class="content-backdrop fade"></div>
         </div>
+    </div>
         <!-- Content wrapper -->
 
-        @push('script')
-            <script>
-                document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
-                    const extraForms = document.querySelectorAll('.extra-form');
-                    const selectedValue = this.value;
+        @push('scripts')
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-                    if (selectedValue == "2") { // Tidak Diterima
-                        extraForms.forEach(el => el.style.display = 'none');
-                    } else {
-                        extraForms.forEach(el => el.style.display = 'flex');
-                    }
+            const buttons = document.querySelectorAll('.btn-update-status');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    document.getElementById('perusahaan_id').value = id;
                 });
-            </script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
+            });
 
-                    const buttons = document.querySelectorAll('.btn-update-status');
-                    const inputId = document.getElementById('perusahaan_id');
+        });
+        </script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-                    buttons.forEach(button => {
-                        button.addEventListener('click', function() {
-                            const id = this.getAttribute('data-id');
-                            inputId.value = id;
-                        });
-                    });
+            const alertBox = document.getElementById("successAlert");
 
-                });
-                </script>
+            if (alertBox) {
+                setTimeout(function () {
+                    alertBox.classList.remove("show"); // bootstrap fade
+                    alertBox.classList.add("fade");
+
+                    setTimeout(() => {
+                        alertBox.remove();
+                    }, 500);
+
+                }, 3000); // 3 detik
+            }
+
+        });
+        </script>
         @endpush
 </x-admin_perusahaan.layout>
