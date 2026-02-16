@@ -61,6 +61,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/profile-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showProfilePerusahaan'])->name('admin.profile-perusahaan');
     Route::get('/admin/lowongan-kerja-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showLowonganKerjaPerusahaan'])->name('admin.lowongan-kerja-perusahaan');
     Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->name('admin.tampilan-loker-perusahaan');
+    Route::post('/admin/verifikasi-perusahaan/update',[VerifikasiPerusahaanController::class, 'updateStatus'])->name('admin.update-status-perusahaan');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');

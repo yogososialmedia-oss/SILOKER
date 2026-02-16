@@ -50,6 +50,22 @@ class VerifikasiPerusahaanController extends Controller
         return view('view_perusahaan.tampilan-loker-perusahaan',
             compact('info_perusahaan', 'loker'));
     }
+    public function updateStatus(Request $request)
+    {
+        $request->validate([
+            'Status' => 'required',
+            'id' => 'required'
+        ]);
+
+        $perusahaan = PerusahaanMitra::findOrFail($request->id);
+
+        $perusahaan->status_akun = $request->Status;
+        $perusahaan->save();
+
+        return redirect()
+            ->route('admin.verifikasi-perusahaan')
+            ->with('success', 'Status berhasil diperbarui.');
+    }
     /**
      * Show the form for creating a new resource.
      */

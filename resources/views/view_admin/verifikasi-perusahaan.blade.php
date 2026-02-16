@@ -16,7 +16,12 @@
                             <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
                         </ul>
                     </div>
-
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0" id="table-apply">
@@ -39,12 +44,20 @@
                                     <td>{{$akun->email_perusahaan}}</td>
                                     <td>{{$akun->no_npwp}}</td>
                                     <td>
-                                        @if($akun->status_akun == 'Pending')
-                                            <span class="badge bg-label-warning me-1">{{$akun->status_akun}}</span>
-                                        @elseif($akun->status_akun == 'Verifikasi Gagal')
-                                            <span class="badge bg-label-danger me-1">{{$akun->status_akun}}</span>
-                                        @elseif($akun->status_akun == 'Terverifikasi')
-                                            <span class="badge bg-label-success me-1">{{$akun->status_akun}}</span>
+                                        @php
+                                            $status = strtolower($akun->status_akun);
+                                        @endphp
+
+                                        @if($status == 'pending')
+                                            <span class="badge bg-label-warning me-1">Pending</span>
+                                        @elseif($status == 'verifikasi gagal')
+                                            <span class="badge bg-label-danger me-1">Verifikasi Gagal</span>
+                                        @elseif($status == 'terverifikasi')
+                                            <span class="badge bg-label-success me-1">Terverifikasi</span>
+                                        @else
+                                            <span class="badge bg-label-secondary me-1">
+                                                {{ ucfirst($akun->status_akun) }}
+                                            </span>
                                         @endif
                                     </td>
 
@@ -57,7 +70,10 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}"> <i
                                                         class="icon-base bx bx-edit-alt me-2"></i> Detail Verifikasi </a>
-                                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                <button type="button"
+                                                    class="dropdown-item btn-update-status"
+                                                    data-id="{{ $akun->id }}"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
                                                         class="icon-base bx bx-show me-2"></i>Update Status</button>
                                             </div>
@@ -82,15 +98,16 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-6">
-                                <form method="POST">
+                                <form method="POST" action="{{ route('admin.update-status-perusahaan') }}">
                                     @csrf
+                                    <input type="hidden" name="id" id="perusahaan_id">
                                     <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
                                     <select class="form-control" name="Status" id="exampleFormControlSelect1"
                                         aria-label="Default select example">
-                                        <option selected>Pilih Status</option>
-                                        <option value="Belum Terverifikasi">Belum Terverifikasi</option>
-                                        <option value="Terverifikasi">Terverifikasi</option>
-                                        <option value="Verifikasi Gagal">Verifikasi Gagal</option>
+                                        <option value="" disabled selected>Pilih Status</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="terverifikasi">Terverifikasi</option>
+                                        <option value="verifikasi gagal">Verifikasi Gagal</option>
                                     </select>
                             </div>
                         </div>
@@ -108,7 +125,7 @@
                             <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" class="btn btn-primary">Update Status</button>
+                            <button type="submit" class="btn btn-primary">Update Status</button>
                         </div>
                         </form>
 
@@ -145,6 +162,21 @@
                         extraForms.forEach(el => el.style.display = 'flex');
                     }
                 });
+            </script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                const buttons = document.querySelectorAll('.btn-update-status');
+                const inputId = document.getElementById('perusahaan_id');
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        inputId.value = id;
+                    });
+                });
+
+            });
             </script>
         @endpush
 </x-admin_perusahaan.layout>

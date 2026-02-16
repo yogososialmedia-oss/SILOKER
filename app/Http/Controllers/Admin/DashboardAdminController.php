@@ -32,9 +32,10 @@ class DashboardAdminController extends Controller
         $totalApply = Loker::sum('interaksi');
 
         $lokerTerbaru = Loker::with('perusahaanMitra')
-            ->latest()
-            ->take(5)
-            ->get();
+        ->select('*', DB::raw('(COALESCE(tayangan,0) + COALESCE(interaksi,0)) as total_popularitas'))
+        ->orderByDesc('total_popularitas')
+        ->take(5)
+        ->get();
 
         return view('view_admin.dashboard', compact(
             'totalOpen',

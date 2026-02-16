@@ -105,6 +105,12 @@
                         <div class="app-brand justify-content-center mb-6">
                             <a class="app-brand-text demo text-heading fw-bold">PERUSAHAAN</a>
                         </div>
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
                         <form id="formAuthentication" class="mb-6" action="{{ route('perusahaan.login.post') }}"
                             method="POST">
                             @csrf
