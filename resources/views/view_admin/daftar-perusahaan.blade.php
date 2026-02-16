@@ -43,10 +43,20 @@
                                     <td>{{ $perusahaan->email_perusahaan }}</td>
                                     <td>{{ $perusahaan->no_npwp }}</td>
                                     <td>
-                                        @if ($perusahaan->status_akun == 'verified')
+                                        @php
+                                            $status = strtolower($perusahaan->status_akun);
+                                        @endphp
+
+                                        @if ($status == 'pending')
+                                            <span class="badge bg-label-warning">Pending</span>
+                                        @elseif ($status == 'terverifikasi')
                                             <span class="badge bg-label-success">Terverifikasi</span>
-                                        @elseif ($perusahaan->status_akun == 'rejected')
+                                        @elseif ($status == 'verifikasi gagal')
                                             <span class="badge bg-label-danger">Verifikasi Gagal</span>
+                                        @else
+                                            <span class="badge bg-label-secondary">
+                                                {{ ucfirst($perusahaan->status_akun) }}
+                                            </span>
                                         @endif
                                     </td>
                                     <td>

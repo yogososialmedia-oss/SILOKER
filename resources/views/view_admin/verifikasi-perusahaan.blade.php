@@ -164,19 +164,19 @@
                 });
             </script>
             <script>
-            document.addEventListener("DOMContentLoaded", function() {
+                document.addEventListener("DOMContentLoaded", function() {
 
-                const buttons = document.querySelectorAll('.btn-update-status');
-                const inputId = document.getElementById('perusahaan_id');
+                    const buttons = document.querySelectorAll('.btn-update-status');
+                    const inputId = document.getElementById('perusahaan_id');
 
-                buttons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        inputId.value = id;
+                    buttons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            inputId.value = id;
+                        });
                     });
-                });
 
-            });
-            </script>
+                });
+                </script>
         @endpush
 </x-admin_perusahaan.layout>
