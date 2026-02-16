@@ -118,7 +118,7 @@
                             <div class="mb-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email-username"
-                                    placeholder="Enter your email" autofocus />
+                                    placeholder="Masukan alamat email" autofocus />
                             </div>
                             <div class="mb-6 form-password-toggle ">
                                 <label class="form-label " for="password">Password</label>

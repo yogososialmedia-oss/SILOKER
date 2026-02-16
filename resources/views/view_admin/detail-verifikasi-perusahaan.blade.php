@@ -4,6 +4,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0 fw-bold">DETAIL REGISTRASI</h5>
+                            </div>
+                        </div>
+
                         <div class="card-body">
                             <div class="row">
 
@@ -61,7 +67,7 @@
                                         value="{{ $perusahaanMitra->google_maps }}" readonly>
                                 </div>
 
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label">Status Akun</label>
                                     <input class="form-control"
                                         value="{{ strtoupper($perusahaanMitra->status_akun) }}" readonly>

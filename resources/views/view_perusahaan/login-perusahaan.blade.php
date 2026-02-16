@@ -95,11 +95,6 @@
         </div>
     </nav>
 
-    @if (session('success'))
-        <div id="alert-success" class="alert alert-success text-center position-relative" style="margin-top: 80px;">
-            {{ session('success') }}
-        </div>
-    @endif
 
 
     <!-- Content -->
@@ -116,7 +111,6 @@
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
                         @endif
                         <form id="formAuthentication" class="mb-6" action="{{ route('perusahaan.login.post') }}"
@@ -125,7 +119,7 @@
                             <div class="mb-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email-username"
-                                    placeholder="Enter your email" autofocus />
+                                    placeholder="Masukan alamat email" autofocus />
                             </div>
                             <div class="mb-6 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>

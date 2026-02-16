@@ -67,13 +67,13 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}"> <i
-                                                        class="icon-base bx bx-edit-alt me-2"></i> Detail Verifikasi </a>
+                                                        class="icon-base bx bx-show  me-2"></i> Detail Registrasi </a>
                                                 <button type="button"
                                                     class="dropdown-item btn-update-status"
                                                     data-id="{{ $akun->id }}"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-show me-2"></i>Update Status</button>
+                                                        class="icon-base bx bx-edit-alt me-2"></i>Update Status</button>
                                             </div>
                                         </div>
                                     </td>
@@ -99,7 +99,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Pilih status</label>
-                            <select class="form-control" name="Status" required>
+                            <select class="form-select" name="Status" required>
                                 <option value="" disabled selected>Pilih Status</option>
                                 <option value="pending">Pending</option>
                                 <option value="terverifikasi">Terverifikasi</option>
@@ -115,9 +115,6 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
                         <button type="submit" class="btn btn-primary">
                             Update Status
                         </button>
