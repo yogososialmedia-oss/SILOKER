@@ -43,7 +43,7 @@
 
                                     {{-- NO TELP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No Telp</label>
+                                        <label class="form-label">No Telepon</label>
                                         <input type="text" name="NoTelp" value="{{ old('NoTelp') }}"
                                             class="form-control @error('NoTelp') is-invalid @enderror"
                                             placeholder="Tambahkan nomor telepon perusahaan">
@@ -156,13 +156,19 @@
                                     {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="password" name="Password"
-                                            class="form-control @error('Password') is-invalid @enderror"
-                                            placeholder="Buat password minimal 8 karakter">
-                                        @error('Password')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="password" id="password" name="Password" class="form-control"
+                                            placeholder="Buat password">
+
+                                        <ul class="list-unstyled mt-2 small" id="passwordRules">
+                                            <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
+                                            <li id="rule-upper" class="text-muted">Mengandung huruf besar</li>
+                                            <li id="rule-lower" class="text-muted">Mengandung huruf kecil</li>
+                                            <li id="rule-number" class="text-muted">Mengandung angka</li>
+                                            <li id="rule-symbol" class="text-muted">Mengandung simbol</li>
+                                        </ul>
                                     </div>
+
+
 
                                     {{-- SUBMIT --}}
                                     <div class="col-12 text-end mt-3">
@@ -191,97 +197,128 @@
             </div>
         </footer>
         <!-- / Footer -->
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
 
-                    // =====================
-                    // ERROR FILE LOGO
-                    // =====================
-                    const logoInput = document.getElementById('logoInput');
-                    const logoError = document.getElementById('logoError');
+                // =====================
+                // ERROR FILE LOGO
+                // =====================
+                const logoInput = document.getElementById('logoInput');
+                const logoError = document.getElementById('logoError');
 
-                    if (logoInput) {
-                        logoInput.addEventListener('change', function () {
-                            const file = this.files[0];
-                            const maxSize = 2 * 1024 * 1024;
+                if (logoInput) {
+                    logoInput.addEventListener('change', function () {
+                        const file = this.files[0];
+                        const maxSize = 2 * 1024 * 1024;
 
-                            if (!file) return;
+                        if (!file) return;
 
-                            if (file.size > maxSize) {
-                                logoError.classList.remove('d-none');
-                                this.value = '';
-                            } else {
-                                logoError.classList.add('d-none');
-                            }
+                        if (file.size > maxSize) {
+                            logoError.classList.remove('d-none');
+                            this.value = '';
+                        } else {
+                            logoError.classList.add('d-none');
+                        }
+                    });
+                }
+
+                // =====================
+                // WILAYAH INDONESIA API
+                // =====================
+                const provinsiSelect = document.getElementById('provinsi');
+                const kabupatenSelect = document.getElementById('kabupaten');
+                const kecamatanSelect = document.getElementById('kecamatan');
+
+                if (!provinsiSelect || !kabupatenSelect || !kecamatanSelect) return;
+
+                // LOAD PROVINSI
+                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        let option = '<option value="">Pilih Provinsi</option>';
+                        data.forEach(item => {
+                            option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
                         });
-                    }
+                        provinsiSelect.innerHTML = option;
+                    });
 
-                    // =====================
-                    // WILAYAH INDONESIA API
-                    // =====================
-                    const provinsiSelect = document.getElementById('provinsi');
-                    const kabupatenSelect = document.getElementById('kabupaten');
-                    const kecamatanSelect = document.getElementById('kecamatan');
+                // LOAD KABUPATEN
+                provinsiSelect.addEventListener('change', function () {
+                    const provinsiId = this.selectedOptions[0]?.dataset.id;
 
-                    if (!provinsiSelect || !kabupatenSelect || !kecamatanSelect) return;
+                    kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
+                    kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kabupatenSelect.disabled = true;
+                    kecamatanSelect.disabled = true;
 
-                    // LOAD PROVINSI
-                    fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                    if (!provinsiId) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
                         .then(res => res.json())
                         .then(data => {
-                            let option = '<option value="">Pilih Provinsi</option>';
+                            let option = '<option value="">Pilih Kabupaten</option>';
                             data.forEach(item => {
                                 option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
                             });
-                            provinsiSelect.innerHTML = option;
+                            kabupatenSelect.innerHTML = option;
+                            kabupatenSelect.disabled = false;
                         });
-
-                    // LOAD KABUPATEN
-                    provinsiSelect.addEventListener('change', function () {
-                        const provinsiId = this.selectedOptions[0]?.dataset.id;
-
-                        kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
-                        kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                        kabupatenSelect.disabled = true;
-                        kecamatanSelect.disabled = true;
-
-                        if (!provinsiId) return;
-
-                        fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
-                            .then(res => res.json())
-                            .then(data => {
-                                let option = '<option value="">Pilih Kabupaten</option>';
-                                data.forEach(item => {
-                                    option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
-                                });
-                                kabupatenSelect.innerHTML = option;
-                                kabupatenSelect.disabled = false;
-                            });
-                    });
-
-                    // LOAD KECAMATAN
-                    kabupatenSelect.addEventListener('change', function () {
-                        const kabupatenId = this.selectedOptions[0]?.dataset.id;
-
-                        kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                        kecamatanSelect.disabled = true;
-
-                        if (!kabupatenId) return;
-
-                        fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
-                            .then(res => res.json())
-                            .then(data => {
-                                let option = '<option value="">Pilih Kecamatan</option>';
-                                data.forEach(item => {
-                                    option += `<option value="${item.name}">${item.name}</option>`;
-                                });
-                                kecamatanSelect.innerHTML = option;
-                                kecamatanSelect.disabled = false;
-                            });
-                    });
-
                 });
-            </script>
+
+                // LOAD KECAMATAN
+                kabupatenSelect.addEventListener('change', function () {
+                    const kabupatenId = this.selectedOptions[0]?.dataset.id;
+
+                    kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kecamatanSelect.disabled = true;
+
+                    if (!kabupatenId) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let option = '<option value="">Pilih Kecamatan</option>';
+                            data.forEach(item => {
+                                option += `<option value="${item.name}">${item.name}</option>`;
+                            });
+                            kecamatanSelect.innerHTML = option;
+                            kecamatanSelect.disabled = false;
+                        });
+                });
+
+            });
+        </script>
+        <script>
+            document.getElementById('password').addEventListener('input', function () {
+                const value = this.value;
+
+                toggleRule('rule-length', value.length >= 8);
+                toggleRule('rule-upper', /[A-Z]/.test(value));
+                toggleRule('rule-lower', /[a-z]/.test(value));
+                toggleRule('rule-number', /[0-9]/.test(value));
+                toggleRule('rule-symbol', /[^A-Za-z0-9]/.test(value));
+            });
+
+            function toggleRule(id, isValid) {
+                const el = document.getElementById(id);
+
+                if (isValid) {
+                    el.classList.remove('text-muted');
+                    el.classList.add('text-success');
+                    if (!el.textContent.startsWith('✔')) {
+                        el.textContent = '✔ ' + el.textContent;
+                    }
+                } else {
+                    el.classList.remove('text-success');
+                    el.classList.add('text-muted');
+                    el.textContent = el.textContent.replace('✔ ', '');
+                }
+            }
+        </script>
+
+
+
+
 
 
 

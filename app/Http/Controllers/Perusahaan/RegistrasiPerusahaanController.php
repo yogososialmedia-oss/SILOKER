@@ -52,7 +52,7 @@ class RegistrasiPerusahaanController extends Controller
         'Password.required' => 'Password wajib diisi.',
         'Password.min' => 'Password minimal 8 karakter.',
         'NoNpwp.required' => 'No NPWP wajib diisi.',
-        'NoTelp.required' => 'No Telp wajib diisi.',
+        'NoTelp.required' => 'Nomor telepon wajib diisi.',
         'Provinsi.required' => 'Provinsi wajib diisi.',
         'Kabupaten.required' => 'Kabupaten wajib diisi.',
         'Kecamatan.required' => 'Kecamatan wajib diisi.',

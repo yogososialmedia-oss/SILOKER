@@ -73,7 +73,7 @@
                                 </div>
 
                             </div>
-                            <div class="mt-3">
+                            <div class="d-flex justify-content-end pt-3 border-top ">
                                 <a href="{{ route('admin.verifikasi-perusahaan') }}"
                                 class="btn btn-secondary">
                                     Kembali
