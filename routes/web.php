@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DaftarLokerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
+use App\Http\Controllers\Admin\ApplyController as AdminApplyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokerController;
@@ -62,6 +63,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/lowongan-kerja-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showLowonganKerjaPerusahaan'])->name('admin.lowongan-kerja-perusahaan');
     Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->name('admin.tampilan-loker-perusahaan');
     Route::post('/admin/verifikasi-perusahaan/update',[VerifikasiPerusahaanController::class, 'updateStatus'])->name('admin.update-status-perusahaan');
+    Route::get('/admin/history-apply', [AdminApplyController::class, 'index'])->name('admin.history-apply');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
