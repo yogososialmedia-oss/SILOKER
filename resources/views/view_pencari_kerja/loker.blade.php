@@ -7,32 +7,35 @@
             <!-- FILTER FORM -->
             <div class="row mb-4">
 
+
                 <div class="col-md-4 mb-4">
-                    <label class="form-label">Jabatan</label>
-                    <input type="text" class="form-control" placeholder="Masukan posisi jabatan">
+                    <label class="form-label">Provinsi</label>
+                    <select id="provinsi" name="provinsi" class="form-select">
+                        <option value="">Pilih Provinsi</option>
+                    </select>
                 </div>
 
                 <div class="col-md-4 mb-4">
                     <label class="form-label">Kabupaten</label>
-                    <select class="form-select">
-                        <option selected>Pilih kabupaten</option>
-                        <option>Tabanan</option>
-                        <option>Badung</option>
-                        <option>Buleleng</option>
+                    <select id="kabupaten" name="kabupaten" class="form-select" disabled>
+                        <option value="">Pilih Kabupaten</option>
                     </select>
                 </div>
 
                 <div class="col-md-4 mb-4">
                     <label class="form-label">Kecamatan</label>
-                    <select class="form-select">
-                        <option selected>Pilih kecamatan</option>
-                        <option>Kediri</option>
-                        <option>Kerambitan</option>
-                        <option>Pupuan</option>
+                    <select id="kecamatan" name="kecamatan" class="form-select" disabled>
+                        <option value="">Pilih Kecamatan</option>
                     </select>
                 </div>
 
-                <div class="col-md-4 mb-4">
+
+                <div class="col-md-3 mb-4">
+                    <label class="form-label">Jabatan</label>
+                    <input type="text" class="form-control" placeholder="Masukan posisi jabatan">
+                </div>
+
+                <div class="col-md-3 mb-4">
                     <label class="form-label">Tipe Lowongan</label>
                     <select class="form-select">
                         <option selected>Pilih tipe</option>
@@ -41,7 +44,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3 mb-4">
                     <label class="form-label">Model Kerja</label>
                     <select class="form-select">
                         <option selected>Pilih model kerja</option>
@@ -51,7 +54,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3 mb-4">
                     <label class="form-label">Minimal Pendidikan</label>
                     <select class="form-select">
                         <option selected>Pilih minimal pendidikan</option>
@@ -91,7 +94,7 @@
                                             class="fw-bold text-dark text-decoration-none position-relative z-3">
                                             DEYSTORY
                                         </a>
-                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}" 
+                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
                                             class="badge rounded-circle bg-primary  d-flex align-items-center justify-content-center position-relative z-3"
                                             style="width:16px; height:16px; font-size:10px; ">i</a>
                                     </h6>
@@ -176,4 +179,77 @@
 
         <div class="content-backdrop fade"></div>
     </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+
+                const provinsi = document.getElementById('provinsi');
+                const kabupaten = document.getElementById('kabupaten');
+                const kecamatan = document.getElementById('kecamatan');
+
+                // =========================
+                // LOAD PROVINSI
+                // =========================
+                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        let opt = '<option value="">Pilih Provinsi</option>';
+                        data.forEach(item => {
+                            opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                        });
+                        provinsi.innerHTML = opt;
+                    });
+
+                // =========================
+                // LOAD KABUPATEN
+                // =========================
+                provinsi.addEventListener('change', function () {
+                    const id = this.selectedOptions[0]?.dataset.id;
+
+                    kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kabupaten.disabled = true;
+                    kecamatan.disabled = true;
+
+                    if (!id) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let opt = '<option value="">Pilih Kabupaten</option>';
+                            data.forEach(item => {
+                                opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                            });
+                            kabupaten.innerHTML = opt;
+                            kabupaten.disabled = false;
+                        });
+                });
+
+                // =========================
+                // LOAD KECAMATAN
+                // =========================
+                kabupaten.addEventListener('change', function () {
+                    const id = this.selectedOptions[0]?.dataset.id;
+
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    kecamatan.disabled = true;
+
+                    if (!id) return;
+
+                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let opt = '<option value="">Pilih Kecamatan</option>';
+                            data.forEach(item => {
+                                opt += `<option value="${item.name}">${item.name}</option>`;
+                            });
+                            kecamatan.innerHTML = opt;
+                            kecamatan.disabled = false;
+                        });
+                });
+
+            });
+        </script>
+
 </x-pencari_kerja.layout>
