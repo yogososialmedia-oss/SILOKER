@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DaftarLokerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
+use App\Http\Controllers\Admin\ApplyController as AdminApplyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokerController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
 use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
 use App\Http\Controllers\Perusahaan\ProfilePerusahaanController;
 use App\Http\Controllers\Perusahaan\RegistrasiPerusahaanController;
+use App\Http\Controllers\VerifikasiEmailController;
 use App\Models\Apply;
 use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +29,7 @@ Route::post('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 's
 Route::get('/registrasi-pencari-kerja', [RegistrasiPencariKerjaController::class, 'index'])->name('pencarikerja.register');
 Route::post('/registrasi-pencari-kerja/store', [RegistrasiPencariKerjaController::class, 'store'])->name('pencarikerja.register.store');
 
+Route::get('/verifikasi-email/{type}/{token}', [VerifikasiEmailController::class, 'verify'])->name('verifikasi.email');
 
 
 
@@ -62,6 +65,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/lowongan-kerja-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showLowonganKerjaPerusahaan'])->name('admin.lowongan-kerja-perusahaan');
     Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->name('admin.tampilan-loker-perusahaan');
     Route::post('/admin/verifikasi-perusahaan/update',[VerifikasiPerusahaanController::class, 'updateStatus'])->name('admin.update-status-perusahaan');
+    Route::get('/admin/history-apply', [AdminApplyController::class, 'index'])->name('admin.history-apply');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');

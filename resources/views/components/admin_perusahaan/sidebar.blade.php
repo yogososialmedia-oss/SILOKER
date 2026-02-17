@@ -67,6 +67,12 @@
             </ul>
         </li>
         <li class="menu-item">
+            <a href="{{ route('admin.history-apply') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-pin"></i>
+                <div class="text-truncate">History Apply Admin</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="{{ route('perusahaan.apply') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-pin"></i>
                 <div class="text-truncate" data-i18n="Basic">History Apply</div>
