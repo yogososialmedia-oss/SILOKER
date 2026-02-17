@@ -115,55 +115,68 @@ class LoginController extends Controller
     {
         Auth::guard('admin')->logout();
         Auth::guard('pencarikerja')->logout();
+
         $validatedata = $request->validate([
             'email-username' => 'required|email',
             'password' => 'required',
-        ],
-        [
+        ], [
             'email-username.required' => 'Email wajib diisi',
             'email-username.email' => 'Format email tidak valid',
             'password.required' => 'Password wajib diisi',
         ]);
+
         $perusahaan = PerusahaanMitra::where('email_perusahaan', $validatedata['email-username'])->first();
-        if (!$perusahaan) {
+
+        if (!$perusahaan || !Hash::check($validatedata['password'], $perusahaan->password_perusahaan)) {
             return back()->withErrors([
                 'email-username' => 'Email atau password salah',
             ]);
         }
-        if (!Hash::check($validatedata['password'], $perusahaan->password_perusahaan)) {
+
+        // 🚨 HANYA CEK EMAIL
+        if (is_null($perusahaan->email_verified_at)) {
             return back()->withErrors([
-                'email-username' => 'Email atau password salah',
+                'email-username' => 'Silakan verifikasi email terlebih dahulu.',
             ]);
         }
+
         Auth::guard('perusahaanmitra')->login($perusahaan);
+
         return redirect()->route('perusahaan.profile');
     }
+
 
     public function LoginPencariKerja(Request $request)
     {
         Auth::guard('perusahaanmitra')->logout();
         Auth::guard('admin')->logout();
+
         $validatedata = $request->validate([
             'email-username' => 'required|email',
             'password' => 'required',
-        ],
-        [
+        ], [
             'email-username.required' => 'Email wajib diisi',
             'email-username.email' => 'Format email tidak valid',
             'password.required' => 'Password wajib diisi',
         ]);
+
         $pencarikerja = PencariKerja::where('email_pencari_kerja', $validatedata['email-username'])->first();
-        if (!$pencarikerja) {
+
+        if (!$pencarikerja || !Hash::check($validatedata['password'], $pencarikerja->password_pencari_kerja)) {
             return back()->withErrors([
                 'email-username' => 'Email atau password salah',
             ]);
         }
-        if (!Hash::check($validatedata['password'], $pencarikerja->password_pencari_kerja)) {
+
+        // 🚨 CEK EMAIL VERIFIKASI
+        if (!$pencarikerja->email_verified_at) {
             return back()->withErrors([
-                'email-username' => 'Email atau password salah',
+                'email-username' => 'Silakan verifikasi email terlebih dahulu.',
             ]);
         }
+
         Auth::guard('pencarikerja')->login($pencarikerja);
+
         return redirect()->route('pencarikerja.loker.index');
     }
     public function logout(Request $request)

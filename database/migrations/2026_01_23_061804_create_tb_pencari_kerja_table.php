@@ -24,6 +24,8 @@ return new class extends Migration
             $table->text('deskripsi_diri')->nullable();
             $table->enum('pendidikan_terakhir', ['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'])->nullable();
             $table->string('linkedin')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('verification_token')->nullable();
             $table->timestamps();
         });
     }

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class PencariKerja extends Authenticatable
+class PencariKerja extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -30,6 +31,8 @@ class PencariKerja extends Authenticatable
         'pendidikan_terakhir',
         'linkedin',
         'foto_pencari_kerja',
+        'email_verified_at',
+        'verification_token'
     ];
 
     /**
@@ -45,4 +48,7 @@ class PencariKerja extends Authenticatable
     {
         return $this->hasMany(Apply::class, 'id_pencari_kerja');
     }
+    protected $casts = [
+    'email_verified_at' => 'datetime',
+    ];
 }

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->text('tentang_perusahaan')->nullable();
             $table->enum('status_akun', ['pending', 'terverifikasi', 'verifikasi_gagal'])->default('pending');
             $table->text('deskripsi_status')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('verification_token')->nullable();
             $table->timestamps();
         });
     }

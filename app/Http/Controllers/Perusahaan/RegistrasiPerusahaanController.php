@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Perusahaan;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerificationMail;
 use Illuminate\Http\Request;
 use App\Models\PerusahaanMitra;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrasiPerusahaanController extends Controller
 {
@@ -71,7 +73,9 @@ class RegistrasiPerusahaanController extends Controller
         $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
     }
 
-    PerusahaanMitra::create([
+    $token = uniqid(true); // generate token unik
+
+    $perusahaan = PerusahaanMitra::create([
         'nama_perusahaan'    => $request->NamaPerusahaan,
         'email_perusahaan'   => $request->Email,
         'provinsi'           => $request->Provinsi,
@@ -85,9 +89,15 @@ class RegistrasiPerusahaanController extends Controller
         'google_maps'        => $request->GoogleMaps,
         'tentang_perusahaan' => $request->TentangPerusahaan,
         'status_akun'        => 'pending',
+        'verification_token' => $token,
     ]);
 
-    return redirect()->route('perusahaan.login')->with('success', 'Registrasi berhasil, silahkan login.');
+    // Kirim email verifikasi
+        Mail::to($perusahaan->email_perusahaan)
+            ->send(new EmailVerificationMail($perusahaan, $token, 'perusahaan'));
+
+        return redirect()->route('perusahaan.login')
+            ->with('success', 'Registrasi berhasil! Silahkan cek email Anda untuk verifikasi.');
     }
 
     /**

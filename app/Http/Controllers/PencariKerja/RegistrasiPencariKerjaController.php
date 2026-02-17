@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\PencariKerja;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerificationMail;
 use Illuminate\Http\Request;
 use App\Models\PencariKerja;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrasiPencariKerjaController extends Controller
 {
@@ -66,7 +68,8 @@ class RegistrasiPencariKerjaController extends Controller
             $fotoPath = $request->file('foto_pencari_kerja')->store('foto_pencari_kerja', 'public');
         }
 
-        PencariKerja::create([
+        $token = uniqid(true); // generate token unik
+        $user = PencariKerja::create([
             'nama_pencari_kerja' => $request->nama_pencari_kerja,
             'alamat_pencari_kerja' => $request->alamat_pencari_kerja,
             'no_telp_pencari_kerja' => $request->no_telp_pencari_kerja,
@@ -75,10 +78,16 @@ class RegistrasiPencariKerjaController extends Controller
             'nim' => $request->nim,
             'cv' => $cvPath,
             'foto_pencari_kerja' => $fotoPath,
+            'verification_token' => $token,
         ]);
 
+        // Kirim email verifikasi
+        Mail::to($user->email_pencari_kerja)
+            ->send(new EmailVerificationMail($user, $token, 'pencarikerja'));
+
         return redirect()->route('pencarikerja.login')
-            ->with('success', 'Registrasi berhasil!');
+            ->with('success', 'Registrasi berhasil! Silahkan cek email Anda untuk verifikasi.');
+            
     }
 
     /**

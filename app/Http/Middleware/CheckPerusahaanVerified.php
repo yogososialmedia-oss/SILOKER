@@ -13,10 +13,20 @@ class CheckPerusahaanVerified
     {
         $user = Auth::guard('perusahaanmitra')->user();
 
-        if ($user && $user->status_akun !== 'terverifikasi') {
-            return redirect()->route('perusahaan.profile')
-                ->with('error', 'Akun Anda belum diverifikasi oleh admin.');
+        if ($user) {
+            // Cek email sudah diverifikasi
+            if (is_null($user->email_verified_at)) {
+                return redirect()->route('perusahaan.profile')
+                    ->with('error', 'Silahkan verifikasi email Anda terlebih dahulu.');
+            }
+
+            // Cek status akun sudah disetujui admin
+            if ($user->status_akun !== 'terverifikasi') {
+                return redirect()->route('perusahaan.profile')
+                    ->with('error', 'Akun Anda belum diverifikasi oleh admin.');
+            }
         }
+
         return $next($request);
     }
 }

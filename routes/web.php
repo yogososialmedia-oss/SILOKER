@@ -15,6 +15,7 @@ use App\Http\Controllers\Perusahaan\IndexPerusahaanController;
 use App\Http\Controllers\Perusahaan\LokerController as PerusahaanLokerController;
 use App\Http\Controllers\Perusahaan\ProfilePerusahaanController;
 use App\Http\Controllers\Perusahaan\RegistrasiPerusahaanController;
+use App\Http\Controllers\VerifikasiEmailController;
 use App\Models\Apply;
 use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::post('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 's
 Route::get('/registrasi-pencari-kerja', [RegistrasiPencariKerjaController::class, 'index'])->name('pencarikerja.register');
 Route::post('/registrasi-pencari-kerja/store', [RegistrasiPencariKerjaController::class, 'store'])->name('pencarikerja.register.store');
 
+Route::get('/verifikasi-email/{type}/{token}', [VerifikasiEmailController::class, 'verify'])->name('verifikasi.email');
 
 
 

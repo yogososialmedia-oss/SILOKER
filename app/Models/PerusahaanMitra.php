@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class PerusahaanMitra extends Authenticatable
+class PerusahaanMitra extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -33,6 +34,8 @@ class PerusahaanMitra extends Authenticatable
     'google_maps',
     'status_akun',
     'deskripsi_status',
+    'email_verified_at',
+    'verification_token'
 ];
     
 
@@ -68,4 +71,7 @@ class PerusahaanMitra extends Authenticatable
 
         return asset('storage/logo_perusahaan/' . $this->logo);
     }
+    protected $casts = [
+    'email_verified_at' => 'datetime',
+    ];
 }
