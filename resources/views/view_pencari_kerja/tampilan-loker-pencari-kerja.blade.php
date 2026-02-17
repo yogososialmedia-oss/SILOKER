@@ -83,12 +83,12 @@
                             </p>
 
                             <!-- tombol kanan -->
-                            <div class="d-flex justify-content-end mt-3">
+                            <div class="d-flex justify-content-end gap-2 mt-3">
+                                <a href="" class="btn btn-secondary">Kembali</a>
                                 <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                    class="btn btn-primary">
-                                    Apply
-                                </a>
+                                    class="btn btn-primary">Apply</a>
                             </div>
+
 
                         </div>
                     </div>
