@@ -128,15 +128,26 @@
                                     </div>
 
                                     {{-- PASSWORD --}}
+                                    {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="password" name="password_pencari_kerja"
-                                            class="form-control @error('password_pencari_kerja') is-invalid @enderror"
-                                            placeholder="Buat password minimal 8 karakter">
-                                        @error('password_pencari_kerja')
+                                        <input type="password" id="password" name="Password"
+                                            class="form-control @error('Password') is-invalid @enderror"
+                                            placeholder="Buat password">
+
+                                        @error('Password')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+
+                                        <ul class="list-unstyled mt-2 small" id="passwordRules">
+                                            <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
+                                            <li id="rule-upper" class="text-muted">Mengandung huruf besar</li>
+                                            <li id="rule-lower" class="text-muted">Mengandung huruf kecil</li>
+                                            <li id="rule-number" class="text-muted">Mengandung angka</li>
+                                            <li id="rule-symbol" class="text-muted">Mengandung simbol</li>
+                                        </ul>
                                     </div>
+
 
                                     {{-- SUBMIT --}}
                                     <div class="col-12 text-end mt-3">
@@ -208,6 +219,40 @@
                 error.classList.add('d-none');
             });
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const passwordInput = document.getElementById('password');
+                if (!passwordInput) return;
+
+                passwordInput.addEventListener('input', function () {
+                    const value = this.value;
+
+                    toggleRule('rule-length', value.length >= 8);
+                    toggleRule('rule-upper', /[A-Z]/.test(value));
+                    toggleRule('rule-lower', /[a-z]/.test(value));
+                    toggleRule('rule-number', /[0-9]/.test(value));
+                    toggleRule('rule-symbol', /[^A-Za-z0-9]/.test(value));
+                });
+
+                function toggleRule(id, isValid) {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+
+                    if (isValid) {
+                        el.classList.remove('text-muted');
+                        el.classList.add('text-success');
+                        if (!el.textContent.startsWith('✔')) {
+                            el.textContent = '✔ ' + el.textContent;
+                        }
+                    } else {
+                        el.classList.remove('text-success');
+                        el.classList.add('text-muted');
+                        el.textContent = el.textContent.replace('✔ ', '');
+                    }
+                }
+            });
+        </script>
+
 
 
     </div>
