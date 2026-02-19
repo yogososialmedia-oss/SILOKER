@@ -97,7 +97,7 @@
                                                             class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('profile-perusahaan-pencari-kerja') }}"><i
+                                                            href="{{ route('pencarikerja.profile.perusahaan') }}"><i
                                                                 class="icon-base bx bx-user-circle me-2"></i>Profile
                                                             Perusahaan</a>
                                                     </div>

@@ -65,7 +65,7 @@
                                         <label class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" class="form-select">
                                             <option value="">Pilih Pendidikan</option>
-                                            @foreach (['Pendidikan Terakhir SMA/Sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
+                                            @foreach (['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
                                                 <option value="{{ $p }}" {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>{{ $p }}
                                                 </option>
                                             @endforeach
@@ -131,11 +131,13 @@
                                     {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="password" id="password" name="Password"
-                                            class="form-control @error('Password') is-invalid @enderror"
+                                        <input type="password" 
+                                            id="password" 
+                                            name="password_pencari_kerja"
+                                            class="form-control @error('password_pencari_kerja') is-invalid @enderror"
                                             placeholder="Buat password">
 
-                                        @error('Password')
+                                        @error('password_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
 

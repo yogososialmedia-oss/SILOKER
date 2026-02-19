@@ -31,10 +31,7 @@ Route::post('/registrasi-pencari-kerja/store', [RegistrasiPencariKerjaController
 
 Route::get('/verifikasi-email/{type}/{token}', [VerifikasiEmailController::class, 'verify'])->name('verifikasi.email');
 
-Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
-    Route::get('/pencarikerja/profile/edit', [ProfileController::class,'showEditProfilePencariKerja'])->name('pencarikerja.profile.edit');
-    Route::get('/pencarikerja/profile/history-apply', [ProfileController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
-    Route::get('/pencarikerja/profile/profile-perusahaan', [ProfileController::class,'showProfilePerusahaanpencariKerja'])->name('pencarikerja.profile.perusahaan');
+
 
 
 
@@ -73,7 +70,12 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/history-apply', [AdminApplyController::class, 'index'])->name('admin.history-apply');
 });
 Route::middleware(['isPencariKerja'])->group(function () {
-    
+    Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
+    Route::get('/pencarikerja/profile/edit', [ProfileController::class,'showEditProfilePencariKerja'])->name('pencarikerja.profile.edit');
+    Route::get('/pencarikerja/profile/history-apply', [ProfileController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
+    Route::get('/pencarikerja/profile/profile-perusahaan', [ProfileController::class,'showProfilePerusahaanpencariKerja'])->name('pencarikerja.profile.perusahaan');
+    Route::get('/pencarikerja/profile/loker-profile-perusahaan', [ProfileController::class,'showLokerPerusahaanpencariKerja'])->name('pencarikerja.loker.profile.perusahaan');
+    Route::get('/pencarikerja/profile/tampilan-loker-profile-perusahaan', [ProfileController::class,'showTampilanLokerPerusahaanpencariKerja'])->name('pencarikerja.tampilan.loker.profile.perusahaan');
 });
 
 

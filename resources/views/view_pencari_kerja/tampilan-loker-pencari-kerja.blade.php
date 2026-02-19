@@ -11,11 +11,11 @@
                         <div class="card-body">
                             <p class="text-end mb-1 fs-9">11 Jan 2026 - 21 Jan 2026 </p>
                             <h4 class="mb-1 d-flex align-items-center gap-2">
-                                <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
+                                <a href="{{ route('pencarikerja.profile.perusahaan') }}"
                                     class="fw-bold text-dark text-decoration-none position-relative z-3">
                                     DEYSTORY
                                 </a>
-                                <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
+                                <a href="{{ route('pencarikerja.profile.perusahaan') }}"
                                     class="badge rounded-circle d-flex align-items-center justify-content-center position-relative z-3 "
                                     style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
                             </h4>
@@ -85,7 +85,7 @@
                             <!-- tombol kanan -->
                             <div class="d-flex justify-content-end gap-2 mt-3">
                                 <a href="" class="btn btn-secondary">Kembali</a>
-                                <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
+                                <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan', ['id' => 1]) }}"
                                     class="btn btn-primary">Apply</a>
                             </div>
 

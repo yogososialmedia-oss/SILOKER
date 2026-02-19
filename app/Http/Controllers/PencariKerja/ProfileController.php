@@ -26,6 +26,14 @@ class ProfileController extends Controller
     {
         return view('view_pencari_kerja.profile-perusahaan');
     }
+    public function showLokerPerusahaanpencariKerja()
+    {
+        return view('view_pencari_kerja.loker-profile-perusahaan');
+    }
+    public function showTampilanLokerPerusahaanpencariKerja()
+    {
+        return view('view_pencari_kerja.tampilan-loker-pencari-kerja');
+    }
     /**
      * Show the form for creating a new resource.
      */

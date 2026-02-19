@@ -19,16 +19,6 @@
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
                             </h4>
-
-                            @if ($info_perusahaan->status_verifikasi === 'pending')
-                                <p class="text-warning mb-0">Verifikasi Dalam Proses</p>
-
-                            @elseif ($info_perusahaan->status_verifikasi === 'rejected')
-                                <p class="text-danger mb-0">Verifikasi Gagal</p>
-
-                            @elseif ($info_perusahaan->status_verifikasi === 'approved')
-                                <p class="text-primary mb-0">Terverifikasi</p>
-                            @endif 
                         </div>
 
                         <div class="bg-white p-4">
@@ -43,45 +33,24 @@
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                                             {{-- Tentang --}}
-                                            @if (Auth::guard('perusahaanmitra')->user())
                                                 <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}"
-                                                        href="{{ route('perusahaan.profile') }}">
+                                                    <a class="navbar-brand nav-underline"
+                                                        href="{{ route('pencarikerja.profile.perusahaan') }}">
                                                         Tentang Perusahaan
                                                     </a>
                                                 </li>
-                                            @elseif (Auth::guard('admin')->user())
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.profile-perusahaan') ? 'active' : '' }}"
-                                                        href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">
-                                                        Tentang Perusahaan
-                                                    </a>
-                                                </li>
-                                            @endif
 
                                             {{-- Menu kedua --}}
-                                            @if (Auth::guard('perusahaanmitra')->user())
                                                 <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}"
-                                                        href="{{ route('perusahaan.loker.profile') }}">
+                                                    <a class="navbar-brand nav-underline "
+                                                        href="{{ route('pencarikerja.loker.profile.perusahaan') }}">
                                                         Lowongan Kerja
                                                     </a>
                                                 </li>
-                                            @elseif (Auth::guard('admin')->user())
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}"
-                                                        href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
-                                                        Lowongan Kerja
-                                                    </a>
-                                                </li>
-                                            @endif
-
                                         </ul>
-
                                     </div>
                             </nav>
                         </div>
-
                     </div>
                 </div>
                 {{-- DETAIL PERUSAHAAN --}}
