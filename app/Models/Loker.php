@@ -35,4 +35,17 @@ class Loker extends Model
     {
         return $this->hasMany(Apply::class, 'id_loker');
     }
+
+    protected $casts = [
+        'tanggal_mulai_loker' => 'date',
+        'tanggal_berakhir_loker' => 'date',
+    ];
+
+    public function getStatusAttribute()
+    {
+        return now()->between(
+            $this->tanggal_mulai_loker,
+            $this->tanggal_berakhir_loker
+        ) ? 'open' : 'close';
+    }
 }

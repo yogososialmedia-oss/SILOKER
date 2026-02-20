@@ -33,7 +33,7 @@ class ProfilePerusahaanController extends Controller
         $info_perusahaan = Auth::guard('perusahaanmitra')->user();
         abort_if(!$info_perusahaan, 403);
 
-        $loker = $info_perusahaan->loker()->where('id', $id)->first();
+        $loker = $info_perusahaan->loker()->withCount('apply')->where('id', $id)->first();
         abort_if(!$loker, 404);
 
         $sessionKey = 'loker_viewed_' . $loker->id;

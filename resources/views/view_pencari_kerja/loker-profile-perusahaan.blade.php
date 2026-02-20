@@ -12,9 +12,13 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $info_perusahaan->nama_perusahaan ?? '-' }}
+                            </h4>
                         </div>
 
                         <div class="bg-white p-4">
@@ -29,20 +33,16 @@
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                                             {{-- Tentang --}}
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline"
-                                                        href="{{ route('pencarikerja.profile.perusahaan') }}">
-                                                        Tentang Perusahaan
-                                                    </a>
-                                                </li>
+                                            <a class="navbar-brand nav-underline"
+                                            href="{{ $info_perusahaan ? route('pencarikerja.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                            Tentang Perusahaan
+                                            </a>
 
-                                            {{-- Menu kedua --}}
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline "
-                                                        href="{{ route('pencarikerja.loker.profile.perusahaan') }}">
-                                                        Lowongan Kerja
-                                                    </a>
-                                                </li>
+                                            {{-- Lowongan --}}
+                                            <a class="navbar-brand nav-underline"
+                                            href="{{ $info_perusahaan ? route('pencarikerja.loker.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                            Lowongan Kerja
+                                            </a>
                                         </ul>
                                     </div>
                             </nav>
@@ -50,63 +50,54 @@
 
                     </div>
                 </div>
+                    @foreach($lokerPerusahaan as $item)
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
-                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan') }}" class="stretched-link"></a>
+                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan', $item->id) }}" class="stretched-link"></a>
                             <div class="card-body position-relative">
-                                <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
+                                <p class="text-end fs-9 mb-2">
+                                    {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }} -
+                                    {{ \Carbon\Carbon::parse($item->tanggal_berakhir_loker)->format('d M Y') }}
+                                </p>
+
                                 <div class="d-flex align-items-start gap-3 mb-3">
-                                    <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                        style="width:60px; height:60px;" class="img-fluid rounded" alt="">
+                                    <img src="{{ $info_perusahaan->logo 
+                                    ? asset('storage/logo_perusahaan/' . $info_perusahaan->logo) 
+                                    : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                                    style="width:60px; height:60px;" class="img-fluid rounded" alt="">
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 d-flex align-items-center gap-2">
-                                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan') }}"
-                                                class="fw-bold text-dark text-decoration-none position-relative z-3">
-                                                DEYSTORY
-                                            </a>
-                                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan') }}"
-                                                class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
-                                                style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
+                                            <a href="#" class="fw-bold text-dark text-decoration-none">{{ $info_perusahaan->nama_perusahaan }}</a>
                                         </h6>
-                                        <p class="mb-1 small">Job Opportunity</p>
+                                        <p class="mb-1 small">{{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}</p>
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                             <i class="bx bx-location-plus"></i>
-                                            <span>Jakarta</span>
+                                            <span>{{ $item->kabupaten }}</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-9">
-                                        <h5 class="mb-3 position-relative">Administrasi</h5>
-                                    </div>
-                                    <div class="col-3">
-                                        <a href="{{ route('loker', ['id' => 1]) }}"
-                                            class="badge bg-primary position-relative ">
-                                            Open
-                                        </a>
-                                        <a href="{{ route('loker', ['id' => 1]) }}"
-                                            class="badge bg-danger position-relative ">
-                                            Close
-                                        </a>
+
+                                <div class="d-flex align-items-center mb-3">
+                                    <h5 class="mb-0">{{ $item->jabatan }}</h5>
+                                    <div class="ms-auto pe-5 me-2">
+                                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
+                                            <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
+                                        @else
+                                            <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <p class="d-flex align-items-start gap-2 mb-1">
-                                            <i class="bx bx-buildings"></i>
-                                            <span>Work From Office</span>
-                                        </p>
-                                    </div>
-                                    <div class=" col-md-12 ">
-                                        <p class="d-flex align-items-start gap-2 mb-1">
-                                            <i class="bx bx-book-reader"></i>
-                                            <span>Minimal Pendidikan S1</span>
-                                        </p>
-                                    </div>
-                                </div>
+
+                                <p class="d-flex align-items-start gap-2 mb-1">
+                                    <i class="bx bx-buildings"></i> <span>{{ $item->model_kerja }}</span>
+                                </p>
+                                <p class="d-flex align-items-start gap-2 mb-1">
+                                    <i class="bx bx-book-reader"></i> <span>{{ $item->minimal_pendidikan }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
             </div>
         </div>
 

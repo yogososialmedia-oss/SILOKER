@@ -18,7 +18,7 @@ class DaftarLokerController extends Controller
     }
     public function showTampilanLoker($id)
     {
-        $loker = Loker::with('perusahaanMitra')->findOrFail($id);
+        $loker = Loker::with('perusahaanMitra')->withCount('apply')->findOrFail($id);
 
         $info_perusahaan = $loker->perusahaanMitra; // <-- tambahkan ini
 

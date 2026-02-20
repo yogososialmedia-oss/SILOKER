@@ -39,66 +39,73 @@
             <div class="row g-4">
 
                 <!-- CARD -->
-                <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
-                    <div class="card h-100 loker-card-beranda position-relative">
-                        <a href="{{ route('tampilan-loker-pencari-kerja') }}" class="stretched-link"></a>
-                        <div class="card-body position-relative">
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-                            <div class="d-flex align-items-start gap-3 mb-3">
-                                <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                    style="width:60px; height:60px;" class="img-fluid rounded" alt="">
-                                <div class="flex-grow-1">
+                @forelse($lokers as $loker)
+                    <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
+                        <div class="card h-100 loker-card-beranda position-relative">
+                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan', $loker->id) }}" 
+                                class="stretched-link"></a>
 
-                                    <h6 class="mb-1 d-flex align-items-center gap-2">
-                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
-                                            class="fw-bold text-dark text-decoration-none position-relative z-3">
-                                            DEYSTORY
-                                        </a>
-                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
-                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-3"
-                                            style="width:16px; height:16px; font-size:10px; line-height:1;">i</a>
-                                    </h6>
+                            <div class="card-body position-relative">
 
-                                    <p class="mb-1 small">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
+                                {{-- Tanggal --}}
+                                <p class="text-end fs-9 mb-2">
+                                    {{ $loker->tanggal_mulai_loker->format('d M Y') }}
+                                    -
+                                    {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
+                                </p>
 
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5 class="mb-3 position-relative">Administrasi</h5>
+                                {{-- Perusahaan --}}
+                                <div class="d-flex align-items-start gap-3 mb-3">
+                                    <img src="{{ asset('storage/'.$loker->perusahaanMitra->logo_perusahaan) }}"
+                                        style="width:60px; height:60px;"
+                                        class="img-fluid rounded">
+
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">
+                                            {{ $loker->perusahaanMitra->nama_perusahaan }}
+                                        </h6>
+
+                                        <p class="mb-1 small text-capitalize">
+                                            {{ str_replace('_',' ', $loker->tipe_loker) }}
+                                        </p>
+
+                                        <p class="small text-muted mb-0">
+                                            <i class="bx bx-location-plus"></i>
+                                            {{ $loker->kabupaten }}, {{ $loker->provinsi }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-3">
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-primary position-relative ">
-                                        Open
-                                    </a>
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-danger position-relative ">
-                                        Close
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class=" col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
+
+                                {{-- Jabatan --}}
+                                <h5 class="mb-3">{{ $loker->jabatan }}</h5>
+
+                                {{-- Model Kerja --}}
+                                <p class="small mb-2">
+                                    <i class="bx bx-buildings"></i>
+                                    {{ $loker->model_kerja }}
+                                </p>
+
+                                {{-- Minimal Pendidikan --}}
+                                <p class="small mb-2">
+                                    <i class="bx bx-book-reader"></i>
+                                    {{ $loker->minimal_pendidikan }}
+                                </p>
+
+                                {{-- Status --}}
+                                @if($loker->status == 'open')
+                                    <span class="badge bg-primary">Open</span>
+                                @else
+                                    <span class="badge bg-danger">Close</span>
+                                @endif
+
                             </div>
                         </div>
                     </div>
-                </div>
+                    @empty
+                    <div class="text-center">
+                        <p class="text-muted">Belum ada lowongan tersedia.</p>
+                    </div>
+                    @endforelse
             </div>
 
             <div class="text-center mt-5">

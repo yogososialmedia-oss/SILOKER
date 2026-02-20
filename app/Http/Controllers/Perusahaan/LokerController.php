@@ -43,7 +43,7 @@ class LokerController extends Controller
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
             'tanggal_berakhir_loker' => 'required|date|after_or_equal:tanggal_mulai_loker',
-            'poster_loker' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'poster_loker' => 'image|mimes:jpeg,png,jpg|max:2048',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
             'kecamatan' => 'required|string',
@@ -67,7 +67,7 @@ class LokerController extends Controller
             'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
             'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
 
-            'poster_loker.required' => 'Poster loker wajib diupload.',
+            
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Poster harus format JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',

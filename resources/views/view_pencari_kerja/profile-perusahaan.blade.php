@@ -33,26 +33,27 @@
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                                             {{-- Tentang --}}
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline"
-                                                        href="{{ route('pencarikerja.profile.perusahaan') }}">
-                                                        Tentang Perusahaan
-                                                    </a>
-                                                </li>
+                                            <li class="nav-item">
+                                                <a class="navbar-brand nav-underline"
+                                                    href="{{ $info_perusahaan ? route('pencarikerja.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                                    Tentang Perusahaan
+                                                </a>
+                                            </li>
 
                                             {{-- Menu kedua --}}
-                                                <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline "
-                                                        href="{{ route('pencarikerja.loker.profile.perusahaan') }}">
-                                                        Lowongan Kerja
-                                                    </a>
-                                                </li>
+                                            <li class="nav-item">
+                                                <a class="navbar-brand nav-underline"
+                                                    href="{{ $info_perusahaan ? route('pencarikerja.loker.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                                    Lowongan Kerja
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                             </nav>
                         </div>
                     </div>
                 </div>
+
                 {{-- DETAIL PERUSAHAAN --}}
                 <div class="col-12 mb-5">
                     <div class="card">
@@ -67,7 +68,7 @@
                             <p>{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
 
                             @if(!empty($info_perusahaan->alamat_perusahaan))
-                                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat) }}"
+                                <a href="https://www.google.com/maps/search/{{ urlencode($info_perusahaan->alamat_perusahaan) }}"
                                     target="_blank" class="d-flex align-items-center gap-1 mb-3">
                                     <i class="bx bx-current-location"></i>
                                     <span>View on Google Maps</span>

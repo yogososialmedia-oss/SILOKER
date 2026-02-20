@@ -45,8 +45,8 @@ class RegistrasiPencariKerjaController extends Controller
             ],
             'alamat_pencari_kerja' => 'required',
             'no_telp_pencari_kerja' => 'required',
-            'cv' => 'nullable|mimes:pdf',
-            'foto_pencari_kerja' => 'nullable|image|mimes:jpg,jpeg,png',
+            'cv' => 'nullable|mimes:pdf|max:2048',
+            'foto_pencari_kerja' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ],
         [
             'nama_pencari_kerja.required' => 'Nama Lengkap wajib diisi.',

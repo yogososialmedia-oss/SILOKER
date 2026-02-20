@@ -34,4 +34,9 @@ class Apply extends Model
     {
         return $this->belongsTo(Loker::class, 'id_loker');
     }
+    protected $casts = [
+        'tanggal_apply' => 'datetime', // ini wajib
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

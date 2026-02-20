@@ -7,37 +7,40 @@
                         <div class="card-header">
                             <h5 class="mb-0 fw-bold text-primary">FORM APPLY</h5>
                         </div>
-                        <form>
+                        <form method="POST" 
+                        action="{{ route('pencarikerja.loker.apply.store', $loker) }}" 
+                        enctype="multipart/form-data">
+                        @csrf
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input name="NamaPencariKerja" class="form-control"
+                                        <input name="nama" class="form-control"
                                             placeholder="Tambahkan nama lengkap anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa stikom)</label>
-                                        <input name="Nim" class="form-control"
+                                        <input name="nim" class="form-control"
                                             placeholder="Tambahkan NIM (jika mahasiswa stikom)">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Linked.id</label>
-                                        <input name="LinkedIn" class="form-control"
+                                        <input name="linkedin" class="form-control"
                                             placeholder="Tambahkan link profile linked.id anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Upload CV</label>
-                                        <input name="UploadCv" type="file" class="form-control">
+                                        <input name="cv" type="file" class="form-control">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" id="defaultSelect" class="form-select">
-                                            <option>Pilih Pendidikan Terakhir</option>
+                                            <option value="">Pilih Pendidikan Terakhir</option>
                                             <option value="Pendidikan Terakhir SMA/Sederajat">Pendidikan Terakhir SMA/Sederajat</option>
                                             <option value="Pendidikan Terakhir D1">Pendidikan Terakhir D1</option>
                                             <option value="Pendidikan Terakhir D2">Pendidikan Terakhir D2</option>
@@ -49,19 +52,19 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="Email" class="form-control"
+                                        <input name="email" class="form-control"
                                             placeholder="Tambahkan alamat email anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="NoTelp" class="form-control"
+                                        <input name="no_telp" class="form-control"
                                             placeholder="Tambahkan nomor telepon anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="Alamat" type="text" class="form-control"
+                                        <input name="alamat" class="form-control"
                                             placeholder="Tambahkan alamat lengkap anda">
                                         <div class="form-text"></div>
                                     </div>

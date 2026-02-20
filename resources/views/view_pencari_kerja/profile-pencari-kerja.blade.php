@@ -1,10 +1,16 @@
 <x-pencari_kerja.layout>
     <!-- Content wrapper -->
     <div class="content-wrapper-user">
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12 mb-5">
+                    {{-- Pesan sukses --}}
+                    @if(session('success'))
+                    <div id="autoAlert" class="alert alert-success alert-dismissible show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <!-- Thumbnail / Banner -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
@@ -12,11 +18,15 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                            <img src="{{ $user->foto_pencari_kerja 
+                                ? asset('storage/profile/'.$user->foto_pencari_kerja)
+                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">wqr</h4>
-                            <p>220030087</p>
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $user->nama_pencari_kerja }}
+                            </h4>
+                            <p>{{ $user->nim ?? '-' }}</p>
                         </div>
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
@@ -47,8 +57,6 @@
                                                     Edit Profile
                                                 </a>
                                             </li>
-
-                                            <!-- LOGOUT -->
                                             <li class="nav-item">
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
@@ -63,35 +71,39 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
                             <p class="mb-2 text-muted">
-                                PT. Intim Harmonis Foods Industri, better known as INAFOOD specializes in
-                                manufacturing biscuits and wafers. Our company started production in 1997
-                                with many various innovations and development intended to create superior
-                                quality products according to consumer choice. By holding one of the
-                                principles that quality is our customer satisfaction, INAFOOD is committed
-                                to quality products to be better known as multinational company
+                                {{ $user->deskripsi_diri ?? '-' }}
                             </p>
                             <h6 class="fw-bold mb-1">Alamat</h6>
-                            <p>Jl.apokaden</p>
+                            <p>{{ $user->alamat_pencari_kerja ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
-                            <a href="#" class="d-block mb-4 text-primary">
-                                Klik di sini untuk melihat profile Linked.In saya
+                            @if($user->linkedin)
+                            <a href="{{ $user->linkedin }}" target="_blank" class="d-block mb-4 text-primary">
+                                {{ $user->linkedin }}
                             </a>
+                            @else
+                            <p>-</p>
+                            @endif
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
-                            <p>S1</p>
+                            <p>{{ $user->pendidikan_terakhir ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Email</h6>
-                            <p class="mb-4">betutu@gmail.com</p>
+                            <p class="mb-4">{{ $user->email_pencari_kerja }}</p>
                             <h6 class="fw-bold mb-1">No.Telp</h6>
-                            <p>0897868365463</p>
+                            <p>{{ $user->no_telp_pencari_kerja ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
-                            <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal"
-                                data-bs-target="#modalCV">
+                            @if($user->cv)
+                            <button type="button" class="btn btn-outline-primary btn-sm mb-4"
+                                data-bs-toggle="modal" data-bs-target="#modalCV">
                                 Lihat CV
                             </button>
+                            @else
+                            <p class="text-muted">Belum upload CV</p>
+                            @endif
                             <!-- MODAL CV -->
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel"
                                 aria-hidden="true">
@@ -105,8 +117,8 @@
                                         </div>
 
                                         <div class="modal-body p-0">
-                                            <iframe src="{{ asset('storage/cv/cv.pdf') }}" width="100%" height="600px"
-                                                style="border:none;">
+                                            <iframe src="{{ asset('storage/cv/'.$user->cv) }}"
+                                                width="100%" height="600px" style="border:none;">
                                             </iframe>
                                         </div>
 
@@ -120,22 +132,27 @@
             </div>
         </div>
 
-        <!-- / Content -->
-
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
-                <div
-                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                     <div class="mb-2 mb-md-0">
                         ©2026 Yogo & Wahyu
                     </div>
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
+
+        <script>
+        setTimeout(() => {
+            const alert = document.getElementById('autoAlert');
+            if(alert){
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 3000);
+        </script>
 
         <div class="content-backdrop fade"></div>
     </div>
-    <!-- Content wrapper -->
 </x-pencari_kerja.layout>

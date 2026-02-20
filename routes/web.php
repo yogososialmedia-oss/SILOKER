@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])->name('pencarikerja.loker.index');
 Route::get('/pencarikerja/beranda', [PencariKerjaLokerController::class, 'showBeranda'])->name('pencarikerja.beranda');
+
 Route::get('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'index'])->name('perusahaan.registrasi');
 Route::post('/perusahaan/registrasi', [RegistrasiPerusahaanController::class, 'store'])->name('perusahaan.registrasi.post');
 Route::get('/registrasi-pencari-kerja', [RegistrasiPencariKerjaController::class, 'index'])->name('pencarikerja.register');
@@ -72,10 +73,14 @@ Route::middleware(['isAdmin'])->group(function () {
 Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile', [ProfileController::class,'index'])->name('pencarikerja.profile');
     Route::get('/pencarikerja/profile/edit', [ProfileController::class,'showEditProfilePencariKerja'])->name('pencarikerja.profile.edit');
+    Route::put('/pencarikerja/profile/update/{id}', [ProfileController::class, 'update'])->name('pencarikerja.profile.update');
     Route::get('/pencarikerja/profile/history-apply', [ProfileController::class,'showHistoryApply'])->name('pencarikerja.history-apply');
-    Route::get('/pencarikerja/profile/profile-perusahaan', [ProfileController::class,'showProfilePerusahaanpencariKerja'])->name('pencarikerja.profile.perusahaan');
-    Route::get('/pencarikerja/profile/loker-profile-perusahaan', [ProfileController::class,'showLokerPerusahaanpencariKerja'])->name('pencarikerja.loker.profile.perusahaan');
+    Route::get('/pencarikerja/profile/profile-perusahaan/{id}', [ProfileController::class,'showProfilePerusahaanpencariKerja'])->name('pencarikerja.profile.perusahaan');
+    Route::get('/pencarikerja/profile/loker-profile-perusahaan/{id}', [ProfileController::class,'showLokerPerusahaanpencariKerja'])->name('pencarikerja.loker.profile.perusahaan');
     Route::get('/pencarikerja/profile/tampilan-loker-profile-perusahaan', [ProfileController::class,'showTampilanLokerPerusahaanpencariKerja'])->name('pencarikerja.tampilan.loker.profile.perusahaan');
+    Route::get('/pencarikerja/loker/{loker}',[PencariKerjaLokerController::class, 'show'])->name('pencarikerja.loker.show');
+    Route::get('/pencarikerja/loker/{loker}/apply', [PencariKerjaLokerController::class, 'applyForm'])->name('pencarikerja.loker.apply.form');
+    Route::post('/pencarikerja/loker/{loker}/apply', [PencariKerjaLokerController::class, 'applyStore'])->name('pencarikerja.loker.apply.store');
 });
 
 
@@ -129,6 +134,5 @@ Route::view('/test23','view_admin.daftar-loker')->name('daftar-loker');
 Route::view('/test24','view_pencari_kerja.beranda')->name('beranda');
 Route::view('/test25','view_pencari_kerja.profile-perusahaan-pencari-kerja')->name('profile-perusahaan-pencari-kerja');
 Route::view('/test26','view_pencari_kerja.tampilan-loker-pencari-kerja')->name('tampilan-loker-pencari-kerja');
-Route::view('/test27','view_pencari_kerja.apply-loker')->name('apply-loker');
 Route::view('/test27','view_pencari_kerja.apply-loker')->name('apply-loker');
 Route::view('/test28','view_pencari_kerja.loker-profile-perusahaan')->name('loker-profile-perusahaan');

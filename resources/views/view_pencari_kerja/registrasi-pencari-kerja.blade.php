@@ -13,6 +13,12 @@
 
 
                         <div class="card-body">
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            @endif
 
                             <form action="{{ route('pencarikerja.register.store') }}" method="POST"
                                 enctype="multipart/form-data">
@@ -119,7 +125,9 @@
                                     {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_pencari_kerja" value="{{ old('email_pencari_kerja') }}"
+                                        <input type="email"
+                                            name="email_pencari_kerja"
+                                            value="{{ old('email_pencari_kerja') }}"
                                             class="form-control @error('email_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan email anda">
                                         @error('email_pencari_kerja')

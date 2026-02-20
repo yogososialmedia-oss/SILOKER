@@ -68,6 +68,7 @@
                     </select>
                 </div>
             </div>
+            <form method="GET" action="{{ route('pencarikerja.loker.index') }}">
             <div class="row mb-4">
                 <div class="col-12 text-end">
                     <button type="submit" class="btn btn-primary">
@@ -75,96 +76,75 @@
                     </button>
                 </div>
             </div>
+            </form>
             <!-- LIST LOKER -->
             <div class="row">
+                @forelse($lokers as $loker)
+                    <div class="col-lg-6 mb-5">
+                        <div class="card h-100 loker-card-beranda position-relative">
 
-                <!-- CARD LOKER -->
-                <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
-                    <div class="card h-100 loker-card-beranda position-relative">
-                        <a href="{{ route('tampilan-loker-pencari-kerja') }}" class="stretched-link"></a>
-                        <div class="card-body position-relative">
-                            <p class="text-end fs-9 mb-2">11 Jan 2026 - 21 Jan 2026</p>
-                            <div class="d-flex align-items-start gap-3 mb-3">
-                                <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                    style="width:60px; height:60px;" class="img-fluid rounded" alt="">
-                                <div class="flex-grow-1">
+                            <a href="{{ route('pencarikerja.loker.show', $loker->id) }}" 
+                            class="stretched-link"></a>
 
-                                    <h6 class="mb-1 d-flex align-items-center gap-2">
-                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
-                                            class="fw-bold text-dark text-decoration-none position-relative z-3">
-                                            DEYSTORY
-                                        </a>
-                                        <a href="{{ route('profile-perusahaan-pencari-kerja') }}"
-                                            class="badge rounded-circle bg-primary  d-flex align-items-center justify-content-center position-relative z-3"
-                                            style="width:16px; height:16px; font-size:10px; ">i</a>
-                                    </h6>
+                            <div class="card-body position-relative">
 
-                                    <p class="mb-1 small">Job Opportunity</p>
-                                    <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>Jakarta</span>
-                                    </p>
-                                </div>
-                            </div>
+                                <p class="text-end fs-9 mb-2">
+                                    {{ $loker->tanggal_mulai_loker->format('d M Y') }}
+                                    -
+                                    {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
+                                </p>
 
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5 class="mb-3 position-relative">Administrasi</h5>
+                                <div class="d-flex align-items-start gap-3 mb-3">
+                                    <img src="{{ asset('storage/'.$loker->perusahaanMitra->logo_perusahaan) }}"
+                                        style="width:60px; height:60px;"
+                                        class="img-fluid rounded">
+
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">
+                                            {{ $loker->perusahaanMitra->nama_perusahaan }}
+                                        </h6>
+
+                                        <p class="mb-1 small">
+                                            {{ str_replace('_',' ', $loker->tipe_loker) }}
+                                        </p>
+
+                                        <p class="small text-muted mb-0">
+                                            <i class="bx bx-location-plus"></i>
+                                            {{ $loker->kabupaten }}, {{ $loker->provinsi }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-3">
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-primary position-relative ">
-                                        Open
-                                    </a>
-                                    <a href="{{ route('tampilan-loker-pencari-kerja', ['id' => 1]) }}"
-                                        class="badge bg-danger position-relative ">
-                                        Close
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-buildings"></i>
-                                        <span>Work From Office</span>
-                                    </p>
-                                </div>
-                                <div class=" col-md-12 ">
-                                    <p class="d-flex align-items-start gap-2 mb-1">
-                                        <i class="bx bx-book-reader"></i>
-                                        <span>Minimal Pendidikan S1</span>
-                                    </p>
-                                </div>
+
+                                <h5 class="mb-3">{{ $loker->jabatan }}</h5>
+
+                                <p class="small mb-2">
+                                    <i class="bx bx-buildings"></i>
+                                    {{ $loker->model_kerja }}
+                                </p>
+
+                                <p class="small mb-2">
+                                    <i class="bx bx-book-reader"></i>
+                                    {{ $loker->minimal_pendidikan }}
+                                </p>
+
+                                @if($loker->status === 'open')
+                                    <span class="badge bg-primary">Open</span>
+                                @else
+                                    <span class="badge bg-danger">Close</span>
+                                @endif
+
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <div class="text-center">
+                        <p class="text-muted">Belum ada lowongan tersedia.</p>
+                    </div>
+                @endforelse
             </div>
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item first disabled">
-                        <a class="page-link" href="#"><i class="icon-base bx bx-chevrons-left icon-sm"></i></a>
-                    </li>
-                    <li class="page-item prev disabled">
-                        <a class="page-link" href="#"><i class="icon-base bx bx-chevron-left icon-sm"></i></a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item next">
-                        <a class="page-link" href="#"><i class="icon-base bx bx-chevron-right icon-sm"></i></a>
-                    </li>
-                    <li class="page-item last">
-                        <a class="page-link" href="#"><i class="icon-base bx bx-chevrons-right icon-sm"></i></a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="mt-4">
+                {{ $lokers->links() }}
+            </div>
         </div>
         <!-- /CONTENT -->
 

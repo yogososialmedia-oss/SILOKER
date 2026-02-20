@@ -181,9 +181,13 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('pencarikerja')->logout();
+        Auth::guard('perusahaanmitra')->logout();
+        Auth::guard('admin')->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('pencarikerja.loker.index');
     }
 }
