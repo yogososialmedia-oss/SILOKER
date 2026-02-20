@@ -50,17 +50,18 @@ class LokerController extends Controller
      * Display the specified resource.
      */
     public function show(Loker $loker)
-    {
-        $loker->load('perusahaanMitra');
+{
+    $loker->load(['perusahaanMitra'])
+        ->loadCount('apply');
 
-        $loker->increment('tayangan');
+    $loker->increment('tayangan');
 
-        $isOpen = now()->between(
-            $loker->tanggal_mulai_loker,
-            $loker->tanggal_berakhir_loker
-        );
+    $isOpen = now()->between(
+        $loker->tanggal_mulai_loker,
+        $loker->tanggal_berakhir_loker
+    );
 
-        return view('view_pencari_kerja.tampilan-loker-beranda', compact('loker', 'isOpen'));
+        return view('view_pencari_kerja.tampilan-loker-pencari-kerja', compact('loker', 'isOpen'));
     }
 
     /**

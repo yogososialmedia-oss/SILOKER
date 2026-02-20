@@ -79,7 +79,7 @@ Route::middleware(['isPencariKerja'])->group(function () {
     Route::get('/pencarikerja/profile/loker-profile-perusahaan/{id}', [ProfileController::class,'showLokerPerusahaanpencariKerja'])->name('pencarikerja.loker.profile.perusahaan');
     Route::get('/pencarikerja/profile/tampilan-loker-profile-perusahaan', [ProfileController::class,'showTampilanLokerPerusahaanpencariKerja'])->name('pencarikerja.tampilan.loker.profile.perusahaan');
     Route::get('/pencarikerja/loker/{loker}',[PencariKerjaLokerController::class, 'show'])->name('pencarikerja.loker.show');
-    Route::get('/pencarikerja/loker/{loker}/apply', [PencariKerjaLokerController::class, 'applyForm'])->name('pencarikerja.loker.apply.form');
+    Route::get('/loker/{loker}/apply',[PencariKerjaLokerController::class, 'applyForm'])->name('pencarikerja.loker.apply.form');
     Route::post('/pencarikerja/loker/{loker}/apply', [PencariKerjaLokerController::class, 'applyStore'])->name('pencarikerja.loker.apply.store');
 });
 

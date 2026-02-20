@@ -3,7 +3,7 @@
 
         <!-- CONTENT -->
         <div class="container-xxl flex-grow-1 container-p-y">
-
+        <form method="GET" action="{{ route('pencarikerja.loker.index') }}">
             <!-- FILTER FORM -->
             <div class="row mb-4">
 
@@ -68,7 +68,6 @@
                     </select>
                 </div>
             </div>
-            <form method="GET" action="{{ route('pencarikerja.loker.index') }}">
             <div class="row mb-4">
                 <div class="col-12 text-end">
                     <button type="submit" class="btn btn-primary">
@@ -83,7 +82,7 @@
                     <div class="col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
 
-                            <a href="{{ route('pencarikerja.loker.show', $loker->id) }}" 
+                            <a href="{{ route('pencarikerja.loker.show', $loker)}}" 
                             class="stretched-link"></a>
 
                             <div class="card-body position-relative">
@@ -95,7 +94,7 @@
                                 </p>
 
                                 <div class="d-flex align-items-start gap-3 mb-3">
-                                    <img src="{{ asset('storage/'.$loker->perusahaanMitra->logo_perusahaan) }}"
+                                    <img src="{{ $loker->perusahaanMitra->logo_url }}"
                                         style="width:60px; height:60px;"
                                         class="img-fluid rounded">
 

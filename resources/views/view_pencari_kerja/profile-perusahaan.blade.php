@@ -12,10 +12,9 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                            <img src="{{ $info_perusahaan->logo_url }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
                             </h4>
