@@ -49,10 +49,10 @@
                                             <span class="badge bg-label-warning me-1">Pending</span>
                                         @elseif ($data_apply->status == 'interview')
                                             <span class="badge bg-label-info me-1">Interview</span>
-                                        @elseif ($data_apply->status == 'tidak diterima')
-                                            <span class="badge bg-label-danger me-1">Tidak Diterima</span>
                                         @elseif ($data_apply->status == 'diterima')
                                             <span class="badge bg-label-success me-1">Diterima</span>
+                                        @elseif ($data_apply->status == 'ditolak')
+                                            <span class="badge bg-label-danger me-1">Ditolak</span>
                                         @endif
                                     </td>
                                     <td>
@@ -66,9 +66,12 @@
                                                         class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
                                                 <a class="dropdown-item" href="{{ route('perusahaan.detail-apply', $data_apply->id) }}"><i
                                                         class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
-                                                <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                <button type="button"
+                                                    class="dropdown-item btn-update-status"
+                                                    data-id="{{ $data_apply->id }}"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
+                                                    class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
                                             </div>
                                         </div>
                                     </td>
@@ -89,16 +92,20 @@
                         <h5 class="modal-title fw-bold" id="modalCenterTitle">Update Status</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form method="POST" id="formUpdateStatus">
+                    @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-6">
                                 <label for="exampleFormControlSelect1" class="form-label">Pilih status</label>
-                                <select class="form-select" id="exampleFormControlSelect1"
+                                <select class="form-select"
+                                    id="exampleFormControlSelect1"
+                                    name="status"
                                     aria-label="Default select example">
                                     <option selected>Pilih Status</option>
-                                    <option value="1">Interview</option>
-                                    <option value="2">Tidak Diterima</option>
-                                    <option value="3">Diterima</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="ditolak">Tidak Diterima</option>
+                                    <option value="diterima">Diterima</option>
                                 </select>
                             </div>
                         </div>
@@ -108,34 +115,42 @@
                         </div>
                         <div class="col mb-6">
                             <label for="exampleFormControlTextarea1" class="form-label">Tambahkan pesan</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" name="pesan" rows="3"></textarea>
                         </div>
                         <div class="row g-6 extra-form">
                             <div class="col mb-1">
                                 <label class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" />
+                                <input type="date" name="tanggal_interview" class="form-control" min="{{ date('Y-m-d') }}"/>
                             </div>
                             <div class="col mb-1">
                                 <label class="form-label">Waktu</label>
-                                <input type="time" class="form-control" />
+                                <input type="time" name="waktu_interview" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="row g-6 extra-form">
                             <div class="col mb-1">
                                 <label class="form-label">No.Telp</label>
-                                <input type="text" class="form-control" placeholder="Tambahkan nomor telepon" />
+                                <input type="text"
+                                    name="no_telp_perusahaan"
+                                    class="form-control"
+                                    value="{{ Auth::guard('perusahaanmitra')->user()->no_telp_perusahaan }}"
+                                />
                             </div>
                             <div class="col mb-1">
                                 <label class="form-label">Alamat</label>
-                                <input type="text" class="form-control" placeholder="Tambahkan alamat" />
+                                <input type="text"
+                                    name="alamat_perusahaan"
+                                    class="form-control"
+                                    value="{{ Auth::guard('perusahaanmitra')->user()->alamat_perusahaan }}"
+                                />
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Update Status</button>
+                        <button type="submit" class="btn btn-primary">Update Status</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -158,17 +173,16 @@
     <!-- Content wrapper -->
 
     @push('scripts')
-        <script>
-            document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
-                const extraForms = document.querySelectorAll('.extra-form');
-                const selectedValue = this.value;
+    <script>
+        const buttons = document.querySelectorAll('.btn-update-status');
+        const form = document.getElementById('formUpdateStatus');
 
-                if (selectedValue == "2") { // Tidak Diterima
-                    extraForms.forEach(el => el.style.display = 'none');
-                } else {
-                    extraForms.forEach(el => el.style.display = 'flex');
-                }
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                form.action = `/perusahaan/apply/update-status/${id}`;
             });
-        </script>
+        });
+    </script>
     @endpush
 </x-admin_perusahaan.layout>

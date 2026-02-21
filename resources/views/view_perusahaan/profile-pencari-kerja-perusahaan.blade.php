@@ -12,11 +12,19 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                            <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
+                                    ? asset('storage/' . $apply->pencariKerja->foto_pencari_kerja) 
+                                    : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
-                                style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">wqr</h4>
-                            <p>220030087</p>
+                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $apply->pencariKerja->nama_pencari_kerja }}
+                            </h4>
+
+                            <p>
+                                {{ $apply->pencariKerja->nim ?? '-' }}
+                            </p>
                         </div>
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
@@ -49,26 +57,23 @@
                     <div class="card">
                         <div class="bg-white p-4">
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-2 text-muted">
-                                PT. Intim Harmonis Foods Industri, better known as INAFOOD specializes in
-                                manufacturing biscuits and wafers. Our company started production in 1997
-                                with many various innovations and development intended to create superior
-                                quality products according to consumer choice. By holding one of the
-                                principles that quality is our customer satisfaction, INAFOOD is committed
-                                to quality products to be better known as multinational company
-                            </p>
+                            <p class="mb-2 text-muted"> {{ $apply->pencariKerja->deskripsi_diri ?? 'Belum ada deskripsi diri' }} </p>
                             <h6 class="fw-bold mb-1">Alamat</h6>
-                            <p>Jl.apokaden</p>
+                            <p>{{ $apply->pencariKerja->alamat_pencari_kerja }}</p>
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
-                            <a href="#" class="d-block mb-4 text-primary">
-                                Klik di sini untuk melihat profile Linked.In saya
-                            </a>
+                            @if($apply->pencariKerja->linkedin)
+                                <a href="{{ $apply->pencariKerja->linkedin }}" target="_blank" class="d-block mb-4 text-primary">
+                                    Klik di sini untuk melihat profile LinkedIn saya
+                                </a>
+                            @else
+                                <p class="text-muted">Belum menambahkan LinkedIn</p>
+                            @endif
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
-                            <p>S1</p>
+                            <p>{{ $apply->pencariKerja->pendidikan_terakhir ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Email</h6>
-                            <p class="mb-4">betutu@gmail.com</p>
+                            <p class="mb-4">{{ $apply->pencariKerja->email_pencari_kerja }}</p>
                             <h6 class="fw-bold mb-1">No.Telp</h6>
-                            <p>0897868365463</p>
+                            <p>{{ $apply->pencariKerja->no_telp_pencari_kerja }}</p>
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal"
                                 data-bs-target="#modalCV">
@@ -87,9 +92,15 @@
                                         </div>
 
                                         <div class="modal-body p-0">
-                                            <iframe src="{{ asset('storage/cv/cv.pdf') }}" width="100%" height="600px"
-                                                style="border:none;">
-                                            </iframe>
+                                            @if($apply->pencariKerja->cv)
+                                                <iframe src="{{ asset('storage/' . $apply->pencariKerja->cv) }}"
+                                                    width="100%" height="600px" style="border:none;">
+                                                </iframe>
+                                            @else
+                                                <div class="p-4 text-center">
+                                                    <p class="text-muted">CV belum diupload</p>
+                                                </div>
+                                            @endif
                                         </div>
 
                                     </div>

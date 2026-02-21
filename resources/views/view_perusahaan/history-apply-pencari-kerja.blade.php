@@ -1,5 +1,7 @@
 <x-admin_perusahaan.layout>
-    <div class="content-wrapper">
+        <!-- Content wrapper -->
+<div class="content-wrapper">
+        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12 mb-5">
@@ -7,11 +9,19 @@
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top"
                             style="height:280px; object-fit:cover;">
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                            <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
+                                    ? asset('storage/' . $apply->pencariKerja->foto_pencari_kerja) 
+                                    : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
-                                style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">wqr</h4>
-                            <p>220030087</p>
+                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $apply->pencariKerja->nama_pencari_kerja }}
+                            </h4>
+
+                            <p>
+                                {{ $apply->pencariKerja->nim ?? '-' }}
+                            </p>
                         </div>
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
@@ -58,33 +68,59 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>11/01/2026</td>
-                                            <td>Cititex</td>
-                                            <td>Admin</td>
-                                            <td>Job Opportunity</td>
-                                            <td>
+                                    @forelse($history as $item)
+                                    <tr>
+                                        <td>{{ $item->created_at->format('d/m/Y') }}</td>
+
+                                        <td>
+                                            {{ $item->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                        </td>
+
+                                        <td>{{ $item->loker->jabatan ?? '-' }}</td>
+
+                                        <td>{{ $item->loker->tipe_loker ?? '-' }}</td>
+
+                                        <td>
+                                            @if($item->status == 'pending')
                                                 <span class="badge bg-label-warning me-1">Pending</span>
+                                            @elseif($item->status == 'interview')
                                                 <span class="badge bg-label-info me-1">Interview</span>
+                                            @elseif($item->status == 'diterima')
                                                 <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                            @elseif($item->status == 'ditolak')
                                                 <span class="badge bg-label-success me-1">Diterima</span>
-                                            </td>
-                                            <td>081237654376</td>
-                                            <td>cititex@gmail.com</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown"><i
-                                                            class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.profile') }}"><i
-                                                                class="icon-base bx bx-user-circle me-2"></i>Profile
-                                                            Perusahaan</a>
-                                                    </div>
+                                            @else
+                                                <span class="badge bg-label-secondary">-</span>
+                                            @endif
+                                        </td>
+
+                                        <td>{{ $item->loker->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
+
+                                        <td>{{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}</td>
+
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown">
+                                                    <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('perusahaan.profile', $item->loker->perusahaanMitra->id) }}">
+                                                        <i class="icon-base bx bx-user-circle me-2"></i>
+                                                        Profile Perusahaan
+                                                    </a>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center text-muted">
+                                            Belum ada history apply
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>

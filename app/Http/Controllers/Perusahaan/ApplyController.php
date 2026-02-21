@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Apply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\StatusApplyMail;
+use Illuminate\Support\Facades\Mail;
 
 class ApplyController extends Controller
 {
@@ -68,12 +70,51 @@ class ApplyController extends Controller
     {
         $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-        $apply = Apply::where('id', $id)
+        $apply = Apply::with(['pencariKerja', 'loker.perusahaanMitra'])
+            ->where('id', $id)
             ->whereHas('loker', function ($query) use ($perusahaanId) {
                 $query->where('id_perusahaan_mitra', $perusahaanId);
             })
             ->firstOrFail();
-        return view('view_perusahaan.history-apply-pencari-kerja', compact('apply'));
+
+        // ambil semua history apply dari pencari kerja tersebut
+        $history = Apply::with(['loker.perusahaanMitra'])
+            ->where('id_pencari_kerja', $apply->id_pencari_kerja)
+            ->latest()
+            ->get();
+
+        return view('view_perusahaan.history-apply-pencari-kerja', compact('apply', 'history'));
+    }
+    public function updateStatus(Request $request, $id)
+    {
+        $perusahaan = Auth::guard('perusahaanmitra')->user();
+
+        $apply = Apply::with('pencariKerja')
+            ->where('id', $id)
+            ->whereHas('loker', function ($query) use ($perusahaan) {
+                $query->where('id_perusahaan_mitra', $perusahaan->id);
+            })
+            ->firstOrFail();
+
+        $request->validate([
+            'status' => 'required',
+            'tanggal_interview' => 'nullable|date|after_or_equal:today'
+        ]);
+
+        $apply->update([
+            'status' => $request->status,
+            'pesan' => $request->pesan,
+            'tanggal_interview' => $request->tanggal_interview,
+            'waktu_interview' => $request->waktu_interview,
+            'no_telp_perusahaan' => $request->no_telp_perusahaan,
+            'alamat_perusahaan' => $request->alamat_perusahaan,
+        ]);
+
+        // KIRIM EMAIL
+        Mail::to($apply->pencariKerja->email_pencari_kerja)
+            ->send(new StatusApplyMail($apply));
+
+        return back()->with('success', 'Status berhasil diperbarui & email terkirim');
     }
     /**
      * Show the form for creating a new resource.
