@@ -32,44 +32,85 @@
 
                 <div class="col-md-3 mb-4">
                     <label class="form-label">Jabatan</label>
-                    <input type="text" class="form-control" placeholder="Masukan posisi jabatan">
+                    <input type="text" name="jabatan" value="{{ request('jabatan') }}" class="form-control"  placeholder="Masukan posisi jabatan">
                 </div>
 
                 <div class="col-md-3 mb-4">
                     <label class="form-label">Tipe Lowongan</label>
-                    <select class="form-select">
-                        <option selected>Pilih tipe</option>
-                        <option>Internship</option>
-                        <option>Job Opportunity</option>
+                    <select name="tipe_loker" class="form-select">
+                        <option value="">Pilih tipe</option>
+                        <option value="internship" 
+                            {{ request('tipe_loker') == 'internship' ? 'selected' : '' }}>
+                            Internship
+                        </option>
+                        <option value="job_opportunity" 
+                            {{ request('tipe_loker') == 'job_opportunity' ? 'selected' : '' }}>
+                            Job Opportunity
+                        </option>
                     </select>
                 </div>
 
                 <div class="col-md-3 mb-4">
                     <label class="form-label">Model Kerja</label>
-                    <select class="form-select">
-                        <option selected>Pilih model kerja</option>
-                        <option>Work From Office</option>
-                        <option>Work From Home</option>
-                        <option>Hybrid</option>
-                    </select>
+                    <select name="model_kerja" class="form-select">
+                    <option value="">Pilih model kerja</option>
+                    <option value="Work From Office"
+                        {{ request('model_kerja') == 'Work From Office' ? 'selected' : '' }}>
+                        Work From Office
+                    </option>
+                    <option value="Work From Home"
+                        {{ request('model_kerja') == 'Work From Home' ? 'selected' : '' }}>
+                        Work From Home
+                    </option>
+                    <option value="Hybrid"
+                        {{ request('model_kerja') == 'Hybrid' ? 'selected' : '' }}>
+                        Hybrid
+                    </option>
+                </select>
                 </div>
 
                 <div class="col-md-3 mb-4">
                     <label class="form-label">Minimal Pendidikan</label>
-                    <select class="form-select">
-                        <option selected>Pilih minimal pendidikan</option>
-                        <option>SMA / Sederajat</option>
-                        <option>Minimal Pendidikan D1</option>
-                        <option>Minimal Pendidikan D2</option>
-                        <option>Minimal Pendidikan D3</option>
-                        <option>Minimal Pendidikan S1</option>
-                        <option>Minimal Pendidikan S2</option>
-                        <option>Minimal Pendidikan S3</option>
+                    <select name="minimal_pendidikan" class="form-select">
+                    <option value="">Pilih minimal pendidikan</option>
+                    <option value="Minimal Pendidikan SMA/sederajat"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan SMA/sederajat' ? 'selected' : '' }}>
+                        SMA / Sederajat
+                    </option>
+                    <option value="Minimal Pendidikan D1"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan D1' ? 'selected' : '' }}>
+                        Minimal Pendidikan D1
+                    </option>
+                    <option value="Minimal Pendidikan D2"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan D2' ? 'selected' : '' }}>
+                        Minimal Pendidikan D2
+                    </option>
+                        <option value="Minimal Pendidikan D3"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan D3' ? 'selected' : '' }}>
+                        Minimal Pendidikan D3
+                    </option>
+                        <option value="Minimal Pendidikan S1"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan S1' ? 'selected' : '' }}>
+                        Minimal Pendidikan S1
+                    </option>
+                        <option value="Minimal Pendidikan S2"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan S2' ? 'selected' : '' }}>
+                        Minimal Pendidikan S2
+                    </option>
+                        <option value="Minimal Pendidikan S3"
+                        {{ request('minimal_pendidikan') == 'Minimal Pendidikan S3' ? 'selected' : '' }}>
+                        Minimal Pendidikan S3
+                    </option>
                     </select>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col-12 text-end">
+                    <a href="{{ route('pencarikerja.loker.index') }}" 
+                    class="btn btn-secondary me-2">
+                        Reset
+                    </a>
+
                     <button type="submit" class="btn btn-primary">
                         <i class="bx bx-search me-1"></i> Cari Lowongan
                     </button>

@@ -65,11 +65,11 @@ class PerusahaanMitra extends Authenticatable implements MustVerifyEmail
     }
     public function getLogoUrlAttribute()
     {
-        if (!$this->logo) {
-            return asset('admin-perusahaan/assets/img/avatars/logo.png');
+        if (!empty($this->logo) && file_exists(public_path('storage/logo_perusahaan/' . $this->logo))) {
+            return asset('storage/logo_perusahaan/' . $this->logo);
         }
 
-        return asset('storage/logo_perusahaan/' . $this->logo);
+        return asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg');
     }
     protected $casts = [
     'email_verified_at' => 'datetime',

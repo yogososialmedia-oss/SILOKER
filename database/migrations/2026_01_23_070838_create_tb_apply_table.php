@@ -24,6 +24,7 @@ return new class extends Migration
             $table->time('waktu_interview')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('alamat')->nullable();
+            $table->unique(['id_pencari_kerja', 'id_loker'], 'unique_apply_per_loker');
         });
     }
 

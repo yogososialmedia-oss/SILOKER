@@ -6,17 +6,53 @@ use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 class LokerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-    $lokers = Loker::with('perusahaanMitra')
-        ->latest()
-        ->paginate(6);
+        $query = Loker::with('perusahaanMitra');
+
+        // FILTER PROVINSI
+        if ($request->filled('provinsi')) {
+            $query->where('provinsi', $request->provinsi);
+        }
+
+        // FILTER KABUPATEN
+        if ($request->filled('kabupaten')) {
+            $query->where('kabupaten', $request->kabupaten);
+        }
+
+        // FILTER KECAMATAN
+        if ($request->filled('kecamatan')) {
+            $query->where('kecamatan', $request->kecamatan);
+        }
+
+        // FILTER JABATAN (LIKE SEARCH)
+        if ($request->filled('jabatan')) {
+            $query->where('jabatan', 'like', '%' . $request->jabatan . '%');
+        }
+
+        // FILTER TIPE LOKER
+        if ($request->filled('tipe_loker')) {
+            $query->where('tipe_loker', $request->tipe_loker);
+        }
+
+        // FILTER MODEL KERJA
+        if ($request->filled('model_kerja')) {
+            $query->where('model_kerja', $request->model_kerja);
+        }
+
+        // FILTER MINIMAL PENDIDIKAN
+        if ($request->filled('minimal_pendidikan')) {
+            $query->where('minimal_pendidikan', $request->minimal_pendidikan);
+        }
+
+        $lokers = $query->latest()->paginate(6)->withQueryString();
 
         return view('view_pencari_kerja.loker', compact('lokers'));
     }
@@ -50,18 +86,18 @@ class LokerController extends Controller
      * Display the specified resource.
      */
     public function show(Loker $loker)
-{
-    $loker->load(['perusahaanMitra'])
-        ->loadCount('apply');
+    {
+        $loker->load(['perusahaanMitra'])
+            ->loadCount('apply');
 
-    $loker->increment('tayangan');
+        $loker->increment('tayangan');
 
-    $isOpen = now()->between(
-        $loker->tanggal_mulai_loker,
-        $loker->tanggal_berakhir_loker
-    );
+        $isOpen = now()->between(
+            $loker->tanggal_mulai_loker,
+            $loker->tanggal_berakhir_loker
+        );
 
-        return view('view_pencari_kerja.tampilan-loker-pencari-kerja', compact('loker', 'isOpen'));
+            return view('view_pencari_kerja.tampilan-loker-pencari-kerja', compact('loker', 'isOpen'));
     }
 
     /**
@@ -95,6 +131,14 @@ class LokerController extends Controller
 
     public function applyStore(Request $request, Loker $loker)
     {
+        // 🚫 Cek dulu apakah loker masih open
+        if (!now()->between(
+            $loker->tanggal_mulai_loker,
+            $loker->tanggal_berakhir_loker
+        )) {
+            return back()->with('error', 'Lowongan sudah ditutup.');
+        }
+
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'nullable|string|max:50',
@@ -106,30 +150,37 @@ class LokerController extends Controller
             'alamat' => 'required',
         ]);
 
-        // Upload CV
-        if ($request->hasFile('cv')) {
-            $path = $request->file('cv')->store('cv', 'public');
-            $validated['cv'] = $path;
+        try {
+
+            // Upload CV
+            if ($request->hasFile('cv')) {
+                $path = $request->file('cv')->store('cv', 'public');
+                $validated['cv'] = $path;
+            }
+
+            $validated['tanggal_apply'] = now();
+            $validated['id_pencari_kerja'] = Auth::guard('pencarikerja')->id();
+            $validated['id_perusahaan_mitra'] = $loker->id_perusahaan_mitra;
+            $validated['id_loker'] = $loker->id;
+
+            // Simpan lamaran
+            $loker->apply()->create($validated);
+
+            // Tambah interaksi
+            $loker->increment('interaksi');
+
+            return redirect()
+                ->route('pencarikerja.loker.show', $loker)
+                ->with('success', 'Lamaran berhasil dikirim!');
+
+        } catch (QueryException $e) {
+
+            // 1062 = Duplicate entry
+            if ($e->errorInfo[1] == 1062) {
+                return back()->with('error', 'Anda sudah melamar pada lowongan ini.');
+            }
+
+            throw $e; // error lain tetap dilempar
         }
-
-        $validated['tanggal_apply'] = now();
-        $validated['id_pencari_kerja'] = Auth::guard('pencarikerja')->id();
-        $validated['id_perusahaan_mitra'] = $loker->id_perusahaan_mitra;
-        // Simpan ke tabel lamaran (pastikan kamu punya model Lamaran)
-        $loker->apply()->create($validated);
-
-        // Tambah interaksi
-        $loker->increment('interaksi');
-
-        if (!now()->between(
-        $loker->tanggal_mulai_loker,
-        $loker->tanggal_berakhir_loker
-    )) {
-        return back()->with('error', 'Lowongan sudah ditutup.');
-    }
-
-        return redirect()
-            ->route('pencarikerja.loker.show', $loker)
-            ->with('success', 'Lamaran berhasil dikirim!');
     }
 }

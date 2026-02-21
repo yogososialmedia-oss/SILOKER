@@ -12,7 +12,7 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
+                            <img src="{{ $info_perusahaan->logo_url }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
 
@@ -32,17 +32,21 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                                            {{-- Tentang --}}
-                                            <a class="navbar-brand nav-underline"
-                                            href="{{ $info_perusahaan ? route('pencarikerja.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                            <li class="nav-item mb-2">
+                                            <a class="navbar-brand nav-underline 
+                                            {{ request()->routeIs('pencarikerja.profile.perusahaan') ? 'active' : '' }}"
+                                            href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}">
                                             Tentang Perusahaan
                                             </a>
+                                        </li>
 
-                                            {{-- Lowongan --}}
-                                            <a class="navbar-brand nav-underline"
-                                            href="{{ $info_perusahaan ? route('pencarikerja.loker.profile.perusahaan', $info_perusahaan->id) : '#' }}">
+                                        <li class="nav-item mb-2">
+                                            <a class="navbar-brand nav-underline 
+                                            {{ request()->routeIs('pencarikerja.loker.profile.perusahaan') ? 'active' : '' }}"
+                                            href="{{ route('pencarikerja.loker.profile.perusahaan', $info_perusahaan->id) }}">
                                             Lowongan Kerja
                                             </a>
+                                        </li>
                                         </ul>
                                     </div>
                             </nav>
@@ -53,7 +57,7 @@
                     @foreach($lokerPerusahaan as $item)
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
-                            <a href="{{ route('pencarikerja.tampilan.loker.profile.perusahaan', $item->id) }}" class="stretched-link"></a>
+                            <a href="{{ route('pencarikerja.loker.show', $item->id) }}" class="stretched-link"></a>
                             <div class="card-body position-relative">
                                 <p class="text-end fs-9 mb-2">
                                     {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }} -
@@ -61,10 +65,9 @@
                                 </p>
 
                                 <div class="d-flex align-items-start gap-3 mb-3">
-                                    <img src="{{ $info_perusahaan->logo 
-                                    ? asset('storage/logo_perusahaan/' . $info_perusahaan->logo) 
-                                    : asset('admin-perusahaan/assets/img/avatars/logo.png') }}"
-                                    style="width:60px; height:60px;" class="img-fluid rounded" alt="">
+                                    <img src="{{ $item->perusahaanMitra->logo_url }}"
+                                        style="width:60px; height:60px; object-fit:cover;"
+                                        class="rounded shadow-sm" alt="">
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 d-flex align-items-center gap-2">
                                             <a href="#" class="fw-bold text-dark text-decoration-none">{{ $info_perusahaan->nama_perusahaan }}</a>

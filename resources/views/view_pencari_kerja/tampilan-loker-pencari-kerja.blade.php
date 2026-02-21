@@ -1,10 +1,16 @@
 <x-pencari_kerja.layout>
     <!-- Content wrapper -->
     <div class="content-wrapper-user">
+        @if (session('success'))
+            <div id="successAlert" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                {{ session('success') }}            
+            </div>            
+        @endif                
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-lg-4 mb-5">
+
                     <div class="card loker-card-beranda h-100">
 
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
@@ -90,7 +96,7 @@
 
                             {{-- ACTION --}}
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                                <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                                <a href="{{ route('pencarikerja.history-apply') }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                                 <a href="{{ route('pencarikerja.loker.apply.form', $loker) }}"
@@ -102,8 +108,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -121,7 +125,21 @@
             </div>
         </footer>
         <!-- / Footer -->
-
+        @push('scripts')
+        <script>
+            // Hilangkan alert otomatis setelah 3 detik
+            document.addEventListener('DOMContentLoaded', function () {
+                const alert = document.getElementById('successAlert');
+                if (alert) {
+                    setTimeout(() => {
+                        alert.classList.remove('show');
+                        alert.classList.add('fade');
+                        setTimeout(() => alert.remove(), 300);
+                    }, 3000);
+                }
+            });
+        </script>
+        @endpush
         <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->

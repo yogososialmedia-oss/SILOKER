@@ -31,6 +31,6 @@
     <div class="layout-overlay layout-menu-toggle"></div>
 
     @include('impor.admin_perusahaan.js')
-    @stack('scripjs')
+    @stack('scripts')
 </body>
 </html>

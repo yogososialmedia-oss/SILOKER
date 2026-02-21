@@ -128,7 +128,7 @@
             </script>
             <script>
                 setTimeout(() => {
-                    const alert = document.getElementById('alert-success');
+                    const alert = document.getElementById('successAlert');
                     if (alert) {
                         alert.classList.remove('show');
                         alert.classList.add('fade');

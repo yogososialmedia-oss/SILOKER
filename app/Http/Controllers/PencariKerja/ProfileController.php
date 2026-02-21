@@ -63,11 +63,6 @@ class ProfileController extends Controller
 
         return view('view_pencari_kerja.loker-profile-perusahaan', compact('info_perusahaan', 'lokerPerusahaan'));
     }
-
-    public function showTampilanLokerPerusahaanpencariKerja()
-    {
-        return view('view_pencari_kerja.tampilan-loker-pencari-kerja');
-    }
     /**
      * Show the form for creating a new resource.
      */
@@ -117,8 +112,8 @@ class ProfileController extends Controller
             'linkedin' => 'nullable|url|max:255',
             'pendidikan_terakhir' => 'nullable|string|max:50',
             'deskripsi_diri' => 'nullable|string',
-            'UploadCv' => 'nullable|mimes:pdf|max:2048',
-            'FotoProfile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cv' => 'nullable|mimes:pdf|max:2048',
+            'foto_pencari_kerja' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Update field
@@ -132,16 +127,16 @@ class ProfileController extends Controller
         $user->deskripsi_diri = $request->deskripsi_diri;
 
         // Upload CV
-        if ($request->hasFile('UploadCv')) {
-            $cv = $request->file('UploadCv');
+        if ($request->hasFile('cv')) {
+            $cv = $request->file('cv');
             $cvName = 'cv_' . $user->id . '.' . $cv->getClientOriginalExtension();
             $cv->storeAs('public/cv', $cvName);
             $user->cv = $cvName;
         }
 
         // Upload Foto Profile
-        if ($request->hasFile('FotoProfile')) {
-            $foto = $request->file('FotoProfile');
+        if ($request->hasFile('foto_pencari_kerja')) {
+            $foto = $request->file('foto_pencari_kerja');
             $fotoName = 'profile_' . $user->id . '.' . $foto->getClientOriginalExtension();
             $foto->storeAs('public/profile', $fotoName);
             $user->foto_pencari_kerja = $fotoName;

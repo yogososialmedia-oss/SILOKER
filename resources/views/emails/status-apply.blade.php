@@ -15,8 +15,8 @@
 <p><strong>Detail Interview:</strong></p>
 <p>Tanggal: {{ $apply->tanggal_interview }}</p>
 <p>Waktu: {{ $apply->waktu_interview }}</p>
-<p>Alamat: {{ $apply->alamat_perusahaan }}</p>
-<p>No Telp: {{ $apply->no_telp_perusahaan }}</p>
+<p>Alamat: {{ $apply->perusahaanMitra->alamat_perusahaan ?? '-' }}</p>
+<p>No Telp: {{ $apply->perusahaanMitra->no_telp_perusahaan ?? '-' }}</p>
 @endif
 
 <p>Terima kasih.</p>

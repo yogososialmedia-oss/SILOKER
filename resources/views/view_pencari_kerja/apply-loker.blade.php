@@ -7,6 +7,11 @@
                         <div class="card-header">
                             <h5 class="mb-0 fw-bold text-primary">FORM APPLY</h5>
                         </div>
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form method="POST" 
                         action="{{ route('pencarikerja.loker.apply.store', $loker) }}" 
                         enctype="multipart/form-data">
