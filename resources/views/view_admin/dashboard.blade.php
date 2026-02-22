@@ -53,7 +53,7 @@
                                 <td>{{ $loker->no_telp_perusahaan }}</td>
                                 <td>{{ $loker->email_perusahaan }}</td>
                                 <td>{{ $loker->tayangan ?? 0 }}</td>
-                                <td>{{ $loker->interaksi ?? 0 }}</td>
+                                <td>{{ $loker->apply_count }}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -59,9 +59,11 @@
                                     <!-- Tanggal Mulai -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date"
+                                        <input id="tanggal_mulai"
+                                            name="tanggal_mulai_loker"
+                                            type="date"
                                             class="form-control"
-                                            value="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}"
+                                            value="{{ old('tanggal_mulai_loker', \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('Y-m-d')) }}"
                                             min="{{ now()->toDateString() }}">
                                         @error('tanggal_mulai_loker')
                                             <small class="text-danger">{{ $message }}</small>
@@ -71,9 +73,11 @@
                                     <!-- Tanggal Berakhir -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date"
+                                        <input id="tanggal_selesai"
+                                            name="tanggal_berakhir_loker"
+                                            type="date"
                                             class="form-control"
-                                            value="{{ old('tanggal_berakhir_loker', $loker->tanggal_berakhir_loker) }}"
+                                            value="{{ old('tanggal_berakhir_loker', \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('Y-m-d')) }}"
                                             min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                         @error('tanggal_berakhir_loker')
                                             <small class="text-danger">{{ $message }}</small>
@@ -161,7 +165,7 @@
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
                                         <select name="minimal_pendidikan" class="form-select">
                                             <option value="">Pilih Minimal Pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ $pendidikan == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan
+                                            <option value="Minimal Pendidikan SMA/sederajat" {{ $pendidikan == 'Minimal Pendidikan SMA/sederajat' ? 'selected' : '' }}>Minimal Pendidikan
                                                 SMA/Sederajat</option>
                                             <option value="Minimal Pendidikan D1" {{ $pendidikan == 'Minimal Pendidikan D1' ? 'selected' : '' }}>Minimal Pendidikan D1</option>
                                             <option value="Minimal Pendidikan D2" {{ $pendidikan == 'Minimal Pendidikan D2' ? 'selected' : '' }}>Minimal Pendidikan D2</option>
@@ -216,83 +220,138 @@
         <div class="content-backdrop fade"></div>
     </div>
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
 
-                const provinsi = document.getElementById('provinsi');
-                const kabupaten = document.getElementById('kabupaten');
-                const kecamatan = document.getElementById('kecamatan');
+        // ==========================================
+        // TANGGAL (SUDAH SUPPORT OLD)
+        // ==========================================
+        const mulai = document.getElementById('tanggal_mulai');
+        const selesai = document.getElementById('tanggal_selesai');
+        const today = new Date().toISOString().split('T')[0];
 
-                const selectedProvinsi = "{{ old('provinsi', $loker->provinsi) }}";
-                const selectedKabupaten = "{{ old('kabupaten', $loker->kabupaten) }}";
-                const selectedKecamatan = "{{ old('kecamatan', $loker->kecamatan) }}";
+        function syncTanggal() {
+            if (!mulai.value) {
+                selesai.disabled = true;
+                selesai.value = '';
+                return;
+            }
 
-                // =====================
-                // LOAD PROVINSI
-                // =====================
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
-                    .then(res => res.json())
-                    .then(data => {
-                        let html = '<option value="">Pilih Provinsi</option>';
-                        data.forEach(item => {
-                            const selected = item.name === selectedProvinsi ? 'selected' : '';
-                            html += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                        });
-                        provinsi.innerHTML = html;
+            selesai.disabled = false;
+            selesai.min = mulai.value > today ? mulai.value : today;
 
-                        if (selectedProvinsi) loadKabupaten();
+            if (selesai.value && selesai.value < selesai.min) {
+                selesai.value = '';
+            }
+        }
+
+        syncTanggal();
+        mulai.addEventListener('change', syncTanggal);
+
+
+        // ==========================================
+        // WILAYAH INDONESIA (SUPPORT OLD)
+        // ==========================================
+        const provinsi  = document.getElementById('provinsi');
+        const kabupaten = document.getElementById('kabupaten');
+        const kecamatan = document.getElementById('kecamatan');
+
+        let oldProvinsi  = "{{ old('provinsi', $loker->provinsi) }}";
+        let oldKabupaten = "{{ old('kabupaten', $loker->kabupaten) }}";
+        let oldKecamatan = "{{ old('kecamatan', $loker->kecamatan) }}";
+
+        // LOAD PROVINSI
+        fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            .then(res => res.json())
+            .then(data => {
+
+                let opt = '<option value="">Pilih Provinsi</option>';
+                let selectedProvId = null;
+
+                data.forEach(item => {
+                    let selected = oldProvinsi === item.name ? 'selected' : '';
+                    if (selected) selectedProvId = item.id;
+
+                    opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
+                });
+
+                provinsi.innerHTML = opt;
+
+                if (selectedProvId) {
+                    loadKabupaten(selectedProvId);
+                }
+            });
+
+        function loadKabupaten(id) {
+
+            kabupaten.disabled = true;
+            kecamatan.disabled = true;
+            kabupaten.innerHTML = '<option value="">Loading...</option>';
+
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+                .then(res => res.json())
+                .then(data => {
+
+                    let opt = '<option value="">Pilih Kabupaten</option>';
+                    let selectedKabId = null;
+
+                    data.forEach(item => {
+                        let selected = oldKabupaten === item.name ? 'selected' : '';
+                        if (selected) selectedKabId = item.id;
+
+                        opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                     });
 
-                // =====================
-                // LOAD KABUPATEN
-                // =====================
-                function loadKabupaten() {
-                    const provinsiId = provinsi.selectedOptions[0].dataset.id;
-                    if (!provinsiId) return;
+                    kabupaten.innerHTML = opt;
+                    kabupaten.disabled = false;
 
-                    kabupaten.disabled = true;
-                    kecamatan.disabled = true;
+                    if (selectedKabId) {
+                        loadKecamatan(selectedKabId);
+                    }
+                });
+        }
 
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
-                        .then(res => res.json())
-                        .then(data => {
-                            let html = '<option value="">Pilih Kabupaten</option>';
-                            data.forEach(item => {
-                                const selected = item.name === selectedKabupaten ? 'selected' : '';
-                                html += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                            });
-                            kabupaten.innerHTML = html;
-                            kabupaten.disabled = false;
+        function loadKecamatan(id) {
 
-                            if (selectedKabupaten) loadKecamatan();
-                        });
-                }
+            kecamatan.disabled = true;
+            kecamatan.innerHTML = '<option value="">Loading...</option>';
 
-                // =====================
-                // LOAD KECAMATAN
-                // =====================
-                function loadKecamatan() {
-                    const kabupatenId = kabupaten.selectedOptions[0].dataset.id;
-                    if (!kabupatenId) return;
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+                .then(res => res.json())
+                .then(data => {
 
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
-                        .then(res => res.json())
-                        .then(data => {
-                            let html = '<option value="">Pilih Kecamatan</option>';
-                            data.forEach(item => {
-                                const selected = item.name === selectedKecamatan ? 'selected' : '';
-                                html += `<option value="${item.name}" ${selected}>${item.name}</option>`;
-                            });
-                            kecamatan.innerHTML = html;
-                            kecamatan.disabled = false;
-                        });
-                }
+                    let opt = '<option value="">Pilih Kecamatan</option>';
 
-                provinsi.addEventListener('change', loadKabupaten);
-                kabupaten.addEventListener('change', loadKecamatan);
+                    data.forEach(item => {
+                        let selected = oldKecamatan === item.name ? 'selected' : '';
+                        opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                    });
 
-            });
-        </script>
+                    kecamatan.innerHTML = opt;
+                    kecamatan.disabled = false;
+                });
+        }
+
+        // EVENT MANUAL CHANGE
+        provinsi.addEventListener('change', function () {
+            const id = this.selectedOptions[0]?.dataset.id;
+            if (!id) return;
+
+            oldKabupaten = '';
+            oldKecamatan = '';
+            loadKabupaten(id);
+        });
+
+        kabupaten.addEventListener('change', function () {
+            const id = this.selectedOptions[0]?.dataset.id;
+            if (!id) return;
+
+            oldKecamatan = '';
+            loadKecamatan(id);
+        });
+
+    });
+    </script>
     @endpush
 
     @push('scripts')

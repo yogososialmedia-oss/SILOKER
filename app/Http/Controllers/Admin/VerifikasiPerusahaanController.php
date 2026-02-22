@@ -29,21 +29,28 @@ class VerifikasiPerusahaanController extends Controller
     }
     public function showProfilePerusahaan($id)
     {
-        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+        $info_perusahaan = PerusahaanMitra::withCount('loker')
+            ->findOrFail($id);
+
         return view('view_perusahaan.index-perusahaan', compact('info_perusahaan'));
     }
     public function showLowonganKerjaPerusahaan($id)
     {
-        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+        $info_perusahaan = PerusahaanMitra::with(['loker' => function ($query) {
+            $query->withCount('apply')
+                ->latest();
+        }])->findOrFail($id);
 
-        $loker = Loker::where('id_perusahaan_mitra', $id)->get();
-        // pastikan nama foreign key sesuai di tabel kamu
+        $loker = $info_perusahaan->loker;
 
-        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan', 'loker'));
+        return view('view_perusahaan.loker-profile-perusahaan',
+            compact('info_perusahaan', 'loker'));
     }
     public function showTampilanLoker($id)
     {
-        $loker = Loker::with('perusahaanMitra')->withCount('apply')->findOrFail($id);
+        $loker = Loker::with('perusahaanMitra')
+            ->withCount('apply')
+            ->findOrFail($id);
 
         $info_perusahaan = $loker->perusahaanMitra;
 

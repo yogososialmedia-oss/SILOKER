@@ -43,7 +43,7 @@ class LokerController extends Controller
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
             'tanggal_berakhir_loker' => 'required|date|after_or_equal:tanggal_mulai_loker',
-            'poster_loker' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'poster_loker' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
             'kecamatan' => 'required|string',
@@ -67,7 +67,6 @@ class LokerController extends Controller
             'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
             'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
 
-            
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Poster harus format JPG atau PNG.',
             'poster_loker.max' => 'Ukuran poster maksimal 2MB.',
@@ -88,26 +87,38 @@ class LokerController extends Controller
 
             'deskripsi.required' => 'Kualifikasi wajib diisi.',
         ]);
-        $posterFile = $request->file('poster_loker');
-        $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
-        $posterFile->storeAs('poster_loker', $posterFilename , 'public');
-        Loker::create([
-            'id_perusahaan_mitra' => $authPerusahaan->id,
-            'email_perusahaan' => $validatedData['email_perusahaan'],
-            'no_telp_perusahaan' => $validatedData['no_telp_perusahaan'],
-            'jabatan' => $validatedData['jabatan'],
-            'tanggal_mulai_loker' => $validatedData['tanggal_mulai_loker'],
-            'tanggal_berakhir_loker' => $validatedData['tanggal_berakhir_loker'],
-            'poster_loker' => $posterFilename,
-            'provinsi' => $validatedData['provinsi'],
-            'kabupaten' => $validatedData['kabupaten'],
-            'kecamatan' => $validatedData['kecamatan'],
-            'alamat' => $validatedData['alamat'],
-            'model_kerja' => $validatedData['model_kerja'],
-            'tipe_loker' => $validatedData['tipe_loker'],
-            'minimal_pendidikan' => $validatedData['minimal_pendidikan'],
-            'deskripsi' => $validatedData['deskripsi'],
-        ]);
+        $defaultPoster = 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png';
+        $posterPath = $defaultPoster;
+
+        if ($request->hasFile('poster_loker')) {
+
+            $file = $request->file('poster_loker');
+            $filename = time().'_'.$file->getClientOriginalName();
+
+            // simpan ke storage/app/public/poster_loker
+            $file->storeAs('poster_loker', $filename, 'public');
+
+            // simpan path ke database
+            $posterPath = 'storage/poster_loker/'.$filename;
+        }
+
+    Loker::create([
+        'id_perusahaan_mitra' => $authPerusahaan->id,
+        'email_perusahaan' => $validatedData['email_perusahaan'],
+        'no_telp_perusahaan' => $validatedData['no_telp_perusahaan'],
+        'jabatan' => $validatedData['jabatan'],
+        'tanggal_mulai_loker' => $validatedData['tanggal_mulai_loker'],
+        'tanggal_berakhir_loker' => $validatedData['tanggal_berakhir_loker'],
+        'poster_loker' => $posterPath,
+        'provinsi' => $validatedData['provinsi'],
+        'kabupaten' => $validatedData['kabupaten'],
+        'kecamatan' => $validatedData['kecamatan'],
+        'alamat' => $validatedData['alamat'],
+        'model_kerja' => $validatedData['model_kerja'],
+        'tipe_loker' => $validatedData['tipe_loker'],
+        'minimal_pendidikan' => $validatedData['minimal_pendidikan'],
+        'deskripsi' => $validatedData['deskripsi'],
+    ]);
         return redirect()->route('perusahaan.loker')->with('success', 'Lowongan kerja berhasil ditambahkan.');
     }
     /**
@@ -200,18 +211,28 @@ class LokerController extends Controller
         $loker->tipe_loker = $validatedData['tipe_loker'];
         $loker->minimal_pendidikan = $validatedData['minimal_pendidikan'];
         $loker->deskripsi = $validatedData['deskripsi'];
+
         if ($request->hasFile('poster_loker')) {
-            $posterPath = storage_path('app/public/poster_loker/' . $loker->poster_loker);
-            if (file_exists($posterPath)) {
-                Storage::disk('public')->delete('poster_loker/'.$loker->poster_loker); // Hapus file poster lama
+
+            // hapus poster lama jika bukan default
+            if ($loker->poster_loker &&
+                $loker->poster_loker !== 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') {
+
+                $oldPath = str_replace('storage/', '', $loker->poster_loker);
+                Storage::disk('public')->delete($oldPath);
             }
-            $posterFile = $request->file('poster_loker');
-            $posterFilename = time() . '_' . $posterFile->getClientOriginalName();
-            $posterFile->storeAs('poster_loker', $posterFilename , 'public');
-            $loker->poster_loker = $posterFilename;
+
+            $file = $request->file('poster_loker');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('poster_loker', $filename, 'public');
+
+            $validatedData['poster_loker'] = 'storage/poster_loker/' . $filename;
         }
-        $loker->save();
-        return redirect()->route('perusahaan.loker')->with('success', 'Lowongan kerja berhasil diperbarui.');
+
+        $loker->update($validatedData);
+
+        return redirect()->route('perusahaan.loker')
+            ->with('success', 'Lowongan kerja berhasil diperbarui.');
     }
 
     /**

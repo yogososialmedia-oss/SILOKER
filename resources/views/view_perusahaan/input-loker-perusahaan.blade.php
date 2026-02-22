@@ -83,8 +83,14 @@
                                     {{-- Poster --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
-                                        <input name="poster_loker" type="file"
+                                        <input 
+                                            name="poster_loker" 
+                                            type="file"
+                                            accept="image/png, image/jpeg, image/jpg"
                                             class="form-control @error('poster_loker') is-invalid @enderror">
+
+                                        <small class="text-muted">Format: JPG, JPEG, PNG (Max 2MB)</small>
+
                                         @error('poster_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -177,7 +183,7 @@
                                         <select name="minimal_pendidikan"
                                             class="form-select @error('minimal_pendidikan') is-invalid @enderror">
                                             <option value="">Pilih Minimal Pendidikan</option>
-                                            <option value="Minimal Pendidikan SMA/Sederajat" {{ old('minimal_pendidikan') == 'Minimal Pendidikan SMA/Sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat
+                                            <option value="Minimal Pendidikan SMA/sederajat" {{ old('minimal_pendidikan') == 'Minimal Pendidikan SMA/sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat
                                             </option>
                                             <option value="Minimal Pendidikan D1" {{ old('minimal_pendidikan') == 'Minimal Pendidikan D1' ? 'selected' : '' }}>Minimal Pendidikan D1</option>
                                             <option value="Minimal Pendidikan D2" {{ old('minimal_pendidikan') == 'Minimal Pendidikan D2' ? 'selected' : '' }}>Minimal Pendidikan D2</option>
@@ -235,98 +241,138 @@
     </div>
     <!-- Content wrapper -->
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
 
-                // =========================
-                // TANGGAL (PUNYA KAMU)
-                // =========================
-                const mulai = document.getElementById('tanggal_mulai');
-                const selesai = document.getElementById('tanggal_selesai');
-                const today = new Date().toISOString().split('T')[0];
+        // ==========================================
+        // TANGGAL (SUDAH SUPPORT OLD)
+        // ==========================================
+        const mulai = document.getElementById('tanggal_mulai');
+        const selesai = document.getElementById('tanggal_selesai');
+        const today = new Date().toISOString().split('T')[0];
 
-                function syncTanggal() {
-                    if (!mulai.value) {
-                        selesai.disabled = true;
-                        selesai.value = '';
-                        return;
-                    }
+        function syncTanggal() {
+            if (!mulai.value) {
+                selesai.disabled = true;
+                selesai.value = '';
+                return;
+            }
 
-                    selesai.disabled = false;
-                    selesai.min = mulai.value > today ? mulai.value : today;
+            selesai.disabled = false;
+            selesai.min = mulai.value > today ? mulai.value : today;
 
-                    if (selesai.value && selesai.value < selesai.min) {
-                        selesai.value = '';
-                    }
+            if (selesai.value && selesai.value < selesai.min) {
+                selesai.value = '';
+            }
+        }
+
+        syncTanggal();
+        mulai.addEventListener('change', syncTanggal);
+
+
+        // ==========================================
+        // WILAYAH INDONESIA (SUPPORT OLD)
+        // ==========================================
+        const provinsi  = document.getElementById('provinsi');
+        const kabupaten = document.getElementById('kabupaten');
+        const kecamatan = document.getElementById('kecamatan');
+
+        let oldProvinsi  = "{{ old('provinsi') }}";
+        let oldKabupaten = "{{ old('kabupaten') }}";
+        let oldKecamatan = "{{ old('kecamatan') }}";
+
+        // LOAD PROVINSI
+        fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            .then(res => res.json())
+            .then(data => {
+
+                let opt = '<option value="">Pilih Provinsi</option>';
+                let selectedProvId = null;
+
+                data.forEach(item => {
+                    let selected = oldProvinsi === item.name ? 'selected' : '';
+                    if (selected) selectedProvId = item.id;
+
+                    opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
+                });
+
+                provinsi.innerHTML = opt;
+
+                if (selectedProvId) {
+                    loadKabupaten(selectedProvId);
                 }
+            });
 
-                syncTanggal();
-                mulai.addEventListener('change', syncTanggal);
+        function loadKabupaten(id) {
 
-                // =========================
-                // WILAYAH INDONESIA API
-                // =========================
-                const provinsi = document.getElementById('provinsi');
-                const kabupaten = document.getElementById('kabupaten');
-                const kecamatan = document.getElementById('kecamatan');
+            kabupaten.disabled = true;
+            kecamatan.disabled = true;
+            kabupaten.innerHTML = '<option value="">Loading...</option>';
 
-                // LOAD PROVINSI
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
-                    .then(res => res.json())
-                    .then(data => {
-                        let opt = '<option value="">Pilih Provinsi</option>';
-                        data.forEach(item => {
-                            opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
-                        });
-                        provinsi.innerHTML = opt;
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+                .then(res => res.json())
+                .then(data => {
+
+                    let opt = '<option value="">Pilih Kabupaten</option>';
+                    let selectedKabId = null;
+
+                    data.forEach(item => {
+                        let selected = oldKabupaten === item.name ? 'selected' : '';
+                        if (selected) selectedKabId = item.id;
+
+                        opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                     });
 
-                // LOAD KABUPATEN
-                provinsi.addEventListener('change', function () {
-                    const id = this.selectedOptions[0]?.dataset.id;
+                    kabupaten.innerHTML = opt;
+                    kabupaten.disabled = false;
 
-                    kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
-                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                    kabupaten.disabled = true;
-                    kecamatan.disabled = true;
-
-                    if (!id) return;
-
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
-                        .then(res => res.json())
-                        .then(data => {
-                            let opt = '<option value="">Pilih Kabupaten</option>';
-                            data.forEach(item => {
-                                opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
-                            });
-                            kabupaten.innerHTML = opt;
-                            kabupaten.disabled = false;
-                        });
+                    if (selectedKabId) {
+                        loadKecamatan(selectedKabId);
+                    }
                 });
+        }
 
-                // LOAD KECAMATAN
-                kabupaten.addEventListener('change', function () {
-                    const id = this.selectedOptions[0]?.dataset.id;
+        function loadKecamatan(id) {
 
-                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                    kecamatan.disabled = true;
+            kecamatan.disabled = true;
+            kecamatan.innerHTML = '<option value="">Loading...</option>';
 
-                    if (!id) return;
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+                .then(res => res.json())
+                .then(data => {
 
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
-                        .then(res => res.json())
-                        .then(data => {
-                            let opt = '<option value="">Pilih Kecamatan</option>';
-                            data.forEach(item => {
-                                opt += `<option value="${item.name}">${item.name}</option>`;
-                            });
-                            kecamatan.innerHTML = opt;
-                            kecamatan.disabled = false;
-                        });
+                    let opt = '<option value="">Pilih Kecamatan</option>';
+
+                    data.forEach(item => {
+                        let selected = oldKecamatan === item.name ? 'selected' : '';
+                        opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                    });
+
+                    kecamatan.innerHTML = opt;
+                    kecamatan.disabled = false;
                 });
+        }
 
-            });
-        </script>
+        // EVENT MANUAL CHANGE
+        provinsi.addEventListener('change', function () {
+            const id = this.selectedOptions[0]?.dataset.id;
+            if (!id) return;
+
+            oldKabupaten = '';
+            oldKecamatan = '';
+            loadKabupaten(id);
+        });
+
+        kabupaten.addEventListener('change', function () {
+            const id = this.selectedOptions[0]?.dataset.id;
+            if (!id) return;
+
+            oldKecamatan = '';
+            loadKecamatan(id);
+        });
+
+    });
+    </script>
     @endpush
 
     @push('scripts')

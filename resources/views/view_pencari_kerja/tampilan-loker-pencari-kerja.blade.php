@@ -13,7 +13,7 @@
 
                     <div class="card loker-card-beranda h-100">
 
-                        <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
+                        <img src="{{ asset($loker->poster_loker ?? 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
                             class="card-img-top" alt="">
 
                         <div class="card-body">
@@ -96,7 +96,7 @@
 
                             {{-- ACTION --}}
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                                <a href="{{ route('pencarikerja.history-apply') }}" class="btn btn-secondary">
+                                <a href="{{ route('pencarikerja.loker.index') }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                                 <a href="{{ route('pencarikerja.loker.apply.form', $loker) }}"

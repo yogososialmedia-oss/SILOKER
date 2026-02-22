@@ -90,14 +90,22 @@ class LokerController extends Controller
         $loker->load(['perusahaanMitra'])
             ->loadCount('apply');
 
-        $loker->increment('tayangan');
+        $userId = Auth::guard('pencarikerja')->id();
 
-        $isOpen = now()->between(
-            $loker->tanggal_mulai_loker,
-            $loker->tanggal_berakhir_loker
-        );
+        if ($userId) {
 
-            return view('view_pencari_kerja.tampilan-loker-pencari-kerja', compact('loker', 'isOpen'));
+            $sessionKey = 'viewed_loker_' . $loker->id . '_user_' . $userId;
+
+            if (!session()->has($sessionKey)) {
+
+                $loker->increment('tayangan');
+
+                session()->put($sessionKey, true);
+            }
+        }
+
+        return view('view_pencari_kerja.tampilan-loker-pencari-kerja',
+            compact('loker'));
     }
 
     /**
@@ -126,7 +134,10 @@ class LokerController extends Controller
 
     public function applyForm(Loker $loker)
     {
-        return view('view_pencari_kerja.apply-loker', compact('loker'));
+        $pencari = Auth::guard('pencarikerja')->user();
+
+        return view('view_pencari_kerja.apply-loker',
+            compact('loker', 'pencari'));
     }
 
     public function applyStore(Request $request, Loker $loker)

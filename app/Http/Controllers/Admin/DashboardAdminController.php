@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apply;
 use App\Models\Loker;
 use App\Models\PerusahaanMitra;
 use Carbon\Carbon;
@@ -27,15 +28,23 @@ class DashboardAdminController extends Controller
         $totalClose = Loker::whereDate('tanggal_berakhir_loker', '<', $today)
             ->count();
 
-        // Total interaksi
+        // Total tayangan tetap dari loker
         $totalTayangan = Loker::sum('tayangan');
-        $totalApply = Loker::sum('interaksi');
+
+        // Total apply dari tabel tb_apply
+        $totalApply = Apply::count();
 
         $lokerTerbaru = Loker::with('perusahaanMitra')
-        ->select('*', DB::raw('(COALESCE(tayangan,0) + COALESCE(interaksi,0)) as total_popularitas'))
-        ->orderByDesc('total_popularitas')
-        ->take(5)
-        ->get();
+        ->withCount('apply')
+        ->get()
+        ->map(function ($loker) {
+            $loker->total_popularitas =
+                ($loker->tayangan * 1) +
+                ($loker->apply_count * 5);
+            return $loker;
+        })
+        ->sortByDesc('total_popularitas')
+        ->take(5);
 
         return view('view_admin.dashboard', compact(
             'totalOpen',
