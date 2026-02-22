@@ -85,8 +85,10 @@ class ApplyController extends Controller
 
         return view('view_perusahaan.history-apply-pencari-kerja', compact('apply', 'history'));
     }
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request)
     {
+        $id = $request->id_apply;
+
         $perusahaan = Auth::guard('perusahaanmitra')->user();
 
         $apply = Apply::with('pencariKerja')
@@ -98,7 +100,21 @@ class ApplyController extends Controller
 
         $request->validate([
             'status' => 'required',
-            'tanggal_interview' => 'nullable|date|after_or_equal:today'
+            'pesan' => 'required|string|min:5',
+            'tanggal_interview' => ['required_if:status,interview'], // wajib jika interview
+            'tanggal_interview_date' => ['nullable','date','after_or_equal:today'], // validasi tanggal jika diisi
+            'waktu_interview' => 'required_if:status,interview',
+            'no_telp_perusahaan' => 'required_if:status,interview',
+            'alamat_perusahaan' => 'required_if:status,interview',
+        ], [
+            'status.required' => 'Status wajib diisi.',
+            'pesan.required' => 'Pesan wajib diisi.',
+            'tanggal_interview.required_if' => 'Tanggal interview wajib diisi.',
+            'tanggal_interview_date.date' => 'Format tanggal tidak valid.',
+            'tanggal_interview_date.after_or_equal' => 'Tanggal interview minimal hari ini.',
+            'waktu_interview.required_if' => 'Waktu interview wajib diisi.',
+            'no_telp_perusahaan.required_if' => 'No telp wajib diisi.',
+            'alamat_perusahaan.required_if' => 'Alamat wajib diisi.',
         ]);
 
         $apply->update([
@@ -110,7 +126,7 @@ class ApplyController extends Controller
             'alamat_perusahaan' => $request->alamat_perusahaan,
         ]);
 
-        // KIRIM EMAIL
+        // Kirim email
         Mail::to($apply->pencariKerja->email_pencari_kerja)
             ->send(new StatusApplyMail($apply));
 
