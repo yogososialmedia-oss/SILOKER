@@ -32105,6 +32105,37 @@ html {
 }
 
 /* =====================================================
+  LOGIN PAGE FIX - FIXED NAVBAR SAFE
+===================================================== */
+
+.login-page-wrapper {
+    padding-top: 110px; /* tinggi navbar fixed */
+    min-height: calc(100vh - 110px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* pastikan wrapper auth di tengah */
+.authentication-wrapper.authentication-basic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* card login */
+.authentication-wrapper .card {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* isi card */
+.authentication-wrapper .card-body {
+    padding: 2.5rem;
+}
+
+/* =====================================================
     NAVBAR  ADMIN-PERUSAHAAN
    ===================================================== */
   /* ================= NAVBAR BLUE ================= */

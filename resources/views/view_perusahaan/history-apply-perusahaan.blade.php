@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($apply as $data_apply)
+                            @foreach ($apply as $data_apply)
                                 <tr>
                                     <td>
                                         {{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}
@@ -91,13 +91,7 @@
                                         @endswitch
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8" class="text-center py-3">
-                                        Tidak ada data apply
-                                    </td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

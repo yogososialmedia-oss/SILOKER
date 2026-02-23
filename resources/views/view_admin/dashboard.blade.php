@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xxl-12 col-lg-12 col-md-4 order-1">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                    <div class="col-lg-6 col-md-12  mb-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">JUMLAH LOWONGAN</h5>
@@ -11,7 +11,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                    <div class="col-lg-6 col-md-12  mb-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold ">JUMLAH INTERAKSI</h5>

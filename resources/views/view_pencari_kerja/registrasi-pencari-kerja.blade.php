@@ -125,8 +125,7 @@
                                     {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input type="email"
-                                            name="email_pencari_kerja"
+                                        <input type="email" name="email_pencari_kerja"
                                             value="{{ old('email_pencari_kerja') }}"
                                             class="form-control @error('email_pencari_kerja') is-invalid @enderror"
                                             placeholder="Tambahkan email anda">
@@ -136,18 +135,29 @@
                                     </div>
 
                                     {{-- PASSWORD --}}
-                                    {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="password" 
-                                            id="password" 
-                                            name="password_pencari_kerja"
+
+
+                                        <input type="password" id="password" name="password_pencari_kerja"
                                             class="form-control @error('password_pencari_kerja') is-invalid @enderror"
                                             placeholder="Buat password">
 
+
                                         @error('password_pencari_kerja')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
+
+                                        <!-- CHECKBOX TOGGLE -->
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="checkbox" id="showPassword">
+                                            <label class="form-check-label" for="showPassword">
+                                                Tampilkan password
+                                            </label>
+                                        </div>
+
 
                                         <ul class="list-unstyled mt-2 small" id="passwordRules">
                                             <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
@@ -261,6 +271,28 @@
                     }
                 }
             });
+        </script>
+        <script>
+            const passwordInput = document.getElementById('password');
+
+            const checkbox = document.getElementById('showPassword');
+            if (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    passwordInput.type = this.checked ? 'text' : 'password';
+                });
+            }
+
+            const toggle = document.getElementById('togglePassword');
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    const icon = this.querySelector('i');
+                    const isPassword = passwordInput.type === 'password';
+
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    icon.classList.toggle('bx-hide', !isPassword);
+                    icon.classList.toggle('bx-show', isPassword);
+                });
+            }
         </script>
 
 
