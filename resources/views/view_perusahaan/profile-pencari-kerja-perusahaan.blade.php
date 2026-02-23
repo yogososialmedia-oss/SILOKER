@@ -93,8 +93,8 @@
 
                                         <div class="modal-body p-0">
                                             @if($apply->pencariKerja->cv)
-                                                <iframe src="{{ asset('storage/' . $apply->pencariKerja->cv) }}"
-                                                    width="100%" height="600px" style="border:none;">
+                                                <iframe src="{{ asset('storage/'.$apply->pencariKerja->cv) }}"
+                                                        width="100%" height="600px" style="border:none;">
                                                 </iframe>
                                             @else
                                                 <div class="p-4 text-center">

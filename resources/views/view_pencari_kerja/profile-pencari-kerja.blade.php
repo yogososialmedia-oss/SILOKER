@@ -117,8 +117,8 @@
                                         </div>
 
                                         <div class="modal-body p-0">
-                                            <iframe src="{{ asset('storage/cv/'.$user->cv) }}"
-                                                width="100%" height="600px" style="border:none;">
+                                            <iframe src="{{ asset('storage/'.$user->cv) }}"
+                                                    width="100%" height="600px" style="border:none;">
                                             </iframe>
                                         </div>
 

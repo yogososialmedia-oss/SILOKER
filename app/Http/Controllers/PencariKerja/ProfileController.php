@@ -130,8 +130,8 @@ class ProfileController extends Controller
         if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
             $cvName = 'cv_' . $user->id . '.' . $cv->getClientOriginalExtension();
-            $cv->storeAs('public/cv', $cvName);
-            $user->cv = $cvName;
+            $cvPath = $request->file('cv')->store('cv', 'public');
+            $user->cv = $cvPath;
         }
 
         // Upload Foto Profile
