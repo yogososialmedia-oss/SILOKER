@@ -214,8 +214,8 @@ class LokerController extends Controller
 
         if ($request->hasFile('poster_loker')) {
 
-            // hapus poster lama jika bukan default
-            if ($loker->poster_loker &&
+            // hapus lama kalau bukan default
+            if ($loker->poster_loker && 
                 $loker->poster_loker !== 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') {
 
                 $oldPath = str_replace('storage/', '', $loker->poster_loker);
@@ -223,13 +223,13 @@ class LokerController extends Controller
             }
 
             $file = $request->file('poster_loker');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time().'_'.$file->getClientOriginalName();
             $file->storeAs('poster_loker', $filename, 'public');
 
-            $validatedData['poster_loker'] = 'storage/poster_loker/' . $filename;
+            $loker->poster_loker = 'storage/poster_loker/'.$filename;
         }
 
-        $loker->update($validatedData);
+        $loker->save();
 
         return redirect()->route('perusahaan.loker')
             ->with('success', 'Lowongan kerja berhasil diperbarui.');

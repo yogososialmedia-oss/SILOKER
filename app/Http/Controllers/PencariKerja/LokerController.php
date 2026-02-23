@@ -60,8 +60,8 @@ class LokerController extends Controller
     public function showBeranda()
     {
         $lokers = Loker::with('perusahaanMitra')
-            ->latest()
-            ->take(6)
+            ->latest() // urut dari terbaru
+            ->take(4)  // hanya 4 data
             ->get();
 
         return view('view_pencari_kerja.beranda', compact('lokers'));

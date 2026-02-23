@@ -75,7 +75,7 @@
                     <option value="">Pilih minimal pendidikan</option>
                     <option value="Minimal Pendidikan SMA/sederajat"
                         {{ request('minimal_pendidikan') == 'Minimal Pendidikan SMA/sederajat' ? 'selected' : '' }}>
-                        SMA / Sederajat
+                        Minimal Pendidikan SMA / Sederajat
                     </option>
                     <option value="Minimal Pendidikan D1"
                         {{ request('minimal_pendidikan') == 'Minimal Pendidikan D1' ? 'selected' : '' }}>

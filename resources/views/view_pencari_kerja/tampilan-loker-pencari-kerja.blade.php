@@ -5,7 +5,12 @@
             <div id="successAlert" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
                 {{ session('success') }}            
             </div>            
-        @endif                
+        @endif  
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif              
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
@@ -99,10 +104,21 @@
                                 <a href="{{ route('pencarikerja.loker.index') }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
-                                <a href="{{ route('pencarikerja.loker.apply.form', $loker) }}"
-                                    class="btn btn-primary">
-                                    Apply
-                                </a>
+                                @php
+                                    $isOpen = now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker);
+                                @endphp
+
+                                @if($isOpen)
+                                    <a href="{{ route('pencarikerja.loker.apply.form', $loker) }}"
+                                        class="btn btn-primary">
+                                        Apply
+                                    </a>
+                                @else
+                                    <button class="btn btn-secondary" disabled
+                                        onclick="alert('Lowongan sudah ditutup.')">
+                                        Lowongan Ditutup
+                                    </button>
+                                @endif
                             </div>
 
                         </div>
