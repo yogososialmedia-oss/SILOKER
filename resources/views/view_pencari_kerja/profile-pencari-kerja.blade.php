@@ -10,6 +10,11 @@
                         {{ session('success') }}
                     </div>
                     @endif
+                    @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible show" role="alert">
+                        {{ session('error') }}
+                    </div>
+                    @endif
 
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <!-- Thumbnail / Banner -->

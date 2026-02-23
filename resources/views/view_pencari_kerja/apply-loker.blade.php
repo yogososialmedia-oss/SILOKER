@@ -40,11 +40,6 @@
                                             placeholder="Tambahkan link profile linked.id anda">
                                         <div class="form-text"></div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Upload CV</label>
-                                        <input name="cv" type="file" class="form-control">
-                                        <div class="form-text"></div>
-                                    </div>
                                     <div class="col-md-6 mb-4">
                                         <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" id="defaultSelect" class="form-select">

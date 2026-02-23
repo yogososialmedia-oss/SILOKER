@@ -136,6 +136,13 @@ class LokerController extends Controller
     {
         $pencari = Auth::guard('pencarikerja')->user();
 
+        // 🚫 Jika belum upload CV
+        if (!$pencari->cv) {
+            return redirect()
+                ->route('pencarikerja.profile')
+                ->with('error', 'Silakan upload CV terlebih dahulu di menu Edit Profile sebelum melamar.');
+        }
+
         return view('view_pencari_kerja.apply-loker',
             compact('loker', 'pencari'));
     }
@@ -150,11 +157,19 @@ class LokerController extends Controller
             return back()->with('error', 'Lowongan sudah ditutup.');
         }
 
+        $pencari = Auth::guard('pencarikerja')->user();
+
+        // 🚫 Proteksi: tidak boleh apply jika belum upload CV
+        if (!$pencari->cv) {
+            return redirect()
+                ->route('pencarikerja.profile')
+                ->with('error', 'Silakan upload CV terlebih dahulu di menu Edit Profile sebelum melamar.');
+        }
+
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'nullable|string|max:50',
             'linkedin' => 'nullable|url',
-            'cv' => 'required|file|mimes:pdf|max:2048',
             'pendidikan_terakhir' => 'required|not_in:',
             'email' => 'required|email',
             'no_telp' => 'required|numeric|digits_between:10,15',
@@ -163,14 +178,11 @@ class LokerController extends Controller
 
         try {
 
-            // Upload CV
-            if ($request->hasFile('cv')) {
-                $path = $request->file('cv')->store('cv', 'public');
-                $validated['cv'] = $path;
-            }
+            // ✅ Ambil CV dari profile (bukan dari form)
+            $validated['cv'] = $pencari->cv;
 
             $validated['tanggal_apply'] = now();
-            $validated['id_pencari_kerja'] = Auth::guard('pencarikerja')->id();
+            $validated['id_pencari_kerja'] = $pencari->id;
             $validated['id_perusahaan_mitra'] = $loker->id_perusahaan_mitra;
             $validated['id_loker'] = $loker->id;
 

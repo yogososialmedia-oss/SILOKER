@@ -129,7 +129,6 @@ class ProfileController extends Controller
         // Upload CV
         if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
-            $cvName = 'cv_' . $user->id . '.' . $cv->getClientOriginalExtension();
             $cvPath = $request->file('cv')->store('cv', 'public');
             $user->cv = $cvPath;
         }
