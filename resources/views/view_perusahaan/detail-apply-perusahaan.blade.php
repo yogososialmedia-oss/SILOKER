@@ -51,10 +51,33 @@
                                         value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Curriculum Vitae (CV)</label>
-                                    <input type="file" class="form-control"
-                                        value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label d-block">Curriculum Vitae (CV)</label>
+
+                                    @if($pelamar?->cv)
+
+                                        <!-- Tombol di bawah tulisan -->
+                                        <button type="button" 
+                                                class="btn btn-primary mt-2"
+                                                onclick="toggleCV()">
+                                            Lihat CV
+                                        </button>
+
+                                        <!-- Preview CV -->
+                                        <div id="cvPreview" class="mt-3" style="display: none;">
+                                            <iframe 
+                                                src="{{ asset('storage/' . $pelamar->cv) }}" 
+                                                width="100%" 
+                                                height="600px"
+                                                style="border:1px solid #ddd; border-radius:8px;">
+                                            </iframe>
+                                        </div>
+
+                                    @else
+                                        <div class="alert alert-warning mt-2">
+                                            CV belum diupload oleh pelamar.
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -82,6 +105,18 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        function toggleCV() {
+            var cv = document.getElementById("cvPreview");
+
+            if (cv.style.display === "none") {
+                cv.style.display = "block";
+            } else {
+                cv.style.display = "none";
+            }
+        }
+    </script>
 </x-admin_perusahaan.layout>
 
 
