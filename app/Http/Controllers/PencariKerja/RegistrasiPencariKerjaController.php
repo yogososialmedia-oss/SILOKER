@@ -99,7 +99,7 @@ class RegistrasiPencariKerjaController extends Controller
             ->send(new EmailVerificationMail($user, $token, 'pencarikerja'));
 
         return redirect()->route('pencarikerja.login')
-            ->with('success', 'Registrasi berhasil! Silahkan cek email Anda untuk verifikasi.');
+            ->with('success', 'Registrasi berhasil. Silahkan cek email Anda untuk verifikasi.');
             
     }
 

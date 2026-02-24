@@ -45,7 +45,7 @@
                                         </span>
                                     </div>
                                 </div>
-
+                                
                                 @if($errors->has('email-username'))
                                     <div class="alert alert-danger alert-dismissible fade show">
                                         {{ $errors->first('email-username') }}

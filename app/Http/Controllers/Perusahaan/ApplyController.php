@@ -130,7 +130,7 @@ class ApplyController extends Controller
         Mail::to($apply->pencariKerja->email_pencari_kerja)
             ->send(new StatusApplyMail($apply));
 
-        return back()->with('success', 'Status berhasil diperbarui & email terkirim');
+        return back()->with('success', 'Status berhasil diperbarui dan email berhasil terkirim.');
     }
     /**
      * Show the form for creating a new resource.

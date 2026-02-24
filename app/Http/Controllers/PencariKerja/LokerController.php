@@ -194,7 +194,7 @@ class LokerController extends Controller
 
             return redirect()
                 ->route('pencarikerja.loker.show', $loker)
-                ->with('success', 'Lamaran berhasil dikirim!');
+                ->with('success', 'Lamaran berhasil dikirim.');
 
         } catch (QueryException $e) {
 

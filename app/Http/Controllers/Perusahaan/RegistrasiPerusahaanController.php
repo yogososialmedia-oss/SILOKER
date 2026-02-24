@@ -97,7 +97,7 @@ class RegistrasiPerusahaanController extends Controller
             ->send(new EmailVerificationMail($perusahaan, $token, 'perusahaan'));
 
         return redirect()->route('perusahaan.login')
-            ->with('success', 'Registrasi berhasil! Silahkan cek email Anda untuk verifikasi.');
+            ->with('success', 'Registrasi berhasil. Silahkan cek email Anda untuk verifikasi.');
     }
 
     /**

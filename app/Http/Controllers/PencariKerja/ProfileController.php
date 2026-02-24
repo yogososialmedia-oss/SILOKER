@@ -143,7 +143,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('pencarikerja.profile')->with('success', 'Profile berhasil diperbarui!');
+        return redirect()->route('pencarikerja.profile')->with('success', 'Profile berhasil diperbarui.');
     }
 
     /**
