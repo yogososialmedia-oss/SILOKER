@@ -101,7 +101,6 @@
                             <label class="form-label">Pilih status</label>
                             <select class="form-select" name="Status" required>
                                 <option value="" disabled selected>Pilih Status</option>
-                                <option value="pending">Pending</option>
                                 <option value="terverifikasi">Terverifikasi</option>
                                 <option value="verifikasi_gagal">Verifikasi Gagal</option>
                             </select>
