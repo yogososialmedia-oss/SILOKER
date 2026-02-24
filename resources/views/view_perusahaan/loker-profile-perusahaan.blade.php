@@ -200,12 +200,12 @@
 
                       <div class="flex-grow-1">
                         <h6 class="mb-1 d-flex align-items-center gap-2 fw-bold">
-                          <a href="{{ route('perusahaan.profile') }}"
+                          <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
                             class="text-dark text-decoration-none position-relative z-3">
                             {{ $info_perusahaan->nama_perusahaan }}
                           </a>
 
-                          <a href="{{ route('perusahaan.profile') }}"
+                          <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
                             class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
                             style="width:16px; height:16px; font-size:10px; line-height:1;">
                             i

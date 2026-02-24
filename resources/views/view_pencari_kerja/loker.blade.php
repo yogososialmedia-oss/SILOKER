@@ -11,28 +11,28 @@
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Provinsi</label>
                         <select id="provinsi" name="provinsi" class="form-select">
-                            <option value="">Pilih Provinsi</option>
+                            <option value="{{ $filters['provinsi'] ?? '' }}">Pilih Provinsi</option>
                         </select>
                     </div>
 
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Kabupaten</label>
                         <select id="kabupaten" name="kabupaten" class="form-select" disabled>
-                            <option value="">Pilih Kabupaten</option>
+                            <option value="{{ $filters['kabupaten'] ?? '' }}">Pilih Kabupaten</option>
                         </select>
                     </div>
 
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Kecamatan</label>
                         <select id="kecamatan" name="kecamatan" class="form-select" disabled>
-                            <option value="">Pilih Kecamatan</option>
+                            <option value="{{ $filters['kecamatan'] ?? '' }}">Pilih Kecamatan</option>
                         </select>
                     </div>
 
 
                     <div class="col-md-3 mb-4">
                         <label class="form-label">Jabatan</label>
-                        <input type="text" name="jabatan" value="{{ request('jabatan') }}" class="form-control"
+                        <input type="text" name="jabatan" value="{{ $filters['jabatan'] ?? '' }}" class="form-control"
                             placeholder="Masukan posisi jabatan">
                     </div>
 
@@ -40,10 +40,10 @@
                         <label class="form-label">Tipe Lowongan</label>
                         <select name="tipe_loker" class="form-select">
                             <option value="">Pilih tipe</option>
-                            <option value="internship" {{ request('tipe_loker') == 'internship' ? 'selected' : '' }}>
+                            <option value="internship" {{ ($filters['tipe_loker'] ?? '') == 'internship' ? 'selected' : '' }}>
                                 Internship
                             </option>
-                            <option value="job_opportunity" {{ request('tipe_loker') == 'job_opportunity' ? 'selected' : '' }}>
+                            <option value="job_opportunity" {{ ($filters['tipe_loker'] ?? '') == 'job_opportunity' ? 'selected' : '' }}>
                                 Job Opportunity
                             </option>
                         </select>
@@ -95,7 +95,8 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col-12 d-flex justify-content-end gap-3">
-                        <a href="{{ route('pencarikerja.loker.index') }}" class="btn btn-secondary px-4">
+                        <a href="{{ route('pencarikerja.loker.index', ['reset' => 1]) }}" 
+                        class="btn btn-secondary px-4">
                             Reset
                         </a>
 
@@ -112,7 +113,7 @@
                         <div class="card h-100 loker-card-beranda position-relative">
 
                             {{-- LINK --}}
-                            <a href="{{ route('pencarikerja.loker.show', $loker) }}" class="stretched-link"></a>
+                            <a href="{{ route('pencarikerja.loker.show', [$loker] + request()->query()) }}" class="stretched-link"></a>
 
                             <div class="card-body position-relative">
 
@@ -239,8 +240,11 @@
 
         <div class="content-backdrop fade"></div>
     </div>
-
-
+    <script>
+        const oldProvinsi = "{{ $filters['provinsi'] ?? '' }}";
+        const oldKabupaten = "{{ $filters['kabupaten'] ?? '' }}";
+        const oldKecamatan = "{{ $filters['kecamatan'] ?? '' }}";
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -256,9 +260,13 @@
                 .then(data => {
                     let opt = '<option value="">Pilih Provinsi</option>';
                     data.forEach(item => {
-                        opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                        const selected = item.name === oldProvinsi ? 'selected' : '';
+                        opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                     });
                     provinsi.innerHTML = opt;
+                    if (oldProvinsi) {
+                        provinsi.dispatchEvent(new Event('change'));
+                    }
                 });
 
             // =========================
@@ -279,10 +287,14 @@
                     .then(data => {
                         let opt = '<option value="">Pilih Kabupaten</option>';
                         data.forEach(item => {
-                            opt += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                            const selected = item.name === oldKabupaten ? 'selected' : '';
+                            opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                         });
                         kabupaten.innerHTML = opt;
                         kabupaten.disabled = false;
+                        if (oldKabupaten) {
+                            kabupaten.dispatchEvent(new Event('change'));
+                        }
                     });
             });
 
@@ -302,7 +314,8 @@
                     .then(data => {
                         let opt = '<option value="">Pilih Kecamatan</option>';
                         data.forEach(item => {
-                            opt += `<option value="${item.name}">${item.name}</option>`;
+                            const selected = item.name === oldKecamatan ? 'selected' : '';
+                            opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
                         });
                         kecamatan.innerHTML = opt;
                         kecamatan.disabled = false;

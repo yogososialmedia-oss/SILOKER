@@ -63,6 +63,11 @@
                                                             <i class="icon-base bx bx-show me-2"></i>
                                                             Tampilan Loker
                                                         </a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.apply.loker', $loker->id) }}">
+                                                            <i class="icon-base bx bx-user-pin me-2"></i>
+                                                            Daftar Apply
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

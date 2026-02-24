@@ -23,7 +23,7 @@ class CheckPerusahaanVerified
             // Cek status akun sudah disetujui admin
             if ($user->status_akun !== 'terverifikasi') {
                 return redirect()->route('perusahaan.profile')
-                    ->with('error', 'Akun Anda belum diverifikasi oleh admin.');
+                    ->with('error', 'Akun Anda belum diverifikasi oleh admin, Mohon tunggu 1-2 hari kerja.');
             }
         }
 

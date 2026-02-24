@@ -101,7 +101,7 @@
 
                             {{-- ACTION --}}
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                                <a href="{{ route('pencarikerja.loker.index') }}" class="btn btn-secondary">
+                                <a href="{{ route('pencarikerja.loker.index', request()->query()) }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                                 @php

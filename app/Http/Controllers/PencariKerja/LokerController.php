@@ -15,46 +15,48 @@ class LokerController extends Controller
      */
     public function index(Request $request)
     {
+        // Simpan semua query ke session KECUALI kalau reset
+        if ($request->has('reset')) {
+            session()->forget('loker_filters');
+        } else {
+            session(['loker_filters' => $request->query()]);
+        }
+
+        $filters = session('loker_filters', []);
+
         $query = Loker::with('perusahaanMitra');
 
-        // FILTER PROVINSI
-        if ($request->filled('provinsi')) {
-            $query->where('provinsi', $request->provinsi);
+        if (!empty($filters['provinsi'])) {
+            $query->where('provinsi', $filters['provinsi']);
         }
 
-        // FILTER KABUPATEN
-        if ($request->filled('kabupaten')) {
-            $query->where('kabupaten', $request->kabupaten);
+        if (!empty($filters['kabupaten'])) {
+            $query->where('kabupaten', $filters['kabupaten']);
         }
 
-        // FILTER KECAMATAN
-        if ($request->filled('kecamatan')) {
-            $query->where('kecamatan', $request->kecamatan);
+        if (!empty($filters['kecamatan'])) {
+            $query->where('kecamatan', $filters['kecamatan']);
         }
 
-        // FILTER JABATAN (LIKE SEARCH)
-        if ($request->filled('jabatan')) {
-            $query->where('jabatan', 'like', '%' . $request->jabatan . '%');
+        if (!empty($filters['jabatan'])) {
+            $query->where('jabatan', 'like', '%' . $filters['jabatan'] . '%');
         }
 
-        // FILTER TIPE LOKER
-        if ($request->filled('tipe_loker')) {
-            $query->where('tipe_loker', $request->tipe_loker);
+        if (!empty($filters['tipe_loker'])) {
+            $query->where('tipe_loker', $filters['tipe_loker']);
         }
 
-        // FILTER MODEL KERJA
-        if ($request->filled('model_kerja')) {
-            $query->where('model_kerja', $request->model_kerja);
+        if (!empty($filters['model_kerja'])) {
+            $query->where('model_kerja', $filters['model_kerja']);
         }
 
-        // FILTER MINIMAL PENDIDIKAN
-        if ($request->filled('minimal_pendidikan')) {
-            $query->where('minimal_pendidikan', $request->minimal_pendidikan);
+        if (!empty($filters['minimal_pendidikan'])) {
+            $query->where('minimal_pendidikan', $filters['minimal_pendidikan']);
         }
 
         $lokers = $query->latest()->paginate(6)->withQueryString();
 
-        return view('view_pencari_kerja.loker', compact('lokers'));
+        return view('view_pencari_kerja.loker', compact('lokers', 'filters'));
     }
 
     public function showBeranda()
