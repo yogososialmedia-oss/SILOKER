@@ -136,6 +136,11 @@ class ProfilePerusahaanController extends Controller
             $logoFile->storeAs('logo_perusahaan', $logoFilename , 'public');
             $authPerusahaan->logo = $logoFilename;
             }
+        // Jika sebelumnya gagal, ubah jadi pending lagi
+        if ($authPerusahaan->status_akun == 'verifikasi_gagal') {
+            $authPerusahaan->status_akun = 'pending';
+            $authPerusahaan->deskripsi_status = null; // hapus pesan lama
+        }
         $authPerusahaan->save();
 
 

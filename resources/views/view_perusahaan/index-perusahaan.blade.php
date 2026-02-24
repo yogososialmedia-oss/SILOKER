@@ -53,9 +53,19 @@
                   ];
               @endphp
 
-              <p class="{{ $statusClass[$info_perusahaan->status_akun] ?? 'text-secondary' }} mb-0">
-                  {{ $statusText[$info_perusahaan->status_akun] ?? '-' }}
-              </p>
+              @if($info_perusahaan->status_akun == 'verifikasi_gagal')
+                  <button 
+                      class="btn p-0 border-0 bg-transparent {{ $statusClass[$info_perusahaan->status_akun] }}"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalStatus">
+                      {{ $statusText[$info_perusahaan->status_akun] }}
+                      <i class="bx bx-error-circle"></i>
+                  </button>
+              @else
+                  <p class="{{ $statusClass[$info_perusahaan->status_akun] ?? 'text-secondary' }} mb-0">
+                      {{ $statusText[$info_perusahaan->status_akun] ?? '-' }}
+                  </p>
+              @endif
             </div>
           </div>
         </div>
@@ -168,8 +178,35 @@
             <p>{{ $info_perusahaan->no_telp_perusahaan ?? '-' }}</p>
           </div>
         </div>
-
       </div>
+
+      @if($info_perusahaan->status_akun == 'verifikasi_gagal')
+        <div class="modal fade" id="modalStatus" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+              <div class="modal-header">
+                <h5 class="modal-title text-danger">
+                  Keterangan Verifikasi Gagal
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                {{ $info_perusahaan->deskripsi_status ?? 'Tidak ada keterangan dari admin.' }}
+              </div>
+              <div class="modal-footer">
+                @if (Auth::guard('perusahaanmitra')->user())
+                  <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-warning">
+                    Perbaiki Profile
+                  </a>
+                @endif
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Tutup
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endif
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
       <div class="container-xxl">

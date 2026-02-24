@@ -58,21 +58,29 @@ class VerifikasiPerusahaanController extends Controller
             compact('info_perusahaan', 'loker'));
     }
     public function updateStatus(Request $request)
-        {
-            $request->validate([
-                'Status' => 'required',
-                'id' => 'required'
-            ]);
+    {
+        $request->validate([
+            'id' => 'required|exists:tb_perusahaan_mitra,id',
+            'Status' => 'required|in:terverifikasi,verifikasi_gagal',
+            'Pesan' => 'nullable|string'
+        ]);
 
-            $perusahaan = PerusahaanMitra::findOrFail($request->id);
+        $perusahaan = PerusahaanMitra::findOrFail($request->id);
 
-            $perusahaan->status_akun = $request->Status;
-            $perusahaan->save();
+        $perusahaan->status_akun = $request->Status;
 
-            return redirect()
-                ->route('admin.verifikasi-perusahaan')
-                ->with('success', 'Status berhasil diperbarui.');
+        if ($request->Status == 'verifikasi_gagal') {
+            $perusahaan->deskripsi_status = $request->Pesan;
+        } else {
+            $perusahaan->deskripsi_status = null;
         }
+
+        $perusahaan->save();
+
+        return redirect()
+            ->route('admin.verifikasi-perusahaan')
+            ->with('success', 'Status berhasil diperbarui.');
+    }
     /**
      * Show the form for creating a new resource.
      */
