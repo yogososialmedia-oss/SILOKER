@@ -45,7 +45,7 @@
                                     </td>
 
                                     <td>
-                                        {{ $data_apply->pencariKerja->nim ?? '-' }}
+                                        {{ $data_apply->pencariKerja->nim }}
                                     </td>
 
                                     <td>

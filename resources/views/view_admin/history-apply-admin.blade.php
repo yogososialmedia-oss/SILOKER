@@ -20,7 +20,7 @@
                             </h4>
 
                             <p>
-                                {{ $apply->pencariKerja->nim ?? '-' }}
+                                {{ $apply->pencariKerja->nim }}
                             </p>
                         </div>
                         <div class="bg-white p-4">

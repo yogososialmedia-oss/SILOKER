@@ -44,7 +44,7 @@ class DashboardAdminController extends Controller
             return $loker;
         })
         ->sortByDesc('total_popularitas')
-        ->take(5);
+        ->take(10);
 
         return view('view_admin.dashboard', compact(
             'totalOpen',
