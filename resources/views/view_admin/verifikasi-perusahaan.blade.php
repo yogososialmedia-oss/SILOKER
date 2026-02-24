@@ -99,18 +99,18 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Pilih status</label>
-                            <select class="form-select" name="Status" required>
+                            <select class="form-select" name="Status" id="statusSelect" required>
                                 <option value="" disabled selected>Pilih Status</option>
                                 <option value="terverifikasi">Terverifikasi</option>
                                 <option value="verifikasi_gagal">Verifikasi Gagal</option>
                             </select>
                         </div>
-                        <div class="alert alert-info">
-                            Form dibawah diperuntukan untuk mengirim email otomatis.
+                        <div class="alert alert-warning d-none" id="alertPesan">
+                            Silahkan tuliskan alasan verifikasi secara lengkap dan jelas. Informasi ini akan membantu perusahaan memahami kesalahan dan melakukan perbaikan.
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tambahkan pesan</label>
-                            <textarea class="form-control" name="Pesan" rows="3"></textarea>
+                        <div class="mb-3 d-none" id="formPesan">
+                            <label class="form-label text-danger">Tambahkan pesan (Wajib jika gagal)</label>
+                            <textarea class="form-control" name="Pesan" id="pesanField" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -155,6 +155,35 @@
 
                 }, 3000); // 3 detik
             }
+
+        });
+        </script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const statusSelect = document.getElementById('statusSelect');
+            const formPesan = document.getElementById('formPesan');
+            const pesanField = document.getElementById('pesanField');
+            const alertPesan = document.getElementById('alertPesan');
+
+            statusSelect.addEventListener('change', function () {
+
+                if (this.value === 'verifikasi_gagal') {
+
+                    formPesan.classList.remove('d-none');
+                    alertPesan.classList.remove('d-none');
+                    pesanField.setAttribute('required', 'required');
+
+                } else {
+
+                    formPesan.classList.add('d-none');
+                    alertPesan.classList.add('d-none');
+                    pesanField.removeAttribute('required');
+                    pesanField.value = '';
+
+                }
+
+            });
 
         });
         </script>

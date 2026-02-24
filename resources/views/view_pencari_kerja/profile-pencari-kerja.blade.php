@@ -31,7 +31,7 @@
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $user->nama_pencari_kerja }}
                             </h4>
-                            <p>{{ $user->nim ?? '-' }}</p>
+                            <p>{{ $user->nim }}</p>
                         </div>
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
