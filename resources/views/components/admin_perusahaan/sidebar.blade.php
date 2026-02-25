@@ -26,7 +26,7 @@
             </li>
 
             <li
-                class="menu-item {{ request()->routeIs(['admin.verifikasi-perusahaan', 'admin.daftar-perusahaan', 'admin.profile-perusahaan', 'admin.detail-verifikasi-perusahaan']) ? 'active open' : '' }}">
+                class="menu-item {{ request()->routeIs(['admin.verifikasi-perusahaan', 'admin.daftar-perusahaan', 'admin.profile-perusahaan', 'admin.detail-verifikasi-perusahaan', 'admin.lowongan-kerja-perusahaan']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-buildings"></i>
                     <div>Perusahaan</div>
@@ -37,7 +37,7 @@
                             <div>Verifikasi Perusahaan</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs(['admin.daftar-perusahaan', 'admin.profile-perusahaan']) ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->routeIs(['admin.daftar-perusahaan', 'admin.profile-perusahaan', 'admin.lowongan-kerja-perusahaan']) ? 'active' : '' }}">
                         <a href="{{ route('admin.daftar-perusahaan') }}" class="menu-link">
                             <div>Daftar Perusahaan</div>
                         </a>
@@ -71,13 +71,13 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('perusahaan.loker*') ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker*', 'perusahaan.loker.edit']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Loker</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ request()->routeIs('perusahaan.loker') ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->routeIs(['perusahaan.loker.tampilan', 'perusahaan.loker', 'perusahaan.loker.edit']) ? 'active' : '' }}">
                         <a href="{{ route('perusahaan.loker') }}" class="menu-link">
                             <div>Daftar Loker</div>
                         </a>

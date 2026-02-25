@@ -6,14 +6,14 @@
                 <div class="col-12 mb-5">
                     {{-- Pesan sukses --}}
                     @if(session('success'))
-                    <div id="autoAlert" class="alert alert-success alert-dismissible show" role="alert">
-                        {{ session('success') }}
-                    </div>
+                        <div id="autoAlert" class="alert alert-success alert-dismissible show" role="alert">
+                            {{ session('success') }}
+                        </div>
                     @endif
                     @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible show" role="alert">
-                        {{ session('error') }}
-                    </div>
+                        <div class="alert alert-danger alert-dismissible show" role="alert">
+                            {{ session('error') }}
+                        </div>
                     @endif
 
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
@@ -23,10 +23,9 @@
 
                         <!-- Overlay Logo & Nama -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ $user->foto_pencari_kerja 
-                                ? asset('storage/profile/'.$user->foto_pencari_kerja)
-                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
-                                class="rounded-circle mb-2"
+                            <img src="{{ $user->foto_pencari_kerja
+    ? asset('storage/profile/' . $user->foto_pencari_kerja)
+    : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $user->nama_pencari_kerja }}
@@ -87,12 +86,13 @@
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $user->alamat_pencari_kerja ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
+
                             @if($user->linkedin)
-                            <a href="{{ $user->linkedin }}" target="_blank" class="d-block mb-4 text-primary">
-                                {{ $user->linkedin }}
-                            </a>
+                                <a href="{{ $user->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3">
+                                    Lihat Profil Linked.In
+                                </a>
                             @else
-                            <p>-</p>
+                                <p class="text-muted mb-3">Belum ada profile Linked.In</p>
                             @endif
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
                             <p>{{ $user->pendidikan_terakhir ?? '-' }}</p>
@@ -102,12 +102,12 @@
                             <p>{{ $user->no_telp_pencari_kerja ?? '-' }}</p>
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             @if($user->cv)
-                            <button type="button" class="btn btn-outline-primary btn-sm mb-4"
-                                data-bs-toggle="modal" data-bs-target="#modalCV">
-                                Lihat CV
-                            </button>
+                                <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal"
+                                    data-bs-target="#modalCV">
+                                    Lihat CV
+                                </button>
                             @else
-                            <p class="text-muted">Belum upload CV</p>
+                                <p class="text-muted">Belum upload CV</p>
                             @endif
                             <!-- MODAL CV -->
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel"
@@ -122,8 +122,8 @@
                                         </div>
 
                                         <div class="modal-body p-0">
-                                            <iframe src="{{ asset('storage/'.$user->cv) }}"
-                                                    width="100%" height="600px" style="border:none;">
+                                            <iframe src="{{ asset('storage/' . $user->cv) }}" width="100%"
+                                                height="600px" style="border:none;">
                                             </iframe>
                                         </div>
 
@@ -139,7 +139,8 @@
 
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
-                <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div
+                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                     <div class="mb-2 mb-md-0">
                         ©2026 Yogo & Wahyu
                     </div>
@@ -148,14 +149,14 @@
         </footer>
 
         <script>
-        setTimeout(() => {
-            const alert = document.getElementById('autoAlert');
-            if(alert){
-                alert.classList.remove('show');
-                alert.classList.add('fade');
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 3000);
+            setTimeout(() => {
+                const alert = document.getElementById('autoAlert');
+                if (alert) {
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                    setTimeout(() => alert.remove(), 500);
+                }
+            }, 3000);
         </script>
 
         <div class="content-backdrop fade"></div>
