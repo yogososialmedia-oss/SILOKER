@@ -14,119 +14,140 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama</label>
-                                        <input name="nama_pencari_kerja" class="form-control" value="{{ old('nama_pencari_kerja', $user->nama_pencari_kerja) }}"
-                                            placeholder="Tambahkan nama lengkap anda">
-                                        @error('nama_pencari_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nama Lengkap</label>
+                                    <input name="nama_pencari_kerja"
+                                        class="form-control @error('nama_pencari_kerja') is-invalid @enderror"
+                                        value="{{ old('nama_pencari_kerja', $user->nama_pencari_kerja) }}"
+                                        placeholder="Tambahkan nama lengkap anda">
+
+                                    @error('nama_pencari_kerja')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa stikom)</label>
-                                        <input name="nim" class="form-control" value="{{ old('nim', $user->nim) }}"
+                                        <input name="nim"
+                                            class="form-control @error('nim') is-invalid @enderror"
+                                            value="{{ old('nim', $user->nim) }}"
                                             placeholder="Tambahkan NIM (jika mahasiswa stikom)">
+
                                         @error('nim')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_pencari_kerja" class="form-control" value="{{ old('email_pencari_kerja', $user->email_pencari_kerja) }}"
+                                        <input name="email_pencari_kerja"
+                                            class="form-control @error('email_pencari_kerja') is-invalid @enderror"
+                                            value="{{ old('email_pencari_kerja', $user->email_pencari_kerja) }}"
                                             placeholder="Tambahkan alamat email anda">
+
                                         @error('email_pencari_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="no_telp_pencari_kerja" class="form-control" value="{{ old('no_telp_pencari_kerja', $user->no_telp_pencari_kerja) }}"
+                                        <input name="no_telp_pencari_kerja"
+                                            class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror"
+                                            value="{{ old('no_telp_pencari_kerja', $user->no_telp_pencari_kerja) }}"
                                             placeholder="Tambahkan nomor telepon anda">
+
                                         @error('no_telp_pencari_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="alamat_pencari_kerja" type="text" class="form-control" value="{{ old('alamat_pencari_kerja', $user->alamat_pencari_kerja) }}"
+                                        <input name="alamat_pencari_kerja"
+                                            class="form-control @error('alamat_pencari_kerja') is-invalid @enderror"
+                                            value="{{ old('alamat_pencari_kerja', $user->alamat_pencari_kerja) }}"
                                             placeholder="Tambahkan alamat lengkap anda">
+
                                         @error('alamat_pencari_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Linked.id</label>
-                                        <input name="linkedin" class="form-control" value="{{ old('linkedin', $user->linkedin) }}"
-                                            placeholder="Tambahkan link profile linked.id anda">
+                                        <input name="linkedin"
+                                            class="form-control @error('linkedin') is-invalid @enderror"
+                                            value="{{ old('linkedin', $user->linkedin) }}"
+                                            placeholder="Tambahkan link profile LinkedIn anda">
+
                                         @error('linkedin')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-4 mb-4">
                                         <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
-                                        <select name="pendidikan_terakhir" class="form-select">
+                                        <select name="pendidikan_terakhir"
+                                            class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
+
                                             <option value="">Pilih Pendidikan Terakhir</option>
-                                            <option value="Pendidikan Terakhir SMA/Sederajat"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir SMA/Sederajat' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir SMA/Sederajat
-                                            </option>
-                                            <option value="Pendidikan Terakhir D1"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir D1' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D1
-                                            </option>
-                                            <option value="Pendidikan Terakhir D2"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir D2' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D2
-                                            </option>
-                                            <option value="Pendidikan Terakhir D3"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir D3' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D3
-                                            </option>
-                                            <option value="Pendidikan Terakhir S1"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir S1' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S1
-                                            </option>
-                                            <option value="Pendidikan Terakhir S2"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir S2' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S2
-                                            </option>
-                                            <option value="Pendidikan Terakhir S3"
-                                                {{ $user->pendidikan_terakhir == 'Pendidikan Terakhir S3' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S3
-                                            </option>
+
+                                            @foreach ([
+                                                'Pendidikan Terakhir SMA/Sederajat',
+                                                'Pendidikan Terakhir D1',
+                                                'Pendidikan Terakhir D2',
+                                                'Pendidikan Terakhir D3',
+                                                'Pendidikan Terakhir S1',
+                                                'Pendidikan Terakhir S2',
+                                                'Pendidikan Terakhir S3'
+                                            ] as $p)
+
+                                                <option value="{{ $p }}"
+                                                    {{ old('pendidikan_terakhir', $user->pendidikan_terakhir) == $p ? 'selected' : '' }}>
+                                                    {{ $p }}
+                                                </option>
+
+                                            @endforeach
                                         </select>
+
                                         @error('pendidikan_terakhir')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Upload CV</label>
-                                        <input name="cv" type="file" class="form-control">
+                                        <input name="cv"
+                                            type="file"
+                                            class="form-control @error('cv') is-invalid @enderror"
+                                            accept="application/pdf">
+
                                         @error('cv')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Foto Profile</label>
-                                        <input name="foto_pencari_kerja" type="file" class="form-control">
+                                        <input name="foto_pencari_kerja"
+                                            type="file"
+                                            class="form-control @error('foto_pencari_kerja') is-invalid @enderror"
+                                            accept="image/png,image/jpeg,image/jpg">
+
                                         @error('foto_pencari_kerja')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-12 mb-6">
                                         <label for="exampleFormControlTextarea1" class="form-label">Tentang Saya</label>
-                                        <textarea name="deskripsi_diri" class="form-control" rows="3">{{ old('deskripsi_diri', $user->deskripsi_diri) }}</textarea>
+                                        <textarea name="deskripsi_diri"
+                                            class="form-control @error('deskripsi_diri') is-invalid @enderror"
+                                            rows="3">{{ old('deskripsi_diri', $user->deskripsi_diri) }}</textarea>
+
                                         @error('deskripsi_diri')
-                                            <small class="text-danger">{{ $message }}</small>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 

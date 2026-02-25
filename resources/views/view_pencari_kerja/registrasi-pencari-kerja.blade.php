@@ -69,7 +69,10 @@
                                     {{-- PENDIDIKAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Pendidikan Terakhir</label>
-                                        <select name="pendidikan_terakhir" class="form-select">
+                                        <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
+                                            @error('pendidikan_terakhir')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <option value="">Pilih Pendidikan</option>
                                             @foreach (['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
                                                 <option value="{{ $p }}" {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>{{ $p }}

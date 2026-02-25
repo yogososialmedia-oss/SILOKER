@@ -21,71 +21,95 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input name="nama" class="form-control"
-                                            value="{{ old('nama', $pencari->nama_pencari_kerja) }}"
-                                            placeholder="Tambahkan nama lengkap anda">
+                                        <input name="nama"
+                                                class="form-control @error('nama') is-invalid @enderror"
+                                                value="{{ old('nama', $pencari->nama_pencari_kerja) }}"
+                                                placeholder="Tambahkan nama lengkap anda">
+
+                                            @error('nama')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa stikom)</label>
-                                        <input name="nim" class="form-control"
+                                        <input name="nim"
+                                            class="form-control @error('nim') is-invalid @enderror"
                                             value="{{ old('nim', $pencari->nim) }}"
                                             placeholder="Tambahkan NIM (jika mahasiswa stikom)">
+
+                                        @error('nim')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
-                                        <select name="pendidikan_terakhir" id="defaultSelect" class="form-select">
+                                        <label class="form-label">Pendidikan Terakhir</label>
+
+                                        <select name="pendidikan_terakhir"
+                                            class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
+
                                             <option value="">Pilih Pendidikan Terakhir</option>
-                                            <option value="Pendidikan Terakhir SMA/sederajat"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir SMA/sederajat' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir SMA/sederajat
-                                            </option>
-                                            <option value="Pendidikan Terakhir D1"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir D1' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D1
-                                            </option>
-                                            <option value="Pendidikan Terakhir D2"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir D2' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D2
-                                            </option>
-                                            <option value="Pendidikan Terakhir D3"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir D3' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir D3
-                                            </option>
-                                            <option value="Pendidikan Terakhir S1"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir S1' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S1
-                                            </option>
-                                            <option value="Pendidikan Terakhir S2"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir S2' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S2
-                                            </option>
-                                            <option value="Pendidikan Terakhir S3"
-                                                {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == 'Pendidikan Terakhir S3' ? 'selected' : '' }}>
-                                                Pendidikan Terakhir S3
-                                            </option>
+
+                                            @php
+                                                $list = [
+                                                    'Pendidikan Terakhir SMA/sederajat',
+                                                    'Pendidikan Terakhir D1',
+                                                    'Pendidikan Terakhir D2',
+                                                    'Pendidikan Terakhir D3',
+                                                    'Pendidikan Terakhir S1',
+                                                    'Pendidikan Terakhir S2',
+                                                    'Pendidikan Terakhir S3'
+                                                ];
+                                            @endphp
+
+                                            @foreach ($list as $pendidikan)
+                                                <option value="{{ $pendidikan }}"
+                                                    {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == $pendidikan ? 'selected' : '' }}>
+                                                    {{ $pendidikan }}
+                                                </option>
+                                            @endforeach
+
                                         </select>
+
+                                        @error('pendidikan_terakhir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email" class="form-control"
+                                        <input name="email"
+                                            class="form-control @error('email') is-invalid @enderror"
                                             value="{{ old('email', $pencari->email_pencari_kerja) }}"
                                             placeholder="Tambahkan alamat email anda">
+
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="no_telp" class="form-control"
+                                        <input name="no_telp"
+                                            class="form-control @error('no_telp') is-invalid @enderror"
                                             value="{{ old('no_telp', $pencari->no_telp_pencari_kerja) }}"
                                             placeholder="Tambahkan nomor telepon anda">
+
+                                        @error('no_telp')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="alamat" class="form-control"
+                                        <input name="alamat"
+                                            class="form-control @error('alamat') is-invalid @enderror"
                                             value="{{ old('alamat', $pencari->alamat_pencari_kerja) }}"
                                             placeholder="Tambahkan alamat lengkap anda">
+
+                                        @error('alamat')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <div class="form-text"></div>
                                     </div>
                                 </div>

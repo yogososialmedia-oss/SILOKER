@@ -16,7 +16,7 @@
                 ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
                 : asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg') }}"
                 class="rounded-circle mb-2"
-                style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
+                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
               <h4 class="fw-bold mb-0 text-white">
                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
               </h4>

@@ -102,9 +102,21 @@
 
                             {{-- ACTION --}}
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                                <a href="{{ route('pencarikerja.loker.index', request()->query()) }}" class="btn btn-secondary">
-                                    Kembali
-                                </a>
+                                @php
+                                    $from = request('from');
+                                @endphp
+
+                                @if($from === 'perusahaan')
+                                    <a href="{{ route('pencarikerja.loker.profile.perusahaan', request('perusahaan_id')) }}" 
+                                    class="btn btn-secondary">
+                                        Kembali
+                                    </a>
+                                @else
+                                    <a href="{{ route('pencarikerja.loker.index', request()->except(['from','perusahaan_id'])) }}" 
+                                    class="btn btn-secondary">
+                                        Kembali
+                                    </a>
+                                @endif
                                 @php
                                     $isOpen = now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker);
                                 @endphp

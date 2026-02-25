@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Perusahaan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilePerusahaanController extends Controller
 {
@@ -127,15 +128,18 @@ class ProfilePerusahaanController extends Controller
         $authPerusahaan->tentang_perusahaan = $validatedData['TentangPerusahaan'] ?? $authPerusahaan->tentang_perusahaan;
 
         if ($request->hasFile('logo')) {
-            $logoPath = storage_path('app/public/logo_perusahaan/' . $authPerusahaan->logo);
-            if (file_exists($logoPath)) {
-                unlink($logoPath); // Hapus file logo lama
-            }
-            $logoFile = $request->file('logo');
-            $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
-            $logoFile->storeAs('logo_perusahaan', $logoFilename , 'public');
-            $authPerusahaan->logo = $logoFilename;
-            }
+
+        // Hapus logo lama jika ada
+        if (!empty($authPerusahaan->logo)) {
+            Storage::disk('public')->delete('logo_perusahaan/' . $authPerusahaan->logo);
+        }
+
+        $logoFile = $request->file('logo');
+        $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
+        $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
+
+        $authPerusahaan->logo = $logoFilename;
+    }
         // Jika sebelumnya gagal, ubah jadi pending lagi
         if ($authPerusahaan->status_akun == 'verifikasi_gagal') {
             $authPerusahaan->status_akun = 'pending';

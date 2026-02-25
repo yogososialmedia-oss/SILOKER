@@ -96,28 +96,34 @@
                                     <!-- Provinsi -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
-                                        @php $provinsi = old('provinsi', $loker->provinsi); @endphp
-                                        <select name="provinsi" id="provinsi" class="form-select">
+                                        <select name="provinsi" id="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
                                         </select>
+                                        @error('provinsi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Kabupaten -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kabupaten</label>
-                                        @php $kabupaten = old('kabupaten', $loker->kabupaten); @endphp
-                                        <select name="kabupaten" id="kabupaten" class="form-select" disabled>
+                                        <select name="kabupaten" id="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
                                         </select>
+                                        @error('kabupaten')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Kecamatan -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kecamatan</label>
-                                        @php $kecamatan = old('kecamatan', $loker->kecamatan); @endphp
-                                        <select name="kecamatan" id="kecamatan" class="form-select" disabled>
+                                        <select name="kecamatan" id="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
                                         </select>
+                                        @error('kecamatan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Alamat -->
@@ -133,26 +139,28 @@
                                     <!-- Model Kerja -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Model Kerja</label>
-                                        @php $model = old('model_kerja', $loker->model_kerja); @endphp
-                                        <select name="model_kerja" class="form-select">
+                                        <select name="model_kerja" class="form-select @error('model_kerja') is-invalid @enderror">
                                             <option value="">Pilih model kerja</option>
-                                            <option value="Work From Home" {{ $model == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
-                                            <option value="Work From Office" {{ $model == 'Work From Office' ? 'selected' : '' }}>Work From Office</option>
-                                            <option value="Hybrid" {{ $model == 'Hybrid' ? 'selected' : '' }}>Hybrid
-                                            </option>
+                                            <option value="Work From Home" {{ old('model_kerja', $loker->model_kerja) == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
+                                            <option value="Work From Office" {{ old('model_kerja', $loker->model_kerja) == 'Work From Office' ? 'selected' : '' }}>Work From Office</option>
+                                            <option value="Hybrid" {{ old('model_kerja', $loker->model_kerja) == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                                         </select>
+                                        @error('model_kerja')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Tipe Loker -->
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tipe Loker</label>
-                                        @php $tipe = old('tipe_loker', $loker->tipe_loker); @endphp
-                                        <select name="tipe_loker" class="form-select">
+                                        <select name="tipe_loker" class="form-select @error('tipe_loker') is-invalid @enderror">
                                             <option value="">Pilih tipe loker</option>
-                                            <option value="job_opportunity" {{ $tipe == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity</option>
-                                            <option value="internship" {{ $tipe == 'internship' ? 'selected' : '' }}>
-                                                Internship</option>
+                                            <option value="job_opportunity" {{ old('tipe_loker', $loker->tipe_loker) == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity</option>
+                                            <option value="internship" {{ old('tipe_loker', $loker->tipe_loker) == 'internship' ? 'selected' : '' }}>Internship</option>
                                         </select>
+                                        @error('tipe_loker')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Pendidikan -->

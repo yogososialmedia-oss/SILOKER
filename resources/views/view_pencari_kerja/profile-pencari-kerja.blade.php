@@ -26,7 +26,7 @@
                             <img src="{{ $user->foto_pencari_kerja
     ? asset('storage/profile/' . $user->foto_pencari_kerja)
     : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" class="rounded-circle mb-2"
-                                style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
+                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $user->nama_pencari_kerja }}
                             </h4>

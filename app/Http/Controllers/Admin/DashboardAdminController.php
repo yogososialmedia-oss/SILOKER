@@ -34,24 +34,30 @@ class DashboardAdminController extends Controller
         // Total apply dari tabel tb_apply
         $totalApply = Apply::count();
 
+        // ✅ Tambahan baru
+        $totalLowongan = Loker::count();
+        $totalPerusahaan = PerusahaanMitra::count();
+
         $lokerTerbaru = Loker::with('perusahaanMitra')
-        ->withCount('apply')
-        ->get()
-        ->map(function ($loker) {
-            $loker->total_popularitas =
-                ($loker->tayangan * 1) +
-                ($loker->apply_count * 5);
-            return $loker;
-        })
-        ->sortByDesc('total_popularitas')
-        ->take(10)
-        ->values();
+            ->withCount('apply')
+            ->get()
+            ->map(function ($loker) {
+                $loker->total_popularitas =
+                    ($loker->tayangan * 1) +
+                    ($loker->apply_count * 5);
+                return $loker;
+            })
+            ->sortByDesc('total_popularitas')
+            ->take(10)
+            ->values();
 
         return view('view_admin.dashboard', compact(
             'totalOpen',
             'totalClose',
             'totalTayangan',
             'totalApply',
+            'totalLowongan',      // ✅ kirim ke blade
+            'totalPerusahaan',    // ✅ kirim ke blade
             'lokerTerbaru'
         ));
     }
