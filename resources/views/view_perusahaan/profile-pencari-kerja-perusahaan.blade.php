@@ -61,12 +61,13 @@
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $apply->pencariKerja->alamat_pencari_kerja }}</p>
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
+
                             @if($apply->pencariKerja->linkedin)
-                                <a href="{{ $apply->pencariKerja->linkedin }}" target="_blank" class="d-block mb-4 text-primary">
-                                    Klik di sini untuk melihat profile LinkedIn saya
+                                <a href="{{ $apply->pencariKerja->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3">
+                                    Lihat Profil Linked.In
                                 </a>
                             @else
-                                <p class="text-muted">Belum menambahkan LinkedIn</p>
+                                <p class="text-muted mb-3">Belum ada profile Linked.In</p>
                             @endif
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
                             <p>{{ $apply->pencariKerja->pendidikan_terakhir ?? '-' }}</p>

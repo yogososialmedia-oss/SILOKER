@@ -4,93 +4,121 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+
+                        {{-- HEADER --}}
                         <div class="card-header">
                             <h5 class="mb-0 fw-bold">DETAIL APPLY</h5>
                         </div>
+
                         <div class="card-body">
                             @php
                                 $pelamar = $apply->pencariKerja ?? null;
                                 $loker = $apply->loker ?? null;
                             @endphp
 
+                            {{-- ===== DATA FORM (VIEW ONLY) ===== --}}
                             <div class="row">
 
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nama</label>
+                                    <label class="form-label">Nama Lengkap</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $pelamar?->nama_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->nama_pencari_kerja ?? '-' }}" disabled>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control"
-                                        value="{{ $loker?->jabatan ?? '-' }}" readonly>
+                                    <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
+                                    <input type="text" class="form-control" value="{{ $pelamar?->nim ?? '-' }}"
+                                        disabled>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">LinkedIn</label>
-                                    <input type="text" class="form-control"
-                                        value="{{ $apply->linkedin ?? '-' }}" readonly>
-                                </div>
+                    
 
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">NIM (Jika Mahasiswa STIKOM)</label>
+                                    <label class="form-label">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $pelamar?->nim ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->pendidikan_terakhir ?? '-' }}" disabled>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $pelamar?->email_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->email_pencari_kerja ?? '-' }}" disabled>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" readonly>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label d-block">Curriculum Vitae (CV)</label>
-
-                                    @if($pelamar?->cv)
-
-                                        <!-- Tombol di bawah tulisan -->
-                                        <button type="button" 
-                                                class="btn btn-primary mt-2"
-                                                onclick="toggleCV()">
-                                            Lihat CV
-                                        </button>
-
-                                        <!-- Preview CV -->
-                                        <div id="cvPreview" class="mt-3" style="display: none;">
-                                            <iframe 
-                                                src="{{ asset('storage/' . $pelamar->cv) }}" 
-                                                width="100%" 
-                                                height="600px"
-                                                style="border:1px solid #ddd; border-radius:8px;">
-                                            </iframe>
-                                        </div>
-
-                                    @else
-                                        <div class="alert alert-warning mt-2">
-                                            Pelamar mengirim lamaran menggunakan akun LinkedIn tanpa mengunggah CV.
-                                        </div>
-                                    @endif
+                                        value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" disabled>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control"
-                                        value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" readonly>
+                                        value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" disabled>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            {{-- ===== LINKEDIN & CV ===== --}}
+                            <div class="row">
+
+                                {{-- LINKEDIN --}}
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">Linked.In</label><br>
+
+                                    @if($apply->linkedin)
+                                        <a href="{{ $apply->linkedin }}" target="_blank"
+                                            class="btn btn-outline-primary btn-sm">
+                                            Lihat Profil Linked.In
+                                        </a>
+                                    @else
+                                        <span class="text-muted">Tidak tersedia</span>
+                                    @endif
                                 </div>
 
-                                <div class="col-12 text-end mt-3">
-                                            <a href="{{ route('perusahaan.apply.loker', $loker->id) }}" class="btn btn-secondary">
-                                                Kembali
-                                        </a>
+                                {{-- CV --}}
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">Curriculum Vitae (CV)</label><br>
+
+                                    @if($pelamar?->cv)
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalCV">
+                                            Lihat CV
+                                        </button>
+                                    @else
+                                        <span class="text-muted">Pelamar melamar tanpa CV</span>
+                                    @endif
                                 </div>
+                            </div>
+
+                            {{-- ===== MODAL CV ===== --}}
+                            @if($pelamar?->cv)
+                                <div class="modal fade" id="modalCV" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Curriculum Vitae</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <div class="modal-body p-0">
+                                                <iframe src="{{ asset('storage/' . $pelamar->cv) }}" width="100%"
+                                                    height="600px" style="border:none;">
+                                                </iframe>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- ===== BACK BUTTON ===== --}}
+                            <div class="text-end mt-4">
+                                <a href="{{ route('perusahaan.apply.loker', $loker->id) }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
                             </div>
 
                         </div>
@@ -105,18 +133,4 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        function toggleCV() {
-            var cv = document.getElementById("cvPreview");
-
-            if (cv.style.display === "none") {
-                cv.style.display = "block";
-            } else {
-                cv.style.display = "none";
-            }
-        }
-    </script>
 </x-admin_perusahaan.layout>
-
-

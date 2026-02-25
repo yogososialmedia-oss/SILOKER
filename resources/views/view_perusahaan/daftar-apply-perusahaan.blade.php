@@ -64,14 +64,13 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('perusahaan.apply.profile-pelamar', $data_apply->id) }}"><i
                                                         class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
-                                                <a class="dropdown-item" href="{{ route('perusahaan.detail-apply', $data_apply->id) }}"><i
+                                                <a class="dropdown-item"
+                                                    href="{{ route('perusahaan.detail-apply', $data_apply->id) }}"><i
                                                         class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
-                                                <button type="button"
-                                                    class="dropdown-item btn-update-status"
-                                                    data-id="{{ $data_apply->id }}"
-                                                    data-bs-toggle="modal"
+                                                <button type="button" class="dropdown-item btn-update-status"
+                                                    data-id="{{ $data_apply->id }}" data-bs-toggle="modal"
                                                     data-bs-target="#modalCenter"><i
-                                                    class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
+                                                        class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
                                             </div>
                                         </div>
                                     </td>
@@ -87,87 +86,123 @@
         <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
+
                     <div class="modal-header">
-                        <h5 class="modal-title fw-bold" id="modalCenterTitle">Update Status</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title fw-bold">Update Status</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
+
                     <form method="POST" action="{{ route('perusahaan.apply.update-status', 0) }}" id="formUpdateStatus">
                         @csrf
-                        <input type="hidden" name="id_apply" id="apply_id" value="{{ old('id_apply') }}">
+
+                        <input type="hidden" name="id_apply" id="apply_id">
+
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col mb-6">
-                                    <label class="form-label">Pilih status</label>
-                                    <select class="form-select @error('status') is-invalid @enderror" name="status">
-                                        <option value="">Pilih Status</option>
-                                        <option value="interview" {{ old('status') == 'interview' ? 'selected' : '' }}>Interview</option>
-                                        <option value="ditolak" {{ old('status') == 'ditolak' ? 'selected' : '' }}>Tidak Diterima</option>
-                                        <option value="diterima" {{ old('status') == 'diterima' ? 'selected' : '' }}>Diterima</option>
-                                    </select>
-                                    @error('status')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+
+                            <div class="col-12 mb-3">
+                                <div class="alert alert-info mb-0">
+                                    <strong>Catatan:</strong><br>
+                                    Update status akan secara otomatis mengirimkan notifikasi melalui email kepada
+                                    pelamar.
+                                    Pastikan pesan yang Anda tulis di bawah ini sudah sesuai sebelum melakukan update
+                                    status.
                                 </div>
                             </div>
 
-                            <div class="alert alert-info" role="alert">
-                                Form dibawah diperuntukan untuk mengirim email secara otomatis, terkait update status
-                                pencari kerja.
+                            {{-- STATUS --}}
+                            <div class="mb-3">
+                                <label class="form-label">Pilih Status</label>
+                                <select class="form-select @error('status') is-invalid @enderror" name="status"
+                                    id="statusSelect">
+                                    <option value="">Pilih Status</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="ditolak">Tidak Diterima</option>
+                                    <option value="diterima">Diterima</option>
+                                </select>
+                                @error('status')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            <div class="col mb-6">
-                                <label class="form-label">Tambahkan pesan</label>
-                                <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="3">{{ old('pesan') }}</textarea>
+                            {{-- PESAN (SELALU ADA) --}}
+                            <div class="mb-3">
+                                <label class="form-label">Pesan ke Pelamar</label>
+                                <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan"
+                                    rows="3"
+                                    placeholder="Tuliskan pesan yang akan dikirim ke pelamar">{{ old('pesan') }}</textarea>
                                 @error('pesan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="row g-6 extra-form" id="interviewFields">
-                                <div class="col mb-1">
-                                    <label class="form-label">Tanggal Interview</label>
-                                    <input type="date" name="tanggal_interview" 
-                                        class="form-control @error('tanggal_interview') is-invalid @enderror"
-                                        value="{{ old('tanggal_interview') }}" min="{{ date('Y-m-d') }}">
-                                    @error('tanggal_interview')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                            {{-- ================= INTERVIEW ================= --}}
+                            <div id="interviewFields" style="display:none;">
+
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tanggal Interview</label>
+                                        <input type="date" name="tanggal_interview" class="form-control"
+                                            min="{{ date('Y-m-d') }}">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Waktu Interview</label>
+                                        <input type="time" name="waktu_interview" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">Link Google Maps Lokasi Interview</label>
+                                        <input type="text" name="google_maps" class="form-control"
+                                            placeholder="https://maps.google.com/...">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
+                                        <input type="text" name="no_telp" class="form-control"
+                                            placeholder="08xxxxxxxxxx">
+                                    </div>
                                 </div>
-                                <div class="col mb-1">
-                                    <label class="form-label">Waktu Interview</label>
-                                    <input type="time" name="waktu_interview" 
-                                        class="form-control @error('waktu_interview') is-invalid @enderror"
-                                        value="{{ old('waktu_interview') }}">
-                                    @error('waktu_interview')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
                             </div>
 
-                            <div class="row g-6 extra-form">
-                                <div class="col mb-1">
-                                    <label class="form-label">No.Telp</label>
-                                    <input type="text" name="no_telp_perusahaan"
-                                        class="form-control @error('no_telp_perusahaan') is-invalid @enderror"
-                                        value="{{ old('no_telp_perusahaan', Auth::guard('perusahaanmitra')->user()->no_telp_perusahaan) }}">
-                                    @error('no_telp_perusahaan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                            {{-- ================= DITERIMA ================= --}}
+                            <div id="acceptedFields" style="display:none;">
+
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tanggal Berkunjung ke Kantor</label>
+                                        <input type="date" name="tanggal_kunjungan" class="form-control"
+                                            min="{{ date('Y-m-d') }}">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Jam Berkunjung</label>
+                                        <input type="time" name="jam_kunjungan" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">Link Google Maps Kantor</label>
+                                        <input type="text" name="google_maps" class="form-control"
+                                            placeholder="https://maps.google.com/...">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
+                                        <input type="text" name="no_telp" class="form-control"
+                                            placeholder="08xxxxxxxxxx">
+                                    </div>
                                 </div>
-                                <div class="col mb-1">
-                                    <label class="form-label">Alamat</label>
-                                    <input type="text" name="alamat_perusahaan"
-                                        class="form-control @error('alamat_perusahaan') is-invalid @enderror"
-                                        value="{{ old('alamat_perusahaan', Auth::guard('perusahaanmitra')->user()->alamat_perusahaan) }}">
-                                    @error('alamat_perusahaan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
                             </div>
+
                         </div>
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Update Status</button>
+                            <button type="submit" class="btn btn-primary">
+                                Update Status
+                            </button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -189,46 +224,40 @@
     </div>
 
     @push('scripts')
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.btn-update-status');
-        const applyIdInput = document.getElementById('apply_id');
-        const statusSelect = document.querySelector('#modalCenter select[name="status"]');
-        const interviewFields = document.getElementById('interviewFields');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
 
-        // Fungsi untuk tampilkan/sembunyikan tanggal & waktu
-        function toggleInterviewFields() {
-            if(statusSelect.value === 'interview') {
-                interviewFields.style.display = 'flex'; // row g-6
-            } else {
-                interviewFields.style.display = 'none';
-            }
-        }
+                const buttons = document.querySelectorAll('.btn-update-status');
+                const applyIdInput = document.getElementById('apply_id');
+                const statusSelect = document.getElementById('statusSelect');
+                const interviewFields = document.getElementById('interviewFields');
+                const acceptedFields = document.getElementById('acceptedFields');
 
-        // Set event listener untuk select status
-        statusSelect.addEventListener('change', toggleInterviewFields);
+                function toggleFields() {
+                    interviewFields.style.display = 'none';
+                    acceptedFields.style.display = 'none';
 
-        // Saat tombol update diklik, set apply id
-        buttons.forEach(button => {
-            button.addEventListener('click', function () {
-                const id = this.getAttribute('data-id');
-                applyIdInput.value = id;
+                    if (statusSelect.value === 'interview') {
+                        interviewFields.style.display = 'block';
+                    }
 
-                // reset status select ke old value jika ada
-                setTimeout(() => toggleInterviewFields(), 0);
+                    if (statusSelect.value === 'diterima') {
+                        acceptedFields.style.display = 'block';
+                    }
+                    // ditolak → hanya pesan
+                }
+
+                statusSelect.addEventListener('change', toggleFields);
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        applyIdInput.value = this.dataset.id;
+                        statusSelect.value = '';
+                        toggleFields();
+                    });
+                });
+
             });
-        });
-
-        // Jika ada old input (validasi gagal), tetap buka modal
-        @if($errors->any())
-            var myModal = new bootstrap.Modal(document.getElementById('modalCenter'));
-            myModal.show();
-            toggleInterviewFields(); // tampilkan sesuai old status
-        @endif
-
-        // Inisialisasi awal
-        toggleInterviewFields();
-    });
-    </script>
+        </script>
     @endpush
 </x-admin_perusahaan.layout>

@@ -11,13 +11,12 @@
                             
                         </div>
                         
-                        @if(session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        
                             <div class="card-body">
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                                 <form id="formApply" method="POST" action="{{ route('pencarikerja.loker.apply.store', $loker) }}" enctype="multipart/form-data"> @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">

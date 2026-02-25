@@ -28,10 +28,10 @@
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
-                                <th>NIM</th>
-                                <th>Nama</th>
                                 <th>Perusahaan</th>
                                 <th>Jabatan</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
                                 <th>No. Telp</th>
                                 <th>Email</th>
                                 <th>Status</th>
@@ -45,6 +45,14 @@
                                     </td>
 
                                     <td>
+                                        {{ $data_apply->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                    </td>
+
+                                    <td>
+                                        {{ $data_apply->loker->jabatan ?? '-' }}
+                                    </td>
+
+                                    <td>
                                         {{ $data_apply->pencariKerja->nim }}
                                     </td>
 
@@ -52,13 +60,6 @@
                                         {{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}
                                     </td>
 
-                                    <td>
-                                        {{ $data_apply->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
-                                    </td>
-
-                                    <td>
-                                        {{ $data_apply->loker->jabatan ?? '-' }}
-                                    </td>
 
                                     <td>
                                         {{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}

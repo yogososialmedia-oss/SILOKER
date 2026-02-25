@@ -196,7 +196,7 @@
               <div class="modal-footer">
                 @if (Auth::guard('perusahaanmitra')->user())
                   <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-warning">
-                    Update
+                    Perbaiki
                   </a>
                 @endif
               </div>

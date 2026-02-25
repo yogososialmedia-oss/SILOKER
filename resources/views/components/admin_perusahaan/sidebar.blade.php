@@ -45,7 +45,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item {{ request()->routeIs(['admin.daftar-loker', 'admin.loker.tampilan'] ) ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['admin.daftar-loker', 'admin.loker.tampilan', 'admin.apply.loker', 'admin.apply.profile', 'admin.apply.history', 'admin.apply.detail'] ) ? 'active' : '' }}">
                 <a href="{{ route('admin.daftar-loker') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Daftar Loker</div>
@@ -71,13 +71,13 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker*', 'perusahaan.loker.edit']) ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker*', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Loker</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ request()->routeIs(['perusahaan.loker.tampilan', 'perusahaan.loker', 'perusahaan.loker.edit']) ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->routeIs(['perusahaan.loker.tampilan', 'perusahaan.loker', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history']) ? 'active' : '' }}">
                         <a href="{{ route('perusahaan.loker') }}" class="menu-link">
                             <div>Daftar Loker</div>
                         </a>
