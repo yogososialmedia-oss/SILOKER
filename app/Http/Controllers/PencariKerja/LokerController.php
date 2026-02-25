@@ -138,11 +138,13 @@ class LokerController extends Controller
     {
         $pencari = Auth::guard('pencarikerja')->user();
 
-        // 🚫 Jika belum upload CV
-        if (!$pencari->cv) {
+        // WAJIB punya minimal salah satu: CV atau LinkedIn
+        if (empty($pencari->cv) && empty($pencari->linkedin)) {
             return redirect()
                 ->route('pencarikerja.profile')
-                ->with('error', 'Silakan upload CV terlebih dahulu di menu Edit Profile sebelum melamar.');
+                ->with('error', 
+                    'Untuk melamar pekerjaan, Anda harus menambahkan minimal CV atau LinkedIn pada profile Anda.'
+                );
         }
 
         return view('view_pencari_kerja.apply-loker',
@@ -151,7 +153,7 @@ class LokerController extends Controller
 
     public function applyStore(Request $request, Loker $loker)
     {
-        // 🚫 Cek dulu apakah loker masih open
+        // 🚫 Cek apakah loker masih open
         if (!now()->between(
             $loker->tanggal_mulai_loker,
             $loker->tanggal_berakhir_loker
@@ -161,17 +163,19 @@ class LokerController extends Controller
 
         $pencari = Auth::guard('pencarikerja')->user();
 
-        // 🚫 Proteksi: tidak boleh apply jika belum upload CV
-        if (!$pencari->cv) {
+        // 🚫 WAJIB punya minimal salah satu: CV atau LinkedIn
+        if (empty($pencari->cv) && empty($pencari->linkedin)) {
             return redirect()
                 ->route('pencarikerja.profile')
-                ->with('error', 'Silakan upload CV terlebih dahulu di menu Edit Profile sebelum melamar.');
+                ->with('error', 
+                    'Profile Anda belum lengkap. 
+                    Silakan tambahkan CV atau LinkedIn terlebih dahulu sebelum melamar.'
+                );
         }
 
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'nullable|string|max:50',
-            'linkedin' => 'nullable|url',
             'pendidikan_terakhir' => 'required|not_in:',
             'email' => 'required|email',
             'no_telp' => 'required|numeric|digits_between:10,15',
@@ -180,8 +184,9 @@ class LokerController extends Controller
 
         try {
 
-            // ✅ Ambil CV dari profile (bukan dari form)
-            $validated['cv'] = $pencari->cv;
+            // ✅ LinkedIn otomatis ambil dari profile
+            $validated['linkedin'] = $pencari->linkedin;
+            $validated['cv'] = $pencari->cv; // WAJIB TAMBAH INI
 
             $validated['tanggal_apply'] = now();
             $validated['id_pencari_kerja'] = $pencari->id;
@@ -200,12 +205,11 @@ class LokerController extends Controller
 
         } catch (QueryException $e) {
 
-            // 1062 = Duplicate entry
             if ($e->errorInfo[1] == 1062) {
                 return back()->with('error', 'Anda sudah melamar pada lowongan ini.');
             }
 
-            throw $e; // error lain tetap dilempar
+            throw $e;
         }
     }
 }

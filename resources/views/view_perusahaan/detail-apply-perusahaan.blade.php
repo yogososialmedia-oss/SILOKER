@@ -75,7 +75,7 @@
 
                                     @else
                                         <div class="alert alert-warning mt-2">
-                                            CV belum diupload oleh pelamar.
+                                            Pelamar mengirim lamaran menggunakan akun LinkedIn tanpa mengunggah CV.
                                         </div>
                                     @endif
                                 </div>

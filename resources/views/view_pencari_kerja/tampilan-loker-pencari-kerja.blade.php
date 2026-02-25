@@ -10,7 +10,8 @@
             <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
                 {{ session('error') }}
             </div>
-        @endif              
+        @endif
+
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">

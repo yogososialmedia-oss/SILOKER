@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_apply', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal_apply');
-            $table->string('linkedin');
+            $table->string('linkedin')->nullable();
             $table->enum('status', ['pending', 'diterima', 'ditolak', 'interview'])->default('pending');
             $table->foreignId('id_pencari_kerja')->constrained('tb_pencari_kerja')->onDelete('cascade');
             $table->foreignId('id_perusahaan_mitra')->constrained('tb_perusahaan_mitra')->onDelete('cascade');

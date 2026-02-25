@@ -12,9 +12,9 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form method="POST" 
-                        action="{{ route('pencarikerja.loker.apply.store', $loker) }}" 
-                        enctype="multipart/form-data">
+                        <form id="formApply" method="POST" 
+                            action="{{ route('pencarikerja.loker.apply.store', $loker) }}" 
+                            enctype="multipart/form-data">
                         @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -31,13 +31,6 @@
                                         <input name="nim" class="form-control"
                                             value="{{ old('nim', $pencari->nim) }}"
                                             placeholder="Tambahkan NIM (jika mahasiswa stikom)">
-                                        <div class="form-text"></div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Linked.id</label>
-                                        <input name="linkedin" class="form-control"
-                                            value="{{ old('linkedin', $pencari->linkedin) }}"
-                                            placeholder="Tambahkan link profile linked.id anda">
                                         <div class="form-text"></div>
                                     </div>
                                     <div class="col-md-6 mb-4">
@@ -97,13 +90,58 @@
                                     </div>
                                 </div>
 
-                                <div class="d-flex justify-content-end mt-3">
-                                    <button type="submit" class="btn btn-primary">
-                                        Apply
-                                    </button>
-                                </div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                    Apply
+                                </button>
                             </div>
                         </form>
+
+                        <div class="modal fade" id="confirmModal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        @if($pencari->cv)
+                                            <h5 class="modal-title">Konfirmasi Lamaran</h5>
+                                        @elseif(!$pencari->cv && $pencari->linkedin)
+                                            <h5 class="modal-title text-warning">Lamar Tanpa CV?</h5>
+                                        @else
+                                            <h5 class="modal-title text-danger">Tidak Bisa Melamar</h5>
+                                        @endif
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        @if($pencari->cv)
+                                            CV Anda sudah tersimpan di profile.<br>
+                                            Apakah CV tersebut sudah versi terbaru?
+                                        @elseif(!$pencari->cv && $pencari->linkedin)
+                                            Anda belum mengunggah CV.<br>
+                                            Lamaran akan dikirim hanya menggunakan LinkedIn.
+                                        @else
+                                            Anda belum mengunggah CV atau LinkedIn.
+                                        @endif
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        @if($pencari->cv || (!$pencari->cv && $pencari->linkedin))
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Batal
+                                            </button>
+
+                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('formApply').submit();">
+                                                Ya, Lanjutkan
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                                Tutup
+                                            </button>
+                                        @endif
+                                    </div>
+
+                                </div>
+                            </div>
+</div>
 
                     </div>
                 </div>
