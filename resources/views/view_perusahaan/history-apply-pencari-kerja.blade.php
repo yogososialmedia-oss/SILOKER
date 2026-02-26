@@ -10,8 +10,8 @@
                             style="height:280px; object-fit:cover;">
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
-                                    ? asset('storage/' . $apply->pencariKerja->foto_pencari_kerja) 
-                                    : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                                ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) 
+                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
                                 class="rounded-circle mb-2"
                                 style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 

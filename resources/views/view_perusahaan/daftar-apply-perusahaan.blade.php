@@ -27,8 +27,8 @@
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
-                                <th>NIM</th>
                                 <th>Nama</th>
+                                <th>No Telp</th>
                                 <th>Perusahaan</th>
                                 <th>Jabatan</th>
                                 <th>Status</th>
@@ -39,9 +39,9 @@
                         <tbody>
                             @foreach ($apply as $data_apply)
                                 <tr>
-                                    <td>{{ $data_apply->tanggal_apply }}</td>
-                                    <td>{{ $data_apply->pencariKerja->nim }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}</td>
                                     <td>{{ $data_apply->pencariKerja->nama_pencari_kerja }}</td>
+                                    <td>{{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}</td>
                                     <td>{{ $data_apply->loker->perusahaanMitra->nama_perusahaan }}</td>
                                     <td>{{ $data_apply->loker->jabatan }}</td>
                                     <td>
@@ -67,10 +67,13 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('perusahaan.detail-apply', $data_apply->id) }}"><i
                                                         class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
-                                                <button type="button" class="dropdown-item btn-update-status"
-                                                    data-id="{{ $data_apply->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#modalCenter"><i
-                                                        class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
+                                                <button type="button"
+                                                    class="dropdown-item btn-update-status"
+                                                    data-id="{{ $data_apply->id }}"
+                                                    data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}"
+                                                    data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalCenter"><i class="icon-base bx bx-edit-alt me-2 "></i>Update Status</button>
                                             </div>
                                         </div>
                                     </td>
@@ -152,13 +155,13 @@
 
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Lokasi Interview</label>
-                                        <input type="text" name="google_maps" class="form-control"
+                                        <input type="text" name="google_maps" id="googleMapsInput" class="form-control"
                                             placeholder="https://maps.google.com/...">
                                     </div>
 
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" class="form-control"
+                                        <input type="text" name="no_telp" id="noTelpInput" class="form-control"
                                             placeholder="08xxxxxxxxxx">
                                     </div>
                                 </div>
@@ -182,13 +185,13 @@
 
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Kantor</label>
-                                        <input type="text" name="google_maps" class="form-control"
+                                        <input type="text" name="google_maps" id="googleMapsInputAccepted" class="form-control"
                                             placeholder="https://maps.google.com/...">
                                     </div>
 
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" class="form-control"
+                                        <input type="text" name="no_telp" id="noTelpInputAccepted" class="form-control"
                                             placeholder="08xxxxxxxxxx">
                                     </div>
                                 </div>
@@ -249,9 +252,25 @@
 
                 statusSelect.addEventListener('change', toggleFields);
 
+                const googleMapsInputInterview = document.getElementById('googleMapsInput');
+                const noTelpInputInterview = document.getElementById('noTelpInput');
+                const googleMapsInputAccepted = document.getElementById('googleMapsInputAccepted');
+                const noTelpInputAccepted = document.getElementById('noTelpInputAccepted');
+
                 buttons.forEach(btn => {
                     btn.addEventListener('click', function () {
+
                         applyIdInput.value = this.dataset.id;
+
+                        const maps = this.dataset.maps ?? '';
+                        const telp = this.dataset.telp ?? '';
+
+                        googleMapsInputInterview.value = maps;
+                        noTelpInputInterview.value = telp;
+
+                        googleMapsInputAccepted.value = maps;
+                        noTelpInputAccepted.value = telp;
+
                         statusSelect.value = '';
                         toggleFields();
                     });

@@ -113,7 +113,8 @@
                         <div class="card h-100 loker-card-beranda position-relative">
 
                             {{-- LINK --}}
-                            <a href="{{ route('pencarikerja.loker.show', [$loker] + request()->query()) }}" class="stretched-link"></a>
+                            <a href="{{ route('pencarikerja.loker.show', $loker->id) }}?from=beranda&{{ http_build_query(request()->query()) }}" 
+                                class="stretched-link"></a>
 
                             <div class="card-body position-relative">
 

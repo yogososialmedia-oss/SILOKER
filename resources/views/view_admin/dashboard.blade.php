@@ -2,6 +2,39 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-xxl-12 col-lg-12 col-md-4 order-1">
+                <div class="row mb-4">
+
+                    <!-- TOTAL LOWONGAN -->
+                    <div class="col-lg-6 col-md-6 col-12 mb-3">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">TOTAL LOWONGAN</h6>
+                                    <h3 class="fw-bold mb-0">{{ $totalLowongan }}</h3>
+                                </div>
+                                <div class="bg-primary text-white rounded p-3">
+                                    <i class="bx bx-briefcase fs-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOTAL PERUSAHAAN -->
+                    <div class="col-lg-6 col-md-6 col-12 mb-3">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">TOTAL PERUSAHAAN</h6>
+                                    <h3 class="fw-bold mb-0">{{ $totalPerusahaan }}</h3>
+                                </div>
+                                <div class="bg-warning text-white rounded p-3">
+                                    <i class="bx bx-buildings fs-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12  mb-6">
                         <div class="card">

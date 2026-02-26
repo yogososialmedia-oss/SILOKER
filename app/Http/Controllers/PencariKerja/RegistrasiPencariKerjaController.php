@@ -33,8 +33,9 @@ class RegistrasiPencariKerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_pencari_kerja' => 'required|string',
-            'email_pencari_kerja' => 'required|email|unique:tb_pencari_kerja,email_pencari_kerja',
+            'nama_pencari_kerja' => 'required|string|max:255',
+            'nim' => 'nullable|string|max:50',
+            'email_pencari_kerja' => 'required|email|max:255|unique:tb_pencari_kerja,email_pencari_kerja',
             'password_pencari_kerja' => [
                 'required',
                 'min:8',
@@ -43,28 +44,62 @@ class RegistrasiPencariKerjaController extends Controller
                 'regex:/[0-9]/',
                 'regex:/[^A-Za-z0-9]/'
             ],
-            'alamat_pencari_kerja' => 'required',
-            'no_telp_pencari_kerja' => 'required',
-            'cv' => 'nullable|mimes:pdf|max:2048',
-            'foto_pencari_kerja' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ],
-        [
+            'no_telp_pencari_kerja' => 'required|string|max:20',
+            'alamat_pencari_kerja' => 'required|string|max:255',
+            'linkedin' => 'nullable|url|max:255',
+            'pendidikan_terakhir' => 'required|string|max:50',
+            'deskripsi_diri' => 'nullable|string',
+            'cv' => 'nullable|file|mimes:pdf|max:2048',
+            'foto_pencari_kerja' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+
+            // 🔹 NAMA
             'nama_pencari_kerja.required' => 'Nama Lengkap wajib diisi.',
+            'nama_pencari_kerja.max' => 'Nama Lengkap maksimal 255 karakter.',
+
+            // 🔹 NIM
+            'nim.max' => 'NIM maksimal 50 karakter.',
+
+            // 🔹 EMAIL
             'email_pencari_kerja.required' => 'Email wajib diisi.',
             'email_pencari_kerja.email' => 'Format email tidak valid.',
             'email_pencari_kerja.unique' => 'Email sudah terdaftar.',
+            'email_pencari_kerja.max' => 'Email maksimal 255 karakter.',
+
+            // 🔹 PASSWORD
             'password_pencari_kerja.required' => 'Password wajib diisi.',
             'password_pencari_kerja.min' => 'Password minimal 8 karakter.',
             'password_pencari_kerja.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol.',
+
+            // 🔹 NO TELP
+            'no_telp_pencari_kerja.required' => 'No Telepon wajib diisi.',
+            'no_telp_pencari_kerja.max' => 'No Telepon maksimal 20 karakter.',
+
+            // 🔹 ALAMAT
             'alamat_pencari_kerja.required' => 'Alamat wajib diisi.',
-            'no_telp_pencari_kerja.required' => 'No telepon wajib diisi.',
-            'cv.mimes' => 'CV harus berupa file PDF.',
+            'alamat_pencari_kerja.max' => 'Alamat maksimal 255 karakter.',
+
+            // 🔹 LINKEDIN
+            'linkedin.url' => 'Link Linked.In harus berupa URL yang valid.',
+            'linkedin.max' => 'Link Linked.In maksimal 255 karakter.',
+
+            // 🔹 PENDIDIKAN
+            'pendidikan_terakhir.required' => 'Pendidikan Terakhir wajib dipilih.',
+            'pendidikan_terakhir.max' => 'Pendidikan Terakhir maksimal 50 karakter.',
+
+            // 🔹 DESKRIPSI
+            'deskripsi_diri.string' => 'Tentang Saya harus berupa teks.',
+
+            // 🔹 CV
+            'cv.file' => 'CV harus berupa file.',
+            'cv.mimes' => 'Upload CV harus berformat PDF.',
             'cv.max' => 'Ukuran CV maksimal 2MB.',
+
+            // 🔹 FOTO
             'foto_pencari_kerja.image' => 'Foto Profile harus berupa gambar.',
-            'foto_pencari_kerja.mimes' => 'Foto Profile harus berformat JPG, JPEG, atau PNG.',
+            'foto_pencari_kerja.mimes' => 'Foto Profile harus berformat JPG atau PNG.',
             'foto_pencari_kerja.max' => 'Ukuran Foto Profile maksimal 2MB.',
-        ]
-        );
+        ]);
 
         // Upload CV
         $cvPath = null;

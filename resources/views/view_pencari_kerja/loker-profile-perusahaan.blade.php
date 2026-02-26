@@ -14,7 +14,7 @@
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $info_perusahaan->logo_url }}"
                                 class="rounded-circle mb-2"
-                                style="width:100px; height:100px; object-fit:contain; background:#fff; padding:5px;">
+                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
@@ -57,7 +57,8 @@
                     @foreach($lokerPerusahaan as $item)
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
-                            <a href="{{ route('pencarikerja.loker.show', $item->id) }}" class="stretched-link"></a>
+                            <a href="{{ route('pencarikerja.loker.show', $item->id) }}?from=perusahaan&perusahaan_id={{ $info_perusahaan->id }}" 
+                                class="stretched-link"></a>
                             <div class="card-body position-relative">
                                 <p class="text-end fs-9 mb-2">
                                     {{ \Carbon\Carbon::parse($item->tanggal_mulai_loker)->format('d M Y') }} -

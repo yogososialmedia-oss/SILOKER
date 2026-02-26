@@ -176,10 +176,40 @@ class LokerController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'nullable|string|max:50',
-            'pendidikan_terakhir' => 'required|not_in:',
-            'email' => 'required|email',
+            'pendidikan_terakhir' => 'required|string|max:50',
+            'email' => 'required|email|max:255',
             'no_telp' => 'required|numeric|digits_between:10,15',
-            'alamat' => 'required',
+            'alamat' => 'required|string|max:255',
+        ], [
+
+            // 🔹 NAMA
+            'nama.required' => 'Nama lengkap wajib diisi.',
+            'nama.string' => 'Nama lengkap harus berupa teks.',
+            'nama.max' => 'Nama lengkap maksimal 255 karakter.',
+
+            // 🔹 NIM
+            'nim.string' => 'NIM harus berupa teks.',
+            'nim.max' => 'NIM maksimal 50 karakter.',
+
+            // 🔹 PENDIDIKAN
+            'pendidikan_terakhir.required' => 'Pendidikan terakhir wajib dipilih.',
+            'pendidikan_terakhir.string' => 'Pendidikan terakhir tidak valid.',
+            'pendidikan_terakhir.max' => 'Pendidikan terakhir maksimal 50 karakter.',
+
+            // 🔹 EMAIL
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Email maksimal 255 karakter.',
+
+            // 🔹 NO TELP
+            'no_telp.required' => 'Nomor telepon wajib diisi.',
+            'no_telp.numeric' => 'Nomor telepon harus berupa angka.',
+            'no_telp.digits_between' => 'Nomor telepon harus 10-15 digit.',
+
+            // 🔹 ALAMAT
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.string' => 'Alamat harus berupa teks.',
+            'alamat.max' => 'Alamat maksimal 255 karakter.',
         ]);
 
         try {

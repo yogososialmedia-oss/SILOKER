@@ -27,8 +27,8 @@
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
-                                <th>NIM</th>
                                 <th>Nama</th>
+                                <th>No Telp</th>
                                 <th>Perusahaan</th>
                                 <th>Jabatan</th>
                                 <th>Status</th>
@@ -39,9 +39,9 @@
                         <tbody>
                             @foreach ($apply as $data_apply)
                                 <tr>
-                                    <td>{{ $data_apply->tanggal_apply }}</td>
-                                    <td>{{ $data_apply->pencariKerja->nim }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}</td>
                                     <td>{{ $data_apply->pencariKerja->nama_pencari_kerja }}</td>
+                                    <td>{{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}</td>
                                     <td>{{ $data_apply->loker->perusahaanMitra->nama_perusahaan }}</td>
                                     <td>{{ $data_apply->loker->jabatan }}</td>
                                     <td>

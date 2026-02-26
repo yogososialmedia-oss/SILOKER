@@ -14,10 +14,14 @@ class Apply extends Model
         'linkedin',
         'tanggal_apply',
         'status',
+        'pesan',
         'tanggal_interview',
         'waktu_interview',
         'no_telp',
-        'alamat'
+        'alamat',
+        'google_maps',
+        'tanggal_kunjungan',
+        'jam_kunjungan'
     ];
 
     public function perusahaanMitra()
