@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ApplyExport;
 use App\Http\Controllers\Controller;
 use App\Models\Apply;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApplyController extends Controller
 {
@@ -57,5 +59,13 @@ class ApplyController extends Controller
             ->get();
 
         return view('view_admin.history-apply-admin', compact('apply', 'history'));
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(
+            new ApplyExport(),
+            'daftar-apply-' . now()->format('d-m-Y') . '.xlsx'
+        );
     }
 }

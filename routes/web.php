@@ -69,6 +69,10 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->name('admin.tampilan-loker-perusahaan');
     Route::post('/admin/verifikasi-perusahaan/update',[VerifikasiPerusahaanController::class, 'updateStatus'])->name('admin.update-status-perusahaan');
     Route::get('/admin/history-apply', [AdminApplyController::class, 'index'])->name('admin.history-apply');
+
+    Route::get('/admin/apply/export-excel', [AdminApplyController::class, 'exportExcel'])
+    ->name('admin.apply.export.excel');
+    
     Route::get('/loker/apply/{id}', [AdminApplyController::class, 'daftarApplyLoker'])->name('admin.apply.loker');
     Route::get('/apply/detail/{id}', [AdminApplyController::class, 'detailApply'])->name('admin.apply.detail');
     Route::get('/apply/profile/{id}', [AdminApplyController::class, 'profilePelamar'])->name('admin.apply.profile');

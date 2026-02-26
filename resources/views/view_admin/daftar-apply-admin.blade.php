@@ -10,16 +10,9 @@
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
 
-                    <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Download
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
-                        </ul>
-                    </div>
+                    <a href="{{ route('admin.apply.export.excel') }}" class="btn btn-success">
+                        Download Excel
+                    </a>
 
                 </div>
                 <div class="table-responsive">
