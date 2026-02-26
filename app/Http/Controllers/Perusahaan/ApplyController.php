@@ -59,13 +59,11 @@ class ApplyController extends Controller
     {
         $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-        $apply = Apply::with('pencariKerja') 
-            ->where('id', $id)
+        $apply = Apply::where('id', $id)
             ->whereHas('loker', function ($query) use ($perusahaanId) {
                 $query->where('id_perusahaan_mitra', $perusahaanId);
             })
             ->firstOrFail();
-
         return view('view_perusahaan.profile-pencari-kerja-perusahaan', compact('apply'));
     }
     public function showHistoryApply($id)
@@ -90,9 +88,10 @@ class ApplyController extends Controller
     public function updateStatus(Request $request)
     {
         $id = $request->id_apply;
+
         $perusahaan = Auth::guard('perusahaanmitra')->user();
 
-        $apply = Apply::with(['pencariKerja', 'loker'])
+        $apply = Apply::with('pencariKerja')
             ->where('id', $id)
             ->whereHas('loker', function ($query) use ($perusahaan) {
                 $query->where('id_perusahaan_mitra', $perusahaan->id);
@@ -102,39 +101,36 @@ class ApplyController extends Controller
         $request->validate([
             'status' => 'required',
             'pesan' => 'required|string|min:5',
-
-            // INTERVIEW
-            'tanggal_interview' => 'required_if:status,interview',
+            'tanggal_interview' => ['required_if:status,interview'], // wajib jika interview
+            'tanggal_interview_date' => ['nullable','date','after_or_equal:today'], // validasi tanggal jika diisi
             'waktu_interview' => 'required_if:status,interview',
-            'google_maps' => 'required_if:status,interview,diterima',
-            'no_telp' => 'required_if:status,interview,diterima',
-
-            // DITERIMA
-            'tanggal_kunjungan' => 'required_if:status,diterima',
-            'jam_kunjungan' => 'required_if:status,diterima',
+            'no_telp_perusahaan' => 'required_if:status,interview',
+            'alamat_perusahaan' => 'required_if:status,interview',
+        ], [
+            'status.required' => 'Status wajib diisi.',
+            'pesan.required' => 'Pesan wajib diisi.',
+            'tanggal_interview.required_if' => 'Tanggal interview wajib diisi.',
+            'tanggal_interview_date.date' => 'Format tanggal tidak valid.',
+            'tanggal_interview_date.after_or_equal' => 'Tanggal interview minimal hari ini.',
+            'waktu_interview.required_if' => 'Waktu interview wajib diisi.',
+            'no_telp_perusahaan.required_if' => 'No telp wajib diisi.',
+            'alamat_perusahaan.required_if' => 'Alamat wajib diisi.',
         ]);
 
         $apply->update([
             'status' => $request->status,
             'pesan' => $request->pesan,
-
-            // interview
             'tanggal_interview' => $request->tanggal_interview,
             'waktu_interview' => $request->waktu_interview,
-
-            // diterima
-            'tanggal_kunjungan' => $request->tanggal_kunjungan,
-            'jam_kunjungan' => $request->jam_kunjungan,
-
-            // FIXED FIELD NAME
-            'google_maps' => $request->google_maps,
-            'no_telp' => $request->no_telp,
+            'no_telp_perusahaan' => $request->no_telp_perusahaan,
+            'alamat_perusahaan' => $request->alamat_perusahaan,
         ]);
 
+        // Kirim email
         Mail::to($apply->pencariKerja->email_pencari_kerja)
             ->send(new StatusApplyMail($apply));
 
-        return back()->with('success', 'Status berhasil diperbarui dan email terkirim.');
+        return back()->with('success', 'Status berhasil diperbarui dan email berhasil terkirim.');
     }
     /**
      * Show the form for creating a new resource.
