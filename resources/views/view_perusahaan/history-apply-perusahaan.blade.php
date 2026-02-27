@@ -79,16 +79,13 @@
                                                 <span class="badge bg-label-info">Interview</span>
                                                 @break
 
-                                            @case('tidak diterima')
+                                            @case('ditolak')
                                                 <span class="badge bg-label-danger">Tidak Diterima</span>
                                                 @break
 
                                             @case('diterima')
                                                 <span class="badge bg-label-success">Diterima</span>
                                                 @break
-
-                                            @default
-                                                <span class="badge bg-label-secondary">-</span>
                                         @endswitch
                                     </td>
                                 </tr>
