@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Exports;
+
+use App\Models\Loker;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+
+class LokerExport implements
+    FromCollection,
+    WithHeadings,
+    WithMapping,
+    ShouldAutoSize,
+    WithStyles
+{
+    protected $tahun;
+
+    public function __construct($tahun = null)
+    {
+        $this->tahun = $tahun;
+    }
+    public function collection()
+    {
+        $query = Loker::with('perusahaanMitra')
+            ->withCount('apply')
+            ->latest();
+
+        if ($this->tahun) {
+            $query->whereYear('tanggal_mulai_loker', $this->tahun);
+        }
+
+        return $query->get();
+    }
+    
+
+    public function headings(): array
+    {
+        return [
+            'Nama Perusahaan',
+            'Jabatan',
+            'Tipe',
+            'Model Kerja',
+            'Lokasi',
+            'Tanggal Mulai',
+            'Tanggal Berakhir',
+            'Status',
+            'Jumlah Pelamar',
+        ];
+    }
+
+    public function map($loker): array
+    {
+        $status = now()->between(
+            $loker->tanggal_mulai_loker,
+            $loker->tanggal_berakhir_loker
+        ) ? 'OPEN' : 'CLOSED';
+
+        return [
+            $loker->perusahaanMitra->nama_perusahaan ?? '-',
+            $loker->jabatan,
+            $loker->tipe_loker,
+            $loker->model_kerja,
+            $loker->kabupaten . ', ' . $loker->provinsi,
+            $loker->tanggal_mulai_loker->format('d-m-Y'),
+            $loker->tanggal_berakhir_loker->format('d-m-Y'),
+            $status,
+            $loker->apply_count,
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        $lastRow = $sheet->getHighestRow();
+
+        // HEADER
+        $sheet->getStyle('A1:I1')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '3f75c7'],
+            ],
+        ]);
+
+        // BORDER
+        $sheet->getStyle("A1:I{$lastRow}")->applyFromArray([
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                ],
+            ],
+        ]);
+
+        // WARNA STATUS
+        for ($row = 2; $row <= $lastRow; $row++) {
+            $status = $sheet->getCell("H{$row}")->getValue();
+
+            $color = $status === 'OPEN'
+                ? '198754'
+                : 'DC3545';
+
+            $sheet->getStyle("H{$row}")->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ],
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => $color],
+                ],
+            ]);
+        }
+
+        return [];
+    }
+}

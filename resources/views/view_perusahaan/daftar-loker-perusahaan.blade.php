@@ -19,11 +19,29 @@
                                 <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
                             </div>
 
-                            <div class="btn-group">
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
-                                </ul>
+                            <div class="d-flex align-items-center gap-2">
+                                <form action="{{ route('perusahaan.loker.export') }}" method="GET" 
+                                    class="d-flex align-items-center gap-2">
+
+                                    <select name="tahun"
+                                        class="form-select form-select-sm"
+                                        style="width: 160px;">
+
+                                        <option value="">Semua Tahun</option>
+                                        @foreach($loker->pluck('tanggal_mulai_loker')->map(fn($t)=>\Carbon\Carbon::parse($t)->year)->unique()->sortDesc() as $tahun)
+                                            <option value="{{ $tahun }}"
+                                                {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                                {{ $tahun }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    <button type="submit"
+                                        class="btn btn-success btn-sm px-3">
+                                        Download
+                                    </button>
+
+                                </form>
                             </div>
 
                         </div>

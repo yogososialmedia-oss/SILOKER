@@ -11,14 +11,21 @@ class ApplyController extends Controller
 {
     public function index()
     {
-        $apply = Apply::with([
-            'loker.perusahaanMitra',
-            'pencariKerja'
-        ])
-        ->latest() 
-        ->get();
+        $query = Apply::with(['loker.perusahaanMitra', 'pencariKerja'])
+            ->latest();
 
-        return view('view_admin.history-apply-keseluruhan', compact('apply'));
+        $tahunList = Apply::selectRaw('YEAR(tanggal_apply) as tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
+
+        if (request('tahun')) {
+            $query->whereYear('tanggal_apply', request('tahun'));
+        }
+
+        $apply = $query->get();
+
+        return view('view_admin.history-apply-keseluruhan', compact('apply', 'tahunList'));
     }
     public function daftarApplyLoker($id)
     {
@@ -29,7 +36,7 @@ class ApplyController extends Controller
         ->where('id_loker', $id)
         ->get();
 
-        return view('view_admin.daftar-apply-admin', compact('apply'));
+        return view('view_admin.daftar-apply-admin', compact('apply', 'id'));
     }
 
     public function detailApply($id)
@@ -61,11 +68,30 @@ class ApplyController extends Controller
         return view('view_admin.history-apply-admin', compact('apply', 'history'));
     }
 
-    public function exportExcel()
+    public function exportExcelSemua()
     {
+        $tahun = request('tahun');
+
+        $namaFile = $tahun
+            ? 'daftar-apply-' . $tahun . '.xlsx'
+            : 'daftar-apply-semua-tahun.xlsx';
+
         return Excel::download(
-            new ApplyExport(),
-            'daftar-apply-' . now()->format('d-m-Y') . '.xlsx'
+            new ApplyExport(null, $tahun),
+            $namaFile
+        );
+    }
+    public function exportExcelPerLoker($id)
+    {
+        $tahun = request('tahun');
+
+        $namaFile = $tahun
+            ? 'daftar-apply-loker-' . $id . '-' . $tahun . '.xlsx'
+            : 'daftar-apply-loker-' . $id . '.xlsx';
+
+        return Excel::download(
+            new ApplyExport($id, $tahun),
+            $namaFile
         );
     }
 }

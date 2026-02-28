@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\StatusApplyMail;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ApplyExport;
 
 class ApplyController extends Controller
 {
@@ -18,30 +20,48 @@ class ApplyController extends Controller
     {
         $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-        $apply = Apply::with([
+        $query = Apply::with([
             'loker.perusahaanMitra',
             'pencariKerja'
         ])
+        ->whereHas('loker', function ($query) use ($perusahaanId) {
+            $query->where('id_perusahaan_mitra', $perusahaanId);
+        })
+        ->latest();
+
+        // ambil daftar tahun
+        $tahunList = Apply::selectRaw('YEAR(tanggal_apply) as tahun')
             ->whereHas('loker', function ($query) use ($perusahaanId) {
                 $query->where('id_perusahaan_mitra', $perusahaanId);
             })
-            ->get();
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
 
-        return view('view_perusahaan.history-apply-perusahaan', compact('apply'));
+        if (request('tahun')) {
+            $query->whereYear('tanggal_apply', request('tahun'));
+        }
+
+        $apply = $query->get();
+
+        return view('view_perusahaan.history-apply-perusahaan', compact('apply', 'tahunList'));
     }
 
     public function daftarapplyloker($id)
     {
         $perusahaanId = Auth::guard('perusahaanmitra')->id();
 
-        $apply = Apply::with('loker')
+        $apply = Apply::with(['loker.perusahaanMitra','pencariKerja'])
             ->where('id_loker', $id)
             ->whereHas('loker', function ($query) use ($perusahaanId) {
                 $query->where('id_perusahaan_mitra', $perusahaanId);
             })
             ->get();
 
-        return view('view_perusahaan.daftar-apply-perusahaan', compact('apply'));
+        return view('view_perusahaan.daftar-apply-perusahaan', [
+            'apply' => $apply,
+            'id_loker' => $id // ⬅️ WAJIB dikirim
+        ]);
     }
     public function detailapplyperusahaan($id)
     {
@@ -131,6 +151,31 @@ class ApplyController extends Controller
             ->send(new StatusApplyMail($apply));
 
         return back()->with('success', 'Status berhasil diperbarui dan email berhasil terkirim.');
+    }
+    public function exportExcelPerusahaan()
+    {
+        $perusahaanId = Auth::guard('perusahaanmitra')->id();
+        $tahun = request('tahun');
+
+        $namaFile = $tahun
+            ? 'daftar-apply-perusahaan' . $tahun . '.xlsx'
+            : 'daftar-apply-perusahaan-semua-tahun.xlsx';
+
+        return Excel::download(
+            new ApplyExport(null, $tahun, $perusahaanId),
+            $namaFile
+        );
+    }
+    public function exportPerLoker($id_loker)
+    {
+        $id_perusahaan = Auth::guard('perusahaanmitra')->id();
+
+        $namaFile = 'apply-perloker-' . $id_loker . '.xlsx';
+
+        return Excel::download(
+            new ApplyExport($id_loker, null, $id_perusahaan),
+            $namaFile
+        );
     }
     /**
      * Show the form for creating a new resource.

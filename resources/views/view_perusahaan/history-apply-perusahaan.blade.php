@@ -10,15 +10,28 @@
                         <h5 class="mb-0 fw-bold">HISTORY APPLY</h5>
                     </div>
 
-                    <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Download
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">PDF</a></li>
-                            <li><a class="dropdown-item" href="#">EXCEL</a></li>
-                        </ul>
+                    <div class="d-flex align-items-center gap-2">
+                        <form action="{{ route('perusahaan.apply.export') }}" method="GET" class="d-flex align-items-center gap-2">
+
+                            <select name="tahun"
+                                class="form-select form-select-sm"
+                                style="width: 160px;">
+
+                                <option value="">Semua Tahun</option>
+                                @foreach($tahunList as $tahun)
+                                    <option value="{{ $tahun }}"
+                                        {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                        {{ $tahun }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <button type="submit"
+                                class="btn btn-success btn-sm px-3">
+                                Download
+                            </button>
+
+                        </form>
                     </div>
 
                 </div>
