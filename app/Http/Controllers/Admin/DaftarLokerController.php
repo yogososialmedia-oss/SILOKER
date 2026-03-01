@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use Illuminate\Http\Request;
+use App\Exports\LokerExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DaftarLokerController extends Controller
 {
@@ -14,7 +16,13 @@ class DaftarLokerController extends Controller
     public function index()
     {
         $daftarLoker = Loker::with('perusahaanMitra')->latest()->get();
-        return view('view_admin.daftar-loker', compact('daftarLoker'));
+
+        $tahunList = Loker::selectRaw('YEAR(tanggal_mulai_loker) as tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
+
+        return view('view_admin.daftar-loker', compact('daftarLoker', 'tahunList'));
     }
     public function showTampilanLoker($id)
     {
@@ -23,6 +31,19 @@ class DaftarLokerController extends Controller
         $info_perusahaan = $loker->perusahaanMitra; // <-- tambahkan ini
 
         return view('view_perusahaan.tampilan-loker-perusahaan', compact('loker', 'info_perusahaan'));
+    }
+    public function exportExcel()
+    {
+        $tahun = request('tahun'); // ambil dari query string
+
+        $namaFile = $tahun
+            ? 'daftar-loker-' . $tahun . '.xlsx'
+            : 'daftar-loker-semua-tahun.xlsx';
+
+        return Excel::download(
+            new LokerExport($tahun),
+            $namaFile
+        );
     }
     /**
      * Show the form for creating a new resource.

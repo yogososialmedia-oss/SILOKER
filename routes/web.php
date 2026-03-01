@@ -55,6 +55,9 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
         Route::post('/perusahaan/loker/store', [PerusahaanLokerController::class, 'store'])->name('perusahaan.loker.store');
         Route::get('/perusahaan/apply/history/{id}', [PerusahaanApplyController::class, 'showHistoryApply'])->name('perusahaan.apply.history');
         Route::post('/perusahaan/apply/update-status/{id}',[PerusahaanApplyController::class, 'updateStatus'])->name('perusahaan.apply.update-status');
+        Route::get('/perusahaan/apply/export', [PerusahaanApplyController::class, 'exportExcelPerusahaan'])->name('perusahaan.apply.export');
+        Route::get('/perusahaan/loker/export', [PerusahaanLokerController::class, 'exportExcel'])->name('perusahaan.loker.export');
+        Route::get('/perusahaan/apply/export/{id_loker}', [PerusahaanApplyController::class, 'exportPerLoker'])->name('perusahaan.apply.export.perloker');
     });
 });
 Route::middleware(['isAdmin'])->group(function () {
@@ -66,12 +69,14 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/loker/tampilan/{id}', [DaftarLokerController::class, 'showTampilanLoker'])->name('admin.loker.tampilan');
     Route::get('/admin/profile-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showProfilePerusahaan'])->name('admin.profile-perusahaan');
     Route::get('/admin/lowongan-kerja-perusahaan/{id}', [VerifikasiPerusahaanController::class,'showLowonganKerjaPerusahaan'])->name('admin.lowongan-kerja-perusahaan');
-    Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->name('admin.tampilan-loker-perusahaan');
+    Route::get('/admin/loker/{id}', [VerifikasiPerusahaanController::class, 'showTampilanLoker'])->where('id', '[0-9]+')->name('admin.tampilan-loker-perusahaan');
     Route::post('/admin/verifikasi-perusahaan/update',[VerifikasiPerusahaanController::class, 'updateStatus'])->name('admin.update-status-perusahaan');
     Route::get('/admin/history-apply', [AdminApplyController::class, 'index'])->name('admin.history-apply');
 
-    Route::get('/admin/apply/export-excel', [AdminApplyController::class, 'exportExcel'])
-    ->name('admin.apply.export.excel');
+    Route::get('/admin/apply/export-excel', [AdminApplyController::class, 'exportExcelSemua'])->name('admin.apply.export.semua');
+    Route::get('/admin/apply/export-excel/loker/{id}', [AdminApplyController::class, 'exportExcelPerLoker'])->name('admin.apply.export.perloker');
+    Route::get('/admin/loker/export-excel',[DaftarLokerController::class, 'exportExcel'])->name('admin.loker.export');
+    Route::get('/admin/perusahaan/export-excel/{tahun?}', [VerifikasiPerusahaanController::class, 'exportExcel'])->name('admin.perusahaan.export');
     
     Route::get('/loker/apply/{id}', [AdminApplyController::class, 'daftarApplyLoker'])->name('admin.apply.loker');
     Route::get('/apply/detail/{id}', [AdminApplyController::class, 'detailApply'])->name('admin.apply.detail');

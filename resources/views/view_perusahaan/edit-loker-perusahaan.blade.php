@@ -259,9 +259,20 @@
                     }
 
                     selesai.disabled = false;
-                    selesai.min = mulai.value > today ? mulai.value : today;
 
-                    if (selesai.value && selesai.value < selesai.min) {
+                    // Ambil tanggal mulai
+                    let mulaiDate = new Date(mulai.value);
+
+                    // Tambah 1 hari
+                    mulaiDate.setDate(mulaiDate.getDate() + 1);
+
+                    // Format ke yyyy-mm-dd
+                    let minSelesai = mulaiDate.toISOString().split('T')[0];
+
+                    selesai.min = minSelesai;
+
+                    // Jika tanggal selesai kurang dari minimal → reset
+                    if (selesai.value && selesai.value < minSelesai) {
                         selesai.value = '';
                     }
                 }

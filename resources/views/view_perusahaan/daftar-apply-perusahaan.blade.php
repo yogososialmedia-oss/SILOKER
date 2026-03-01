@@ -11,14 +11,10 @@
                     </div>
 
                     <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="{{ route('perusahaan.apply.export.perloker', $id_loker) }}" 
+                        class="btn btn-success btn-sm px-3">
                             Download
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
-                        </ul>
+                        </a>
                     </div>
 
                 </div>

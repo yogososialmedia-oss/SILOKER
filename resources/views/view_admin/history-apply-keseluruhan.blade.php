@@ -9,18 +9,29 @@
                     <div>
                         <h5 class="mb-0 fw-bold">HISTORY APPLY</h5>
                     </div>
+                    <form action="{{ route('admin.apply.export.semua') }}" method="GET">
+                        <div class="d-flex align-items-center gap-2">
 
-                    <div class="btn-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Download
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">PDF</a></li>
-                            <li><a class="dropdown-item" href="#">EXCEL</a></li>
-                        </ul>
-                    </div>
+                            <select name="tahun"
+                                class="form-select form-select-sm"
+                                style="width: 160px;">
 
+                                <option value="">Semua Tahun</option>
+                                @foreach($tahunList as $tahun)
+                                    <option value="{{ $tahun }}"
+                                        {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                        {{ $tahun }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <button type="submit"
+                                class="btn btn-success btn-sm px-3">
+                                Download
+                            </button>
+
+                        </div>
+                    </form>
                 </div>
 
                 <div class="table-responsive">
@@ -79,16 +90,13 @@
                                                 <span class="badge bg-label-info">Interview</span>
                                                 @break
 
-                                            @case('tidak diterima')
+                                            @case('ditolak')
                                                 <span class="badge bg-label-danger">Tidak Diterima</span>
                                                 @break
 
                                             @case('diterima')
                                                 <span class="badge bg-label-success">Diterima</span>
                                                 @break
-
-                                            @default
-                                                <span class="badge bg-label-secondary">-</span>
                                         @endswitch
                                     </td>
                                 </tr>

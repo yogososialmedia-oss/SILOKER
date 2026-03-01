@@ -137,7 +137,7 @@
                                         <label class="form-label">Alamat</label>
                                         <input name="alamat" type="text"
                                             class="form-control @error('alamat') is-invalid @enderror"
-                                            value="{{ old('alamat') }}"
+                                            value="{{ old('alamat', $info_perusahaan->alamat_perusahaan ?? '') }}"
                                             placeholder="Tambahkan alamat lengkap perusahaan seperti nama jalan atau lainya">
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -155,7 +155,7 @@
                                             <option value="Hybrid" {{ old('model_kerja') == 'Hybrid' ? 'selected' : '' }}>
                                                 Hybrid</option>
                                         </select>
-                                        @error('model_kerja')
+                                        @error('model_kerja') 
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -274,9 +274,20 @@
                     }
 
                     selesai.disabled = false;
-                    selesai.min = mulai.value > today ? mulai.value : today;
 
-                    if (selesai.value && selesai.value < selesai.min) {
+                    // Ambil tanggal mulai
+                    let mulaiDate = new Date(mulai.value);
+
+                    // Tambah 1 hari
+                    mulaiDate.setDate(mulaiDate.getDate() + 1);
+
+                    // Format ke yyyy-mm-dd
+                    let minSelesai = mulaiDate.toISOString().split('T')[0];
+
+                    selesai.min = minSelesai;
+
+                    // Jika tanggal selesai kurang dari minimal → reset
+                    if (selesai.value && selesai.value < minSelesai) {
                         selesai.value = '';
                     }
                 }

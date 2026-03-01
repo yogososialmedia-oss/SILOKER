@@ -7,6 +7,8 @@ use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LokerExport;
 
 class LokerController extends Controller
 {
@@ -42,7 +44,7 @@ class LokerController extends Controller
             'no_telp_perusahaan' => 'required|string',
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
-            'tanggal_berakhir_loker' => 'required|date|after_or_equal:tanggal_mulai_loker',
+            'tanggal_berakhir_loker' => 'required|date|after:tanggal_mulai_loker',
             'poster_loker' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
@@ -66,7 +68,7 @@ class LokerController extends Controller
 
             'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
             'tanggal_berakhir_loker.date' => 'Format tanggal selesai tidak valid.',
-            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
+            'tanggal_berakhir_loker.after' => 'Tanggal selesai harus setelah tanggal mulai.',
 
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Poster harus format JPG atau PNG.',
@@ -151,7 +153,7 @@ class LokerController extends Controller
             'no_telp_perusahaan' => 'required|string',
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
-            'tanggal_berakhir_loker' => 'required|date|after_or_equal:tanggal_mulai_loker',
+            'tanggal_berakhir_loker' => 'required|date|after:tanggal_mulai_loker',
             'poster_loker' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
@@ -175,7 +177,7 @@ class LokerController extends Controller
 
             'tanggal_berakhir_loker.required' => 'Tanggal selesai wajib diisi.',
             'tanggal_berakhir_loker.date' => 'Format tanggal selesai tidak valid.',
-            'tanggal_berakhir_loker.after_or_equal' => 'Tanggal selesai harus setelah tanggal mulai.',
+            'tanggal_berakhir_loker.after' => 'Tanggal selesai harus setelah tanggal mulai.',
 
             'poster_loker.image' => 'Poster harus berupa gambar.',
             'poster_loker.mimes' => 'Format poster harus JPG atau PNG.',
@@ -234,6 +236,19 @@ class LokerController extends Controller
 
         return redirect()->route('perusahaan.loker')
             ->with('success', 'Lowongan kerja berhasil diperbarui.');
+    }
+    public function exportExcel()
+    {
+        $tahun = request('tahun');
+
+        $namaFile = $tahun
+            ? 'daftar-loker-' . $tahun . '.xlsx'
+            : 'daftar-loker-semua-tahun.xlsx';
+
+        return Excel::download(
+            new LokerExport($tahun),
+            $namaFile
+        );
     }
 
     /**

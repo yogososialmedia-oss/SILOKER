@@ -10,9 +10,12 @@
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
 
-                    <a href="{{ route('admin.apply.export.excel') }}" class="btn btn-success">
-                        Download Excel
-                    </a>
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="{{ route('admin.apply.export.perloker', $id) }}" 
+                            class="btn btn-success btn-sm px-3">
+                            Download
+                        </a>
+                    </div>
 
                 </div>
                 <div class="table-responsive">

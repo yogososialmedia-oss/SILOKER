@@ -6,21 +6,34 @@
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="card pb-3 ">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-                            <div>
                                 <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
-                            </div>
 
-                            <div class="btn-group">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Download
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">PDF</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">EXCL</a></li>
-                                </ul>
+                                <form action="{{ route('admin.loker.export') }}" method="GET">
+                                    <div class="d-flex align-items-center gap-2">
+
+                                        <select name="tahun"
+                                            class="form-select form-select-sm"
+                                            style="width: 160px;">
+
+                                            <option value="">Semua Tahun</option>
+                                            @foreach($tahunList as $tahun)
+                                                <option value="{{ $tahun }}"
+                                                    {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                                    {{ $tahun }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                        <button type="submit"
+                                            class="btn btn-success btn-sm px-3">
+                                            Download
+                                        </button>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="table-responsive">

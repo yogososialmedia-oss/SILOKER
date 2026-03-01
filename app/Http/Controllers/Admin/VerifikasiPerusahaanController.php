@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Loker;
 use App\Models\PerusahaanMitra;
 use Illuminate\Http\Request;
+use App\Exports\PerusahaanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VerifikasiPerusahaanController extends Controller
 {
@@ -19,8 +21,17 @@ class VerifikasiPerusahaanController extends Controller
     }
     public function showDaftarPerusahaan()
     {
-        $perusahaanMitra = PerusahaanMitra::all();   
-        return view('view_admin.daftar-perusahaan', compact('perusahaanMitra'));
+        $perusahaanMitra = PerusahaanMitra::all();
+
+        // Ambil tahun unik dari created_at
+        $tahunList = PerusahaanMitra::selectRaw('YEAR(created_at) as tahun')
+                        ->distinct()
+                        ->orderBy('tahun', 'desc')
+                        ->pluck('tahun');
+
+        return view('view_admin.daftar-perusahaan', 
+            compact('perusahaanMitra', 'tahunList')
+        );
     }
     public function showDetailVerifikasi($id)
     {
@@ -80,6 +91,18 @@ class VerifikasiPerusahaanController extends Controller
         return redirect()
             ->route('admin.verifikasi-perusahaan')
             ->with('success', 'Status berhasil diperbarui.');
+    }
+    public function exportExcel(Request $request)
+    {
+        $tahun = $request->query('tahun'); // ambil dari ?tahun=xxxx
+        $namaFile = $tahun 
+            ? 'daftar-perusahaan-'.$tahun.'.xlsx'
+            : 'daftar-perusahaan-semua-tahun.xlsx';
+
+        return Excel::download(
+            new PerusahaanExport($tahun),
+            $namaFile
+        );
     }
     /**
      * Show the form for creating a new resource.
