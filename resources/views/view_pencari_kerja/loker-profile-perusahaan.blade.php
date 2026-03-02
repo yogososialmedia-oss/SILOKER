@@ -54,7 +54,7 @@
 
                     </div>
                 </div>
-                    @foreach($lokerPerusahaan as $item)
+                    @foreach($loker as $item)
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
                             <a href="{{ route('pencarikerja.loker.show', $item->id) }}?from=perusahaan&perusahaan_id={{ $info_perusahaan->id }}" 
@@ -70,8 +70,18 @@
                                         style="width:60px; height:60px; object-fit:cover;"
                                         class="rounded shadow-sm" alt="">
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 d-flex align-items-center gap-2">
-                                            <a href="#" class="fw-bold text-dark text-decoration-none">{{ $info_perusahaan->nama_perusahaan }}</a>
+                                        <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
+                                            {{-- Nama Perusahaan --}}
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}"
+                                                class="text-dark text-decoration-none position-relative z-3">
+                                                {{ $info_perusahaan->nama_perusahaan }}
+                                            </a>
+                                            {{-- Icon Info --}}
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}"
+                                                class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                                                style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                                i
+                                            </a>
                                         </h6>
                                         <p class="mb-1 small">{{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}</p>
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
@@ -103,6 +113,48 @@
                     </div>
                     @endforeach
             </div>
+            @if ($loker->lastPage() > 1)
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+
+                        {{-- FIRST --}}
+                        <li class="page-item {{ $loker->onFirstPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->url(1) }}">
+                                <i class="icon-base bx bx-chevrons-left icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- PREV --}}
+                        <li class="page-item {{ $loker->onFirstPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->previousPageUrl() }}">
+                                <i class="icon-base bx bx-chevron-left icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- NUMBER --}}
+                        @for ($i = 1; $i <= $loker->lastPage(); $i++)
+                            <li class="page-item {{ $loker->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $loker->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        {{-- NEXT --}}
+                        <li class="page-item {{ $loker->currentPage() == $loker->lastPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->nextPageUrl() }}">
+                                <i class="icon-base bx bx-chevron-right icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- LAST --}}
+                        <li class="page-item {{ $loker->currentPage() == $loker->lastPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->url($loker->lastPage()) }}">
+                                <i class="icon-base bx bx-chevrons-right icon-sm"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            @endif
         </div>
 
         <!-- / Content -->

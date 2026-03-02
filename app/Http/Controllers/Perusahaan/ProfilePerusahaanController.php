@@ -18,14 +18,19 @@ class ProfilePerusahaanController extends Controller
 
     public function lokerprofile()
     {
+        /** @var \App\Models\PerusahaanMitra $info_perusahaan */
         $info_perusahaan = Auth::guard('perusahaanmitra')->user();
 
         abort_if(!$info_perusahaan, 403);
 
-        $loker = $info_perusahaan->loker;
+        $loker = $info_perusahaan->loker()
+            ->latest()
+            ->paginate(6); // jumlah per halaman
 
-        return view('view_perusahaan.loker-profile-perusahaan',
-            compact('info_perusahaan', 'loker'));
+        return view(
+            'view_perusahaan.loker-profile-perusahaan',
+            compact('info_perusahaan', 'loker')
+        );
     }
 
     public function tampilanloker($id)
