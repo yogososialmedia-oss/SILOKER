@@ -219,95 +219,106 @@
     </footer>
     <!-- / Footer -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        const oldProvinsi = "{{ old('Provinsi') }}";
+        const oldKabupaten = "{{ old('Kabupaten') }}";
+        const oldKecamatan = "{{ old('Kecamatan') }}";
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
 
-            // =====================
-            // ERROR FILE LOGO
-            // =====================
-            const logoInput = document.getElementById('logoInput');
-            const logoError = document.getElementById('logoError');
+        const provinsiSelect = document.getElementById('provinsi');
+        const kabupatenSelect = document.getElementById('kabupaten');
+        const kecamatanSelect = document.getElementById('kecamatan');
 
-            if (logoInput) {
-                logoInput.addEventListener('change', function () {
-                    const file = this.files[0];
-                    const maxSize = 2 * 1024 * 1024;
-
-                    if (!file) return;
-
-                    if (file.size > maxSize) {
-                        logoError.classList.remove('d-none');
-                        this.value = '';
-                    } else {
-                        logoError.classList.add('d-none');
-                    }
+        // =====================
+        // LOAD PROVINSI
+        // =====================
+        fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            .then(res => res.json())
+            .then(data => {
+                let option = '<option value="">Pilih Provinsi</option>';
+                data.forEach(item => {
+                    let selected = item.name === oldProvinsi ? 'selected' : '';
+                    option += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                 });
-            }
+                provinsiSelect.innerHTML = option;
 
-            // =====================
-            // WILAYAH INDONESIA API
-            // =====================
-            const provinsiSelect = document.getElementById('provinsi');
-            const kabupatenSelect = document.getElementById('kabupaten');
-            const kecamatanSelect = document.getElementById('kecamatan');
+                // Kalau ada old provinsi → load kabupaten otomatis
+                if (oldProvinsi) {
+                    const selectedOption = provinsiSelect.querySelector('option[selected]');
+                    if (selectedOption) {
+                        loadKabupaten(selectedOption.dataset.id);
+                    }
+                }
+            });
 
-            if (!provinsiSelect || !kabupatenSelect || !kecamatanSelect) return;
-
-            // LOAD PROVINSI
-            fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+        // =====================
+        // LOAD KABUPATEN FUNCTION
+        // =====================
+        function loadKabupaten(provinsiId) {
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
                 .then(res => res.json())
                 .then(data => {
-                    let option = '<option value="">Pilih Provinsi</option>';
+                    let option = '<option value="">Pilih Kabupaten</option>';
                     data.forEach(item => {
-                        option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
+                        let selected = item.name === oldKabupaten ? 'selected' : '';
+                        option += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                     });
-                    provinsiSelect.innerHTML = option;
+                    kabupatenSelect.innerHTML = option;
+                    kabupatenSelect.disabled = false;
+
+                    if (oldKabupaten) {
+                        const selectedOption = kabupatenSelect.querySelector('option[selected]');
+                        if (selectedOption) {
+                            loadKecamatan(selectedOption.dataset.id);
+                        }
+                    }
                 });
+        }
 
-            // LOAD KABUPATEN
-            provinsiSelect.addEventListener('change', function () {
-                const provinsiId = this.selectedOptions[0]?.dataset.id;
-
-                kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
-                kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                kabupatenSelect.disabled = true;
-                kecamatanSelect.disabled = true;
-
-                if (!provinsiId) return;
-
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let option = '<option value="">Pilih Kabupaten</option>';
-                        data.forEach(item => {
-                            option += `<option value="${item.name}" data-id="${item.id}">${item.name}</option>`;
-                        });
-                        kabupatenSelect.innerHTML = option;
-                        kabupatenSelect.disabled = false;
+        // =====================
+        // LOAD KECAMATAN FUNCTION
+        // =====================
+        function loadKecamatan(kabupatenId) {
+            fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+                .then(res => res.json())
+                .then(data => {
+                    let option = '<option value="">Pilih Kecamatan</option>';
+                    data.forEach(item => {
+                        let selected = item.name === oldKecamatan ? 'selected' : '';
+                        option += `<option value="${item.name}" ${selected}>${item.name}</option>`;
                     });
-            });
+                    kecamatanSelect.innerHTML = option;
+                    kecamatanSelect.disabled = false;
+                });
+        }
 
-            // LOAD KECAMATAN
-            kabupatenSelect.addEventListener('change', function () {
-                const kabupatenId = this.selectedOptions[0]?.dataset.id;
+        // =====================
+        // EVENT MANUAL CHANGE
+        // =====================
+        provinsiSelect.addEventListener('change', function () {
+            const provinsiId = this.selectedOptions[0]?.dataset.id;
+            kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
+            kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+            kabupatenSelect.disabled = true;
+            kecamatanSelect.disabled = true;
 
-                kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                kecamatanSelect.disabled = true;
-
-                if (!kabupatenId) return;
-
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let option = '<option value="">Pilih Kecamatan</option>';
-                        data.forEach(item => {
-                            option += `<option value="${item.name}">${item.name}</option>`;
-                        });
-                        kecamatanSelect.innerHTML = option;
-                        kecamatanSelect.disabled = false;
-                    });
-            });
-
+            if (provinsiId) {
+                loadKabupaten(provinsiId);
+            }
         });
+
+        kabupatenSelect.addEventListener('change', function () {
+            const kabupatenId = this.selectedOptions[0]?.dataset.id;
+            kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+            kecamatanSelect.disabled = true;
+
+            if (kabupatenId) {
+                loadKecamatan(kabupatenId);
+            }
+        });
+
+    });
     </script>
     <script>
         document.getElementById('password').addEventListener('input', function () {

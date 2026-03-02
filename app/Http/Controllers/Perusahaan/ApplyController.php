@@ -121,32 +121,36 @@ class ApplyController extends Controller
         $request->validate([
             'status' => 'required',
             'pesan' => 'required|string|min:5',
-            'tanggal_interview' => ['required_if:status,interview'], // wajib jika interview
-            'tanggal_interview_date' => ['nullable','date','after_or_equal:today'], // validasi tanggal jika diisi
-            'waktu_interview' => 'required_if:status,interview',
-            'no_telp_perusahaan' => 'required_if:status,interview',
-            'alamat_perusahaan' => 'required_if:status,interview',
-        ], [
-            'status.required' => 'Status wajib diisi.',
-            'pesan.required' => 'Pesan wajib diisi.',
-            'tanggal_interview.required_if' => 'Tanggal interview wajib diisi.',
-            'tanggal_interview_date.date' => 'Format tanggal tidak valid.',
-            'tanggal_interview_date.after_or_equal' => 'Tanggal interview minimal hari ini.',
-            'waktu_interview.required_if' => 'Waktu interview wajib diisi.',
-            'no_telp_perusahaan.required_if' => 'No telp wajib diisi.',
-            'alamat_perusahaan.required_if' => 'Alamat wajib diisi.',
         ]);
+
+        if ($request->status === 'interview') {
+            $request->validate([
+                'tanggal_interview' => 'required|date|after_or_equal:today',
+                'waktu_interview' => 'required',
+                'no_telp' => 'required',
+            ]);
+        }
+
+        if ($request->status === 'diterima') {
+            $request->validate([
+                'tanggal_kunjungan' => 'required|date|after_or_equal:today',
+                'jam_kunjungan' => 'required',
+            ]);
+        }
 
         $apply->update([
             'status' => $request->status,
             'pesan' => $request->pesan,
+
             'tanggal_interview' => $request->tanggal_interview,
             'waktu_interview' => $request->waktu_interview,
-            'no_telp_perusahaan' => $request->no_telp_perusahaan,
-            'alamat_perusahaan' => $request->alamat_perusahaan,
+            'no_telp' => $request->no_telp,
+            'google_maps' => $request->google_maps,
+
+            'tanggal_kunjungan' => $request->tanggal_kunjungan,
+            'jam_kunjungan' => $request->jam_kunjungan,
         ]);
 
-        // Kirim email
         Mail::to($apply->pencariKerja->email_pencari_kerja)
             ->send(new StatusApplyMail($apply));
 

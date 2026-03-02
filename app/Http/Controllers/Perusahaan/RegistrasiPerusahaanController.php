@@ -33,66 +33,60 @@ class RegistrasiPerusahaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'NamaPerusahaan' => 'required',
-        'Email' => 'required|email|unique:tb_perusahaan_mitra,email_perusahaan',
-        'Password' => 'required|min:8',
-        'NoNpwp' => 'required',
-        'NoTelp' => 'required',
-        'Provinsi' => 'required',
-        'Kabupaten' => 'required',
-        'Kecamatan' => 'required',
-        'Alamat' => 'required',
-        'GoogleMaps' => 'required',
-        'Logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-        'TentangPerusahaan' => 'required',
-    ],
-    [
-        'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
-        'Email.required' => 'Email wajib diisi.',
-        'Email.email' => 'Format email tidak valid.',
-        'Email.unique' => 'Email sudah terdaftar.',
-        'Password.required' => 'Password wajib diisi.',
-        'Password.min' => 'Password minimal 8 karakter.',
-        'NoNpwp.required' => 'No NPWP wajib diisi.',
-        'NoTelp.required' => 'Nomor telepon wajib diisi.',
-        'Provinsi.required' => 'Provinsi wajib diisi.',
-        'Kabupaten.required' => 'Kabupaten wajib diisi.',
-        'Kecamatan.required' => 'Kecamatan wajib diisi.',
-        'Alamat.required' => 'Alamat wajib diisi.',
-        'GoogleMaps.required' => 'Google Maps wajib diisi.',
-        'TentangPerusahaan.required' => 'Tentang Perusahaan wajib diisi.',
-    ]  
+            'NamaPerusahaan' => 'required|string|max:255',
+            'Email' => 'required|email|unique:tb_perusahaan_mitra,email_perusahaan',
+            'Password' => 'required|min:8',
+            'NoNpwp' => 'required|string|max:255',
+            'NoTelp' => 'required|string|max:255',
+            'Provinsi' => 'required|string|max:255',
+            'Kabupaten' => 'required|string|max:255',
+            'Kecamatan' => 'required|string|max:255',
+            'Alamat' => 'required|string',
+            'GoogleMaps' => 'nullable|string',
+            'TentangPerusahaan' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
+            'Email.required' => 'Email wajib diisi.',
+            'Email.email' => 'Format email tidak valid.',
+            'Email.unique' => 'Email sudah terdaftar.',
+            'Password.required' => 'Password wajib diisi.',
+            'Password.min' => 'Password minimal 8 karakter.',
+            'NoNpwp.required' => 'No NPWP wajib diisi.',
+            'NoTelp.required' => 'Nomor telepon wajib diisi.',
+            'Provinsi.required' => 'Provinsi wajib diisi.',
+            'Kabupaten.required' => 'Kabupaten wajib diisi.',
+            'Kecamatan.required' => 'Kecamatan wajib diisi.',
+            'Alamat.required' => 'Alamat wajib diisi.',
+        ]);
 
-    );
-    
-    $logoFilename = null;
+        $logoFilename = null;
 
-    if ($request->hasFile('Logo')) {
-        $logoFile = $request->file('Logo');
-        $logoFilename = time().'_'.$logoFile->getClientOriginalName();
-        $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
-    }
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
+            $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
+        }
 
-    $token = uniqid(true); // generate token unik
+        $token = uniqid(true);
 
-    $perusahaan = PerusahaanMitra::create([
-        'nama_perusahaan'    => $request->NamaPerusahaan,
-        'email_perusahaan'   => $request->Email,
-        'provinsi'           => $request->Provinsi,
-        'kabupaten'          => $request->Kabupaten,
-        'kecamatan'          => $request->Kecamatan,
-        'no_telp_perusahaan' => $request->NoTelp,
-        'alamat_perusahaan'  => $request->Alamat,
-        'logo'               => $logoFilename,
-        'password_perusahaan'=> Hash::make($request->Password),
-        'no_npwp'            => $request->NoNpwp,
-        'google_maps'        => $request->GoogleMaps,
-        'tentang_perusahaan' => $request->TentangPerusahaan,
-        'status_akun'        => 'pending',
-        'verification_token' => $token,
-    ]);
+        $perusahaan = PerusahaanMitra::create([
+            'nama_perusahaan'    => $request->NamaPerusahaan,
+            'email_perusahaan'   => $request->Email,
+            'provinsi'           => $request->Provinsi,
+            'kabupaten'          => $request->Kabupaten,
+            'kecamatan'          => $request->Kecamatan,
+            'no_telp_perusahaan' => $request->NoTelp,
+            'alamat_perusahaan'  => $request->Alamat,
+            'logo'               => $logoFilename,
+            'password_perusahaan'=> Hash::make($request->Password),
+            'no_npwp'            => $request->NoNpwp,
+            'google_maps'        => $request->GoogleMaps,
+            'tentang_perusahaan' => $request->TentangPerusahaan,
+            'status_akun'        => 'pending',
+            'verification_token' => $token,
+        ]);
 
-    // Kirim email verifikasi
         Mail::to($perusahaan->email_perusahaan)
             ->send(new EmailVerificationMail($perusahaan, $token, 'perusahaan'));
 

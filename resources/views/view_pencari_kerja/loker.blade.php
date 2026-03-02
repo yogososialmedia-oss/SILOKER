@@ -131,8 +131,21 @@
                                         style="width:60px; height:60px; object-fit:cover;" class="rounded shadow-sm" alt="">
 
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">
-                                            {{ $loker->perusahaanMitra->nama_perusahaan }}
+                                        <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
+    
+                                            {{-- Nama Perusahaan --}}
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                                class="text-dark text-decoration-none position-relative z-3">
+                                                {{ $loker->perusahaanMitra->nama_perusahaan }}
+                                            </a>
+
+                                            {{-- Icon Info --}}
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                                class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                                                style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                                i
+                                            </a>
+
                                         </h6>
 
                                         <p class="mb-1 small">

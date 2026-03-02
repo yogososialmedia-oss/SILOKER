@@ -256,6 +256,48 @@
         @endforeach
         @endif
       </div>
+      @if ($loker->lastPage() > 1)
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+
+                        {{-- FIRST --}}
+                        <li class="page-item {{ $loker->onFirstPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->url(1) }}">
+                                <i class="icon-base bx bx-chevrons-left icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- PREV --}}
+                        <li class="page-item {{ $loker->onFirstPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->previousPageUrl() }}">
+                                <i class="icon-base bx bx-chevron-left icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- NUMBER --}}
+                        @for ($i = 1; $i <= $loker->lastPage(); $i++)
+                            <li class="page-item {{ $loker->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $loker->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        {{-- NEXT --}}
+                        <li class="page-item {{ $loker->currentPage() == $loker->lastPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->nextPageUrl() }}">
+                                <i class="icon-base bx bx-chevron-right icon-sm"></i>
+                            </a>
+                        </li>
+
+                        {{-- LAST --}}
+                        <li class="page-item {{ $loker->currentPage() == $loker->lastPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $loker->url($loker->lastPage()) }}">
+                                <i class="icon-base bx bx-chevrons-right icon-sm"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            @endif
     </div>
 
     <!-- Footer -->
