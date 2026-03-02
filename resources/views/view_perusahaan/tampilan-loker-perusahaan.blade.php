@@ -8,7 +8,8 @@
                     <div class="card loker-card-beranda h-100">
 
                         <img src="{{ asset($loker->poster_loker ?: 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
-                        class="card-img-top" alt="">
+                            class="card-img-top"
+                            alt="Poster Loker">
 
                         <div class="card-body">
 

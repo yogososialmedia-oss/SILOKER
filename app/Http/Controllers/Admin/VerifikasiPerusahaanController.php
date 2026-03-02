@@ -47,12 +47,12 @@ class VerifikasiPerusahaanController extends Controller
     }
     public function showLowonganKerjaPerusahaan($id)
     {
-        $info_perusahaan = PerusahaanMitra::with(['loker' => function ($query) {
-            $query->withCount('apply')
-                ->latest();
-        }])->findOrFail($id);
+        $info_perusahaan = PerusahaanMitra::findOrFail($id);
 
-        $loker = $info_perusahaan->loker;
+        $loker = $info_perusahaan->loker()
+                    ->withCount('apply')
+                    ->latest()
+                    ->paginate(6);
 
         return view('view_perusahaan.loker-profile-perusahaan',
             compact('info_perusahaan', 'loker'));

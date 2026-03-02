@@ -51,18 +51,15 @@ class ProfileController extends Controller
 
     public function showLokerPerusahaanpencariKerja($id)
     {
-        $info_perusahaan = \App\Models\PerusahaanMitra::find($id);
+        $info_perusahaan = \App\Models\PerusahaanMitra::findOrFail($id);
 
-        if (!$info_perusahaan) {
-            abort(404, 'Perusahaan tidak ditemukan');
-        }
+        $loker = $info_perusahaan->loker()
+                        ->withCount('apply')
+                        ->latest()
+                        ->paginate(6);
 
-        // Ambil semua lowongan milik perusahaan
-        $lokerPerusahaan = \App\Models\Loker::where('id_perusahaan_mitra', $id)
-                            ->latest()
-                            ->get();
-
-        return view('view_pencari_kerja.loker-profile-perusahaan', compact('info_perusahaan', 'lokerPerusahaan'));
+        return view('view_pencari_kerja.loker-profile-perusahaan',
+            compact('info_perusahaan', 'loker'));
     }
     /**
      * Show the form for creating a new resource.

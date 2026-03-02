@@ -64,14 +64,14 @@
         {{-- ================= PERUSAHAAN ================= --}}
         @if(Auth::guard('perusahaanmitra')->check())
 
-            <li class="menu-item {{ request()->routeIs(['perusahaan.profile', 'perusahaan.profile.edit']) ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['perusahaan.profile', 'perusahaan.profile.edit', 'perusahaan.loker.profile']) ? 'active' : '' }}">
                 <a href="{{ route('perusahaan.profile') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-circle"></i>
                     <div>Profile</div>
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker*', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply']) ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply', 'perusahaan.loker.create', 'perusahaan.loker.tampilan']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Loker</div>

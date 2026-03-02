@@ -14,14 +14,6 @@
 
     @include('impor.admin_perusahaan.css')
 
-<style>
-    .card-img-top {
-        width: 100%;
-        height: 260px;   /* samakan dengan perusahaan */
-        object-fit: cover;
-    }
-</style>
-
 </head>
 <body>
     {{-- navbar --}}
