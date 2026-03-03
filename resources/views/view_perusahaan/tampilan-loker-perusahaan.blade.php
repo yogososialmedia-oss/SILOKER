@@ -7,7 +7,7 @@
                 <div class="col-lg-4 mb-5">
                     <div class="card loker-card-beranda h-100">
 
-                        <img src="{{ asset($loker->poster_loker ?: 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') }}"
+                        <img src="{{ asset($loker->poster_loker ?: 'admin-perusahaan/assets/img/backgrounds/default_poster_careercenter.jpg') }}"
                             class="card-img-top"
                             alt="Poster Loker">
 
