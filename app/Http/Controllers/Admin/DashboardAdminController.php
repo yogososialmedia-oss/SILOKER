@@ -8,7 +8,6 @@ use App\Models\Loker;
 use App\Models\PerusahaanMitra;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
@@ -19,24 +18,20 @@ class DashboardAdminController extends Controller
     {
         $today = Carbon::today();
 
-        // Loker OPEN
         $totalOpen = Loker::whereDate('tanggal_mulai_loker', '<=', $today)
             ->whereDate('tanggal_berakhir_loker', '>=', $today)
             ->count();
 
-        // Loker CLOSE
         $totalClose = Loker::whereDate('tanggal_berakhir_loker', '<', $today)
             ->count();
 
-        // Total tayangan tetap dari loker
         $totalTayangan = Loker::sum('tayangan');
-
-        // Total apply dari tabel tb_apply
         $totalApply = Apply::count();
-
-        // ✅ Tambahan baru
         $totalLowongan = Loker::count();
         $totalPerusahaan = PerusahaanMitra::count();
+
+        $totalLowonganTerapply = Loker::whereHas('apply')->count();
+        $totalApplyDiterima = Apply::where('status', 'diterima')->count();
 
         $lokerTerbaru = Loker::with('perusahaanMitra')
             ->withCount('apply')
@@ -56,8 +51,10 @@ class DashboardAdminController extends Controller
             'totalClose',
             'totalTayangan',
             'totalApply',
-            'totalLowongan',      // ✅ kirim ke blade
-            'totalPerusahaan',    // ✅ kirim ke blade
+            'totalLowongan',
+            'totalPerusahaan',
+            'totalLowonganTerapply',
+            'totalApplyDiterima',
             'lokerTerbaru'
         ));
     }

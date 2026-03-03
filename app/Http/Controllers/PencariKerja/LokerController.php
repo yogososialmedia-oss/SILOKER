@@ -24,7 +24,9 @@ class LokerController extends Controller
 
         $filters = session('loker_filters', []);
 
-        $query = Loker::with('perusahaanMitra');
+        $query = Loker::with('perusahaanMitra')
+        ->whereDate('tanggal_mulai_loker', '<=', now())
+        ->whereDate('tanggal_berakhir_loker', '>=', now());
 
         if (!empty($filters['provinsi'])) {
             $query->where('provinsi', $filters['provinsi']);

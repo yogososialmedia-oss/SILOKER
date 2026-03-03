@@ -98,10 +98,6 @@
                                                             href="{{ route('perusahaan.loker.tampilan', $data_loker->id) }}">
                                                             <i class="icon-base bx bx-show me-2"></i>Tampilan Loker
                                                         </a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('perusahaan.apply.loker', $data_loker->id) }}">
-                                                            <i class="icon-base bx bx-user-pin me-2"></i>Daftar Apply
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

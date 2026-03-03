@@ -46,6 +46,7 @@
                                 <th>No. Telp</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,6 +99,20 @@
                                                 <span class="badge bg-label-success">Diterima</span>
                                                 @break
                                         @endswitch
+                                    
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.apply.loker', $data_apply->id_loker) }}">
+                                                    <i class="icon-base bx bx-user-pin me-2"></i>Daftar Apply
+                                                </href=>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

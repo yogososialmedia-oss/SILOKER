@@ -45,14 +45,14 @@
                 </ul>
             </li>
 
-            <li class="menu-item {{ request()->routeIs(['admin.daftar-loker', 'admin.loker.tampilan', 'admin.apply.loker', 'admin.apply.profile', 'admin.apply.history', 'admin.apply.detail',] ) ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['admin.daftar-loker', 'admin.loker.tampilan'] ) ? 'active' : '' }}">
                 <a href="{{ route('admin.daftar-loker') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Daftar Loker</div>
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('admin.history-apply') ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs('admin.history-apply', 'admin.apply.profile', 'admin.apply.history', 'admin.apply.detail', 'admin.apply.loker') ? 'active' : '' }}">
                 <a href="{{ route('admin.history-apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
                     <div>History Apply</div>
@@ -71,13 +71,13 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply', 'perusahaan.loker.create', 'perusahaan.loker.tampilan']) ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['perusahaan.loker', 'perusahaan.loker.edit', 'perusahaan.loker.create', 'perusahaan.loker.tampilan']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div>Loker</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ request()->routeIs(['perusahaan.loker.tampilan', 'perusahaan.loker', 'perusahaan.loker.edit', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply']) ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->routeIs(['perusahaan.loker.tampilan', 'perusahaan.loker', 'perusahaan.loker.edit']) ? 'active' : '' }}">
                         <a href="{{ route('perusahaan.loker') }}" class="menu-link">
                             <div>Daftar Loker</div>
                         </a>
@@ -90,7 +90,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item {{ request()->routeIs('perusahaan.apply') ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs('perusahaan.apply', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply') ? 'active' : '' }}">
                 <a href="{{ route('perusahaan.apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
                     <div>History Apply</div>
