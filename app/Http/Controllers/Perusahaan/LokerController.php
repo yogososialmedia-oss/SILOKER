@@ -90,7 +90,7 @@ class LokerController extends Controller
 
             'deskripsi.required' => 'Kualifikasi wajib diisi.',
         ]);
-        $defaultPoster = 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png';
+        $defaultPoster = 'admin-perusahaan/assets/img/backgrounds/default_poster_careercenter.jpg';
         $posterPath = $defaultPoster;
 
         if ($request->hasFile('poster_loker')) {
@@ -219,7 +219,7 @@ class LokerController extends Controller
 
             // hapus lama kalau bukan default
             if ($loker->poster_loker && 
-                $loker->poster_loker !== 'admin-perusahaan/assets/img/backgrounds/background_profile_perusahaan.png') {
+                $loker->poster_loker !== 'admin-perusahaan/assets/img/backgrounds/default_poster_careercenter.jpg') {
 
                 $oldPath = str_replace('storage/', '', $loker->poster_loker);
                 Storage::disk('public')->delete($oldPath);
