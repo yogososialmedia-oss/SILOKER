@@ -32448,3 +32448,32 @@ html {
     padding: -10px 15px 50px; 
 }
 
+
+
+
+
+
+/* Batasi area klik tombol hanya di icon */
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;               /* jangan full width */
+    height: auto;              /* jangan full height */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+}
+
+/* Supaya tombol benar-benar kecil dan tidak ganggu card */
+.carousel-control-prev {
+    left: -20px;
+}
+
+.carousel-control-next {
+    right: -20px;
+}
+
+/* Hilangkan area overlay default */
+.carousel-control-prev,
+.carousel-control-next {
+    background: none;
+}

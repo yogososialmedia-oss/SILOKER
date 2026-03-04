@@ -1,4 +1,150 @@
 <x-pencari_kerja.layout>
+    <!-- ================= SLIDER LOKER OPEN ================= -->
+    <section class="py-5">
+    <div class="container-fluid">
+
+        <h3 class="text-center mb-5 fw-bold text-primary">
+            LOWONGAN TERBUKA
+        </h3>
+
+        @if($lokers->count())
+
+        <div id="lokerCarousel" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
+
+                @foreach($lokers->chunk(4) as $chunkIndex => $chunk)
+<div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            @foreach($chunk as $loker)
+            <div class="col-md-6 mb-4"> {{-- 2 kolom --}}
+                
+                <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
+                   class="text-decoration-none">
+
+                    <div class="card h-100 loker-card-beranda position-relative">
+
+    {{-- LINK --}}
+    <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
+        class="stretched-link"></a>
+
+    <div class="card-body position-relative">
+
+        {{-- TANGGAL --}}
+        <p class="text-end fs-9 mb-2">
+            {{ $loker->tanggal_mulai_loker->format('d M Y') }}
+            -
+            {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
+        </p>
+
+        {{-- HEADER --}}
+        <div class="d-flex align-items-start gap-3 mb-3">
+            <img src="{{ $loker->perusahaanMitra->logo_url ?? asset('default.png') }}"
+                style="width:60px; height:60px; object-fit:cover;"
+                class="rounded shadow-sm" alt="">
+
+            <div class="flex-grow-1">
+                <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
+
+                    {{-- Nama Perusahaan --}}
+                    <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                        class="text-dark text-decoration-none position-relative z-3">
+                        {{ $loker->perusahaanMitra->nama_perusahaan }}
+                    </a>
+
+                    {{-- Icon Info --}}
+                    <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                        class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                        style="width:16px; height:16px; font-size:10px;">
+                        i
+                    </a>
+
+                </h6>
+
+                <p class="mb-1 small">
+                    {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
+                </p>
+
+                <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
+                    <i class="bx bx-location-plus"></i>
+                    <span>{{ $loker->kabupaten }}</span>
+                </p>
+            </div>
+        </div>
+
+        {{-- JABATAN + STATUS --}}
+        <div class="d-flex align-items-center mb-3">
+            <h5 class="mb-0 text-dark">
+                {{ $loker->jabatan }}
+            </h5>
+
+            <div class="ms-auto pe-3">
+                @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
+                    <span class="badge bg-primary fs-6 px-3 py-2">
+                        Open
+                    </span>
+                @else
+                    <span class="badge bg-danger fs-6 px-3 py-2">
+                        Close
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        {{-- DETAIL --}}
+        <p class="d-flex align-items-start gap-2 mb-1">
+            <i class="bx bx-buildings"></i>
+            <span>{{ $loker->model_kerja }}</span>
+        </p>
+
+        <p class="d-flex align-items-start gap-2 mb-1">
+            <i class="bx bx-book-reader"></i>
+            <span>{{ $loker->minimal_pendidikan }}</span>
+        </p>
+
+    </div>
+</div>
+
+                </a>
+
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+
+</div>
+@endforeach
+
+            </div>
+
+            <!-- Tombol -->
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#lokerCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </button>
+
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#lokerCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </button>
+
+        </div>
+
+        @else
+            <div class="text-center">
+                <p class="text-muted">Belum ada lowongan terbuka.</p>
+            </div>
+        @endif
+
+    </div>
+</section>
     <!-- ================= HOME ================= -->
     <section id="home" class="home-beranda">
         <div class="container-fluid px-0">
@@ -29,102 +175,6 @@
     </section>
 
 
-    <!-- ================= LOKER ================= -->
-    <section class="loker-beranda">
-        <div class="container">
-
-            <h3 class="text-center mb-5 fw-bold" style="color: #3f75c7">
-                INFORMASI LOWONGAN KERJA
-            </h3>
-            <div class="row g-4">
-
-                <!-- CARD -->
-                @forelse($lokers as $loker)
-                <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
-                    <div class="card h-100 loker-card-beranda position-relative">
-
-                        <a href="{{ route('pencarikerja.loker.show', $loker->id) }}" 
-                            class="stretched-link"></a>
-
-                        <div class="card-body position-relative">
-
-                            {{-- TANGGAL --}}
-                            <p class="text-end fs-9 mb-2">
-                                {{ $loker->tanggal_mulai_loker->format('d M Y') }}
-                                -
-                                {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
-                            </p>
-
-                            {{-- HEADER PERUSAHAAN --}}
-                            <div class="d-flex align-items-start gap-3 mb-3">
-                                <img src="{{ $loker->perusahaanMitra->logo_url }}"
-                                    style="width:60px; height:60px; object-fit:cover;"
-                                    class="rounded shadow-sm">
-
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-bold">
-                                        {{ $loker->perusahaanMitra->nama_perusahaan }}
-                                    </h6>
-
-                                    <p class="mb-1 small">
-                                        {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
-                                    </p>
-
-                                    <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
-                                        <i class="bx bx-location-plus"></i>
-                                        <span>{{ $loker->kabupaten }}</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            {{-- JABATAN + STATUS --}}
-                            <div class="d-flex align-items-center mb-3">
-                                <h5 class="mb-0">
-                                    {{ $loker->jabatan }}
-                                </h5>
-
-                                <div class="ms-auto pe-4">
-                                    @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
-                                        <span class="badge bg-primary fs-6 px-3 py-2">
-                                            Open
-                                        </span>
-                                    @else
-                                        <span class="badge bg-danger fs-6 px-3 py-2">
-                                            Close
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            {{-- DETAIL --}}
-                            <p class="d-flex align-items-start gap-2 mb-1">
-                                <i class="bx bx-buildings"></i>
-                                <span>{{ $loker->model_kerja }}</span>
-                            </p>
-
-                            <p class="d-flex align-items-start gap-2 mb-1">
-                                <i class="bx bx-book-reader"></i>
-                                <span>{{ $loker->minimal_pendidikan }}</span>
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <div class="text-center">
-                        <p class="text-muted">Belum ada lowongan tersedia.</p>
-                    </div>
-                @endforelse
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="{{ route('pencarikerja.loker.index') }}" class="btn btn-outline-primary px-4">
-                    Selanjutnya
-                </a>
-            </div>
-
-        </div>
-    </section>
 
     <!-- ================= FOOTER / ABOUT ================= -->
     <section id="about" class="footer-beranda">
