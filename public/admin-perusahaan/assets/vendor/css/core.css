@@ -32023,6 +32023,7 @@ html {
   font-weight: 700;
   line-height: 1.1;
   color: #ffffff;
+  margin-top: -50px;
 }
 
 .tanda-seru-color {
@@ -32343,8 +32344,6 @@ html {
 }
 
 
-
-
 /* =====================================================
     CSS NOTIFIKASI
    ===================================================== */
@@ -32435,11 +32434,11 @@ html {
     BERANDA FULL BIRU
    ===================================================== */
 .home-beranda,
-.footer-beranda {
-    width: 100vw; /* paksa lebar viewport penuh */
-    margin-left: calc(-50vw + 50%); /* pusatkan section */
+.footer-beranda{
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%); 
     margin-right: calc(-50vw + 50%);
-    background-color: #3f75c7; /* biru utama */
+    background-color: #3f75c7; 
     color: #fff;
 }
 
@@ -32449,15 +32448,11 @@ html {
 }
 
 
-
-
-
-
 /* Batasi area klik tombol hanya di icon */
 .carousel-control-prev,
 .carousel-control-next {
-    width: auto;               /* jangan full width */
-    height: auto;              /* jangan full height */
+    width: auto;              
+    height: auto;              
     top: 50%;
     transform: translateY(-50%);
     opacity: 1;
@@ -32476,4 +32471,64 @@ html {
 .carousel-control-prev,
 .carousel-control-next {
     background: none;
+}
+
+
+/* =====================================================
+  ABOUT CAREER CENTER - WHITE VERSION
+===================================================== */
+
+.about-career {
+    background-color: #ffffff;
+    padding: 100px 0;
+}
+
+.about-career h4 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.about-career h4::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background-color: #3f75c7;
+    margin-top: 10px;
+}
+
+.about-career p,
+.about-career li {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.about-career ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+/* Sosial media */
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: #3f75c7;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.social-icons a:hover {
+    color: #2f5fb3;
+    transform: translateX(4px);
+}
+
+.about-career{
+    margin-left: calc(-50vw + 50%); 
+    margin-right: calc(-50vw + 50%);
+    background-color: #fff; 
 }
