@@ -18,6 +18,8 @@ class LokerController extends Controller
     public function index()
     {
         $loker = Loker::with('perusahaanMitra')
+        ->whereDate('tanggal_mulai_loker', '<=', today())
+        ->whereDate('tanggal_berakhir_loker', '>=', today())
         ->withCount('apply')
         ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->id())
         ->get();
@@ -240,13 +242,14 @@ class LokerController extends Controller
     public function exportExcel()
     {
         $tahun = request('tahun');
+        $idPerusahaan = Auth::guard('perusahaanmitra')->id();
 
         $namaFile = $tahun
             ? 'daftar-loker-' . $tahun . '.xlsx'
             : 'daftar-loker-semua-tahun.xlsx';
 
         return Excel::download(
-            new LokerExport($tahun),
+            new LokerExport($tahun, $idPerusahaan),
             $namaFile
         );
     }

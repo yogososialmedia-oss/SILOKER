@@ -19,11 +19,14 @@ class LokerExport implements
     ShouldAutoSize,
     WithStyles
 {
-    protected $tahun;
 
-    public function __construct($tahun = null)
+    protected $tahun;
+    protected $idPerusahaan;
+
+    public function __construct($tahun = null, $idPerusahaan = null)
     {
         $this->tahun = $tahun;
+        $this->idPerusahaan = $idPerusahaan;
     }
     public function collection()
     {
@@ -35,9 +38,12 @@ class LokerExport implements
             $query->whereYear('tanggal_mulai_loker', $this->tahun);
         }
 
+        if ($this->idPerusahaan) {
+            $query->where('id_perusahaan_mitra', $this->idPerusahaan);
+        }
+
         return $query->get();
     }
-    
 
     public function headings(): array
     {
@@ -57,9 +63,9 @@ class LokerExport implements
     public function map($loker): array
     {
         $status = now()->between(
-            $loker->tanggal_mulai_loker,
-            $loker->tanggal_berakhir_loker
-        ) ? 'OPEN' : 'CLOSED';
+        $loker->tanggal_mulai_loker->startOfDay(),
+        $loker->tanggal_berakhir_loker->endOfDay()
+    ) ? 'OPEN' : 'CLOSED';
 
         return [
             $loker->perusahaanMitra->nama_perusahaan ?? '-',

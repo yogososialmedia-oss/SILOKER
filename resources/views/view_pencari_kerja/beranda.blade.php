@@ -237,7 +237,7 @@
                         <i class="bx bx-globe"></i> www.siap.stikom-bali.ac.id
                     </a><br>
 
-                    <a href="https://www.instagram.com/stikombali?igsh=MTNpdHJ2NGxhNDJoZg==" target="_blank">
+                    <a href="https://www.instagram.com/stikombali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
                         <i class="bx bxl-instagram"></i> @stikombali
                     </a><br>
 
@@ -251,6 +251,10 @@
 
                     <a href="https://youtube.com/@stikomerstv8537?si=uRr7WbTrd8GHJetD" target="_blank">
                         <i class="bx bxl-youtube"></i> stikomerstv
+                    </a><br>
+
+                    <a href="https://www.instagram.com/cdc.stikombali?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                        <i class="bx bxl-instagram"></i> @cdc.stikombali
                     </a>
                 </div>
             </div>
