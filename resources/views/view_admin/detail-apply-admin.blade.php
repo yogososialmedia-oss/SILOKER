@@ -11,6 +11,7 @@
                         </div>
 
                         <div class="card-body">
+
                             @php
                                 $pelamar = $apply->pencariKerja ?? null;
                                 $loker = $apply->loker ?? null;
@@ -27,8 +28,8 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
-                                    <input type="text" class="form-control"
-                                        value="{{ $pelamar?->nim ?? '-' }}" disabled>
+                                    <input type="text" class="form-control" value="{{ $pelamar?->nim ?? '-' }}"
+                                        disabled>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -66,7 +67,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-bold">Linked.In</label><br>
 
-                                    @if($apply->linkedin)
+                                    @if ($apply->linkedin)
                                         <a href="{{ $apply->linkedin }}" target="_blank"
                                             class="btn btn-outline-primary btn-sm">
                                             Lihat Profil Linked.In
@@ -80,10 +81,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-bold">Curriculum Vitae (CV)</label><br>
 
-                                    @if($pelamar?->cv)
-                                        <button type="button"
-                                            class="btn btn-outline-primary btn-sm"
-                                            data-bs-toggle="modal"
+                                    @if ($pelamar?->cv)
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modalCV">
                                             Lihat CV
                                         </button>
@@ -95,34 +94,33 @@
                             </div>
 
                             {{-- ===== MODAL CV ===== --}}
-                            @if($pelamar?->cv)
+                            @if ($pelamar?->cv)
                                 <div class="modal fade" id="modalCV" tabindex="-1" aria-hidden="true">
+
                                     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                         <div class="modal-content">
 
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Curriculum Vitae</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                </button>
                                             </div>
 
                                             <div class="modal-body p-0">
-                                                <iframe
-                                                    src="{{ asset('storage/' . $pelamar->cv) }}"
-                                                    width="100%"
-                                                    height="600px"
-                                                    style="border:none;">
+                                                <iframe src="{{ asset('storage/' . $pelamar->cv) }}" width="100%"
+                                                    height="600px" style="border:none;">
                                                 </iframe>
                                             </div>
 
                                         </div>
                                     </div>
+
                                 </div>
                             @endif
 
                             {{-- ===== BACK BUTTON ===== --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('admin.history-apply', $loker->id) }}"
-                                    class="btn btn-secondary">
+                                <a href="{{ route('admin.history-apply', $loker->id) }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                             </div>

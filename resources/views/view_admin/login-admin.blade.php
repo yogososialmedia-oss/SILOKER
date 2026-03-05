@@ -25,25 +25,42 @@
                             @endif
 
                             <!-- FORM -->
-                            <form class="mb-6" action="{{ route('admin.login.post') }}" method="POST">
+                            <form
+                                class="mb-6"
+                                action="{{ route('admin.login.post') }}"
+                                method="POST"
+                            >
                                 @csrf
 
                                 <!-- EMAIL -->
                                 <div class="mb-6">
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" name="email-username"
-                                        placeholder="Masukan alamat email" autofocus />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="email-username"
+                                        placeholder="Masukan alamat email"
+                                        autofocus
+                                    />
                                 </div>
 
                                 <!-- PASSWORD -->
                                 <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
+
                                     <div class="input-group input-group-merge">
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="••••••••••••" />
+
+                                        <input
+                                            type="password"
+                                            class="form-control"
+                                            name="password"
+                                            placeholder="••••••••••••"
+                                        />
+
                                         <span class="input-group-text cursor-pointer">
                                             <i class="icon-base bx bx-hide"></i>
                                         </span>
+
                                     </div>
                                 </div>
 
@@ -56,8 +73,15 @@
                                 <!-- REMEMBER -->
                                 <div class="mb-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember-admin">
-                                        <label class="form-check-label" for="remember-admin">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="remember-admin"
+                                        >
+                                        <label
+                                            class="form-check-label"
+                                            for="remember-admin"
+                                        >
                                             Remember Me
                                         </label>
                                     </div>
@@ -65,12 +89,16 @@
 
                                 <!-- BUTTON -->
                                 <div class="mb-6">
-                                    <button class="btn btn-primary w-100" type="submit">
+                                    <button
+                                        class="btn btn-primary w-100"
+                                        type="submit"
+                                    >
                                         Login
                                     </button>
                                 </div>
 
                             </form>
+                            <!-- /FORM -->
 
                         </div>
                     </div>
@@ -83,12 +111,15 @@
     </div>
     <!-- /LOGIN PAGE WRAPPER -->
 
+
     <!-- FOOTER -->
     <footer class="content-footer footer bg-footer-theme">
         <div class="container-xxl">
+
             <div class="footer-container d-flex justify-content-between py-4">
                 ©2026 Yogo & Wahyu
             </div>
+
         </div>
     </footer>
 

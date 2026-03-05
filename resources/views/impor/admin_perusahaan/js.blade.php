@@ -1,4 +1,4 @@
-<!-- Core JS -->
+<!-- ================= CORE JS ================= -->
 
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/jquery/jquery.js') }}"></script>
 
@@ -11,27 +11,40 @@
 
 <!-- endbuild -->
 
-<!-- Vendors JS -->
+
+<!-- ================= VENDORS JS ================= -->
+
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
-<!-- Main JS -->
+
+<!-- ================= MAIN JS ================= -->
 
 <script src="{{ asset('admin-perusahaan/assets/js/main.js') }}"></script>
 
-<!-- Page JS -->
+
+<!-- ================= PAGE JS ================= -->
+
 <script src="{{ asset('admin-perusahaan/assets/js/dashboards-analytics.js') }}"></script>
 
-<!-- Place this tag before closing body tag for github widget button. -->
+
+<!-- ================= GITHUB BUTTON ================= -->
+
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<!-- Table -->
+
+<!-- ================= DATATABLE ================= -->
 
 <script src="{{ asset('admin-perusahaan/assets/datatable/datatables.js') }}"></script>
 <script src="{{ asset('admin-perusahaan/assets/datatable/datatable-init.js') }}"></script>
 
-<!-- Chart.js -->
+
+<!-- ================= CHART JS ================= -->
+
 <script src="{{ asset('admin-perusahaan/assets/chartjs/chart.umd.min.js') }}"></script>
+
 <script>
+    /* ================= GRAFIK LOKER ================= */
+
     const data = {
         labels: [
             'Open',
@@ -47,11 +60,19 @@
             hoverOffset: 4
         }]
     };
+
     const config = {
         type: 'doughnut',
         data: data,
     };
-    new Chart(document.getElementById('grafik_loker'), config)
+
+    new Chart(
+        document.getElementById('grafik_loker'),
+        config
+    );
+
+
+    /* ================= GRAFIK INTERAKSI ================= */
 
     const data2 = {
         labels: [
@@ -68,9 +89,14 @@
             hoverOffset: 4
         }]
     };
+
     const config2 = {
         type: 'doughnut',
         data: data2,
     };
-    new Chart(document.getElementById('grafik_interaksi'), config2)
+
+    new Chart(
+        document.getElementById('grafik_interaksi'),
+        config2
+    );
 </script>

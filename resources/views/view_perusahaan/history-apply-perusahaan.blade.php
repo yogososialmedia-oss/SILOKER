@@ -1,9 +1,14 @@
 <x-admin_perusahaan.layout>
+
     <!-- Content wrapper -->
     <div class="content-wrapper">
+
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+
             <div class="card pb-3">
+
+                <!-- HEADER -->
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
@@ -11,33 +16,43 @@
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
-                        <form action="{{ route('perusahaan.apply.export') }}" method="GET" class="d-flex align-items-center gap-2">
+
+                        <form action="{{ route('perusahaan.apply.export') }}"
+                            method="GET"
+                            class="d-flex align-items-center gap-2">
 
                             <select name="tahun"
-                                class="form-select form-select-sm"
-                                style="width: 160px;">
+                                    class="form-select form-select-sm"
+                                    style="width: 160px;">
 
                                 <option value="">Semua Tahun</option>
+
                                 @foreach($tahunList as $tahun)
                                     <option value="{{ $tahun }}"
                                         {{ request('tahun') == $tahun ? 'selected' : '' }}>
                                         {{ $tahun }}
                                     </option>
                                 @endforeach
+
                             </select>
 
                             <button type="submit"
-                                class="btn btn-success btn-sm px-3">
+                                    class="btn btn-success btn-sm px-3">
                                 Download
                             </button>
 
                         </form>
+
                     </div>
 
                 </div>
 
+
+                <!-- TABLE -->
                 <div class="table-responsive">
+
                     <table class="table mb-0" id="table-apply">
+
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
@@ -51,9 +66,13 @@
                                 <th>Opsi</th>
                             </tr>
                         </thead>
+
                         <tbody>
+
                             @foreach ($apply as $data_apply)
+
                                 <tr>
+
                                     <td>
                                         {{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}
                                     </td>
@@ -74,7 +93,6 @@
                                         {{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}
                                     </td>
 
-
                                     <td>
                                         {{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}
                                     </td>
@@ -84,83 +102,124 @@
                                     </td>
 
                                     <td>
+
                                         @switch($data_apply->status)
+
                                             @case('pending')
-                                                <span class="badge bg-label-warning">Pending</span>
-                                                @break
+                                                <span class="badge bg-label-warning">
+                                                    Pending
+                                                </span>
+                                            @break
 
                                             @case('interview')
-                                                <span class="badge bg-label-info">Interview</span>
-                                                @break
+                                                <span class="badge bg-label-info">
+                                                    Interview
+                                                </span>
+                                            @break
 
                                             @case('ditolak')
-                                                <span class="badge bg-label-danger">Tidak Diterima</span>
-                                                @break
+                                                <span class="badge bg-label-danger">
+                                                    Tidak Diterima
+                                                </span>
+                                            @break
 
                                             @case('diterima')
-                                                <span class="badge bg-label-success">Diterima</span>
-                                                @break
+                                                <span class="badge bg-label-success">
+                                                    Diterima
+                                                </span>
+                                            @break
+
                                         @endswitch
+
                                     </td>
+
                                     <td>
+
                                         <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
+
+                                            <button type="button"
+                                                    class="btn p-0 dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown">
+
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
+
                                             </button>
 
                                             <div class="dropdown-menu">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('perusahaan.apply.profile-pelamar', $data_apply->id) }}">
+                                                href="{{ route('perusahaan.apply.profile-pelamar', $data_apply->id) }}">
+
                                                     <i class="icon-base bx bx-user-circle me-2"></i>
                                                     Profile Pelamar
+
                                                 </a>
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('perusahaan.detail-apply', $data_apply->id) }}">
+                                                href="{{ route('perusahaan.detail-apply', $data_apply->id) }}">
+
                                                     <i class="icon-base bx bx-show me-2"></i>
                                                     Detail Apply
+
                                                 </a>
 
                                                 <button type="button"
-                                                    class="dropdown-item btn-update-status"
-                                                    data-id="{{ $data_apply->id }}"
-                                                    data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}"
-                                                    data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalCenter">
+                                                        class="dropdown-item btn-update-status"
+                                                        data-id="{{ $data_apply->id }}"
+                                                        data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}"
+                                                        data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalCenter">
 
                                                     <i class="icon-base bx bx-edit-alt me-2"></i>
                                                     Update Status
+
                                                 </button>
 
                                             </div>
+
                                         </div>
+
                                     </td>
+
                                 </tr>
+
                             @endforeach
+
                         </tbody>
+
                     </table>
+
                 </div>
 
             </div>
+
         </div>
 
-        <!-- Modal Update Status -->
+
+        <!-- MODAL UPDATE STATUS -->
         <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+
             <div class="modal-dialog modal-dialog-centered" role="document">
+
                 <div class="modal-content">
 
                     <div class="modal-header">
                         <h5 class="modal-title fw-bold">Update Status</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"></button>
                     </div>
 
-                    <form method="POST" action="{{ route('perusahaan.apply.update-status', 0) }}" id="formUpdateStatus">
+
+                    <form method="POST"
+                        action="{{ route('perusahaan.apply.update-status', 0) }}"
+                        id="formUpdateStatus">
+
                         @csrf
 
                         <input type="hidden" name="id_apply" id="apply_id">
+
 
                         <div class="modal-body">
 
@@ -169,173 +228,260 @@
                                     <strong>Catatan:</strong><br>
                                     Update status akan secara otomatis mengirimkan notifikasi melalui email kepada
                                     pelamar.
-                                    Pastikan pesan yang Anda tulis di bawah ini sudah sesuai sebelum melakukan update
-                                    status.
+                                    Pastikan pesan yang Anda tulis di bawah ini sudah sesuai sebelum melakukan update status.
                                 </div>
                             </div>
 
-                            {{-- STATUS --}}
+
+                            <!-- STATUS -->
                             <div class="mb-3">
+
                                 <label class="form-label">Pilih Status</label>
-                                <select class="form-select @error('status') is-invalid @enderror" name="status"
-                                    id="statusSelect">
+
+                                <select class="form-select @error('status') is-invalid @enderror"
+                                        name="status"
+                                        id="statusSelect">
+
                                     <option value="">Pilih Status</option>
                                     <option value="interview">Interview</option>
                                     <option value="ditolak">Tidak Diterima</option>
                                     <option value="diterima">Diterima</option>
+
                                 </select>
+
                                 @error('status')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
+
                             </div>
 
-                            {{-- PESAN (SELALU ADA) --}}
+
+                            <!-- PESAN -->
                             <div class="mb-3">
-                                <label class="form-label">Pesan ke Pelamar</label>
-                                <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan"
+
+                                <label class="form-label">
+                                    Pesan ke Pelamar
+                                </label>
+
+                                <textarea
+                                    class="form-control @error('pesan') is-invalid @enderror"
+                                    name="pesan"
                                     rows="3"
                                     placeholder="Tuliskan pesan yang akan dikirim ke pelamar">{{ old('pesan') }}</textarea>
+
                                 @error('pesan')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
+
                             </div>
 
-                            {{-- ================= INTERVIEW ================= --}}
+
+                            <!-- INTERVIEW -->
                             <div id="interviewFields" style="display:none;">
 
                                 <div class="row g-3">
+
                                     <div class="col-md-6">
                                         <label class="form-label">Tanggal Interview</label>
-                                        <input type="date" name="tanggal_interview" class="form-control"
+                                        <input type="date"
+                                            name="tanggal_interview"
+                                            class="form-control"
                                             min="{{ date('Y-m-d') }}">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label">Waktu Interview</label>
-                                        <input type="time" name="waktu_interview" class="form-control">
+                                        <input type="time"
+                                            name="waktu_interview"
+                                            class="form-control">
                                     </div>
 
                                     <div class="col-md-12">
-                                        <label class="form-label">Link Google Maps Lokasi Interview</label>
-                                        <input type="text" name="google_maps" id="googleMapsInput" class="form-control"
+                                        <label class="form-label">
+                                            Link Google Maps Lokasi Interview
+                                        </label>
+                                        <input type="text"
+                                            name="google_maps"
+                                            id="googleMapsInput"
+                                            class="form-control"
                                             placeholder="https://maps.google.com/...">
                                     </div>
 
                                     <div class="col-md-12">
-                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInput" class="form-control"
+                                        <label class="form-label">
+                                            No. Telepon yang Dapat Dihubungi
+                                        </label>
+                                        <input type="text"
+                                            name="no_telp"
+                                            id="noTelpInput"
+                                            class="form-control"
                                             placeholder="08xxxxxxxxxx">
                                     </div>
+
                                 </div>
 
                             </div>
 
-                            {{-- ================= DITERIMA ================= --}}
+
+                            <!-- DITERIMA -->
                             <div id="acceptedFields" style="display:none;">
 
                                 <div class="row g-3">
+
                                     <div class="col-md-6">
-                                        <label class="form-label">Tanggal Berkunjung ke Kantor</label>
-                                        <input type="date" name="tanggal_kunjungan" class="form-control"
+                                        <label class="form-label">
+                                            Tanggal Berkunjung ke Kantor
+                                        </label>
+                                        <input type="date"
+                                            name="tanggal_kunjungan"
+                                            class="form-control"
                                             min="{{ date('Y-m-d') }}">
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="form-label">Jam Berkunjung</label>
-                                        <input type="time" name="jam_kunjungan" class="form-control">
+                                        <label class="form-label">
+                                            Jam Berkunjung
+                                        </label>
+                                        <input type="time"
+                                            name="jam_kunjungan"
+                                            class="form-control">
                                     </div>
 
                                     <div class="col-md-12">
-                                        <label class="form-label">Link Google Maps Kantor</label>
-                                        <input type="text" name="google_maps" id="googleMapsInputAccepted" class="form-control"
+                                        <label class="form-label">
+                                            Link Google Maps Kantor
+                                        </label>
+                                        <input type="text"
+                                            name="google_maps"
+                                            id="googleMapsInputAccepted"
+                                            class="form-control"
                                             placeholder="https://maps.google.com/...">
                                     </div>
 
                                     <div class="col-md-12">
-                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInputAccepted" class="form-control"
+                                        <label class="form-label">
+                                            No. Telepon yang Dapat Dihubungi
+                                        </label>
+                                        <input type="text"
+                                            name="no_telp"
+                                            id="noTelpInputAccepted"
+                                            class="form-control"
                                             placeholder="08xxxxxxxxxx">
                                     </div>
+
                                 </div>
 
                             </div>
 
                         </div>
 
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
                                 Update Status
                             </button>
+
                         </div>
 
                     </form>
+
                 </div>
+
             </div>
+
         </div>
-        <!-- Footer -->
+
+
+        <!-- FOOTER -->
         <footer class="content-footer footer bg-footer-theme">
+
             <div class="container-xxl">
+
                 <div class="footer-container d-flex justify-content-between py-4 flex-md-row flex-column">
+
                     <div>
                         ©2026 Yogo & Wahyu
                     </div>
+
                 </div>
+
             </div>
+
         </footer>
 
         <div class="content-backdrop fade"></div>
+
     </div>
+
+
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
 
-                const buttons = document.querySelectorAll('.btn-update-status');
-                const applyIdInput = document.getElementById('apply_id');
-                const statusSelect = document.getElementById('statusSelect');
-                const interviewFields = document.getElementById('interviewFields');
-                const acceptedFields = document.getElementById('acceptedFields');
+    <script>
 
-                function toggleFields() {
-                    interviewFields.style.display = 'none';
-                    acceptedFields.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function () {
 
-                    if (statusSelect.value === 'interview') {
-                        interviewFields.style.display = 'block';
-                    }
+            const buttons = document.querySelectorAll('.btn-update-status');
+            const applyIdInput = document.getElementById('apply_id');
 
-                    if (statusSelect.value === 'diterima') {
-                        acceptedFields.style.display = 'block';
-                    }
-                    // ditolak → hanya pesan
+            const statusSelect = document.getElementById('statusSelect');
+            const interviewFields = document.getElementById('interviewFields');
+            const acceptedFields = document.getElementById('acceptedFields');
+
+            function toggleFields() {
+
+                interviewFields.style.display = 'none';
+                acceptedFields.style.display = 'none';
+
+                if (statusSelect.value === 'interview') {
+                    interviewFields.style.display = 'block';
                 }
 
-                statusSelect.addEventListener('change', toggleFields);
+                if (statusSelect.value === 'diterima') {
+                    acceptedFields.style.display = 'block';
+                }
 
-                const googleMapsInputInterview = document.getElementById('googleMapsInput');
-                const noTelpInputInterview = document.getElementById('noTelpInput');
-                const googleMapsInputAccepted = document.getElementById('googleMapsInputAccepted');
-                const noTelpInputAccepted = document.getElementById('noTelpInputAccepted');
+            }
 
-                buttons.forEach(btn => {
-                    btn.addEventListener('click', function () {
+            statusSelect.addEventListener('change', toggleFields);
 
-                        applyIdInput.value = this.dataset.id;
+            const googleMapsInputInterview = document.getElementById('googleMapsInput');
+            const noTelpInputInterview = document.getElementById('noTelpInput');
 
-                        const maps = this.dataset.maps ?? '';
-                        const telp = this.dataset.telp ?? '';
+            const googleMapsInputAccepted = document.getElementById('googleMapsInputAccepted');
+            const noTelpInputAccepted = document.getElementById('noTelpInputAccepted');
 
-                        googleMapsInputInterview.value = maps;
-                        noTelpInputInterview.value = telp;
+            buttons.forEach(btn => {
 
-                        googleMapsInputAccepted.value = maps;
-                        noTelpInputAccepted.value = telp;
+                btn.addEventListener('click', function () {
 
-                        statusSelect.value = '';
-                        toggleFields();
-                    });
+                    applyIdInput.value = this.dataset.id;
+
+                    const maps = this.dataset.maps ?? '';
+                    const telp = this.dataset.telp ?? '';
+
+                    googleMapsInputInterview.value = maps;
+                    noTelpInputInterview.value = telp;
+
+                    googleMapsInputAccepted.value = maps;
+                    noTelpInputAccepted.value = telp;
+
+                    statusSelect.value = '';
+                    toggleFields();
+
                 });
 
             });
-        </script>
+
+        });
+
+    </script>
+
     @endpush
+
 </x-admin_perusahaan.layout>

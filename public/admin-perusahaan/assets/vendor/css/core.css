@@ -3277,7 +3277,7 @@ progress {
   border-color: var(--bs-primary);
   box-shadow: none;
   outline: 0;
-  
+
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -4404,8 +4404,7 @@ fieldset:disabled .btn {
   --bs-btn-focus-shadow-rgb: 128, 130, 255;
   --bs-btn-active-color: #fff;
   --bs-btn-active-bg: #3f75c7;
-  --bs-btn-active-border-color: #3f75c7
-  --bs-btn-disabled-color: #fff;
+  --bs-btn-active-border-color: #3f75c7 --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #3f75c7;
   --bs-btn-disabled-border-color: #3f75c7;
 }
@@ -31961,7 +31960,9 @@ body:not(.modal-open) .layout-content-navbar .layout-navbar {
   --bs-footer-brand-color: var(--bs-heading-color);
 }
 
-/* ====================Mulai Edit Yogo====================*/
+/* ======================================================
+  MULAI EDIT YOGO
+====================================================== */
 
 html {
   scroll-behavior: smooth;
@@ -31972,46 +31973,54 @@ html {
 }
 
 
-/* ==================== LOGIN==================== */
-/* Ganti warna link menjadi biru */
+/* ======================================================
+  LOGIN
+====================================================== */
+
+/* Link biru */
 .text-center a {
-    color: #3f75c7;      
-    text-decoration: none; 
+  color: #3f75c7;
+  text-decoration: none;
 }
 
-/* Hover tetap biru */
+/* Hover link */
 .text-center a:hover {
-    color: #fff; 
-    text-decoration: underline; 
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* Checkbox biru saat dicentang */
 .form-check-input:checked {
-    background-color: #3f75c7; 
-    border-color: #3f75c7;     
+  background-color: #3f75c7;
+  border-color: #3f75c7;
 }
 
-/* Label tetap biru saat checkbox dicentang */
-.form-check-input:checked + .form-check-label {
-    color: #3f75c7;
+/* Label biru saat checkbox dicentang */
+.form-check-input:checked+.form-check-label {
+  color: #3f75c7;
 }
-/* DEFAULT border biru */
+
+/* Input border biru */
 .form-blue {
-    border-color: #3f75c7 !important;
+  border-color: #3f75c7 !important;
 }
 
-/* FOCUS border + shadow */
+/* Focus input */
 .form-blue:focus {
-    border-color: #3f75c7 !important;
-    box-shadow: 0 0 0 0.25rem rgba(63, 117, 199, 0.25) !important;
+  border-color: #3f75c7 !important;
+  box-shadow: 0 0 0 0.25rem rgba(63, 117, 199, 0.25) !important;
 }
 
-/* Jika ada di input-group (icon di samping) */
+/* Focus jika di input group */
 .input-group .form-blue:focus {
-    z-index: 1; /* supaya outline muncul di atas icon */
+  z-index: 1;
 }
 
-/* ==================== HOME ==================== */
+
+/* ======================================================
+  HOME / HERO BERANDA
+====================================================== */
+
 .home-beranda {
   background-color: #3f75c7;
   padding: 100px 0 0px;
@@ -32027,19 +32036,25 @@ html {
 }
 
 .tanda-seru-color {
-    color: #FFC800;
+  color: #FFC800;
 }
 
 .hero-image-beranda {
   max-height: 600px;
 }
+
 .home-desc {
   font-size: 0.95rem;
   line-height: 1.8;
   text-align: justify;
   color: rgba(255, 255, 255, 0.95);
 }
-/* ==================== LOKER ==================== */
+
+
+/* ======================================================
+  LOKER BERANDA
+====================================================== */
+
 .loker-beranda {
   padding: 80px 0;
 }
@@ -32056,11 +32071,14 @@ html {
 }
 
 .info-item span {
-    word-break: break-word;
-    line-height: 1.3;
+  word-break: break-word;
+  line-height: 1.3;
 }
 
-/* ==================== FOOTER / ABOUT ==================== */
+
+/* ======================================================
+  FOOTER / ABOUT
+====================================================== */
 
 .footer-beranda {
   background-color: #3f75c7;
@@ -32086,135 +32104,137 @@ html {
   position: relative;
   z-index: 2;
   color: #ffffff;
-  padding-bottom: 200px; 
+  padding-bottom: 200px;
 }
 
-
-/* Judul */
+/* Judul footer */
 .footer-title {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
 }
 
-/* Paragraf */
+/* Paragraf footer */
 .footer-desc {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-    text-align: justify;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+  text-align: justify;
 }
 
-/* =====================================================
-  LOGIN PAGE FIX - FIXED NAVBAR SAFE
-===================================================== */
+
+/* ======================================================
+  LOGIN PAGE FIX (NAVBAR FIXED SAFE)
+====================================================== */
 
 .login-page-wrapper {
-    padding-top: 110px; /* tinggi navbar fixed */
-    min-height: calc(100vh - 110px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding-top: 110px;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* pastikan wrapper auth di tengah */
 .authentication-wrapper.authentication-basic {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* card login */
+/* Card login */
 .authentication-wrapper .card {
-    max-width: 420px;
-    width: 100%;
-    border-radius: 12px;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 12px;
 }
 
-/* isi card */
+/* Isi card */
 .authentication-wrapper .card-body {
-    padding: 2.5rem;
+  padding: 2.5rem;
 }
 
-/* =====================================================
-    NAVBAR  ADMIN-PERUSAHAAN
-   ===================================================== */
-  /* ================= NAVBAR BLUE ================= */
+
+/* ======================================================
+  NAVBAR ADMIN PERUSAHAAN
+====================================================== */
+
+/* Navbar biru */
 .navbar-blue-custom {
-    background: linear-gradient(135deg, #3f75c7, #2f5fb3);
-    box-shadow: 0 8px 24px rgba(63, 117, 199, 0.35);
-    border-radius: 14px;
-    transition: all 0.3s ease;
+  background: linear-gradient(135deg, #3f75c7, #2f5fb3);
+  box-shadow: 0 8px 24px rgba(63, 117, 199, 0.35);
+  border-radius: 14px;
+  transition: all 0.3s ease;
 }
 
-/* icon menu */
+/* Icon menu */
 .navbar-blue-custom .bx-menu {
-    color: #fff;
-    transition: transform 0.3s ease;
+  color: #fff;
+  transition: transform 0.3s ease;
 }
 
-/* ================= LOGOUT BUTTON ================= */
+/* Dropdown logout */
 .navbar-blue-custom .dropdown-item {
-    color: #fff;
-    background: transparent;
-    border-radius: 10px;
-    padding: 10px 16px;
-    transition: all 0.25s ease;
+  color: #fff;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px 16px;
+  transition: all 0.25s ease;
 }
 
-/* hover logout */
 .navbar-blue-custom .dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
 }
 
 
-/* =====================================================
-    NAVBAR PROFILE
-   ===================================================== */
+/* ======================================================
+  NAVBAR PROFILE
+====================================================== */
+
 .nav-underline {
-    color: #6c757d; /* abu saat belum aktif */
-    position: relative;
-    padding-bottom: 6px;
-    transition: color 0.2s ease;
+  color: #6c757d;
+  position: relative;
+  padding-bottom: 6px;
+  transition: color 0.2s ease;
 }
 
 .nav-underline:hover {
-    color:  #000;
+  color: #000;
 }
 
-/* underline aktif */
 .nav-underline.active {
-    color: #000;
-    font-weight: 600;
+  color: #000;
+  font-weight: 600;
 }
 
 .nav-underline.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #000;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
 }
 
+
+/* Brand text */
 .custom-brand-text {
-    font-family: 'Poppins', sans-serif; 
-    font-size: 1.5rem; 
-    color: #3f75c7; 
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  color: #3f75c7;
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }
+
 .dot-beranda.hero-exclamation {
-    color: #facc15; 
+  color: #facc15;
 }
 
 
-/* =====================================================
-    NAVBAR BERANDA 
-   ===================================================== */
+/* ======================================================
+  NAVBAR BERANDA
+====================================================== */
 
 .navbar-beranda {
   background-color: #3f75c7;
@@ -32222,7 +32242,7 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ================= BRAND ================= */
+/* Brand */
 .navbar-beranda .navbar-brand {
   color: #ffffff !important;
   font-size: 1.4rem;
@@ -32238,7 +32258,7 @@ html {
 }
 
 
-/* ================= MENU KIRI ================= */
+/* Menu kiri */
 .navbar-beranda .menu-beranda .nav-link {
   color: rgba(255, 255, 255, 0.6) !important;
   font-weight: 500;
@@ -32250,7 +32270,8 @@ html {
   color: #ffffff !important;
 }
 
-/* ================= MENU KANAN ================= */
+
+/* Menu kanan */
 .navbar-beranda .login-link-beranda,
 .navbar-beranda .profile-link-beranda {
   color: rgba(255, 255, 255, 0.7) !important;
@@ -32263,7 +32284,8 @@ html {
   color: #ffffff !important;
 }
 
-/* ================= DROPDOWN DESKTOP ================= */
+
+/* Dropdown desktop */
 .navbar-beranda .dropdown-menu {
   margin-top: 8px;
   border-radius: 8px;
@@ -32280,8 +32302,8 @@ html {
   left: auto;
 }
 
-/* ================= TOGGLER ================= */
 
+/* Toggler */
 .navbar-beranda .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
@@ -32295,86 +32317,91 @@ html {
 }
 
 
+/* ======================================================
+  LOKER CARD BADGE
+====================================================== */
+
 .loker-card-beranda .badge.bg-primary {
-    background-color: #3f75c7 !important;
+  background-color: #3f75c7 !important;
 }
 
 .nav-link {
-    color: rgba(255,255,255,0.7); /* redup */
-    transition: color 0.3s;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s;
 }
 
 .nav-link.active {
-    color: #fff; /* putih */
-    font-weight: bold;
+  color: #fff;
+  font-weight: bold;
 }
 
-/* PROFILE ACTIVE */
+
+/* Profile active */
 .navbar-beranda .profile-link-beranda.active {
-    color: #ffffff !important;
-    font-weight: normal !important; 
+  color: #ffffff !important;
+  font-weight: normal !important;
 }
-
 
 .navbar-beranda .profile-link-beranda.active::after {
-    content: "";
-    width: 100%;
-    height: 2px;
-    background-color: #ffffff;
-    margin-top: 4px;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  margin-top: 4px;
 }
 
-/* ============LOKER CARD=================== */
 
-/* huruf i pad loker */
+/* Badge agar tidak tertutup stretched link */
 .loker-card-beranda .badge {
-    z-index: 5;
-    position: relative;
+  z-index: 5;
+  position: relative;
 }
+
 .loker-card-beranda .badge {
-    pointer-events: auto;
+  pointer-events: auto;
 }
-/* Badge i supaya selalu di atas stretched link */
+
 .loker-card-beranda .badge {
-    position: relative !important; 
-    z-index: 99 !important;       
-    pointer-events: auto !important; 
-    background-color: #3f75c7;    
-    color: #fff;
+  position: relative !important;
+  z-index: 99 !important;
+  pointer-events: auto !important;
+  background-color: #3f75c7;
+  color: #fff;
 }
 
 
-/* =====================================================
-    CSS NOTIFIKASI
-   ===================================================== */
+/* ======================================================
+  NOTIFIKASI
+====================================================== */
 
 .alert-wrapper {
-    overflow: hidden;
-    transition: max-height 0.7s ease, margin 0.7s ease;
-    max-height: 200px;
-    margin-bottom: 1rem;
+  overflow: hidden;
+  transition: max-height 0.7s ease, margin 0.7s ease;
+  max-height: 200px;
+  margin-bottom: 1rem;
 }
 
 .alert-wrapper.hide {
-    max-height: 0;
-    margin-bottom: 0;
+  max-height: 0;
+  margin-bottom: 0;
 }
 
 .alert-smooth {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .alert-smooth.hide {
-    opacity: 0;
-    transform: translateY(-8px);
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
 
-/* =====================================================
-    RESPONSIVE – MOBILE MODE
-   ===================================================== */
+/* ======================================================
+  RESPONSIVE MOBILE
+====================================================== */
+
 @media (max-width: 991.98px) {
 
   .footer-beranda {
@@ -32385,7 +32412,7 @@ html {
   }
 
   .footer-text-beranda {
-    padding-bottom: 320px; 
+    padding-bottom: 320px;
     text-align: center;
   }
 
@@ -32426,109 +32453,114 @@ html {
     box-shadow: none;
     text-align: right;
   }
+
 }
 
 
+/* ======================================================
+  BERANDA FULL BIRU
+====================================================== */
 
-/* =====================================================
-    BERANDA FULL BIRU
-   ===================================================== */
 .home-beranda,
-.footer-beranda{
-    width: 100vw; 
-    margin-left: calc(-50vw + 50%); 
-    margin-right: calc(-50vw + 50%);
-    background-color: #3f75c7; 
-    color: #fff;
+.footer-beranda {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background-color: #3f75c7;
+  color: #fff;
 }
 
-/* padding tetap aman untuk konten */
+/* Padding konten */
 .home-beranda {
-    padding: -10px 15px 50px; 
+  padding: -10px 15px 50px;
 }
 
 
-/* Batasi area klik tombol hanya di icon */
+/* ======================================================
+  CAROUSEL CONTROL
+====================================================== */
+
 .carousel-control-prev,
 .carousel-control-next {
-    width: auto;              
-    height: auto;              
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 1;
+  width: auto;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
 }
 
-/* Supaya tombol benar-benar kecil dan tidak ganggu card */
 .carousel-control-prev {
-    left: -20px;
+  left: -20px;
 }
 
 .carousel-control-next {
-    right: -20px;
+  right: -20px;
 }
 
-/* Hilangkan area overlay default */
 .carousel-control-prev,
 .carousel-control-next {
-    background: none;
+  background: none;
 }
 
 
-/* =====================================================
-  ABOUT CAREER CENTER - WHITE VERSION
-===================================================== */
+/* ======================================================
+  ABOUT CAREER CENTER
+====================================================== */
 
 .about-career {
-    background-color: #ffffff;
-    padding: 100px 0;
+  background-color: #ffffff;
+  padding: 100px 0;
 }
 
 .about-career h4 {
-    font-weight: 700;
-    margin-bottom: 20px;
-    position: relative;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .about-career h4::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 3px;
-    background-color: #3f75c7;
-    margin-top: 10px;
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-color: #3f75c7;
+  margin-top: 10px;
 }
 
 .about-career p,
 .about-career li {
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 8px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 8px;
 }
 
 .about-career ul {
-    padding-left: 0;
-    list-style: none;
+  padding-left: 0;
+  list-style: none;
 }
 
-/* Sosial media */
+
+/* Social media */
 .social-icons a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    color: #3f75c7;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #3f75c7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
 .social-icons a:hover {
-    color: #2f5fb3;
-    transform: translateX(4px);
+  color: #2f5fb3;
+  transform: translateX(4px);
 }
 
-.about-career{
-    margin-left: calc(-50vw + 50%); 
-    margin-right: calc(-50vw + 50%);
-    background-color: #fff; 
+
+/* Full width section */
+.about-career {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background-color: #fff;
 }

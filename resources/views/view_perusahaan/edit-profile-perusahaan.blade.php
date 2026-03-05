@@ -21,8 +21,11 @@
                 {{-- Nama Perusahaan --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Nama Perusahaan</label>
-                  <input name="NamaPerusahaan" class="form-control"
-                    value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}">
+                  <input
+                    name="NamaPerusahaan"
+                    class="form-control"
+                    value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}"
+                  >
                   @error('NamaPerusahaan')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -31,8 +34,11 @@
                 {{-- NPWP --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">No NPWP</label>
-                  <input name="NoNpwp" class="form-control"
-                    value="{{ old('NoNpwp', $info_perusahaan->no_npwp ?? '') }}">
+                  <input
+                    name="NoNpwp"
+                    class="form-control"
+                    value="{{ old('NoNpwp', $info_perusahaan->no_npwp ?? '') }}"
+                  >
                   @error('NoNpwp')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -41,8 +47,11 @@
                 {{-- Email --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Email</label>
-                  <input name="Email" class="form-control"
-                    value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}">
+                  <input
+                    name="Email"
+                    class="form-control"
+                    value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}"
+                  >
                   @error('Email')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -51,8 +60,11 @@
                 {{-- No Telp --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">No. Telp</label>
-                  <input name="NoTelp" class="form-control"
-                    value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}">
+                  <input
+                    name="NoTelp"
+                    class="form-control"
+                    value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}"
+                  >
                   @error('NoTelp')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -72,7 +84,6 @@
                   <select id="kabupaten" name="Kabupaten" class="form-select" disabled>
                     <option value="">Pilih kabupaten</option>
                   </select>
-
                 </div>
 
                 {{-- Kecamatan --}}
@@ -81,14 +92,16 @@
                   <select id="kecamatan" name="Kecamatan" class="form-select" disabled>
                     <option value="">Pilih kecamatan</option>
                   </select>
-
                 </div>
 
                 {{-- Alamat --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Alamat</label>
-                  <input name="Alamat" class="form-control"
-                    value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}">
+                  <input
+                    name="Alamat"
+                    class="form-control"
+                    value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}"
+                  >
                   @error('Alamat')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -97,18 +110,29 @@
                 {{-- Google Maps --}}
                 <div class="col-md-6 mb-3">
                   <label class="form-label">Google Maps</label>
-                  <input name="GoogleMaps" class="form-control"
-                    value="{{ old('GoogleMaps', $info_perusahaan->google_maps ?? '') }}">
+                  <input
+                    name="GoogleMaps"
+                    class="form-control"
+                    value="{{ old('GoogleMaps', $info_perusahaan->google_maps ?? '') }}"
+                  >
                   @error('GoogleMaps')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
                 </div>
+
                 {{-- Logo --}}
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Logo Perusahaan (Format: JPG / PNG · Maksimal 2MB)</label>
+                  <label class="form-label">
+                    Logo Perusahaan (Format: JPG / PNG · Maksimal 2MB)
+                  </label>
 
-                  <input id="logoInput" name="logo" type="file" class="form-control file-input-unified"
-                    accept="image/png,image/jpg,image/jpeg">
+                  <input
+                    id="logoInput"
+                    name="logo"
+                    type="file"
+                    class="form-control file-input-unified"
+                    accept="image/png,image/jpg,image/jpeg"
+                  >
 
                   <small class="file-helper text-danger d-none" id="logoError">
                     Ukuran file terlalu besar. Maksimal 2MB.
@@ -118,8 +142,12 @@
                 {{-- Tentang Perusahaan --}}
                 <div class="col-12 mb-4">
                   <label class="form-label">Tentang Perusahaan</label>
-                  <textarea name="TentangPerusahaan" class="form-control"
-                    rows="4">{{ old('TentangPerusahaan', $info_perusahaan->tentang_perusahaan ?? '') }}</textarea>
+                  <textarea
+                    name="TentangPerusahaan"
+                    class="form-control"
+                    rows="4"
+                  >{{ old('TentangPerusahaan', $info_perusahaan->tentang_perusahaan ?? '') }}</textarea>
+
                   @error('TentangPerusahaan')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -134,10 +162,12 @@
 
               </div>
             </form>
+
           </div>
         </div>
       </div>
     </div>
+
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
       <div class="container-xxl">
@@ -149,7 +179,6 @@
       </div>
     </footer>
     <!-- / Footer -->
-
 
     @push('scripts')
       <script>
@@ -163,6 +192,7 @@
 
           if (logoInput) {
             logoInput.addEventListener('change', function () {
+
               const file = this.files[0];
               const maxSize = 2 * 1024 * 1024;
 
@@ -174,6 +204,7 @@
               } else {
                 logoError.classList.add('d-none');
               }
+
             });
           }
 
@@ -193,23 +224,29 @@
           fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
             .then(res => res.json())
             .then(data => {
+
               let opt = '<option value="">Pilih provinsi</option>';
+
               data.forEach(item => {
                 opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldProvinsi ? 'selected' : ''}>${item.name}</option>`;
               });
+
               provinsi.innerHTML = opt;
 
               if (oldProvinsi) {
                 provinsi.dispatchEvent(new Event('change'));
               }
+
             });
 
           // LOAD KABUPATEN
           provinsi.addEventListener('change', function () {
+
             const provId = this.selectedOptions[0]?.dataset.id;
 
             kabupaten.innerHTML = '<option value="">Pilih kabupaten</option>';
             kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
+
             kabupaten.disabled = true;
             kecamatan.disabled = true;
 
@@ -218,21 +255,27 @@
             fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provId}.json`)
               .then(res => res.json())
               .then(data => {
+
                 let opt = '<option value="">Pilih kabupaten</option>';
+
                 data.forEach(item => {
                   opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldKabupaten ? 'selected' : ''}>${item.name}</option>`;
                 });
+
                 kabupaten.innerHTML = opt;
                 kabupaten.disabled = false;
 
                 if (oldKabupaten) {
                   kabupaten.dispatchEvent(new Event('change'));
                 }
+
               });
+
           });
 
           // LOAD KECAMATAN
           kabupaten.addEventListener('change', function () {
+
             const kabId = this.selectedOptions[0]?.dataset.id;
 
             kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
@@ -243,19 +286,23 @@
             fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabId}.json`)
               .then(res => res.json())
               .then(data => {
+
                 let opt = '<option value="">Pilih kecamatan</option>';
+
                 data.forEach(item => {
                   opt += `<option value="${item.name}" ${item.name === oldKecamatan ? 'selected' : ''}>${item.name}</option>`;
                 });
+
                 kecamatan.innerHTML = opt;
                 kecamatan.disabled = false;
+
               });
+
           });
 
         });
       </script>
     @endpush
-
 
   </div>
 </x-admin_perusahaan.layout>

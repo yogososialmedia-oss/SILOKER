@@ -115,36 +115,3 @@ Route::middleware('guestAdmin')->group(function () {
 });
 
 Route::post('/logout', [LoginController::class,'logout'])->name('logout')->middleware('authAny');
-
-
-Route::view('/test','view_perusahaan.history-apply-perusahaan')->name('history-apply-perusahaan');
-Route::view('/test1','view_perusahaan.loker-profile-perusahaan')->name('loker-profile-perusahaan');
-Route::view('/test2','view_perusahaan.index-perusahaan')->name('index-perusahaan');
-Route::view('/test3','view_perusahaan.input-loker-perusahaan')->name('input-loker-perusahaan');
-Route::view('/test4','view_perusahaan.edit-profile-perusahaan')->name('edit-profile-perusahaan');
-Route::view('/test5','view_perusahaan.daftar-loker-perusahaan')->name('daftar-loker-perusahaan');
-Route::view('/test6','view_perusahaan.edit-loker-perusahaan')->name('edit-loker-perusahaan');
-Route::view('/test7','view_perusahaan.daftar-apply-perusahaan')->name('daftar-apply-perusahaan');
-Route::view('/test8','view_perusahaan.tampilan-loker-perusahaan')->name('tampilan-loker-perusahaan');
-Route::view('/test9','view_perusahaan.detail-apply-perusahaan')->name('detail-apply-perusahaan');
-
-Route::view('/test10','view_admin.verifikasi-perusahaan')->name('verifikasi-perusahaan');
-Route::view('/test11','view_admin.detail-verifikasi-perusahaan')->name('detail-verifikasi-perusahaan');
-Route::view('/test12','view_admin.login-admin')->name('login-admin');
-Route::view('/test13','view_admin.dashboard')->name('dashboard');
-
-Route::view('/test14','view_pencari_kerja.loker')->name('loker');
-Route::view('/test15','view_perusahaan.registrasi-perusahaan')->name('registrasi-perusahaan');
-Route::view('/test16','view_pencari_kerja.registrasi-pencari-kerja')->name('registrasi-pencari-kerja');
-Route::view('/test17','view_pencari_kerja.profile-pencari-kerja')->name('profile-pencari-kerja');
-Route::view('/test18','view_pencari_kerja.edit-profile-pencari-kerja')->name('edit-profile-pencari-kerja');
-Route::view('/test19','view_pencari_kerja.history-apply-pencari-kerja')->name('history-apply-pencari-kerja');
-Route::view('/test20','view_pencari_kerja.profile-perusahaan')->name('profile-perusahaan');
-Route::view('/test21','view_perusahaan.profile-pencari-kerja-perusahaan')->name('profile-pencari-kerja-perusahaan');
-Route::view('/test22','view_admin.daftar-perusahaan')->name('daftar-perusahaan');
-Route::view('/test23','view_admin.daftar-loker')->name('daftar-loker');
-Route::view('/test24','view_pencari_kerja.beranda')->name('beranda');
-Route::view('/test25','view_pencari_kerja.profile-perusahaan-pencari-kerja')->name('profile-perusahaan-pencari-kerja');
-Route::view('/test26','view_pencari_kerja.tampilan-loker-pencari-kerja')->name('tampilan-loker-pencari-kerja');
-Route::view('/test27','view_pencari_kerja.apply-loker')->name('apply-loker');
-Route::view('/test28','view_pencari_kerja.loker-profile-perusahaan')->name('loker-profile-perusahaan');

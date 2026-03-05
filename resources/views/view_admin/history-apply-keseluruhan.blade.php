@@ -1,41 +1,59 @@
 <x-admin_perusahaan.layout>
+
     <!-- Content wrapper -->
     <div class="content-wrapper">
+
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+
             <div class="card pb-3">
+
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
+
                     <form action="{{ route('admin.apply.export.semua') }}" method="GET">
+
                         <div class="d-flex align-items-center gap-2">
 
-                            <select name="tahun"
+                            <select
+                                name="tahun"
                                 class="form-select form-select-sm"
-                                style="width: 160px;">
-
+                                style="width: 160px;"
+                            >
                                 <option value="">Semua Tahun</option>
+
                                 @foreach($tahunList as $tahun)
-                                    <option value="{{ $tahun }}"
-                                        {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                    <option
+                                        value="{{ $tahun }}"
+                                        {{ request('tahun') == $tahun ? 'selected' : '' }}
+                                    >
                                         {{ $tahun }}
                                     </option>
                                 @endforeach
+
                             </select>
 
-                            <button type="submit"
-                                class="btn btn-success btn-sm px-3">
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-sm px-3"
+                            >
                                 Download
                             </button>
 
                         </div>
+
                     </form>
+
                 </div>
 
+
                 <div class="table-responsive">
+
                     <table class="table mb-0" id="table-apply">
+
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
@@ -49,9 +67,13 @@
                                 <th>Opsi</th>
                             </tr>
                         </thead>
+
                         <tbody>
+
                             @foreach ($apply as $data_apply)
+
                                 <tr>
+
                                     <td>
                                         {{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}
                                     </td>
@@ -72,7 +94,6 @@
                                         {{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}
                                     </td>
 
-
                                     <td>
                                         {{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}
                                     </td>
@@ -82,7 +103,9 @@
                                     </td>
 
                                     <td>
+
                                         @switch($data_apply->status)
+
                                             @case('pending')
                                                 <span class="badge bg-label-warning">Pending</span>
                                                 @break
@@ -98,41 +121,81 @@
                                             @case('diterima')
                                                 <span class="badge bg-label-success">Diterima</span>
                                                 @break
+
                                         @endswitch
-                                    
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown"><i
-                                                    class="icon-base bx bx-dots-vertical-rounded"></i></button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.apply.profile', $data_apply->id) }}"><i
-                                                        class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
-                                                <a class="dropdown-item" href="{{ route('admin.apply.detail', $data_apply->id) }}"><i
-                                                        class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
-                                            </div>
-                                        </div>
+
                                     </td>
+
+                                    <td>
+
+                                        <div class="dropdown">
+
+                                            <button
+                                                type="button"
+                                                class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown"
+                                            >
+                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                            </button>
+
+                                            <div class="dropdown-menu">
+
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="{{ route('admin.apply.profile', $data_apply->id) }}"
+                                                >
+                                                    <i class="icon-base bx bx-user-circle me-2"></i>
+                                                    Profile Pelamar
+                                                </a>
+
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="{{ route('admin.apply.detail', $data_apply->id) }}"
+                                                >
+                                                    <i class="icon-base bx bx-show me-2"></i>
+                                                    Detail Apply
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
                                 </tr>
+
                             @endforeach
+
                         </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </div>
+
 
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
+
             <div class="container-xxl">
+
                 <div class="footer-container d-flex justify-content-between py-4 flex-md-row flex-column">
+
                     <div>
                         ©2026 Yogo & Wahyu
                     </div>
+
                 </div>
+
             </div>
+
         </footer>
 
         <div class="content-backdrop fade"></div>
+
     </div>
+
 </x-admin_perusahaan.layout>

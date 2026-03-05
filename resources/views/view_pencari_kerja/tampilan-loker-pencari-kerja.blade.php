@@ -1,66 +1,99 @@
 <x-pencari_kerja.layout>
+
     <!-- Content wrapper -->
     <div class="content-wrapper-user">
+
+        {{-- ALERT --}}
         @if (session('success'))
             <div id="successAlert" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                {{ session('success') }}            
-            </div>            
+                {{ session('success') }}
+            </div>
         @endif  
+
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
                 {{ session('error') }}
             </div>
         @endif
 
+
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+
             <div class="row">
+
+                <!-- CARD LOKER -->
                 <div class="col-lg-4 mb-5">
 
                     <div class="card loker-card-beranda h-100">
 
-                        <img src="{{ asset($loker->poster_loker ?? 'admin-perusahaan/assets/img/backgrounds/default_poster_careercenter.jpg') }}"
-                            class="card-img-top" alt="">
+                        <img
+                            src="{{ asset($loker->poster_loker ?? 'admin-perusahaan/assets/img/backgrounds/default_poster_careercenter.jpg') }}"
+                            class="card-img-top"
+                            alt=""
+                        >
 
                         <div class="card-body">
 
-                            {{-- Tanggal --}}
+                            {{-- TANGGAL --}}
                             <p class="text-end mb-1 fs-9">
                                 {{ \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('d M Y') }}
                                 -
                                 {{ \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('d M Y') }}
                             </p>
 
-                            {{-- Nama Perusahaan --}}
+
+                            {{-- NAMA PERUSAHAAN --}}
                             <h5 class="mb-1 d-flex align-items-center gap-2">
-                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                                    class="text-dark link-primary fw-bold position-relative z-3">
+
+                                <a
+                                    href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                    class="text-dark link-primary fw-bold position-relative z-3"
+                                >
                                     {{ $loker->perusahaanMitra->nama_perusahaan }}
                                 </a>
-                                {{-- Icon info --}}
-                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+
+                                {{-- ICON INFO --}}
+                                <a
+                                    href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
                                     class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
-                                    style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                    style="width:16px; height:16px; font-size:10px; line-height:1;"
+                                >
                                     i
                                 </a>
+
                             </h5>
-                            
-                            {{-- Jabatan + Status --}}
+
+
+                            {{-- JABATAN + STATUS --}}
                             <div class="d-flex align-items-center mb-3">
-                                <h5 class="mb-0">{{ $loker->jabatan }}</h5>
+
+                                <h5 class="mb-0">
+                                    {{ $loker->jabatan }}
+                                </h5>
+
                                 <div class="ms-auto pe-3">
+
                                     @if($loker->status == 'open')
-                                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
+                                        <span class="badge bg-primary fs-6 px-3 py-2">
+                                            Open
+                                        </span>
                                     @else
-                                        <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
+                                        <span class="badge bg-warning fs-6 px-3 py-2">
+                                            Closed
+                                        </span>
                                     @endif
+
                                 </div>
+
                             </div>
 
-                            {{-- Detail --}}
+
+                            {{-- DETAIL --}}
                             <h6 class="mb-1">
                                 {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
                             </h6>
+
 
                             <p class="d-flex align-items-center gap-1 mb-1">
                                 <i class="bx bx-location-plus icon-sm"></i>
@@ -88,88 +121,145 @@
                             </p>
 
                         </div>
+
                     </div>
+
                 </div>
 
+
+                <!-- DETAIL LOKER -->
                 <div class="col-lg-8 mb-5">
+
                     <div class="card loker-card-beranda">
+
                         <div class="card-body">
 
-                            {{-- DESKRIPSI LOKER --}}
+                            {{-- DESKRIPSI --}}
                             <div class="loker-deskripsi mb-4">
                                 {!! $loker->deskripsi ?? '-' !!}
                             </div>
 
+
                             {{-- ACTION --}}
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+
                                 @php
                                     $from = request('from');
                                 @endphp
 
+
+                                {{-- BUTTON KEMBALI --}}
                                 @if($from === 'perusahaan')
-                                    <a href="{{ route('pencarikerja.loker.profile.perusahaan', request('perusahaan_id')) }}" 
-                                    class="btn btn-secondary">
+
+                                    <a
+                                        href="{{ route('pencarikerja.loker.profile.perusahaan', request('perusahaan_id')) }}"
+                                        class="btn btn-secondary"
+                                    >
                                         Kembali
                                     </a>
+
                                 @else
-                                    <a href="{{ route('pencarikerja.loker.index', request()->except(['from','perusahaan_id'])) }}" 
-                                    class="btn btn-secondary">
+
+                                    <a
+                                        href="{{ route('pencarikerja.loker.index', request()->except(['from','perusahaan_id'])) }}"
+                                        class="btn btn-secondary"
+                                    >
                                         Kembali
                                     </a>
+
                                 @endif
+
+
                                 @php
-                                $isOpen = now()->toDateString() <= \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->toDateString();
+                                    $isOpen = now()->toDateString() <= \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->toDateString();
                                 @endphp
 
+
+                                {{-- APPLY BUTTON --}}
                                 @if($isOpen)
-                                    <a href="{{ route('pencarikerja.loker.apply.form', $loker) }}"
-                                        class="btn btn-primary">
+
+                                    <a
+                                        href="{{ route('pencarikerja.loker.apply.form', $loker) }}"
+                                        class="btn btn-primary"
+                                    >
                                         Apply
                                     </a>
+
                                 @else
-                                    <button class="btn btn-secondary" disabled
-                                        onclick="alert('Lowongan sudah ditutup.')">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        disabled
+                                        onclick="alert('Lowongan sudah ditutup.')"
+                                    >
                                         Lowongan Ditutup
                                     </button>
+
                                 @endif
+
                             </div>
 
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
         <!-- / Content -->
+
 
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
+
             <div class="container-xxl">
-                <div
-                    class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+
+                <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+
                     <div class="mb-2 mb-md-0">
                         ©2026 Yogo & Wahyu
                     </div>
+
                 </div>
+
             </div>
+
         </footer>
         <!-- / Footer -->
+
+
         @push('scripts')
         <script>
+
             // Hilangkan alert otomatis setelah 3 detik
             document.addEventListener('DOMContentLoaded', function () {
+
                 const alert = document.getElementById('successAlert');
+
                 if (alert) {
+
                     setTimeout(() => {
+
                         alert.classList.remove('show');
                         alert.classList.add('fade');
+
                         setTimeout(() => alert.remove(), 300);
+
                     }, 3000);
+
                 }
+
             });
+
         </script>
         @endpush
+
+
         <div class="content-backdrop fade"></div>
+
     </div>
-    <!-- Content wrapper -->
+    <!-- / Content wrapper -->
+
 </x-pencari_kerja.layout>

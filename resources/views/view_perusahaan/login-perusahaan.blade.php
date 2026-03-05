@@ -37,15 +37,17 @@
                                 <!-- PASSWORD -->
                                 <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
+
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="form-control" name="password"
                                             placeholder="••••••••••••" />
+
                                         <span class="input-group-text cursor-pointer">
                                             <i class="icon-base bx bx-hide"></i>
                                         </span>
                                     </div>
                                 </div>
-                                
+
                                 @if($errors->has('email-username'))
                                     <div class="alert alert-danger alert-dismissible fade show">
                                         {{ $errors->first('email-username') }}
@@ -73,6 +75,7 @@
 
                             <p class="text-center">
                                 <span>New on our platform?</span><br>
+
                                 <a class="btn btn-outline-primary mt-2" href="{{ route('perusahaan.registrasi') }}">
                                     Create an account
                                 </a>
