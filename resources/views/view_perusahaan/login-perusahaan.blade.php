@@ -49,16 +49,6 @@
                                     </div>
                                 @endif
 
-                                <!-- REMEMBER ME -->
-                                <div class="mb-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember-me">
-                                        <label class="form-check-label" for="remember-me">
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-
                                 <!-- SUBMIT BUTTON -->
                                 <div class="mb-6">
                                     <button class="btn btn-primary w-100" type="submit">Login</button>
