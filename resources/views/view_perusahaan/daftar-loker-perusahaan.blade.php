@@ -70,12 +70,7 @@
                                             <td>{{ $data_loker->jabatan }}</td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
-                                                @if (
-                                                        \Carbon\Carbon::now()->between(
-                                                            \Carbon\Carbon::parse($data_loker->tanggal_mulai_loker),
-                                                            \Carbon\Carbon::parse($data_loker->tanggal_berakhir_loker)
-                                                        )
-                                                    )
+                                                @if($data_loker->status == 'open')
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
                                                     <span class="badge bg-label-warning">Closed</span>

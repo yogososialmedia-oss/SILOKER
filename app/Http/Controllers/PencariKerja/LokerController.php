@@ -25,8 +25,8 @@ class LokerController extends Controller
         $filters = session('loker_filters', []);
 
         $query = Loker::with('perusahaanMitra')
-        ->whereDate('tanggal_mulai_loker', '<=', now())
-        ->whereDate('tanggal_berakhir_loker', '>=', now());
+        ->whereDate('tanggal_mulai_loker', '<=', today())
+        ->whereDate('tanggal_berakhir_loker', '>=', today());
 
         if (!empty($filters['provinsi'])) {
             $query->where('provinsi', $filters['provinsi']);
@@ -64,8 +64,8 @@ class LokerController extends Controller
     public function showBeranda()
     {
         $lokers = Loker::with('perusahaanMitra')
-            ->whereDate('tanggal_mulai_loker', '<=', now())
-            ->whereDate('tanggal_berakhir_loker', '>=', now())
+            ->whereDate('tanggal_mulai_loker', '<=', today())
+            ->whereDate('tanggal_berakhir_loker', '>=', today())
             ->latest()
             ->get(); // tampilkan semua yg open
 
@@ -157,13 +157,9 @@ class LokerController extends Controller
     public function applyStore(Request $request, Loker $loker)
     {
         // 🚫 Cek apakah loker masih open
-        if (!now()->between(
-            $loker->tanggal_mulai_loker,
-            $loker->tanggal_berakhir_loker
-        )) {
+        if ($loker->status != 'open') {
             return back()->with('error', 'Lowongan sudah ditutup.');
         }
-
         $pencari = Auth::guard('pencarikerja')->user();
 
         // 🚫 WAJIB punya minimal salah satu: CV atau LinkedIn

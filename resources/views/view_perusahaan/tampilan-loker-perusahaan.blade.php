@@ -24,12 +24,12 @@
                             <h5 class="mb-1 d-flex align-items-center gap-2">
                                 @if (Auth::guard('perusahaanmitra')->user())
                                 <a href="{{ route('perusahaan.profile') }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                    class="text-dark link-primary fw-bold position-relative z-3">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
                                 @elseif (Auth::guard('admin')->user())
                                 <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                    class="text-dark link-primary fw-bold position-relative z-3">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
                                 @endif
@@ -53,7 +53,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <h5 class="mb-0">{{ $loker->jabatan }}</h5>
                                 <div class="ms-auto pe-4">
-                                    @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
+                                    @if($loker->status == 'open')
                                         <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else
                                         <span class="badge bg-danger fs-6 px-3 py-2">Close</span>

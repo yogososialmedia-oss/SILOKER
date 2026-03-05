@@ -56,10 +56,17 @@
                                             <td>{{ $loker->jabatan }}</td>
                                             <td>{{ $loker->tipe_loker }}</td>
                                             <td>
-                                                @if (now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
-                                                    <span class="badge bg-label-success">Open</span>
+                                                @php
+                                                    $isOpen = now()->between(
+                                                        \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->startOfDay(),
+                                                        \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->endOfDay()
+                                                    );
+                                                @endphp
+
+                                                @if ($isOpen)
+                                                    <span class="badge bg-label-info">Open</span>
                                                 @else
-                                                    <span class="badge bg-label-danger">Closed</span>
+                                                    <span class="badge bg-label-warning">Closed</span>
                                                 @endif
                                             </td>
                                             <td>{{ $loker->no_telp_perusahaan }}</td>

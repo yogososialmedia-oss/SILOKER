@@ -123,7 +123,7 @@
                       <div class="flex-grow-1">
                         <h6 class="mb-1 d-flex align-items-center gap-2 fw-bold">
                           <a href="{{ route('perusahaan.profile') }}"
-                            class="text-dark text-decoration-none position-relative z-3">
+                            class="text-dark link-primary fw-bold position-relative z-3">
                             {{ $info_perusahaan->nama_perusahaan }}
                           </a>
 
@@ -151,14 +151,10 @@
                       </h5>
 
                       <div class="ms-auto pe-5 me-2">
-                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                          <span class="badge bg-primary fs-6 px-3 py-2">
-                            Open
-                          </span>
+                        @if($item->status == 'open')
+                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                         @else
-                          <span class="badge bg-danger fs-6 px-3 py-2">
-                            Close
-                          </span>
+                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
                         @endif
                       </div>
                     </div>
@@ -201,7 +197,7 @@
                       <div class="flex-grow-1">
                         <h6 class="mb-1 d-flex align-items-center gap-2 fw-bold">
                           <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
-                            class="text-dark text-decoration-none position-relative z-3">
+                            class="text-dark link-primary fw-bold position-relative z-3">
                             {{ $info_perusahaan->nama_perusahaan }}
                           </a>
 
@@ -229,14 +225,10 @@
                       </h5>
 
                       <div class="ms-auto pe-5 me-2">
-                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                          <span class="badge bg-primary fs-6 px-3 py-2">
-                            Open
-                          </span>
+                        @if($item->status == 'open')
+                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                         @else
-                          <span class="badge bg-danger fs-6 px-3 py-2">
-                            Close
-                          </span>
+                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
                         @endif
                       </div>
                     </div>
