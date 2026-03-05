@@ -48,7 +48,7 @@
                                         @elseif ($data_apply->status == 'diterima')
                                             <span class="badge bg-label-success me-1">Diterima</span>
                                         @elseif ($data_apply->status == 'ditolak')
-                                            <span class="badge bg-label-danger me-1">Ditolak</span>
+                                            <span class="badge bg-label-danger me-1">Tidak Diterima</span>
                                         @endif
                                     </td>
                                     <td>

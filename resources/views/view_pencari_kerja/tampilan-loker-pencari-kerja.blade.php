@@ -48,11 +48,11 @@
                             {{-- Jabatan + Status --}}
                             <div class="d-flex align-items-center mb-3">
                                 <h5 class="mb-0">{{ $loker->jabatan }}</h5>
-                                <div class="ms-auto pe-4">
-                                    @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
+                                <div class="ms-auto pe-3">
+                                    @if($loker->status == 'open')
                                         <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else
-                                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
+                                        <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
                                     @endif
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                     </a>
                                 @endif
                                 @php
-                                    $isOpen = now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker);
+                                $isOpen = now()->toDateString() <= \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->toDateString();
                                 @endphp
 
                                 @if($isOpen)

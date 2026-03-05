@@ -22,7 +22,7 @@
             <div class="col-md-6 mb-4"> {{-- 2 kolom --}}
                 
                 <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
-                   class="text-decoration-none">
+                class="text-decoration-none">
 
                     <div class="card h-100 loker-card-beranda position-relative">
 
@@ -81,14 +81,10 @@
             </h5>
 
             <div class="ms-auto pe-3">
-                @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
-                    <span class="badge bg-primary fs-6 px-3 py-2">
-                        Open
-                    </span>
+                @if($loker->status == 'open')
+                    <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                 @else
-                    <span class="badge bg-danger fs-6 px-3 py-2">
-                        Close
-                    </span>
+                    <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
                 @endif
             </div>
         </div>

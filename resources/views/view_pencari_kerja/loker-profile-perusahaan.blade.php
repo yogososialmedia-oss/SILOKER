@@ -94,10 +94,10 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <h5 class="mb-0">{{ $item->jabatan }}</h5>
                                     <div class="ms-auto pe-5 me-2">
-                                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
+                                        @if($item->status == 'open')
                                             <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                         @else
-                                            <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
+                                            <span class="badge bg-danger fs-6 px-3 py-2">Closed</span>
                                         @endif
                                     </div>
                                 </div>

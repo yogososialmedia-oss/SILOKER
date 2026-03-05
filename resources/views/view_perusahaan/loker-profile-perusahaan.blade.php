@@ -151,14 +151,10 @@
                       </h5>
 
                       <div class="ms-auto pe-5 me-2">
-                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                          <span class="badge bg-primary fs-6 px-3 py-2">
-                            Open
-                          </span>
+                        @if($item->status == 'open')
+                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                         @else
-                          <span class="badge bg-danger fs-6 px-3 py-2">
-                            Close
-                          </span>
+                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
                         @endif
                       </div>
                     </div>
@@ -229,14 +225,10 @@
                       </h5>
 
                       <div class="ms-auto pe-5 me-2">
-                        @if(now()->between($item->tanggal_mulai_loker, $item->tanggal_berakhir_loker))
-                          <span class="badge bg-primary fs-6 px-3 py-2">
-                            Open
-                          </span>
+                        @if($item->status == 'open')
+                        <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                         @else
-                          <span class="badge bg-danger fs-6 px-3 py-2">
-                            Close
-                          </span>
+                        <span class="badge bg-danger fs-6 px-3 py-2">Close</span>
                         @endif
                       </div>
                     </div>

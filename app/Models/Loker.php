@@ -43,9 +43,12 @@ class Loker extends Model
 
     public function getStatusAttribute()
     {
-        return now()->between(
-            $this->tanggal_mulai_loker,
-            $this->tanggal_berakhir_loker
-        ) ? 'open' : 'close';
+        $today = now()->startOfDay();
+
+        if ($today->gte($this->tanggal_mulai_loker) && $today->lte($this->tanggal_berakhir_loker)) {
+            return 'open';
+        }
+
+        return 'close';
     }
 }

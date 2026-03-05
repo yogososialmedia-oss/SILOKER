@@ -165,15 +165,11 @@
                                         {{ $loker->jabatan }}
                                     </h5>
 
-                                    <div class="ms-auto pe-5 me-2">
-                                        @if(now()->between($loker->tanggal_mulai_loker, $loker->tanggal_berakhir_loker))
-                                            <span class="badge bg-primary fs-6 px-3 py-2">
-                                                Open
-                                            </span>
+                                    <div class="ms-auto pe-3">
+                                        @if($loker->status == 'open')
+                                            <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                         @else
-                                            <span class="badge bg-danger fs-6 px-3 py-2">
-                                                Close
-                                            </span>
+                                            <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
                                         @endif
                                     </div>
                                 </div>

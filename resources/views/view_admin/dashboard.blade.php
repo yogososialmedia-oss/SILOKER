@@ -19,21 +19,6 @@
                         </div>
                     </div>
 
-                    <!-- TOTAL PERUSAHAAN -->
-                    <div class="col-lg-3 col-md-6 col-12 mb-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="text-muted mb-1">TOTAL PERUSAHAAN</h6>
-                                    <h3 class="fw-bold mb-0">{{ $totalPerusahaan }}</h3>
-                                </div>
-                                <div class="bg-warning text-white rounded p-3">
-                                    <i class="bx bx-buildings fs-3"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- LOWONGAN TER-APPLY -->
                     <div class="col-lg-3 col-md-6 col-12 mb-3">
                         <div class="card shadow-sm border-0">
@@ -57,8 +42,23 @@
                                     <h6 class="text-muted mb-1">APPLY DITERIMA</h6>
                                     <h3 class="fw-bold mb-0">{{ $totalApplyDiterima }}</h3>
                                 </div>
-                                <div class="bg-warning text-white rounded p-3">
+                                <div class="bg-primary text-white rounded p-3">
                                     <i class="bx bx-check-circle fs-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOTAL PERUSAHAAN -->
+                    <div class="col-lg-3 col-md-6 col-12 mb-3">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">TOTAL PERUSAHAAN</h6>
+                                    <h3 class="fw-bold mb-0">{{ $totalPerusahaan }}</h3>
+                                </div>
+                                <div class="bg-primary text-white rounded p-3">
+                                    <i class="bx bx-buildings fs-3"></i>
                                 </div>
                             </div>
                         </div>
