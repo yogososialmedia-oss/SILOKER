@@ -54,6 +54,8 @@ class ProfileController extends Controller
         $info_perusahaan = \App\Models\PerusahaanMitra::findOrFail($id);
 
         $loker = $info_perusahaan->loker()
+                        ->whereDate('tanggal_mulai_loker', '<=', today())
+                        ->whereDate('tanggal_berakhir_loker', '>=', today())
                         ->withCount('apply')
                         ->latest()
                         ->paginate(6);
