@@ -1,11 +1,8 @@
 <x-pencari_kerja.layout>
+    <div class="content-wrapper-user">
     <!-- ================= SLIDER LOKER OPEN ================= -->
     <section class="py-5">
     <div class="container-fluid">
-
-        <h3 class="text-center mb-5 fw-bold text-primary">
-            LOWONGAN TERBUKA
-        </h3>
 
         @if($lokers->count())
 
@@ -26,82 +23,82 @@
 
                     <div class="card h-100 loker-card-beranda position-relative">
 
-    {{-- LINK --}}
-    <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
-        class="stretched-link"></a>
+                {{-- LINK --}}
+                <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
+                    class="stretched-link"></a>
 
-    <div class="card-body position-relative">
+                <div class="card-body position-relative">
 
-        {{-- TANGGAL --}}
-        <p class="text-end fs-9 mb-2">
-            {{ $loker->tanggal_mulai_loker->format('d M Y') }}
-            -
-            {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
-        </p>
+                    {{-- TANGGAL --}}
+                    <p class="text-end fs-9 mb-2">
+                        {{ $loker->tanggal_mulai_loker->format('d M Y') }}
+                        -
+                        {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
+                    </p>
 
-        {{-- HEADER --}}
-        <div class="d-flex align-items-start gap-3 mb-3">
-            <img src="{{ $loker->perusahaanMitra->logo_url ?? asset('default.png') }}"
-                style="width:60px; height:60px; object-fit:cover;"
-                class="rounded shadow-sm" alt="">
+                    {{-- HEADER --}}
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <img src="{{ $loker->perusahaanMitra->logo_url ?? asset('default.png') }}"
+                            style="width:60px; height:60px; object-fit:cover;"
+                            class="rounded shadow-sm" alt="">
 
-            <div class="flex-grow-1">
-                <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
 
-                    {{-- Nama Perusahaan --}}
-                    <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                        class="text-dark link-primary fw-bold position-relative z-3">
-                        {{ $loker->perusahaanMitra->nama_perusahaan }}
-                    </a>
+                                {{-- Nama Perusahaan --}}
+                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                    class="text-dark link-primary fw-bold position-relative z-3">
+                                    {{ $loker->perusahaanMitra->nama_perusahaan }}
+                                </a>
 
-                    {{-- Icon Info --}}
-                    <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                        class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
-                        style="width:16px; height:16px; font-size:10px;">
-                        i
-                    </a>
+                                {{-- Icon Info --}}
+                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                    class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
+                                    style="width:16px; height:16px; font-size:10px;">
+                                    i
+                                </a>
 
-                </h6>
+                            </h6>
 
-                <p class="mb-1 small">
-                    {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
-                </p>
+                            <p class="mb-1 small">
+                                {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
+                            </p>
 
-                <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
-                    <i class="bx bx-location-plus"></i>
-                    <span>{{ $loker->kabupaten }}</span>
-                </p>
+                            <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
+                                <i class="bx bx-location-plus"></i>
+                                <span>{{ $loker->kabupaten }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- JABATAN + STATUS --}}
+                    <div class="d-flex align-items-center mb-3">
+                        <h5 class="mb-0 text-dark">
+                            {{ $loker->jabatan }}
+                        </h5>
+
+                        <div class="ms-auto pe-3">
+                            @if($loker->status == 'open')
+                                <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
+                            @else
+                                <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- DETAIL --}}
+                    <p class="d-flex align-items-start gap-2 mb-1">
+                        <i class="bx bx-buildings"></i>
+                        <span>{{ $loker->model_kerja }}</span>
+                    </p>
+
+                    <p class="d-flex align-items-start gap-2 mb-1">
+                        <i class="bx bx-book-reader"></i>
+                        <span>{{ $loker->minimal_pendidikan }}</span>
+                    </p>
+
+                </div>
             </div>
-        </div>
-
-        {{-- JABATAN + STATUS --}}
-        <div class="d-flex align-items-center mb-3">
-            <h5 class="mb-0 text-dark">
-                {{ $loker->jabatan }}
-            </h5>
-
-            <div class="ms-auto pe-3">
-                @if($loker->status == 'open')
-                    <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
-                @else
-                    <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
-                @endif
-            </div>
-        </div>
-
-        {{-- DETAIL --}}
-        <p class="d-flex align-items-start gap-2 mb-1">
-            <i class="bx bx-buildings"></i>
-            <span>{{ $loker->model_kerja }}</span>
-        </p>
-
-        <p class="d-flex align-items-start gap-2 mb-1">
-            <i class="bx bx-book-reader"></i>
-            <span>{{ $loker->minimal_pendidikan }}</span>
-        </p>
-
-    </div>
-</div>
 
                 </a>
 
@@ -214,7 +211,7 @@
             </div>
         </div>
     </footer>
-
+</div>
     {{-- JS SCROLL --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
