@@ -32014,7 +32014,7 @@ html {
 /* ==================== HOME ==================== */
 .home-beranda {
   background-color: #3f75c7;
-  padding: 120px 0 0px;
+  padding: 100px 0 0px;
   color: #fff;
 }
 
@@ -32023,6 +32023,7 @@ html {
   font-weight: 700;
   line-height: 1.1;
   color: #ffffff;
+  margin-top: -50px;
 }
 
 .tanda-seru-color {
@@ -32433,7 +32434,7 @@ html {
     BERANDA FULL BIRU
    ===================================================== */
 .home-beranda,
-.footer-beranda, .content-footer{
+.footer-beranda{
     width: 100vw; 
     margin-left: calc(-50vw + 50%); 
     margin-right: calc(-50vw + 50%);
@@ -32530,17 +32531,4 @@ html {
     margin-left: calc(-50vw + 50%); 
     margin-right: calc(-50vw + 50%);
     background-color: #fff; 
-}
-
-
-/* Footer biru khusus halaman yang ada home-beranda */
-.home-beranda ~ footer,
-.home-beranda + footer,
-body:has(.home-beranda) footer {
-    background-color: #3f75c7 !important;
-    color: #fff !important;
-}
-
-body:has(.home-beranda) footer a {
-    color: #fff !important;
 }

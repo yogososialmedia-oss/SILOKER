@@ -177,7 +177,7 @@
 
 
     <!-- ================= FOOTER / ABOUT ================= -->
-   <section id="about" class="about-career pt-12">
+<section id="about" class="about-career pt-12">
     <div class="container">
 
         <!-- ===== CAREER CENTER ===== -->
