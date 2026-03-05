@@ -34,7 +34,7 @@
                             {{-- Nama Perusahaan --}}
                             <h5 class="mb-1 d-flex align-items-center gap-2">
                                 <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                    class="text-dark link-primary fw-bold position-relative z-3">
                                     {{ $loker->perusahaanMitra->nama_perusahaan }}
                                 </a>
                                 {{-- Icon info --}}

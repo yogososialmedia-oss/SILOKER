@@ -50,7 +50,7 @@
 
                     {{-- Nama Perusahaan --}}
                     <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                        class="text-dark text-decoration-none position-relative z-3">
+                        class="text-dark link-primary fw-bold position-relative z-3">
                         {{ $loker->perusahaanMitra->nama_perusahaan }}
                     </a>
 

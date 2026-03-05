@@ -9288,7 +9288,7 @@ fieldset:disabled .btn {
 
 .link-primary:hover,
 .link-primary:focus {
-  color: RGBA(95, 97, 230, var(--bs-link-opacity, 1)) !important;
+  color: RGBA(63, 117, 199, var(--bs-link-opacity, 1)) !important;
   text-decoration-color: RGBA(95, 97, 230, var(--bs-link-underline-opacity, 1)) !important;
 }
 

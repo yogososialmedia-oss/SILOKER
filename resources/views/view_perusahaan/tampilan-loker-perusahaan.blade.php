@@ -24,12 +24,12 @@
                             <h5 class="mb-1 d-flex align-items-center gap-2">
                                 @if (Auth::guard('perusahaanmitra')->user())
                                 <a href="{{ route('perusahaan.profile') }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                    class="text-dark link-primary fw-bold position-relative z-3">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
                                 @elseif (Auth::guard('admin')->user())
                                 <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}"
-                                    class="fw-bold text-dark text-decoration-none position-relative z-3">
+                                    class="text-dark link-primary fw-bold position-relative z-3">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
                                 @endif

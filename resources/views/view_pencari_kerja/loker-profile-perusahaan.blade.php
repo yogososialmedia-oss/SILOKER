@@ -73,7 +73,7 @@
                                         <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
                                             {{-- Nama Perusahaan --}}
                                             <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}"
-                                                class="text-dark text-decoration-none position-relative z-3">
+                                                class="text-dark link-primary fw-bold position-relative z-3">
                                                 {{ $info_perusahaan->nama_perusahaan }}
                                             </a>
                                             {{-- Icon Info --}}
