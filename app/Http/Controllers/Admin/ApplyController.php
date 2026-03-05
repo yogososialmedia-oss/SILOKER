@@ -27,17 +27,6 @@ class ApplyController extends Controller
 
         return view('view_admin.history-apply-keseluruhan', compact('apply', 'tahunList'));
     }
-    public function daftarApplyLoker($id)
-    {
-        $apply = Apply::with([
-            'loker.perusahaanMitra',
-            'pencariKerja'
-        ])
-        ->where('id_loker', $id)
-        ->get();
-
-        return view('view_admin.daftar-apply-admin', compact('apply', 'id'));
-    }
 
     public function detailApply($id)
     {

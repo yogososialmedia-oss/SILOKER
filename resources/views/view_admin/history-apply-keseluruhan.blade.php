@@ -7,7 +7,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
 
                     <div>
-                        <h5 class="mb-0 fw-bold">HISTORY APPLY</h5>
+                        <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
                     <form action="{{ route('admin.apply.export.semua') }}" method="GET">
                         <div class="d-flex align-items-center gap-2">
@@ -103,14 +103,14 @@
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                            </button>
+                                                data-bs-toggle="dropdown"><i
+                                                    class="icon-base bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.apply.loker', $data_apply->id_loker) }}">
-                                                    <i class="icon-base bx bx-user-pin me-2"></i>Daftar Apply
-                                                </href=>
+                                                    href="{{ route('admin.apply.profile', $data_apply->id) }}"><i
+                                                        class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar</a>
+                                                <a class="dropdown-item" href="{{ route('admin.apply.detail', $data_apply->id) }}"><i
+                                                        class="icon-base bx bx-show  me-2"></i>Detail Apply</a>
                                             </div>
                                         </div>
                                     </td>

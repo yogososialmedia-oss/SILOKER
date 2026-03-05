@@ -55,7 +55,7 @@
             <li class="menu-item {{ request()->routeIs('admin.history-apply', 'admin.apply.profile', 'admin.apply.history', 'admin.apply.detail', 'admin.apply.loker') ? 'active' : '' }}">
                 <a href="{{ route('admin.history-apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
-                    <div>History Apply</div>
+                    <div>Daftar Apply</div>
                 </a>
             </li>
 
@@ -93,7 +93,7 @@
             <li class="menu-item {{ request()->routeIs('perusahaan.apply', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply') ? 'active' : '' }}">
                 <a href="{{ route('perusahaan.apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
-                    <div>History Apply</div>
+                    <div>Daftar Apply</div>
                 </a>
             </li>
 

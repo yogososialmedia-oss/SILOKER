@@ -116,7 +116,7 @@
 
                             {{-- ===== BACK BUTTON ===== --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('perusahaan.apply.loker', $loker->id) }}" class="btn btn-secondary">
+                                <a href="{{ route('perusahaan.apply', $loker->id) }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                             </div>

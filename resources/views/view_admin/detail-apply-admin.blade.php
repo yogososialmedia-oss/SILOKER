@@ -121,7 +121,7 @@
 
                             {{-- ===== BACK BUTTON ===== --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('admin.apply.loker', $loker->id) }}"
+                                <a href="{{ route('admin.history-apply', $loker->id) }}"
                                     class="btn btn-secondary">
                                     Kembali
                                 </a>
