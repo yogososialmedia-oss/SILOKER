@@ -177,38 +177,94 @@
 
 
     <!-- ================= FOOTER / ABOUT ================= -->
-    <section id="about" class="footer-beranda">
-        <div class="container-fluid px-0">
-            <div class="container">
-                <div class="row align-items-center">
+   <section id="about" class="about-career pt-12">
+    <div class="container">
 
-                    <!-- TEXT -->
-                    <div class="col-12 col-lg-6 footer-text-beranda">
-                        <h1 class="fw-bold footer-title">CAREER CENTER</h1>
+        <!-- ===== CAREER CENTER ===== -->
+        <div class="career-center-box mb-5 pb-4 border-bottom border-primary text-center">
 
-                        <p class="footer-desc">
-                            Career Center ITB STIKOM Bali merupakan sebuah platform digital yang didedikasikan
-                            untuk membantu mahasiswa aktif maupun alumni ITB STIKOM Bali dalam menemukan dan
-                            mengembangkan peluang karier yang sesuai dengan minat, bakat, dan kompetensi mereka.
-                        </p>
+    <h3 class="fw-bold mb-4">
+        CAREER CENTER
+    </h3>
 
-                        <p class="footer-desc">
-                            Selain sebagai media pencarian kerja, Career Center ITB STIKOM Bali juga berperan
-                            sebagai jembatan penghubung antara dunia pendidikan dan dunia industri, guna
-                            meningkatkan kesiapan lulusan dalam menghadapi persaingan dunia kerja.
-                        </p>
-                    </div>
+    <div class="mx-auto" style="max-width: 850px;">
+        <p class="mb-3">
+            Career Center ITB STIKOM Bali merupakan sebuah platform digital yang didedikasikan
+            untuk membantu mahasiswa aktif maupun alumni ITB STIKOM Bali dalam menemukan dan
+            mengembangkan peluang karier yang sesuai dengan minat, bakat, dan kompetensi mereka.
+        </p>
 
-                    <!-- AVATAR / IMAGE -->
-                    <div class="col-lg-6 order-2 order-lg-2 text-center mt-4 mt-lg-0">
-                        <img src="{{ asset('admin-perusahaan/assets/img/avatars/beranda2.png') }}"
-                            class="img-fluid footer-image-beranda">
-                    </div>
+        <p class="mb-6">
+            Selain sebagai media pencarian kerja, Career Center ITB STIKOM Bali juga berperan
+            sebagai jembatan penghubung antara dunia pendidikan dan dunia industri, guna
+            meningkatkan kesiapan lulusan dalam menghadapi persaingan dunia kerja.
+        </p>
+    </div>
 
+</div>
+        <div class="row">
+
+            <!-- KOLOM 1 -->
+            <div class="col-lg-4 mb-4">
+                <h4 class="fw-bold mb-3">Alamat Kampus</h4>
+
+                <p><strong>Kampus Renon:</strong><br>
+                Jl. Raya Puputan No. 86 Renon – Denpasar<br>
+                Telp: (0361) 244445</p>
+
+                <p><strong>Kampus Jimbaran:</strong><br>
+                Jl. Raya Kampus Udayana Jimbaran Bali<br>
+                Telp: (0361) 8953537</p>
+
+                <p><strong>Kampus Abiansemal:</strong><br>
+                Jl. Janger Dauh Yeh Cani, Badung, Bali<br>
+                Telp: 0856-3700-803</p>
+            </div>
+
+            <!-- KOLOM 2 -->
+            <div class="col-lg-4 mb-4">
+                <h4>ITB STIKOM Bali Grup</h4>
+                <ul>
+                    <li>Universitas Teknologi Bandung</li>
+                    <li>Politeknik Nasional Denpasar</li>
+                    <li>Politeknik Ganesha Guru</li>
+                    <li>Bisma Informatika</li>
+                    <li>Lembaga Pendidikan Bali Asia</li>
+                    <li>SMK TI Bali Global</li>
+                    <li>BPRS Fajar Sejahtera</li>
+                </ul>
+            </div>
+
+            <!-- KOLOM 3 -->
+            <div class="col-lg-4 mb-4">
+                <h4>Bergabunglah Bersama Kami</h4>
+
+                <div class="social-icons">
+                    <a href="https://siap.stikom-bali.ac.id/" target="_blank">
+                        <i class="bx bx-globe"></i> www.siap.stikom-bali.ac.id
+                    </a><br>
+
+                    <a href="https://www.instagram.com/stikombali?igsh=MTNpdHJ2NGxhNDJoZg==" target="_blank">
+                        <i class="bx bxl-instagram"></i> @stikombali
+                    </a><br>
+
+                    <a href="https://www.facebook.com/share/1Hby2Pu5Tj/" target="_blank">
+                        <i class="bx bxl-facebook"></i> stikombali
+                    </a><br>
+
+                    <a href="https://www.tiktok.com/@itbstikombali?_r=1&_t=ZS-94QVKmVLzxE" target="_blank">
+                        <i class="bx bxl-tiktok"></i> itbstikombali
+                    </a><br>
+
+                    <a href="https://youtube.com/@stikomerstv8537?si=uRr7WbTrd8GHJetD" target="_blank">
+                        <i class="bx bxl-youtube"></i> stikomerstv
+                    </a>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="content-footer footer bg-footer-theme">
