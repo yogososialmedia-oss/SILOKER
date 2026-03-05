@@ -1,8 +1,6 @@
 <x-pencari_kerja.layout>
-
     <!-- LOGIN PAGE WRAPPER -->
     <div class="login-page-wrapper">
-
         <div class="container-xxl">
             <div class="authentication-wrapper authentication-basic">
                 <div>
@@ -11,50 +9,47 @@
                     <div class="card px-sm-6 px-0">
                         <div class="card-body">
 
+                            <!-- BRAND -->
                             <div class="app-brand justify-content-center mb-6">
-                                <a class="app-brand-text demo text-heading fw-bold">
-                                    PERUSAHAAN
-                                </a>
+                                <a class="app-brand-text demo text-heading fw-bold">PERUSAHAAN</a>
                             </div>
 
+                            <!-- SUCCESS ALERT -->
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                 </div>
                             @endif
 
-                            <form id="formAuthentication" class="mb-6" action="{{ route('perusahaan.login.post') }}"
-                                method="POST">
+                            <!-- LOGIN FORM -->
+                            <form id="formAuthentication" class="mb-6" action="{{ route('perusahaan.login.post') }}" method="POST">
                                 @csrf
 
                                 <!-- EMAIL -->
                                 <div class="mb-6">
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" name="email-username"
-                                        placeholder="Masukan alamat email" autofocus />
+                                    <input type="text" class="form-control" name="email-username" placeholder="Masukan alamat email" autofocus />
                                 </div>
 
                                 <!-- PASSWORD -->
                                 <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
-
                                     <div class="input-group input-group-merge">
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="••••••••••••" />
-
+                                        <input type="password" class="form-control" name="password" placeholder="••••••••••••" />
                                         <span class="input-group-text cursor-pointer">
                                             <i class="icon-base bx bx-hide"></i>
                                         </span>
                                     </div>
                                 </div>
 
+                                <!-- EMAIL ERROR -->
                                 @if($errors->has('email-username'))
                                     <div class="alert alert-danger alert-dismissible fade show">
                                         {{ $errors->first('email-username') }}
                                     </div>
                                 @endif
 
-                                <!-- REMEMBER -->
+                                <!-- REMEMBER ME -->
                                 <div class="mb-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="remember-me">
@@ -64,18 +59,15 @@
                                     </div>
                                 </div>
 
-                                <!-- BUTTON -->
+                                <!-- SUBMIT BUTTON -->
                                 <div class="mb-6">
-                                    <button class="btn btn-primary w-100" type="submit">
-                                        Login
-                                    </button>
+                                    <button class="btn btn-primary w-100" type="submit">Login</button>
                                 </div>
-
                             </form>
 
+                            <!-- REGISTER LINK -->
                             <p class="text-center">
                                 <span>New on our platform?</span><br>
-
                                 <a class="btn btn-outline-primary mt-2" href="{{ route('perusahaan.registrasi') }}">
                                     Create an account
                                 </a>
@@ -88,7 +80,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /LOGIN PAGE WRAPPER -->
 
@@ -100,5 +91,4 @@
             </div>
         </div>
     </footer>
-
 </x-pencari_kerja.layout>
