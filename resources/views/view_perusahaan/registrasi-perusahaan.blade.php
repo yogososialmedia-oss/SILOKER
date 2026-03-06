@@ -29,7 +29,15 @@
                                     {{-- NPWP --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No NPWP</label>
-                                        <input type="text" name="NoNpwp" value="{{ old('NoNpwp') }}" class="form-control @error('NoNpwp') is-invalid @enderror" placeholder="Tambahkan nomor NPWP">
+                                        <input type="text"
+                                            name="NoNpwp"
+                                            value="{{ old('NoNpwp') }}"
+                                            class="form-control @error('NoNpwp') is-invalid @enderror"
+                                            placeholder="Tambahkan nomor NPWP"
+                                            maxlength="16"
+                                            inputmode="numeric"
+                                            pattern="[0-9]*"
+                                            oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('NoNpwp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -38,7 +46,15 @@
                                     {{-- NO TELEPON --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No Telepon</label>
-                                        <input type="text" name="NoTelp" value="{{ old('NoTelp') }}" class="form-control @error('NoTelp') is-invalid @enderror" placeholder="Tambahkan nomor telepon perusahaan">
+                                        <input type="text"
+                                            name="NoTelp"
+                                            value="{{ old('NoTelp') }}"
+                                            class="form-control @error('NoTelp') is-invalid @enderror"
+                                            placeholder="Tambahkan nomor telepon perusahaan"
+                                            inputmode="numeric"
+                                            maxlength="15"
+                                            pattern="[0-9]*"
+                                            oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('NoTelp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -279,6 +295,19 @@
             document.getElementById('showPassword').addEventListener('change', function () {
                 passwordInput.type = this.checked ? 'text' : 'password';
             });
+        });
+        const logoInput = document.getElementById('logoInput');
+        const logoError = document.getElementById('logoError');
+
+        logoInput.addEventListener('change', function(){
+            const file = this.files[0];
+
+            if(file && file.size > 2 * 1024 * 1024){
+                logoError.classList.remove('d-none');
+                this.value = '';
+            }else{
+                logoError.classList.add('d-none');
+            }
         });
     </script>
 </x-pencari_kerja.layout>

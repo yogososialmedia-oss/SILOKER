@@ -3,70 +3,81 @@
     <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-                {{-- Header Banner & Profile --}}
-                <div class="col-12 mb-5">
-                    <!-- Card banner dan foto profile -->
+                {{-- CARD HEADER PROFILE USER --}}
+                <div class="col-12 mb-4">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
-                        <!-- Background banner -->
+                        <!-- BACKGROUND IMAGE CARD -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
-                        
-                        <!-- Foto profile dan info nama/NIM di tengah banner -->
+
+                        <!-- FOTO & NAMA USER DIATAS CARD -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $user->foto_pencari_kerja
                                 ? asset('storage/profile/' . $user->foto_pencari_kerja)
-                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
-                                class="rounded-circle mb-2"
-                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">{{ $user->nama_pencari_kerja }}</h4>
-                            <p>{{ $user->nim ?? '-' }}</p>
-                        </div>
+                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" 
+                                class="rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 
-                        <!-- Navbar menu profil -->
-                        <div class="bg-white p-4">
-                            <nav class="navbar navbar-expand-lg py-1">
-                                <div class="container-fluid">
-                                    {{-- BURGER MENU UNTUK MOBILE --}}
-                                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-
-                                    <div class="collapse navbar-collapse" id="navbar-ex-15">
-                                        {{-- MENU NAVBAR --}}
-                                        <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
-                                            <li class="nav-item mb-2">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
-                                                    Tentang Saya
-                                                </a>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}" href="{{ route('pencarikerja.history-apply') }}">
-                                                    History Apply
-                                                </a>
-                                            </li>
-                                        </ul>
-
-                                        {{-- BUTTON ACTION (Edit Profile & Logout) --}}
-                                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
-                                            <li class="nav-item me-2 mb-2">
-                                                <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning">
-                                                    Edit Profile
-                                                </a>
-                                            </li>
-                                            <li class="nav-item me-2 mb-2">
-                                                <form action="{{ route('logout') }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        Logout
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $user->nama_pencari_kerja }}
+                            </h4>
+                            <p>{{ $user->nim }}</p>
                         </div>
                     </div>
                 </div>
+
+                        {{-- CARD NAVBAR PROFILE --}}
+                        <div class="col-12 mb-5">
+                            <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                                <div class="bg-white p-4">
+                                    <nav class="navbar navbar-expand-lg py-1">
+                                        <div class="container-fluid">
+
+                                            {{-- BURGER MENU UNTUK MOBILE --}}
+                                            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProfileUser">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+
+                                            <div class="collapse navbar-collapse" id="navbarProfileUser">
+
+                                                {{-- MENU NAVBAR --}}
+                                                <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
+                                                    <li class="nav-item mb-2">
+                                                        <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}"
+                                                        href="{{ route('pencarikerja.profile') }}">
+                                                            Tentang Saya
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item mb-2">
+                                                        <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}"
+                                                        href="{{ route('pencarikerja.history-apply') }}">
+                                                            History Apply
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                                {{-- BUTTON ACTION --}}
+                                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
+                                                    <li class="nav-item me-2 mb-2">
+                                                        <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning">
+                                                            Edit Profile
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item me-2 mb-2">
+                                                        <form action="{{ route('logout') }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                Logout
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    
 
                 {{-- Table History Apply --}}
                 <div class="col-12 mb-5">

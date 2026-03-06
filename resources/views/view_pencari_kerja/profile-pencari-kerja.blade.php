@@ -93,8 +93,8 @@
 
                 {{-- DETAIL DATA PROFILE --}}
                 <div class="col-12 mb-5">
-                    <div class="card">
-                        <div class="bg-white p-4">
+                    <div class="card shadow-sm rounded-4 p-4">
+                        <div class="card-body p-4">
                             <!-- TENTANG SAYA -->
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
                             <p class="mb-2 text-muted">{{ $user->deskripsi_diri ?? '-' }}</p>

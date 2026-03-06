@@ -34,30 +34,62 @@ class RegistrasiPerusahaanController extends Controller
     {
         $request->validate([
             'NamaPerusahaan' => 'required|string|max:255',
-            'Email' => 'required|email|unique:tb_perusahaan_mitra,email_perusahaan',
-            'Password' => 'required|min:8',
-            'NoNpwp' => 'required|string|max:255',
-            'NoTelp' => 'required|string|max:255',
+
+            'Email' => 'required|email|max:255|unique:tb_perusahaan_mitra,email_perusahaan',
+
+            'Password' => [
+                'required',
+                'min:8',
+                'regex:/[A-Z]/',
+                'regex:/[a-z]/',
+                'regex:/[0-9]/',
+                'regex:/[^A-Za-z0-9]/'
+            ],
+
+            'NoNpwp' => 'required|digits_between:1,16',
+
+            'NoTelp' => 'required|regex:/^[0-9]{10,15}$/',
+
             'Provinsi' => 'required|string|max:255',
             'Kabupaten' => 'required|string|max:255',
             'Kecamatan' => 'required|string|max:255',
+
             'Alamat' => 'required|string',
-            'GoogleMaps' => 'nullable|string',
+
+            'GoogleMaps' => 'nullable|url|max:255',
+
             'TentangPerusahaan' => 'nullable|string',
+
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
-            'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
+
+            'NamaPerusahaan.required' => 'Nama perusahaan wajib diisi.',
+
             'Email.required' => 'Email wajib diisi.',
             'Email.email' => 'Format email tidak valid.',
             'Email.unique' => 'Email sudah terdaftar.',
+
             'Password.required' => 'Password wajib diisi.',
             'Password.min' => 'Password minimal 8 karakter.',
-            'NoNpwp.required' => 'No NPWP wajib diisi.',
+            'Password.regex' => 'Password harus mengandung huruf besar, kecil, angka, dan simbol.',
+
+            'NoNpwp.required' => 'NPWP wajib diisi.',
+            'NoNpwp.regex' => 'NPWP hanya boleh berisi angka.',
+
             'NoTelp.required' => 'Nomor telepon wajib diisi.',
-            'Provinsi.required' => 'Provinsi wajib diisi.',
-            'Kabupaten.required' => 'Kabupaten wajib diisi.',
-            'Kecamatan.required' => 'Kecamatan wajib diisi.',
+            'NoTelp.regex' => 'Nomor telepon hanya boleh angka (10-15 digit).',
+
+            'Provinsi.required' => 'Provinsi wajib dipilih.',
+            'Kabupaten.required' => 'Kabupaten wajib dipilih.',
+            'Kecamatan.required' => 'Kecamatan wajib dipilih.',
+
             'Alamat.required' => 'Alamat wajib diisi.',
+
+            'GoogleMaps.url' => 'Link Google Maps harus berupa URL.',
+
+            'logo.image' => 'Logo harus berupa gambar.',
+            'logo.mimes' => 'Logo harus JPG atau PNG.',
+            'logo.max' => 'Ukuran logo maksimal 2MB.',
         ]);
 
         $logoFilename = null;
