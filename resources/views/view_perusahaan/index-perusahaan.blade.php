@@ -3,7 +3,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
 
-                {{-- NOTIFIKASI --}}
+                {{-- ================= NOTIFIKASI ================= --}}
                 @if (session('success'))
                     <div class="col-12">
                         <div id="autoAlert" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
@@ -20,11 +20,13 @@
                     </div>
                 @endif
 
-                {{-- CARD THUMBNAIL / HEADER --}}
+                {{-- ================= CARD THUMBNAIL / HEADER ================= --}}
                 <div class="col-12 mb-4">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        {{-- BACKGROUND IMAGE --}}
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top" style="height:280px; object-fit:cover;">
 
+                        {{-- LOGO PERUSAHAAN & NAMA --}}
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $info_perusahaan->logo 
                                 ? asset('storage/logo_perusahaan/'.$info_perusahaan->logo) 
@@ -36,6 +38,7 @@
                                 {{ $info_perusahaan->nama_perusahaan ?? '-' }}
                             </h4>
 
+                            {{-- STATUS AKUN --}}
                             @php
                                 $statusClass = [
                                     'pending' => 'text-warning',
@@ -63,19 +66,20 @@
                     </div>
                 </div>
 
-                {{-- CARD NAVBAR PROFILE --}}
+                {{-- ================= CARD NAVBAR PROFILE ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
+                                    {{-- TOGGLER UNTUK MOBILE --}}
                                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
-                                            {{-- Tentang Saya / Tentang Perusahaan --}}
+                                            {{-- LINK TENTANG PERUSAHAAN --}}
                                             @if (Auth::guard('perusahaanmitra')->user())
                                                 <li class="nav-item mb-2">
                                                     <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}" href="{{ route('perusahaan.profile') }}">
@@ -90,7 +94,7 @@
                                                 </li>
                                             @endif
 
-                                            {{-- Menu Lowongan Kerja --}}
+                                            {{-- LINK LOWONGAN KERJA --}}
                                             @if (Auth::guard('perusahaanmitra')->user())
                                                 <li class="nav-item mb-2">
                                                     <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}" href="{{ route('perusahaan.loker.profile') }}">
@@ -106,6 +110,7 @@
                                             @endif
                                         </ul>
 
+                                        {{-- BUTTON EDIT PROFILE --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
                                             @if (Auth::guard('perusahaanmitra')->user())
                                                 <li class="nav-item me-2">
@@ -122,7 +127,7 @@
                     </div>
                 </div>
 
-                {{-- CARD DETAIL PROFIL --}}
+                {{-- ================= CARD DETAIL PROFIL ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card shadow-sm rounded-4 p-4">
                         <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
@@ -131,6 +136,7 @@
                         <h6 class="fw-bold mb-2">Alamat</h6>
                         <p class="mb-2">{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>
                         
+                        {{-- KECAMATAN / KABUPATEN / PROVINSI --}}
                         @if($info_perusahaan->kecamatan || $info_perusahaan->kabupaten || $info_perusahaan->provinsi)
                             <p class="mb-2">
                                 @php
@@ -144,7 +150,7 @@
                             </p>
                         @endif
 
-                        {{-- Google Maps --}}
+                        {{-- LINK GOOGLE MAPS --}}
                         @if(!empty($info_perusahaan->google_maps))
                             <a href="{{ $info_perusahaan->google_maps }}" target="_blank" class="d-flex align-items-center gap-1 mb-3">
                                 <i class="bx bx-current-location"></i>
@@ -161,7 +167,7 @@
                 </div>
             </div>
 
-            {{-- MODAL STATUS --}}
+            {{-- ================= MODAL STATUS VERIFIKASI GAGAL ================= --}}
             @if($info_perusahaan->status_akun == 'verifikasi_gagal')
                 <div class="modal fade" id="modalStatus" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
@@ -185,6 +191,7 @@
                 </div>
             @endif
 
+            {{-- ================= FOOTER ================= --}}
             <footer class="content-footer footer bg-footer-theme">
                 <div class="container-xxl">
                     <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -193,10 +200,12 @@
                 </div>
             </footer>
 
+            {{-- BACKDROP ================= --}}
             <div class="content-backdrop fade"></div>
         </div>
         </div>
 
+    {{-- ================= SCRIPT ALERT ================= --}}
     @push('scripts')
         <script>
             setTimeout(() => {

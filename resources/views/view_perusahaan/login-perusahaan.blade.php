@@ -1,5 +1,6 @@
 <x-pencari_kerja.layout>
 
+    {{-- ================= LOGIN PAGE WRAPPER ================= --}}
     <div class="login-page-wrapper">
         <div class="container-xxl">
             <div class="authentication-wrapper authentication-basic">
@@ -7,27 +8,31 @@
                     <div class="card px-sm-6 px-0">
                         <div class="card-body">
 
+                            {{-- ================= BRAND / HEADER ================= --}}
                             <div class="app-brand justify-content-center mb-6">
                                 <a class="app-brand-text demo text-heading fw-bold">
                                     PERUSAHAAN
                                 </a>
                             </div>
 
-                            {{-- Notifikasi Sukses --}}
+                            {{-- ================= NOTIFIKASI SUKSES ================= --}}
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                 </div>
                             @endif
 
+                            {{-- ================= FORM LOGIN ================= --}}
                             <form id="formAuthentication" class="mb-6" action="{{ route('perusahaan.login.post') }}" method="POST">
                                 @csrf
 
+                                {{-- EMAIL INPUT --}}
                                 <div class="mb-6">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control" name="email-username" placeholder="Masukan alamat email" autofocus />
                                 </div>
 
+                                {{-- PASSWORD INPUT --}}
                                 <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
@@ -38,22 +43,14 @@
                                     </div>
                                 </div>
 
-                                {{-- Notifikasi Error Login --}}
+                                {{-- NOTIFIKASI ERROR LOGIN --}}
                                 @if($errors->has('email-username'))
                                     <div class="alert alert-danger alert-dismissible fade show">
                                         {{ $errors->first('email-username') }}
                                     </div>
                                 @endif
 
-                                <div class="mb-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember-me">
-                                        <label class="form-check-label" for="remember-me">
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-
+                                {{-- SUBMIT BUTTON --}}
                                 <div class="mb-6">
                                     <button class="btn btn-primary w-100" type="submit">
                                         Login
@@ -61,6 +58,7 @@
                                 </div>
                             </form>
 
+                            {{-- ================= LINK REGISTRASI ================= --}}
                             <p class="text-center">
                                 <span>New on our platform?</span><br>
                                 <a class="btn btn-outline-primary mt-2" href="{{ route('perusahaan.registrasi') }}">
@@ -70,10 +68,12 @@
 
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    {{-- ================= FOOTER ================= --}}
     <footer class="content-footer footer bg-footer-theme">
         <div class="container-xxl">
             <div class="footer-container d-flex justify-content-between py-4">

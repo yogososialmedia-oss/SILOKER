@@ -1,32 +1,39 @@
 <x-pencari_kerja.layout>
 
+    <!-- Wrapper utama halaman login -->
     <div class="login-page-wrapper">
         <div class="container-xxl">
             <div class="authentication-wrapper authentication-basic">
                 <div>
+                    <!-- Card utama login -->
                     <div class="card px-sm-6 px-0">
                         <div class="card-body">
 
+                            <!-- Brand / Judul aplikasi -->
                             <div class="app-brand justify-content-center mb-6">
                                 <a class="app-brand-text demo text-heading fw-bold">
                                     PENCARI KERJA
                                 </a>
                             </div>
 
+                            <!-- Alert success saat login/register berhasil -->
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                 </div>
                             @endif
 
+                            <!-- Form login -->
                             <form id="formAuthentication" class="mb-6" action="{{ route('pencarikerja.login.post') }}" method="POST">
                                 @csrf
 
+                                <!-- Input email -->
                                 <div class="mb-6">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control" name="email-username" placeholder="Masukan alamat email" autofocus />
                                 </div>
 
+                                <!-- Input password dengan toggle visibility -->
                                 <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
@@ -37,21 +44,14 @@
                                     </div>
                                 </div>
 
+                                <!-- Error message untuk email -->
                                 @error('email-username')
                                     <div class="alert alert-danger alert-dismissible fade show">
                                         {{ $message }}
                                     </div>
                                 @enderror
 
-                                <div class="mb-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember-me">
-                                        <label class="form-check-label" for="remember-me">
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-
+                                <!-- Tombol Login -->
                                 <div class="mb-6">
                                     <button class="btn btn-primary w-100" type="submit">
                                         Login
@@ -59,6 +59,7 @@
                                 </div>
                             </form>
 
+                            <!-- Link register untuk pengguna baru -->
                             <p class="text-center">
                                 <span>New on our platform?</span><br>
                                 <a class="btn btn-outline-primary mt-2" href="{{ route('pencarikerja.register') }}">
@@ -68,10 +69,12 @@
 
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
         <div class="container-xxl">
             <div class="footer-container d-flex justify-content-between py-4">

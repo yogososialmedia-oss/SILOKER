@@ -1,11 +1,15 @@
 <x-admin_perusahaan.layout>
+    <!-- Wrapper utama halaman profile apply -->
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
+                <!-- PROFILE HEADER -->
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        <!-- Background header -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
 
+                        <!-- Foto profil dan info dasar pelamar -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
                                 ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) 
@@ -13,6 +17,7 @@
                                 class="rounded-circle mb-2" 
                                 style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 
+                            <!-- Nama dan NIM pelamar -->
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $apply->pencariKerja->nama_pencari_kerja }}
                             </h4>
@@ -22,6 +27,7 @@
                             </p>
                         </div>
 
+                        <!-- Navigation tab untuk profile / history apply -->
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
@@ -48,15 +54,19 @@
                     </div>
                 </div>
 
+                <!-- DETAIL PROFILE PELAMAR -->
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
+                            <!-- Deskripsi diri -->
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
                             <p class="mb-2 text-muted">{{ $apply->pencariKerja->deskripsi_diri ?? 'Belum ada deskripsi diri' }}</p>
 
+                            <!-- Alamat -->
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $apply->pencariKerja->alamat_pencari_kerja }}</p>
 
+                            <!-- LinkedIn -->
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
                             @if($apply->pencariKerja->linkedin)
                                 <a href="{{ $apply->pencariKerja->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3">
@@ -66,20 +76,24 @@
                                 <p class="text-muted mb-3">Belum ada profile Linked.In</p>
                             @endif
 
+                            <!-- Pendidikan terakhir -->
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
                             <p>{{ $apply->pencariKerja->pendidikan_terakhir ?? '-' }}</p>
 
+                            <!-- Email dan No. Telp -->
                             <h6 class="fw-bold mb-1">Email</h6>
                             <p class="mb-4">{{ $apply->pencariKerja->email_pencari_kerja }}</p>
 
                             <h6 class="fw-bold mb-1">No.Telp</h6>
                             <p>{{ $apply->pencariKerja->no_telp_pencari_kerja }}</p>
 
+                            <!-- CV -->
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#modalCV">
                                 Lihat CV
                             </button>
 
+                            <!-- Modal untuk menampilkan CV -->
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -104,6 +118,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer halaman admin -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -115,4 +131,4 @@
         </footer>
         <div class="content-backdrop fade"></div>
     </div>
-    </x-admin_perusahaan.layout>
+</x-admin_perusahaan.layout>

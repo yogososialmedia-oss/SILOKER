@@ -4,23 +4,28 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+
+                        {{-- HEADER CARD EDIT LOKER --}}
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="mb-0 fw-bold">EDIT LOKER</h5>
                             </div>
                         </div>
 
+                        {{-- FORM EDIT LOKER --}}
                         <div class="card-body">
                             <form action="{{ route('perusahaan.loker.update', $loker->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="row">
+                                    {{-- NAMA PERUSAHAAN (readonly) --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
                                         <input type="text" class="form-control" value="{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}" readonly>
                                     </div>
 
+                                    {{-- JABATAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Jabatan</label>
                                         <input name="jabatan" type="text" class="form-control" value="{{ old('jabatan', $loker->jabatan) }}">
@@ -29,6 +34,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- EMAIL PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
                                         <input name="email_perusahaan" type="text" class="form-control" value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
@@ -37,6 +43,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No. Telp</label>
                                         <input type="text" name="no_telp_perusahaan" class="form-control" value="{{ old('no_telp_perusahaan', $loker->perusahaanMitra->no_telp_perusahaan ?? '') }}">
@@ -45,6 +52,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- TANGGAL MULAI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
                                         <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" value="{{ old('tanggal_mulai_loker', \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('Y-m-d')) }}" min="{{ now()->toDateString() }}">
@@ -53,6 +61,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- TANGGAL SELESAI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
                                         <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control" value="{{ old('tanggal_berakhir_loker', \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('Y-m-d')) }}" min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
@@ -61,6 +70,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- POSTER LOKER --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker (Format: JPG / PNG · Maksimal 2MB)</label>
                                         <input name="poster_loker" type="file" class="form-control" id="posterLoker" accept="image/*">
@@ -70,6 +80,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Provinsi</label>
                                         <select name="provinsi" id="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
@@ -80,6 +91,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kabupaten</label>
                                         <select name="kabupaten" id="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
@@ -90,6 +102,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Kecamatan</label>
                                         <select name="kecamatan" id="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
@@ -100,6 +113,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- ALAMAT LENGKAP --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
                                         <input name="alamat" type="text" class="form-control" value="{{ old('alamat', $loker->alamat) }}">
@@ -108,6 +122,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- MODEL KERJA --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Model Kerja</label>
                                         <select name="model_kerja" class="form-select @error('model_kerja') is-invalid @enderror">
@@ -121,6 +136,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- TIPE LOKER --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tipe Loker</label>
                                         <select name="tipe_loker" class="form-select @error('tipe_loker') is-invalid @enderror">
@@ -133,6 +149,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- MINIMAL PENDIDIKAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Minimal Pendidikan</label>
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
@@ -151,6 +168,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- PETUNJUK PENULISAN KUALIFIKASI --}}
                                     <div class="col-12">
                                         <div class="alert alert-info mb-3">
                                             <strong>Petunjuk Penulisan Kualifikasi:</strong>
@@ -162,6 +180,7 @@
                                         </div>
                                     </div>
 
+                                    {{-- DESKRIPSI / KUALIFIKASI --}}
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Kualifikasi</label>
                                         <textarea id="editor" name="deskripsi" class="form-control" rows="6">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
@@ -170,6 +189,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- BUTTON SIMPAN --}}
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
                                     </div>
@@ -181,6 +201,7 @@
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -197,7 +218,7 @@
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                // TANGGAL SYNC
+                // ===== TANGGAL MULAI & SELESAI SYNC =====
                 const mulai = document.getElementById('tanggal_mulai');
                 const selesai = document.getElementById('tanggal_selesai');
 
@@ -220,7 +241,7 @@
                 syncTanggal();
                 mulai.addEventListener('change', syncTanggal);
 
-                // WILAYAH INDONESIA
+                // ===== WILAYAH INDONESIA (PROVINSI, KABUPATEN, KECAMATAN) =====
                 const provinsi = document.getElementById('provinsi');
                 const kabupaten = document.getElementById('kabupaten');
                 const kecamatan = document.getElementById('kecamatan');
@@ -297,6 +318,7 @@
         </script>
     @endpush
 
+    {{-- CKEDITOR UNTUK DESKRIPSI / KUALIFIKASI --}}
     @push('scripts')
         <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
         <script>

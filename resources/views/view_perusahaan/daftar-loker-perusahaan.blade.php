@@ -11,14 +11,17 @@
                         </div>
                     @endif
 
+                    {{-- CARD DAFTAR LOKER --}}
                     <div class="card pb-3">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
                             </div>
 
+                            {{-- FILTER & EXPORT --}}
                             <div class="d-flex align-items-center gap-2">
                                 <form action="{{ route('perusahaan.loker.export') }}" method="GET" class="d-flex align-items-center gap-2">
+                                    {{-- PILIH TAHUN --}}
                                     <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
                                         <option value="">Semua Tahun</option>
                                         @foreach($loker->pluck('tanggal_mulai_loker')->map(fn($t)=>\Carbon\Carbon::parse($t)->year)->unique()->sortDesc() as $tahun)
@@ -28,6 +31,7 @@
                                         @endforeach
                                     </select>
 
+                                    {{-- TOMBOL DOWNLOAD --}}
                                     <button type="submit" class="btn btn-success btn-sm px-3">
                                         Download
                                     </button>
@@ -35,6 +39,7 @@
                             </div>
                         </div>
 
+                        {{-- TABLE RESPONSIVE --}}
                         <div class="table-responsive">
                             <table class="table mb-0" id="daftar-loker-perusahaan">
                                 <thead>
@@ -50,15 +55,18 @@
                                 </thead>
                                 <tbody>
                                     @php
+                                        // Ambil data perusahaan login
                                         $perusahaan = auth()->guard('perusahaanmitra')->user();
                                     @endphp
 
+                                    {{-- LOOPING DATA LOKER --}}
                                     @foreach ($loker as $data_loker)
                                         <tr>
                                             <td>{{ $perusahaan->nama_perusahaan }}</td>
                                             <td>{{ $data_loker->jabatan }}</td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
+                                                {{-- STATUS LOKER --}}
                                                 @if($data_loker->status == 'open')
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
@@ -68,14 +76,17 @@
                                             <td>{{ $perusahaan->no_telp_perusahaan }}</td>
                                             <td>{{ $perusahaan->email_perusahaan }}</td>
                                             <td>
+                                                {{-- DROPDOWN OPSI --}}
                                                 <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                        {{-- EDIT LOKER --}}
                                                         <a class="dropdown-item" href="{{ route('perusahaan.loker.edit', $data_loker->id) }}">
                                                             <i class="icon-base bx bx-edit-alt me-2"></i>Edit
                                                         </a>
+                                                        {{-- LIHAT TAMPILAN LOKER --}}
                                                         <a class="dropdown-item" href="{{ route('perusahaan.loker.tampilan', $data_loker->id) }}">
                                                             <i class="icon-base bx bx-show me-2"></i>Tampilan Loker
                                                         </a>
@@ -88,10 +99,12 @@
                             </table>
                         </div>
                     </div>
+                    {{-- END CARD DAFTAR LOKER --}}
                 </div>
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -105,6 +118,7 @@
         <div class="content-backdrop fade"></div>
     </div>
 
+    {{-- SCRIPT HILANGKAN ALERT OTOMATIS --}}
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {

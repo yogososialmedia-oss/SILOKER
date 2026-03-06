@@ -3,11 +3,14 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 
-                {{-- PROFIL HEADER --}}
+                {{-- ================= PROFIL HEADER ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        
+                        {{-- BACKGROUND IMAGE --}}
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
                         
+                        {{-- FOTO & NAMA PELAMAR --}}
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
                                 ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) 
@@ -22,6 +25,7 @@
                             <p>{{ $apply->pencariKerja->nim }}</p>
                         </div>
 
+                        {{-- NAVIGASI TABS PROFIL --}}
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
@@ -30,12 +34,14 @@
                                     </button>
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                            {{-- TAB TENTANG SAYA --}}
                                             <li class="nav-item">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.profile-pelamar', $apply->id) ? 'active' : '' }}"
                                                    href="{{ route('perusahaan.apply.profile-pelamar', $apply->id) }}">
                                                     Tentang Saya
                                                 </a>
                                             </li>
+                                            {{-- TAB HISTORY APPLY --}}
                                             <li class="nav-item">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.history', $apply->id) ? 'active' : '' }}"
                                                    href="{{ route('perusahaan.apply.history', $apply->id) }}">
@@ -50,7 +56,7 @@
                     </div>
                 </div>
 
-                {{-- TABLE HISTORY --}}
+                {{-- ================= TABLE HISTORY APPLY ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="card-body">
@@ -76,6 +82,7 @@
                                                 <td>{{ $item->loker->jabatan ?? '-' }}</td>
                                                 <td>{{ $item->loker->tipe_loker ?? '-' }}</td>
                                                 <td>
+                                                    {{-- STATUS APPLY --}}
                                                     @if($item->status == 'pending')
                                                         <span class="badge bg-label-warning me-1">Pending</span>
                                                     @elseif($item->status == 'interview')
@@ -91,6 +98,7 @@
                                                 <td>{{ $item->loker->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
                                                 <td>{{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}</td>
                                                 <td>
+                                                    {{-- DROPDOWN OPSI --}}
                                                     <div class="dropdown">
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
@@ -104,6 +112,7 @@
                                                 </td>
                                             </tr>
                                         @empty
+                                            {{-- JIKA BELUM ADA HISTORY --}}
                                             <tr>
                                                 <td colspan="8" class="text-center text-muted">
                                                     Belum ada history apply
@@ -120,6 +129,7 @@
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -130,6 +140,7 @@
             </div>
         </footer>
 
+        {{-- BACKDROP --}}
         <div class="content-backdrop fade"></div>
     </div>
 </x-admin_perusahaan.layout>

@@ -1,12 +1,16 @@
 <x-pencari_kerja.layout>
+    <!-- Wrapper utama halaman profil pengguna -->
     <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 {{-- Header Banner & Profile --}}
                 <div class="col-12 mb-5">
+                    <!-- Card banner dan foto profile -->
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        <!-- Background banner -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
                         
+                        <!-- Foto profile dan info nama/NIM di tengah banner -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $user->foto_pencari_kerja
                                 ? asset('storage/profile/' . $user->foto_pencari_kerja)
@@ -17,16 +21,17 @@
                             <p>{{ $user->nim ?? '-' }}</p>
                         </div>
 
+                        <!-- Navbar menu profil -->
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
-                                    {{-- BURGER --}}
+                                    {{-- BURGER MENU UNTUK MOBILE --}}
                                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
-                                        {{-- MENU --}}
+                                        {{-- MENU NAVBAR --}}
                                         <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
                                             <li class="nav-item mb-2">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
@@ -40,7 +45,7 @@
                                             </li>
                                         </ul>
 
-                                        {{-- BUTTON --}}
+                                        {{-- BUTTON ACTION (Edit Profile & Logout) --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
                                             <li class="nav-item me-2 mb-2">
                                                 <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning">
@@ -65,9 +70,11 @@
 
                 {{-- Table History Apply --}}
                 <div class="col-12 mb-5">
+                    <!-- Card untuk tabel history apply -->
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
+                                <!-- Cek apakah ada data history apply -->
                                 @if($historyApplies->isEmpty())
                                     <p class="text-muted mt-3">Belum ada history apply</p>
                                 @else
@@ -87,11 +94,13 @@
                                         <tbody>
                                             @foreach($historyApplies as $apply)
                                                 <tr>
+                                                    <!-- Data apply per baris -->
                                                     <td>{{ $apply->tanggal_apply ? $apply->tanggal_apply->format('d/m/Y') : '-' }}</td>
                                                     <td>{{ $apply->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
                                                     <td>{{ $apply->loker->jabatan ?? '-' }}</td>
                                                     <td>{{ $apply->loker->tipe_loker ?? '-' }}</td>
                                                     <td>
+                                                        <!-- Status apply -->
                                                         @if($apply->status == 'pending')
                                                             <span class="badge bg-label-warning me-1">Pending</span>
                                                         @elseif($apply->status == 'interview')
@@ -105,6 +114,7 @@
                                                     <td>{{ $apply->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
                                                     <td>{{ $apply->perusahaanMitra->email_perusahaan ?? '-' }}</td>
                                                     <td>
+                                                        <!-- Opsi dropdown -->
                                                         <div class="dropdown">
                                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
@@ -139,6 +149,7 @@
             </div>
         </footer>
 
+        <!-- Backdrop untuk efek fade -->
         <div class="content-backdrop fade"></div>
     </div>
 </x-pencari_kerja.layout>
