@@ -1,14 +1,14 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="card pb-3">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
                                 <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
+
                                 <form action="{{ route('admin.loker.export') }}" method="GET">
                                     <div class="d-flex align-items-center gap-2">
                                         <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
@@ -19,7 +19,10 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <button type="submit" class="btn btn-success btn-sm px-3">Download</button>
+
+                                        <button type="submit" class="btn btn-success btn-sm px-3">
+                                            Download
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -51,6 +54,7 @@
                                                         \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->endOfDay()
                                                     );
                                                 @endphp
+
                                                 @if ($isOpen)
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
@@ -66,7 +70,8 @@
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item" href="{{ route('admin.loker.tampilan', $loker->id) }}">
-                                                            <i class="icon-base bx bx-show me-2"></i> Tampilan Loker
+                                                            <i class="icon-base bx bx-show me-2"></i>
+                                                            Tampilan Loker
                                                         </a>
                                                     </div>
                                                 </div>
@@ -80,19 +85,15 @@
                 </div>
             </div>
         </div>
-        <!-- / Content -->
-
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
-
         <div class="content-backdrop fade"></div>
     </div>
-    <!-- Content wrapper -->
-</x-admin_perusahaan.layout>
+    </x-admin_perusahaan.layout>

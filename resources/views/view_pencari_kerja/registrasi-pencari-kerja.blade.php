@@ -9,6 +9,7 @@
                                 <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
                             </div>
                         </div>
+
                         <div class="card-body">
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,6 +21,7 @@
                             <form action="{{ route('pencarikerja.register.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+
                                     {{-- NAMA --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
@@ -32,7 +34,7 @@
                                     {{-- NIM --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
-                                        <input name="nim" value="{{ old('nim') }}" class="form-control" placeholder="Tambahkan NIM">
+                                        <input name="nim" value="{{ old('nim') }}" class="form-control" placeholder="Tambahkan NIM ">
                                     </div>
 
                                     {{-- NO TELP --}}
@@ -57,14 +59,14 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
-                                            @error('pendidikan_terakhir')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
                                             <option value="">Pilih Pendidikan</option>
                                             @foreach (['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
                                                 <option value="{{ $p }}" {{ old('pendidikan_terakhir') == $p ? 'selected' : '' }}>{{ $p }}</option>
                                             @endforeach
                                         </select>
+                                        @error('pendidikan_terakhir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     {{-- LINKEDIN --}}
@@ -75,16 +77,16 @@
 
                                     {{-- CV --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label"> Upload CV (Format: PDF · Maksimal 2MB) </label>
+                                        <label class="form-label">Upload CV (Format: PDF · Maksimal 2MB)</label>
                                         <input id="cvInput" name="cv" type="file" class="form-control file-input-unified" accept="application/pdf">
-                                        <small class="file-helper text-danger d-none" id="cvError"> Ukuran file terlalu besar. Maksimal 2MB. </small>
+                                        <small class="file-helper text-danger d-none" id="cvError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                     </div>
 
                                     {{-- FOTO --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label"> Foto Profile (Format: JPG / PNG · Maksimal 2MB) </label>
+                                        <label class="form-label">Foto Profile (Format: JPG / PNG · Maksimal 2MB)</label>
                                         <input id="fotoProfileInput" name="foto_pencari_kerja" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
-                                        <small class="file-helper text-danger d-none" id="fotoProfileError"> Ukuran file terlalu besar. Maksimal 2MB. </small>
+                                        <small class="file-helper text-danger d-none" id="fotoProfileError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                     </div>
 
                                     {{-- DESKRIPSI --}}
@@ -107,13 +109,12 @@
                                         <label class="form-label">Password</label>
                                         <input type="password" id="password" name="password_pencari_kerja" class="form-control @error('password_pencari_kerja') is-invalid @enderror" placeholder="Buat password">
                                         @error('password_pencari_kerja')
-                                            <div class="invalid-feedback d-block"> {{ $message }} </div>
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
 
-                                        <!-- CHECKBOX TOGGLE -->
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" id="showPassword">
-                                            <label class="form-check-label" for="showPassword"> Tampilkan password </label>
+                                            <label class="form-check-label" for="showPassword">Tampilkan password</label>
                                         </div>
 
                                         <ul class="list-unstyled mt-2 small" id="passwordRules">
@@ -127,7 +128,7 @@
 
                                     {{-- SUBMIT --}}
                                     <div class="col-12 text-end mt-3">
-                                        <button type="submit" class="btn btn-primary"> Registrasi </button>
+                                        <button type="submit" class="btn btn-primary">Registrasi</button>
                                     </div>
                                 </div>
                             </form>
@@ -137,18 +138,18 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0"> ©2026 Yogo & Wahyu </div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
-
-        <!-- Scripts -->
+        {{-- SCRIPTS --}}
         <script>
+            // Validasi Ukuran Foto
             document.getElementById('fotoProfileInput').addEventListener('change', function () {
                 const file = this.files[0];
                 const maxSize = 2 * 1024 * 1024;
@@ -161,20 +162,19 @@
                     error.classList.add('d-none');
                 }
             });
-        </script>
 
-        <script>
+            // Validasi Ukuran & Format CV
             document.getElementById('cvInput').addEventListener('change', function () {
                 const file = this.files[0];
                 const maxSize = 2 * 1024 * 1024;
                 const error = document.getElementById('cvError');
                 if (!file) return;
                 if (file.size > maxSize) {
+                    error.textContent = 'Ukuran file terlalu besar. Maksimal 2MB.';
                     error.classList.remove('d-none');
                     this.value = '';
                     return;
                 }
-                // validasi format PDF
                 if (file.type !== 'application/pdf') {
                     error.textContent = 'CV harus berformat PDF';
                     error.classList.remove('d-none');
@@ -183,12 +183,12 @@
                 }
                 error.classList.add('d-none');
             });
-        </script>
 
-        <script>
+            // Password Validation Rules
             document.addEventListener('DOMContentLoaded', function () {
                 const passwordInput = document.getElementById('password');
                 if (!passwordInput) return;
+
                 passwordInput.addEventListener('input', function () {
                     const value = this.value;
                     toggleRule('rule-length', value.length >= 8);
@@ -214,24 +214,13 @@
                     }
                 }
             });
-        </script>
 
-        <script>
+            // Toggle Show Password
             const passwordInput = document.getElementById('password');
             const checkbox = document.getElementById('showPassword');
             if (checkbox) {
                 checkbox.addEventListener('change', function () {
                     passwordInput.type = this.checked ? 'text' : 'password';
-                });
-            }
-            const toggle = document.getElementById('togglePassword');
-            if (toggle) {
-                toggle.addEventListener('click', function () {
-                    const icon = this.querySelector('i');
-                    const isPassword = passwordInput.type === 'password';
-                    passwordInput.type = isPassword ? 'text' : 'password';
-                    icon.classList.toggle('bx-hide', !isPassword);
-                    icon.classList.toggle('bx-show', isPassword);
                 });
             }
         </script>

@@ -9,6 +9,7 @@
                                 <h5 class="mb-0 fw-bold">REGISTRASI PERUSAHAAN</h5>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <form action="{{ route('perusahaan.registrasi') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -17,7 +18,7 @@
                                     {{-- NAMA PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
-                                        <input type="text" name="NamaPerusahaan" value="{{ old('NamaPerusahaan') }}" class="form-control @error('NamaPerusahaan') is-invalid @enderror" placeholder="Tambahakan nama perusahaan">
+                                        <input type="text" name="NamaPerusahaan" value="{{ old('NamaPerusahaan') }}" class="form-control @error('NamaPerusahaan') is-invalid @enderror" placeholder="Tambahkan nama perusahaan">
                                         @error('NamaPerusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -77,7 +78,7 @@
                                     {{-- ALAMAT --}}
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input type="text" name="Alamat" value="{{ old('Alamat') }}" class="form-control @error('Alamat') is-invalid @enderror" placeholder="Tambahkan alamat lengkap perusahaan seperti nama jalan atau lainya">
+                                        <input type="text" name="Alamat" value="{{ old('Alamat') }}" class="form-control @error('Alamat') is-invalid @enderror" placeholder="Tambahkan alamat lengkap perusahaan">
                                         @error('Alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -92,11 +93,13 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Logo --}}
+                                    {{-- LOGO --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Logo Perusahaan (Format: JPG / PNG · Maksimal 2MB)</label>
+                                        <label class="form-label">Logo Perusahaan (JPG / PNG · Maks 2MB)</label>
                                         <input id="logoInput" name="logo" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
-                                        <small class="file-helper text-danger d-none" id="logoError">Ukuran file terlalu besar. Maksimal 2MB.</small>
+                                        <small class="file-helper text-danger d-none" id="logoError">
+                                            Ukuran file terlalu besar. Maksimal 2MB.
+                                        </small>
                                     </div>
 
                                     {{-- TENTANG --}}
@@ -121,17 +124,16 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Password</label>
                                         <input type="password" id="password" name="Password" class="form-control @error('Password') is-invalid @enderror" placeholder="Buat password">
+                                        
                                         @error('Password')
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
 
-                                        <!-- CHECKBOX TOGGLE -->
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" id="showPassword">
                                             <label class="form-check-label" for="showPassword">Tampilkan password</label>
                                         </div>
 
-                                        <!-- PASSWORD RULES -->
                                         <ul class="list-unstyled mt-2 small" id="passwordRules">
                                             <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
                                             <li id="rule-upper" class="text-muted">Mengandung huruf besar</li>
@@ -140,22 +142,19 @@
                                             <li id="rule-symbol" class="text-muted">Mengandung simbol</li>
                                         </ul>
                                     </div>
+                                </div>
 
-                                    {{-- SUBMIT --}}
-                                    <div class="col-12 text-end mt-3">
-                                        <button type="submit" class="btn btn-primary px-4">Registrasi</button>
-                                    </div>
-
+                                {{-- SUBMIT --}}
+                                <div class="col-12 text-end mt-3">
+                                    <button type="submit" class="btn btn-primary px-4">Registrasi</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -163,25 +162,20 @@
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
+    </div>
 
-        <!-- Scripts -->
-        <script>
-            const oldProvinsi = "{{ old('Provinsi') }}";
-            const oldKabupaten = "{{ old('Kabupaten') }}";
-            const oldKecamatan = "{{ old('Kecamatan') }}";
-        </script>
+    <script>
+        const oldProvinsi = "{{ old('Provinsi') }}";
+        const oldKabupaten = "{{ old('Kabupaten') }}";
+        const oldKecamatan = "{{ old('Kecamatan') }}";
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const provinsiSelect = document.getElementById('provinsi');
-                const kabupatenSelect = document.getElementById('kabupaten');
-                const kecamatanSelect = document.getElementById('kecamatan');
+        document.addEventListener('DOMContentLoaded', function () {
+            const provinsiSelect = document.getElementById('provinsi');
+            const kabupatenSelect = document.getElementById('kabupaten');
+            const kecamatanSelect = document.getElementById('kecamatan');
 
-                // =====================
-                // LOAD PROVINSI
-                // =====================
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            // LOAD PROVINSI
+            fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
                 .then(res => res.json())
                 .then(data => {
                     let option = '<option value="">Pilih Provinsi</option>';
@@ -191,20 +185,14 @@
                     });
                     provinsiSelect.innerHTML = option;
 
-                    // Kalau ada old provinsi → load kabupaten otomatis
                     if (oldProvinsi) {
-                        const selectedOption = provinsiSelect.querySelector('option[selected]');
-                        if (selectedOption) {
-                            loadKabupaten(selectedOption.dataset.id);
-                        }
+                        const selectedOption = Array.from(provinsiSelect.options).find(opt => opt.value === oldProvinsi);
+                        if (selectedOption) loadKabupaten(selectedOption.dataset.id);
                     }
                 });
 
-                // =====================
-                // LOAD KABUPATEN FUNCTION
-                // =====================
-                function loadKabupaten(provinsiId) {
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
+            function loadKabupaten(provinsiId) {
+                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
                     .then(res => res.json())
                     .then(data => {
                         let option = '<option value="">Pilih Kabupaten</option>';
@@ -216,19 +204,14 @@
                         kabupatenSelect.disabled = false;
 
                         if (oldKabupaten) {
-                            const selectedOption = kabupatenSelect.querySelector('option[selected]');
-                            if (selectedOption) {
-                                loadKecamatan(selectedOption.dataset.id);
-                            }
+                            const selectedOption = Array.from(kabupatenSelect.options).find(opt => opt.value === oldKabupaten);
+                            if (selectedOption) loadKecamatan(selectedOption.dataset.id);
                         }
                     });
-                }
+            }
 
-                // =====================
-                // LOAD KECAMATAN FUNCTION
-                // =====================
-                function loadKecamatan(kabupatenId) {
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+            function loadKecamatan(kabupatenId) {
+                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
                     .then(res => res.json())
                     .then(data => {
                         let option = '<option value="">Pilih Kecamatan</option>';
@@ -239,35 +222,27 @@
                         kecamatanSelect.innerHTML = option;
                         kecamatanSelect.disabled = false;
                     });
-                }
+            }
 
-                // =====================
-                // EVENT MANUAL CHANGE
-                // =====================
-                provinsiSelect.addEventListener('change', function () {
-                    const provinsiId = this.selectedOptions[0]?.dataset.id;
-                    kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
-                    kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                    kabupatenSelect.disabled = true;
-                    kecamatanSelect.disabled = true;
-                    if (provinsiId) {
-                        loadKabupaten(provinsiId);
-                    }
-                });
-
-                kabupatenSelect.addEventListener('change', function () {
-                    const kabupatenId = this.selectedOptions[0]?.dataset.id;
-                    kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                    kecamatanSelect.disabled = true;
-                    if (kabupatenId) {
-                        loadKecamatan(kabupatenId);
-                    }
-                });
+            provinsiSelect.addEventListener('change', function () {
+                const provinsiId = this.selectedOptions[0]?.dataset.id;
+                kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
+                kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                kabupatenSelect.disabled = true;
+                kecamatanSelect.disabled = true;
+                if (provinsiId) loadKabupaten(provinsiId);
             });
-        </script>
 
-        <script>
-            document.getElementById('password').addEventListener('input', function () {
+            kabupatenSelect.addEventListener('change', function () {
+                const kabupatenId = this.selectedOptions[0]?.dataset.id;
+                kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                kecamatanSelect.disabled = true;
+                if (kabupatenId) loadKecamatan(kabupatenId);
+            });
+
+            // Password Validation
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function () {
                 const value = this.value;
                 toggleRule('rule-length', value.length >= 8);
                 toggleRule('rule-upper', /[A-Z]/.test(value));
@@ -281,35 +256,18 @@
                 if (isValid) {
                     el.classList.remove('text-muted');
                     el.classList.add('text-success');
-                    if (!el.textContent.startsWith('✔')) {
-                        el.textContent = '✔ ' + el.textContent;
-                    }
+                    if (!el.textContent.startsWith('✔')) el.textContent = '✔ ' + el.textContent;
                 } else {
                     el.classList.remove('text-success');
                     el.classList.add('text-muted');
                     el.textContent = el.textContent.replace('✔ ', '');
                 }
             }
-        </script>
 
-        <script>
-            const passwordInput = document.getElementById('password');
-            const checkbox = document.getElementById('showPassword');
-            if (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    passwordInput.type = this.checked ? 'text' : 'password';
-                });
-            }
-            const toggle = document.getElementById('togglePassword');
-            if (toggle) {
-                toggle.addEventListener('click', function () {
-                    const icon = this.querySelector('i');
-                    const isPassword = passwordInput.type === 'password';
-                    passwordInput.type = isPassword ? 'text' : 'password';
-                    icon.classList.toggle('bx-hide', !isPassword);
-                    icon.classList.toggle('bx-show', isPassword);
-                });
-            }
-        </script>
-    </div>
+            // Show Password
+            document.getElementById('showPassword').addEventListener('change', function () {
+                passwordInput.type = this.checked ? 'text' : 'password';
+            });
+        });
+    </script>
 </x-pencari_kerja.layout>

@@ -9,6 +9,7 @@
                                 <h5 class="mb-0 fw-bold">FORM APPLY</h5>
                             </div>
                         </div>
+
                         <div class="card-body">
                             @if(session('error'))
                                 <div class="alert alert-danger">
@@ -50,6 +51,7 @@
                                                     'Pendidikan Terakhir S3'
                                                 ];
                                             @endphp
+
                                             @foreach ($list as $pendidikan)
                                                 <option value="{{ $pendidikan }}" {{ old('pendidikan_terakhir', $pencari->pendidikan_terakhir) == $pendidikan ? 'selected' : '' }}>
                                                     {{ $pendidikan }}
@@ -90,7 +92,8 @@
                                     <strong>Perhatian:</strong><br>
                                     Lamaran pekerjaan ini akan menggunakan <strong>LinkedIn</strong> dan <strong>CV</strong> yang tersimpan di <strong>Profil Anda</strong>.<br>
                                     Pastikan data tersebut sudah versi terbaru. Jika belum, silakan 
-                                    <a href="{{ route('pencarikerja.profile.edit') }}" class="alert-link">perbarui profil terlebih dahulu</a> sebelum melamar.
+                                    <a href="{{ route('pencarikerja.profile.edit') }}" class="alert-link">perbarui profil terlebih dahulu</a> 
+                                    sebelum melamar.
                                 </div>
 
                                 <hr class="my-4">
@@ -100,7 +103,9 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Linked.In</label><br>
                                         @if($pencari->linkedin)
-                                            <a href="{{ $pencari->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm">Lihat Profil Linked.In</a>
+                                            <a href="{{ $pencari->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                                Lihat Profil Linked.In
+                                            </a>
                                         @else
                                             <span class="text-muted">Belum diisi di profil</span>
                                         @endif
@@ -110,7 +115,9 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Curriculum Vitae (CV)</label><br>
                                         @if($pencari->cv)
-                                            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCV">Lihat CV</button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCV">
+                                                Lihat CV
+                                            </button>
                                         @else
                                             <span class="text-muted">Belum upload CV</span>
                                         @endif
@@ -132,7 +139,9 @@
                                 </div>
 
                                 <div class="text-end">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">Apply</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                        Apply
+                                    </button>
                                 </div>
                             </form>
 
@@ -151,9 +160,11 @@
                                         <div class="modal-body pt-2">
                                             <p class="mb-0">
                                                 @if($pencari->cv)
-                                                    CV yang digunakan adalah CV yang ada pada profile Anda.<br>Apakah CV tersebut sudah versi terbaru?
+                                                    CV yang digunakan adalah CV yang ada pada profile Anda.<br>
+                                                    Apakah CV tersebut sudah versi terbaru?
                                                 @elseif(!$pencari->cv && $pencari->linkedin)
-                                                    Anda belum mengunggah CV.<br>Lamaran akan dikirim hanya menggunakan Linked.In.
+                                                    Anda belum mengunggah CV.<br>
+                                                    Lamaran akan dikirim hanya menggunakan Linked.In.
                                                 @else
                                                     Anda belum mengunggah CV atau Linked.In.
                                                 @endif
@@ -161,26 +172,32 @@
                                         </div>
                                         <div class="modal-footer">
                                             @if($pencari->cv || (!$pencari->cv && $pencari->linkedin))
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="button" class="btn btn-primary" onclick="document.getElementById('formApply').submit();">Ya, Lanjutkan</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Batal
+                                                </button>
+                                                <button type="button" class="btn btn-primary" onclick="document.getElementById('formApply').submit();">
+                                                    Ya, Lanjutkan
+                                                </button>
                                             @else
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                                    Tutup
+                                                </button>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                        </div> {{-- card-body --}}
-                    </div> {{-- card --}}
-                </div> {{-- col-12 --}}
-            </div> {{-- row --}}
-        </div> {{-- container --}}
-        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl py-4">
                 ©2026 Yogo & Wahyu
             </div>
         </footer>
-    </div> {{-- content-wrapper-user --}}
+    </div>
 </x-pencari_kerja.layout>

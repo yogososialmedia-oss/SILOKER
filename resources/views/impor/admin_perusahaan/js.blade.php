@@ -1,62 +1,29 @@
-<!-- ================= CORE JS ================= -->
-
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/jquery/jquery.js') }}"></script>
-
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/popper/popper.js') }}"></script>
 <script src="{{ asset('admin-perusahaan/assets/vendor/js/bootstrap.js') }}"></script>
-
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
 <script src="{{ asset('admin-perusahaan/assets/vendor/js/menu.js') }}"></script>
-
-<!-- endbuild -->
-
-
-<!-- ================= VENDORS JS ================= -->
-
 <script src="{{ asset('admin-perusahaan/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-
-
-<!-- ================= MAIN JS ================= -->
 
 <script src="{{ asset('admin-perusahaan/assets/js/main.js') }}"></script>
 
-
-<!-- ================= PAGE JS ================= -->
-
 <script src="{{ asset('admin-perusahaan/assets/js/dashboards-analytics.js') }}"></script>
 
-
-<!-- ================= GITHUB BUTTON ================= -->
-
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
-<!-- ================= DATATABLE ================= -->
 
 <script src="{{ asset('admin-perusahaan/assets/datatable/datatables.js') }}"></script>
 <script src="{{ asset('admin-perusahaan/assets/datatable/datatable-init.js') }}"></script>
 
-
-<!-- ================= CHART JS ================= -->
-
 <script src="{{ asset('admin-perusahaan/assets/chartjs/chart.umd.min.js') }}"></script>
 
 <script>
-    /* ================= GRAFIK LOKER ================= */
-
+    // Grafik Loker
     const data = {
-        labels: [
-            'Open',
-            'Close'
-        ],
+        labels: ['Open', 'Close'],
         datasets: [{
             label: 'Total',
             data: [50, 100],
-            backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-            ],
+            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
             hoverOffset: 4
         }]
     };
@@ -66,26 +33,15 @@
         data: data,
     };
 
-    new Chart(
-        document.getElementById('grafik_loker'),
-        config
-    );
+    new Chart(document.getElementById('grafik_loker'), config);
 
-
-    /* ================= GRAFIK INTERAKSI ================= */
-
+    // Grafik Interaksi
     const data2 = {
-        labels: [
-            'Tayangan',
-            'Apply'
-        ],
+        labels: ['Tayangan', 'Apply'],
         datasets: [{
             label: 'Total',
             data: [50, 10],
-            backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-            ],
+            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
             hoverOffset: 4
         }]
     };
@@ -95,8 +51,5 @@
         data: data2,
     };
 
-    new Chart(
-        document.getElementById('grafik_interaksi'),
-        config2
-    );
+    new Chart(document.getElementById('grafik_interaksi'), config2);
 </script>

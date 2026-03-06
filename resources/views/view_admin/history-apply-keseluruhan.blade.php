@@ -1,13 +1,12 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
+
                     <form action="{{ route('admin.apply.export.semua') }}" method="GET">
                         <div class="d-flex align-items-center gap-2">
                             <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
@@ -18,7 +17,10 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-success btn-sm px-3">Download</button>
+
+                            <button type="submit" class="btn btn-success btn-sm px-3">
+                                Download
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -52,16 +54,16 @@
                                         @switch($data_apply->status)
                                             @case('pending')
                                                 <span class="badge bg-label-warning">Pending</span>
-                                            @break
+                                                @break
                                             @case('interview')
                                                 <span class="badge bg-label-info">Interview</span>
-                                            @break
+                                                @break
                                             @case('ditolak')
                                                 <span class="badge bg-label-danger">Tidak Diterima</span>
-                                            @break
+                                                @break
                                             @case('diterima')
                                                 <span class="badge bg-label-success">Diterima</span>
-                                            @break
+                                                @break
                                         @endswitch
                                     </td>
                                     <td>
@@ -71,10 +73,10 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('admin.apply.profile', $data_apply->id) }}">
-                                                    <i class="icon-base bx bx-user-circle me-2"></i>Profile Pelamar
+                                                    <i class="icon-base bx bx-user-circle me-2"></i> Profile Pelamar
                                                 </a>
                                                 <a class="dropdown-item" href="{{ route('admin.apply.detail', $data_apply->id) }}">
-                                                    <i class="icon-base bx bx-show me-2"></i>Detail Apply
+                                                    <i class="icon-base bx bx-show me-2"></i> Detail Apply
                                                 </a>
                                             </div>
                                         </div>
@@ -87,11 +89,12 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex justify-content-between py-4 flex-md-row flex-column">
-                    <div>©2026 Yogo & Wahyu</div>
+                    <div>
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>

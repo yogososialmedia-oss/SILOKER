@@ -1,13 +1,12 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="mb-0 fw-bold">DAFTAR PERUSAHAAN</h5>
                     </div>
+
                     <form action="{{ route('admin.perusahaan.export') }}" method="GET">
                         <div class="d-flex align-items-center gap-2">
                             <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
@@ -18,7 +17,10 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-success btn-sm px-3">Download</button>
+
+                            <button type="submit" class="btn btn-success btn-sm px-3">
+                                Download
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -35,6 +37,7 @@
                                 <th>Opsi</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @foreach ($perusahaanMitra as $perusahaan)
                                 <tr>
@@ -46,6 +49,7 @@
                                         @php
                                             $status = strtolower($perusahaan->status_akun);
                                         @endphp
+
                                         @if ($status == 'pending')
                                             <span class="badge bg-label-warning">Pending</span>
                                         @elseif ($status == 'terverifikasi')
@@ -77,18 +81,15 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
-
         <div class="content-backdrop fade"></div>
     </div>
-    <!-- Content wrapper -->
-</x-admin_perusahaan.layout>
+    </x-admin_perusahaan.layout>

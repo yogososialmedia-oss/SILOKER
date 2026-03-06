@@ -21,22 +21,27 @@
                                     <label class="form-label">Nama Lengkap</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->nama_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->nim ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->pendidikan_terakhir ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->email_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" disabled>
@@ -91,18 +96,19 @@
 
                             {{-- ===== BACK BUTTON ===== --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('admin.history-apply', $loker->id) }}" class="btn btn-secondary">Kembali</a>
+                                <a href="{{ route('admin.history-apply', $loker->id) }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl py-4">
                 ©2026 Yogo & Wahyu
             </div>
         </footer>
     </div>
-</x-admin_perusahaan.layout>
+    </x-admin_perusahaan.layout>

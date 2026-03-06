@@ -2,6 +2,7 @@
     <div class="content-wrapper-user">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
+
                 {{-- ALERT --}}
                 @if(session('success'))
                     <div class="col-12">
@@ -23,9 +24,16 @@
                 <div class="col-12 mb-4">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
+
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ $user->foto_pencari_kerja ? asset('storage/profile/' . $user->foto_pencari_kerja) : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" class="rounded-circle mb-2" style="width:100px;height:100px;object-fit:cover;background:#fff;padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white"> {{ $user->nama_pencari_kerja }} </h4>
+                            <img src="{{ $user->foto_pencari_kerja
+                                ? asset('storage/profile/' . $user->foto_pencari_kerja)
+                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" 
+                                class="rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $user->nama_pencari_kerja }}
+                            </h4>
                             <p>{{ $user->nim }}</p>
                         </div>
                     </div>
@@ -45,22 +53,30 @@
                                         {{-- MENU --}}
                                         <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
                                             <li class="nav-item mb-2">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}"> Tentang Saya </a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
+                                                    Tentang Saya
+                                                </a>
                                             </li>
                                             <li class="nav-item mb-2">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}" href="{{ route('pencarikerja.history-apply') }}"> History Apply </a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.history-apply') ? 'active' : '' }}" href="{{ route('pencarikerja.history-apply') }}">
+                                                    History Apply
+                                                </a>
                                             </li>
                                         </ul>
 
                                         {{-- TOMBOL --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
                                             <li class="nav-item me-2 mb-2">
-                                                <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning"> Edit Profile </a>
+                                                <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning">
+                                                    Edit Profile
+                                                </a>
                                             </li>
                                             <li class="nav-item me-2 mb-2">
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-sm btn-danger"> Logout </button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        Logout
+                                                    </button>
                                                 </form>
                                             </li>
                                         </ul>
@@ -71,19 +87,21 @@
                     </div>
                 </div>
 
-                {{-- CARD DETAIL PROFILE --}}
+                {{-- DETAIL DATA PROFILE --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-2 text-muted"> {{ $user->deskripsi_diri ?? '-' }} </p>
+                            <p class="mb-2 text-muted">{{ $user->deskripsi_diri ?? '-' }}</p>
 
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $user->alamat_pencari_kerja ?? '-' }}</p>
 
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
                             @if($user->linkedin)
-                                <a href="{{ $user->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3"> Lihat Profil Linked.In </a>
+                                <a href="{{ $user->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3">
+                                    Lihat Profil Linked.In
+                                </a>
                             @else
                                 <p class="text-muted mb-3">Belum ada profile Linked.In</p>
                             @endif
@@ -99,12 +117,13 @@
 
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             @if($user->cv)
-                                <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#modalCV"> Lihat CV </button>
+                                <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#modalCV">
+                                    Lihat CV
+                                </button>
                             @else
                                 <p class="text-muted">Belum upload CV</p>
                             @endif
 
-                            <!-- MODAL CV -->
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -118,33 +137,34 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0"> ©2026 Yogo & Wahyu </div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
 
-        <script>
-            setTimeout(() => {
-                const alert = document.getElementById('autoAlert');
-                if (alert) {
-                    alert.classList.remove('show');
-                    alert.classList.add('fade');
-                    setTimeout(() => alert.remove(), 500);
-                }
-            }, 3000);
-        </script>
-
         <div class="content-backdrop fade"></div>
     </div>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('autoAlert');
+            if (alert) {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 3000);
+    </script>
 </x-pencari_kerja.layout>

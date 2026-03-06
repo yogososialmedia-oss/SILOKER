@@ -1,17 +1,26 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
+                {{-- PROFILE HEADER --}}
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
+                        
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-                            <img src="{{ $apply->pencariKerja->foto_pencari_kerja ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" class="rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
-                            <h4 class="fw-bold mb-0 text-white">{{ $apply->pencariKerja->nama_pencari_kerja }}</h4>
+                            <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
+                                ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) 
+                                : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}"
+                                class="rounded-circle mb-2"
+                                style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
+
+                            <h4 class="fw-bold mb-0 text-white">
+                                {{ $apply->pencariKerja->nama_pencari_kerja }}
+                            </h4>
+
                             <p>{{ $apply->pencariKerja->nim }}</p>
                         </div>
+
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
@@ -21,10 +30,14 @@
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                             <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('admin.apply.profile', $apply->id) ? 'active' : '' }}" href="{{ route('admin.apply.profile', $apply->id) }}">Tentang Saya</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('admin.apply.profile', $apply->id) ? 'active' : '' }}" href="{{ route('admin.apply.profile', $apply->id) }}">
+                                                    Tentang Saya
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('admin.apply.history', $apply->id) ? 'active' : '' }}" href="{{ route('admin.apply.history', $apply->id) }}">History Apply</a>
+                                                <a class="navbar-brand nav-underline {{ request()->routeIs('admin.apply.history', $apply->id) ? 'active' : '' }}" href="{{ route('admin.apply.history', $apply->id) }}">
+                                                    History Apply
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -34,6 +47,7 @@
                     </div>
                 </div>
 
+                {{-- HISTORY TABLE --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="card-body">
@@ -80,7 +94,7 @@
                                                         </button>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="{{ route('admin.profile-perusahaan', $item->loker->perusahaanMitra->id) }}">
-                                                                <i class="icon-base bx bx-user-circle me-2"></i>Profile Perusahaan
+                                                                <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
                                                             </a>
                                                         </div>
                                                     </div>
@@ -88,7 +102,9 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">Belum ada history apply</td>
+                                                <td colspan="8" class="text-center text-muted">
+                                                    Belum ada history apply
+                                                </td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -99,18 +115,15 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
-
         <div class="content-backdrop fade"></div>
     </div>
-    <!-- Content wrapper -->
-</x-admin_perusahaan.layout>
+    </x-admin_perusahaan.layout>

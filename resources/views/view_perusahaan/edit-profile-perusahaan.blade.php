@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="mb-0 fw-bold">EDIT PROFILE</h5>
@@ -16,7 +15,6 @@
                             @method('PUT')
 
                             <div class="row">
-
                                 {{-- Nama Perusahaan --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Perusahaan</label>
@@ -115,27 +113,27 @@
 
                                 {{-- Submit --}}
                                 <div class="col-12 text-end">
-                                    <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
+                                    <button type="submit" class="btn btn-warning">
+                                        Simpan Perubahan
+                                    </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
+                    <div class="mb-2 mb-md-0">
+                        ©2026 Yogo & Wahyu
+                    </div>
                 </div>
             </div>
         </footer>
 
-        <!-- / Footer -->
         @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -144,11 +142,13 @@
                 // =====================
                 const logoInput = document.getElementById('logoInput');
                 const logoError = document.getElementById('logoError');
+
                 if (logoInput) {
                     logoInput.addEventListener('change', function () {
                         const file = this.files[0];
                         const maxSize = 2 * 1024 * 1024;
                         if (!file) return;
+
                         if (file.size > maxSize) {
                             logoError.classList.remove('d-none');
                             this.value = '';
@@ -165,7 +165,6 @@
                 const kabupaten = document.getElementById('kabupaten');
                 const kecamatan = document.getElementById('kecamatan');
 
-                // VALUE LAMA (EDIT PROFILE)
                 const oldProvinsi = "{{ old('Provinsi', $info_perusahaan->provinsi ?? '') }}";
                 const oldKabupaten = "{{ old('Kabupaten', $info_perusahaan->kabupaten ?? '') }}";
                 const oldKecamatan = "{{ old('Kecamatan', $info_perusahaan->kecamatan ?? '') }}";
@@ -179,9 +178,7 @@
                             opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldProvinsi ? 'selected' : ''}>${item.name}</option>`;
                         });
                         provinsi.innerHTML = opt;
-                        if (oldProvinsi) {
-                            provinsi.dispatchEvent(new Event('change'));
-                        }
+                        if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
                     });
 
                 // LOAD KABUPATEN
@@ -191,7 +188,9 @@
                     kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
                     kabupaten.disabled = true;
                     kecamatan.disabled = true;
+
                     if (!provId) return;
+
                     fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provId}.json`)
                         .then(res => res.json())
                         .then(data => {
@@ -201,9 +200,7 @@
                             });
                             kabupaten.innerHTML = opt;
                             kabupaten.disabled = false;
-                            if (oldKabupaten) {
-                                kabupaten.dispatchEvent(new Event('change'));
-                            }
+                            if (oldKabupaten) kabupaten.dispatchEvent(new Event('change'));
                         });
                 });
 
@@ -212,7 +209,9 @@
                     const kabId = this.selectedOptions[0]?.dataset.id;
                     kecamatan.innerHTML = '<option value="">Pilih kecamatan</option>';
                     kecamatan.disabled = true;
+
                     if (!kabId) return;
+
                     fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabId}.json`)
                         .then(res => res.json())
                         .then(data => {

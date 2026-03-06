@@ -22,22 +22,27 @@
                                     <label class="form-label">Nama Lengkap</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->nama_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->nim ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->pendidikan_terakhir ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->email_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->no_telp_pencari_kerja ?? '-' }}" disabled>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input type="text" class="form-control" value="{{ $pelamar?->alamat_pencari_kerja ?? '-' }}" disabled>
@@ -83,8 +88,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body p-0">
-                                                <iframe src="{{ asset('storage/' . $pelamar->cv) }}" width="100%" height="600px" style="border:none;">
-                                                </iframe>
+                                                <iframe src="{{ asset('storage/' . $pelamar->cv) }}" width="100%" height="600px" style="border:none;"></iframe>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +97,9 @@
 
                             {{-- ===== BACK BUTTON ===== --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('perusahaan.apply', $loker->id) }}" class="btn btn-secondary">Kembali</a>
+                                <a href="{{ route('perusahaan.apply', $loker->id) }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
                             </div>
 
                         </div>
@@ -102,6 +108,7 @@
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl py-4">
                 ©2026 Yogo & Wahyu

@@ -1,20 +1,14 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="mb-0 fw-bold">INPUT LOKER</h5>
                             </div>
                         </div>
-
                         <div class="card-body">
                             <form action="{{ route('perusahaan.loker.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -23,16 +17,13 @@
                                     {{-- Nama Perusahaan --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
-                                        <input name="nama_perusahaan" type="text" class="form-control" 
-                                               value="{{ $info_perusahaan->nama_perusahaan ?? '' }}" readonly>
+                                        <input name="nama_perusahaan" type="text" class="form-control" value="{{ $info_perusahaan->nama_perusahaan ?? '' }}" readonly>
                                     </div>
 
                                     {{-- Jabatan --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Jabatan</label>
-                                        <input name="jabatan" type="text" 
-                                               class="form-control @error('jabatan') is-invalid @enderror" 
-                                               value="{{ old('jabatan') }}" placeholder="Tambahkan jabatan">
+                                        <input name="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan') }}" placeholder="Tambahkan jabatan">
                                         @error('jabatan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -41,9 +32,7 @@
                                     {{-- Email --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_perusahaan" type="email" 
-                                               class="form-control @error('email_perusahaan') is-invalid @enderror" 
-                                               value="{{ old('email_perusahaan', $info_perusahaan->email_perusahaan ?? '') }}">
+                                        <input name="email_perusahaan" type="email" class="form-control @error('email_perusahaan') is-invalid @enderror" value="{{ old('email_perusahaan', $info_perusahaan->email_perusahaan ?? '') }}">
                                         @error('email_perusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -52,9 +41,7 @@
                                     {{-- No Telp --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="no_telp_perusahaan" type="text" 
-                                               class="form-control @error('no_telp_perusahaan') is-invalid @enderror" 
-                                               value="{{ old('no_telp_perusahaan', $info_perusahaan->no_telp_perusahaan ?? '') }}">
+                                        <input name="no_telp_perusahaan" type="text" class="form-control @error('no_telp_perusahaan') is-invalid @enderror" value="{{ old('no_telp_perusahaan', $info_perusahaan->no_telp_perusahaan ?? '') }}">
                                         @error('no_telp_perusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -63,9 +50,7 @@
                                     {{-- Tanggal Mulai --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
-                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" 
-                                               class="form-control @error('tanggal_mulai_loker') is-invalid @enderror" 
-                                               min="{{ now()->toDateString() }}" value="{{ old('tanggal_mulai_loker') }}">
+                                        <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control @error('tanggal_mulai_loker') is-invalid @enderror" min="{{ now()->toDateString() }}" value="{{ old('tanggal_mulai_loker') }}">
                                         @error('tanggal_mulai_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -74,9 +59,7 @@
                                     {{-- Tanggal Selesai --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
-                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" 
-                                               class="form-control @error('tanggal_berakhir_loker') is-invalid @enderror" 
-                                               value="{{ old('tanggal_berakhir_loker') }}" disabled>
+                                        <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control @error('tanggal_berakhir_loker') is-invalid @enderror" value="{{ old('tanggal_berakhir_loker') }}" disabled>
                                         @error('tanggal_berakhir_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -85,9 +68,7 @@
                                     {{-- Poster --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
-                                        <input name="poster_loker" type="file" 
-                                               accept="image/png, image/jpeg, image/jpg" 
-                                               class="form-control @error('poster_loker') is-invalid @enderror">
+                                        <input name="poster_loker" type="file" accept="image/png, image/jpeg, image/jpg" class="form-control @error('poster_loker') is-invalid @enderror">
                                         <small class="text-muted">Format: JPG, JPEG, PNG (Max 2MB)</small>
                                         @error('poster_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -97,8 +78,7 @@
                                     {{-- Provinsi --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Provinsi</label>
-                                        <select id="provinsi" name="provinsi" 
-                                                class="form-select @error('provinsi') is-invalid @enderror">
+                                        <select id="provinsi" name="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
                                         </select>
                                         @error('provinsi')
@@ -109,8 +89,7 @@
                                     {{-- Kabupaten --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kabupaten</label>
-                                        <select id="kabupaten" name="kabupaten" 
-                                                class="form-select @error('kabupaten') is-invalid @enderror" disabled>
+                                        <select id="kabupaten" name="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
                                         </select>
                                         @error('kabupaten')
@@ -121,8 +100,7 @@
                                     {{-- Kecamatan --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kecamatan</label>
-                                        <select id="kecamatan" name="kecamatan" 
-                                                class="form-select @error('kecamatan') is-invalid @enderror" disabled>
+                                        <select id="kecamatan" name="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
                                         </select>
                                         @error('kecamatan')
@@ -133,10 +111,7 @@
                                     {{-- Alamat --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <input name="alamat" type="text" 
-                                               class="form-control @error('alamat') is-invalid @enderror" 
-                                               value="{{ old('alamat', $info_perusahaan->alamat_perusahaan ?? '') }}" 
-                                               placeholder="Tambahkan alamat lengkap perusahaan seperti nama jalan atau lainya">
+                                        <input name="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $info_perusahaan->alamat_perusahaan ?? '') }}" placeholder="Tambahkan alamat lengkap">
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -151,7 +126,7 @@
                                             <option value="Work From Office" {{ old('model_kerja') == 'Work From Office' ? 'selected' : '' }}>Work From Office</option>
                                             <option value="Hybrid" {{ old('model_kerja') == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                                         </select>
-                                        @error('model_kerja')
+                                        @error('model_kerja') 
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -187,14 +162,15 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Petunjuk Kualifikasi --}}
-                                    <div class="alert alert-info mb-3">
-                                        <strong>Petunjuk Penulisan Kualifikasi:</strong>
-                                        <ul class="mb-0 mt-2">
-                                            <li>Gunakan <strong>Heading 3 (H3)</strong> dan <strong>Bold</strong> untuk judul kualifikasi</li>
-                                            <li>Gunakan teks biasa untuk penjelasan/detail kualifikasi</li>
-                                            <li>Pisahkan setiap poin menggunakan <strong>baris baru atau bullet</strong> agar mudah dibaca</li>
-                                        </ul>
+                                    <div class="col-12">
+                                        <div class="alert alert-info mb-3">
+                                            <strong>Petunjuk Penulisan Kualifikasi:</strong>
+                                            <ul class="mb-0 mt-2">
+                                                <li>Gunakan <strong>Heading 3 (H3)</strong> dan <strong>Bold</strong> untuk judul kualifikasi</li>
+                                                <li>Gunakan teks biasa untuk penjelasan/detail kualifikasi</li>
+                                                <li>Pisahkan setiap poin menggunakan <strong>baris baru atau bullet</strong> agar mudah dibaca</li>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     {{-- Deskripsi --}}
@@ -206,22 +182,17 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-mb text-end">
+                                    <div class="col-12 text-end">
                                         <button type="submit" class="btn btn-primary">Upload</button>
                                     </div>
-
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- / Content -->
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -229,11 +200,9 @@
                 </div>
             </div>
         </footer>
-        <!-- / Footer -->
 
         <div class="content-backdrop fade"></div>
     </div>
-    <!-- Content wrapper -->
 
     @push('scripts')
         <script>
@@ -274,7 +243,6 @@
                 let oldKabupaten = "{{ old('kabupaten') }}";
                 let oldKecamatan = "{{ old('kecamatan') }}";
 
-                // LOAD PROVINSI
                 fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
                     .then(res => res.json())
                     .then(data => {
@@ -286,7 +254,7 @@
                             opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                         });
                         provinsi.innerHTML = opt;
-                        if (selectedProvId) { loadKabupaten(selectedProvId); }
+                        if (selectedProvId) loadKabupaten(selectedProvId);
                     });
 
                 function loadKabupaten(id) {
@@ -305,7 +273,7 @@
                             });
                             kabupaten.innerHTML = opt;
                             kabupaten.disabled = false;
-                            if (selectedKabId) { loadKecamatan(selectedKabId); }
+                            if (selectedKabId) loadKecamatan(selectedKabId);
                         });
                 }
 
@@ -339,24 +307,17 @@
                     oldKecamatan = '';
                     loadKecamatan(id);
                 });
-
             });
         </script>
-    @endpush
-
-    @push('scripts')
+        
         {{-- CKEditor 5 --}}
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
         <script>
             ClassicEditor
                 .create(document.querySelector('#editor'), {
-                    toolbar: [
-                        'heading', '|', 'bold', 'italic', 'underline', '|',
-                        'bulletedList', 'numberedList', '|', 'link', '|', 'undo', 'redo'
-                    ]
+                    toolbar: ['heading', '|', 'bold', 'italic', 'underline', '|', 'bulletedList', 'numberedList', '|', 'link', '|', 'undo', 'redo']
                 })
                 .catch(error => { console.error(error); });
         </script>
     @endpush
-
 </x-admin_perusahaan.layout>

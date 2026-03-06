@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{ url('/admin_perusahaan/assets/') }}" data-template="vertical-menu-template-free">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Career Center</title>
-    <meta name="description" content="" />
+    <meta name="description" content="" /> 
+    
     @include('impor.admin_perusahaan.css')
 </head>
+
 <body>
-    <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-            <!-- Layout container -->
             <x-admin_perusahaan.sidebar></x-admin_perusahaan.sidebar>
 
             <div class="layout-page">
-                <!-- Navbar -->
                 <nav class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center fixed-top navbar-blue-custom" id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
                         <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
@@ -39,11 +39,9 @@
                 </nav>
 
                 {{ $slot }}
-            </div>
-            <!-- / Layout page -->
-        </div>
 
-        <!-- Overlay -->
+            </div> </div>
+
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
@@ -51,4 +49,5 @@
     @stack('scripjs')
     @stack('scripts')
 </body>
+
 </html>

@@ -1,18 +1,12 @@
 <x-admin_perusahaan.layout>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
-
-        <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-
-            <!-- Card Daftar Apply -->
             <div class="card pb-3">
-
-                <!-- Card Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
+
                     <div class="d-flex align-items-center gap-2">
                         <form action="{{ route('perusahaan.apply.export') }}" method="GET" class="d-flex align-items-center gap-2">
                             <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
@@ -23,12 +17,14 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-success btn-sm px-3">Download</button>
+
+                            <button type="submit" class="btn btn-success btn-sm px-3">
+                                Download
+                            </button>
                         </form>
                     </div>
                 </div>
 
-                <!-- Table Daftar Apply -->
                 <div class="table-responsive">
                     <table class="table mb-0" id="table-apply">
                         <thead>
@@ -58,16 +54,16 @@
                                         @switch($data_apply->status)
                                             @case('pending')
                                                 <span class="badge bg-label-warning">Pending</span>
-                                            @break
+                                                @break
                                             @case('interview')
                                                 <span class="badge bg-label-info">Interview</span>
-                                            @break
+                                                @break
                                             @case('ditolak')
                                                 <span class="badge bg-label-danger">Tidak Diterima</span>
-                                            @break
+                                                @break
                                             @case('diterima')
                                                 <span class="badge bg-label-success">Diterima</span>
-                                            @break
+                                                @break
                                         @endswitch
                                     </td>
                                     <td>
@@ -75,17 +71,20 @@
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
+
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('perusahaan.apply.profile-pelamar', $data_apply->id) }}">
                                                     <i class="icon-base bx bx-user-circle me-2"></i> Profile Pelamar
                                                 </a>
+
                                                 <a class="dropdown-item" href="{{ route('perusahaan.detail-apply', $data_apply->id) }}">
                                                     <i class="icon-base bx bx-show me-2"></i> Detail Apply
                                                 </a>
+
                                                 <button type="button" class="dropdown-item btn-update-status" 
-                                                    data-id="{{ $data_apply->id }}" 
-                                                    data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}" 
-                                                    data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}" 
+                                                    data-id="{{ $data_apply->id }}"
+                                                    data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}"
+                                                    data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}"
                                                     data-bs-toggle="modal" data-bs-target="#modalCenter">
                                                     <i class="icon-base bx bx-edit-alt me-2"></i> Update Status
                                                 </button>
@@ -97,17 +96,12 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
-
         </div>
-        <!-- / Content -->
 
-        <!-- Modal Update Status -->
         <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <h5 class="modal-title fw-bold">Update Status</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -118,11 +112,10 @@
                         <input type="hidden" name="id_apply" id="apply_id">
 
                         <div class="modal-body">
-
                             <div class="col-12 mb-3">
                                 <div class="alert alert-info mb-0">
                                     <strong>Catatan:</strong><br>
-                                    Update status akan secara otomatis mengirimkan notifikasi melalui email kepada pelamar. Pastikan pesan yang Anda tulis di bawah ini sudah sesuai sebelum melakukan update status.
+                                    Update status akan secara otomatis mengirimkan notifikasi melalui email kepada pelamar.
                                 </div>
                             </div>
 
@@ -149,7 +142,7 @@
                                 @enderror
                             </div>
 
-                            {{-- INTERVIEW FIELDS --}}
+                            {{-- ================= INTERVIEW ================= --}}
                             <div id="interviewFields" style="display:none;">
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -162,20 +155,20 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Lokasi Interview</label>
-                                        <input type="text" name="google_maps" id="googleMapsInput" class="form-control" placeholder="https://maps.google.com/...">
+                                        <input type="text" name="google_maps" id="googleMapsInput" class="form-control">
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInput" class="form-control" placeholder="08xxxxxxxxxx">
+                                        <input type="text" name="no_telp" id="noTelpInput" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- DITERIMA FIELDS --}}
+                            {{-- ================= DITERIMA ================= --}}
                             <div id="acceptedFields" style="display:none;">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label">Tanggal Berkunjung ke Kantor</label>
+                                        <label class="form-label">Tanggal Berkunjung</label>
                                         <input type="date" name="tanggal_kunjungan" class="form-control" min="{{ date('Y-m-d') }}">
                                     </div>
                                     <div class="col-md-6">
@@ -184,27 +177,24 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Kantor</label>
-                                        <input type="text" name="google_maps" id="googleMapsInputAccepted" class="form-control" placeholder="https://maps.google.com/...">
+                                        <input type="text" name="google_maps" id="googleMapsInputAccepted" class="form-control">
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInputAccepted" class="form-control" placeholder="08xxxxxxxxxx">
+                                        <input type="text" name="no_telp" id="noTelpInputAccepted" class="form-control">
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Update Status</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex justify-content-between py-4 flex-md-row flex-column">
@@ -212,7 +202,6 @@
                 </div>
             </div>
         </footer>
-
         <div class="content-backdrop fade"></div>
     </div>
 
@@ -225,29 +214,29 @@
                 const interviewFields = document.getElementById('interviewFields');
                 const acceptedFields = document.getElementById('acceptedFields');
 
-                function toggleFields() {
-                    interviewFields.style.display = 'none';
-                    acceptedFields.style.display = 'none';
-                    if (statusSelect.value === 'interview') interviewFields.style.display = 'block';
-                    if (statusSelect.value === 'diterima') acceptedFields.style.display = 'block';
-                }
-
-                statusSelect.addEventListener('change', toggleFields);
-
                 const googleMapsInputInterview = document.getElementById('googleMapsInput');
                 const noTelpInputInterview = document.getElementById('noTelpInput');
                 const googleMapsInputAccepted = document.getElementById('googleMapsInputAccepted');
                 const noTelpInputAccepted = document.getElementById('noTelpInputAccepted');
+
+                function toggleFields() {
+                    interviewFields.style.display = (statusSelect.value === 'interview') ? 'block' : 'none';
+                    acceptedFields.style.display = (statusSelect.value === 'diterima') ? 'block' : 'none';
+                }
+
+                statusSelect.addEventListener('change', toggleFields);
 
                 buttons.forEach(btn => {
                     btn.addEventListener('click', function () {
                         applyIdInput.value = this.dataset.id;
                         const maps = this.dataset.maps ?? '';
                         const telp = this.dataset.telp ?? '';
+
                         googleMapsInputInterview.value = maps;
                         noTelpInputInterview.value = telp;
                         googleMapsInputAccepted.value = maps;
                         noTelpInputAccepted.value = telp;
+
                         statusSelect.value = '';
                         toggleFields();
                     });
@@ -255,5 +244,4 @@
             });
         </script>
     @endpush
-
 </x-admin_perusahaan.layout>

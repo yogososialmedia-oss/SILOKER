@@ -1,9 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a class="app-brand-link custom-brand-link">
-            <span class="custom-brand-text">
-                Career Center <span class="dot-beranda hero-exclamation">.</span>
-            </span>
+            <span class="custom-brand-text"> Career Center <span class="dot-beranda hero-exclamation">.</span> </span>
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
             <i class="bx bx-chevron-left d-block d-xl-none align-middle"></i>
@@ -23,13 +21,7 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs([
-                'admin.verifikasi-perusahaan', 
-                'admin.daftar-perusahaan', 
-                'admin.profile-perusahaan', 
-                'admin.detail-verifikasi-perusahaan', 
-                'admin.lowongan-kerja-perusahaan'
-            ]) ? 'active open' : '' }}">
+            <li class="menu-item {{ request()->routeIs(['admin.verifikasi-perusahaan', 'admin.daftar-perusahaan', 'admin.profile-perusahaan', 'admin.detail-verifikasi-perusahaan', 'admin.lowongan-kerja-perusahaan']) ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-buildings"></i>
                     <div>Perusahaan</div>
@@ -55,13 +47,7 @@
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->routeIs([
-                'admin.history-apply', 
-                'admin.apply.profile', 
-                'admin.apply.history', 
-                'admin.apply.detail', 
-                'admin.apply.loker'
-            ]) ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs('admin.history-apply', 'admin.apply.profile', 'admin.apply.history', 'admin.apply.detail', 'admin.apply.loker') ? 'active' : '' }}">
                 <a href="{{ route('admin.history-apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
                     <div>Daftar Apply</div>
@@ -97,13 +83,7 @@
                 </ul>
             </li>
 
-            <li class="menu-item {{ request()->routeIs([
-                'perusahaan.apply', 
-                'perusahaan.apply.loker', 
-                'perusahaan.apply.profile-pelamar', 
-                'perusahaan.apply.history', 
-                'perusahaan.detail-apply'
-            ]) ? 'active' : '' }}">
+            <li class="menu-item {{ request()->routeIs('perusahaan.apply', 'perusahaan.apply.loker', 'perusahaan.apply.profile-pelamar', 'perusahaan.apply.history', 'perusahaan.detail-apply') ? 'active' : '' }}">
                 <a href="{{ route('perusahaan.apply') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user-pin"></i>
                     <div>Daftar Apply</div>
