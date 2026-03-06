@@ -43,7 +43,7 @@ class LokerController extends Controller
         $authPerusahaan = Auth::guard('perusahaanmitra')->user();
         $validatedData = $request->validate([
             'email_perusahaan' => 'required|email',
-            'no_telp_perusahaan' => 'required|string',
+            'no_telp_perusahaan' => 'required|regex:/^[0-9]{10,15}$/',
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
             'tanggal_berakhir_loker' => 'required|date|after:tanggal_mulai_loker',
@@ -62,6 +62,7 @@ class LokerController extends Controller
             'email_perusahaan.email' => 'Format email tidak valid.',
 
             'no_telp_perusahaan.required' => 'Nomor telepon wajib diisi.',
+            'no_telp_perusahaan.regex' => 'Nomor telepon harus berupa angka dan 10-15 digit.',
 
             'jabatan.required' => 'Jabatan wajib diisi.',
 
@@ -152,7 +153,7 @@ class LokerController extends Controller
         $loker = Loker::where('id', $id)->where('id_perusahaan_mitra', $authPerusahaan->id)->firstOrFail();
         $validatedData = $request->validate([
             'email_perusahaan' => 'required|email',
-            'no_telp_perusahaan' => 'required|string',
+            'no_telp_perusahaan' => 'required|regex:/^[0-9]{10,15}$/',
             'jabatan' => 'required|string',
             'tanggal_mulai_loker' => 'required|date',
             'tanggal_berakhir_loker' => 'required|date|after:tanggal_mulai_loker',
@@ -171,6 +172,7 @@ class LokerController extends Controller
             'email_perusahaan.email' => 'Format email tidak valid.',
 
             'no_telp_perusahaan.required' => 'Nomor telepon wajib diisi.',
+            'no_telp_perusahaan.regex' => 'Nomor telepon harus berupa angka dan 10-15 digit.',
 
             'jabatan.required' => 'Jabatan wajib diisi.',
 

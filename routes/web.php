@@ -54,7 +54,7 @@ Route::middleware(['isPerusahaanMitra'])->group(function () {
         Route::put('/perusahaan/loker/update/{id}', [PerusahaanLokerController::class, 'update'])->name('perusahaan.loker.update');
         Route::post('/perusahaan/loker/store', [PerusahaanLokerController::class, 'store'])->name('perusahaan.loker.store');
         Route::get('/perusahaan/apply/history/{id}', [PerusahaanApplyController::class, 'showHistoryApply'])->name('perusahaan.apply.history');
-        Route::post('/perusahaan/apply/update-status/{id}',[PerusahaanApplyController::class, 'updateStatus'])->name('perusahaan.apply.update-status');
+        Route::post('/perusahaan/apply/update-status',[PerusahaanApplyController::class, 'updateStatus'])->name('perusahaan.apply.update-status');
         Route::get('/perusahaan/apply/export', [PerusahaanApplyController::class, 'exportExcelPerusahaan'])->name('perusahaan.apply.export');
         Route::get('/perusahaan/loker/export', [PerusahaanLokerController::class, 'exportExcel'])->name('perusahaan.loker.export');
         Route::get('/perusahaan/apply/export/{id_loker}', [PerusahaanApplyController::class, 'exportPerLoker'])->name('perusahaan.apply.export.perloker');
