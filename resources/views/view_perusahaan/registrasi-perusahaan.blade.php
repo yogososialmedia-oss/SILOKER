@@ -4,12 +4,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        {{-- ================= CARD HEADER ================= --}}
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="mb-0 fw-bold">REGISTRASI PERUSAHAAN</h5>
                             </div>
                         </div>
 
+                        {{-- ================= FORM REGISTRASI PERUSAHAAN ================= --}}
                         <div class="card-body">
                             <form action="{{ route('perusahaan.registrasi') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -33,7 +35,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- NO TELP --}}
+                                    {{-- NO TELEPON --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No Telepon</label>
                                         <input type="text" name="NoTelp" value="{{ old('NoTelp') }}" class="form-control @error('NoTelp') is-invalid @enderror" placeholder="Tambahkan nomor telepon perusahaan">
@@ -93,7 +95,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- LOGO --}}
+                                    {{-- LOGO PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Logo Perusahaan (JPG / PNG · Maks 2MB)</label>
                                         <input id="logoInput" name="logo" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
@@ -102,7 +104,7 @@
                                         </small>
                                     </div>
 
-                                    {{-- TENTANG --}}
+                                    {{-- TENTANG PERUSAHAAN --}}
                                     <div class="col-12 mb-3">
                                         <label class="form-label">Tentang Perusahaan</label>
                                         <textarea name="TentangPerusahaan" rows="4" class="form-control @error('TentangPerusahaan') is-invalid @enderror">{{ old('TentangPerusahaan') }}</textarea>
@@ -129,11 +131,13 @@
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
 
+                                        {{-- SHOW PASSWORD CHECKBOX --}}
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" id="showPassword">
                                             <label class="form-check-label" for="showPassword">Tampilkan password</label>
                                         </div>
 
+                                        {{-- PASSWORD RULES --}}
                                         <ul class="list-unstyled mt-2 small" id="passwordRules">
                                             <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
                                             <li id="rule-upper" class="text-muted">Mengandung huruf besar</li>
@@ -144,7 +148,7 @@
                                     </div>
                                 </div>
 
-                                {{-- SUBMIT --}}
+                                {{-- SUBMIT BUTTON --}}
                                 <div class="col-12 text-end mt-3">
                                     <button type="submit" class="btn btn-primary px-4">Registrasi</button>
                                 </div>
@@ -155,6 +159,7 @@
             </div>
         </div>
 
+        {{-- ================= FOOTER ================= --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -164,7 +169,9 @@
         </footer>
     </div>
 
+    {{-- ================= SCRIPT DEPENDENSI ================= --}}
     <script>
+        // Old values for form repopulation
         const oldProvinsi = "{{ old('Provinsi') }}";
         const oldKabupaten = "{{ old('Kabupaten') }}";
         const oldKecamatan = "{{ old('Kecamatan') }}";
@@ -174,7 +181,7 @@
             const kabupatenSelect = document.getElementById('kabupaten');
             const kecamatanSelect = document.getElementById('kecamatan');
 
-            // LOAD PROVINSI
+            // LOAD PROVINSI DARI API
             fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
                 .then(res => res.json())
                 .then(data => {
@@ -191,6 +198,7 @@
                     }
                 });
 
+            // LOAD KABUPATEN SESUAI PROVINSI
             function loadKabupaten(provinsiId) {
                 fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
                     .then(res => res.json())
@@ -210,6 +218,7 @@
                     });
             }
 
+            // LOAD KECAMATAN SESUAI KABUPATEN
             function loadKecamatan(kabupatenId) {
                 fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
                     .then(res => res.json())
@@ -224,6 +233,7 @@
                     });
             }
 
+            // EVENT CHANGE PROVINSI
             provinsiSelect.addEventListener('change', function () {
                 const provinsiId = this.selectedOptions[0]?.dataset.id;
                 kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>';
@@ -233,6 +243,7 @@
                 if (provinsiId) loadKabupaten(provinsiId);
             });
 
+            // EVENT CHANGE KABUPATEN
             kabupatenSelect.addEventListener('change', function () {
                 const kabupatenId = this.selectedOptions[0]?.dataset.id;
                 kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
@@ -240,7 +251,7 @@
                 if (kabupatenId) loadKecamatan(kabupatenId);
             });
 
-            // Password Validation
+            // ================= VALIDASI PASSWORD =================
             const passwordInput = document.getElementById('password');
             passwordInput.addEventListener('input', function () {
                 const value = this.value;
@@ -264,7 +275,7 @@
                 }
             }
 
-            // Show Password
+            // SHOW/HIDE PASSWORD
             document.getElementById('showPassword').addEventListener('change', function () {
                 passwordInput.type = this.checked ? 'text' : 'password';
             });

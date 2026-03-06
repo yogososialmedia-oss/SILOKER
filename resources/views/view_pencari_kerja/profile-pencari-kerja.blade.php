@@ -3,7 +3,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
 
-                {{-- ALERT --}}
+                {{-- ALERT SUCCESS --}}
                 @if(session('success'))
                     <div class="col-12">
                         <div id="autoAlert" class="alert alert-success alert-dismissible show mb-4">
@@ -12,6 +12,7 @@
                     </div>
                 @endif
 
+                {{-- ALERT ERROR --}}
                 @if(session('error'))
                     <div class="col-12">
                         <div class="alert alert-danger alert-dismissible show">
@@ -20,11 +21,13 @@
                     </div>
                 @endif
 
-                {{-- CARD HEADER PROFILE --}}
+                {{-- CARD HEADER PROFILE USER --}}
                 <div class="col-12 mb-4">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        <!-- BACKGROUND IMAGE CARD -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">
 
+                        <!-- FOTO & NAMA USER DIATAS CARD -->
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
                             <img src="{{ $user->foto_pencari_kerja
                                 ? asset('storage/profile/' . $user->foto_pencari_kerja)
@@ -45,12 +48,13 @@
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
+                                    <!-- TOGGLER UNTUK RESPONSIVE -->
                                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProfileUser">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbarProfileUser">
-                                        {{-- MENU --}}
+                                        {{-- MENU NAVBAR --}}
                                         <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
                                             <li class="nav-item mb-2">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('pencarikerja.profile') ? 'active' : '' }}" href="{{ route('pencarikerja.profile') }}">
@@ -64,7 +68,7 @@
                                             </li>
                                         </ul>
 
-                                        {{-- TOMBOL --}}
+                                        {{-- TOMBOL EDIT & LOGOUT --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
                                             <li class="nav-item me-2 mb-2">
                                                 <a href="{{ route('pencarikerja.profile.edit') }}" class="btn btn-sm btn-warning">
@@ -91,12 +95,15 @@
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
+                            <!-- TENTANG SAYA -->
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
                             <p class="mb-2 text-muted">{{ $user->deskripsi_diri ?? '-' }}</p>
 
+                            <!-- ALAMAT -->
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $user->alamat_pencari_kerja ?? '-' }}</p>
 
+                            <!-- LINKEDIN -->
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
                             @if($user->linkedin)
                                 <a href="{{ $user->linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm mb-3">
@@ -106,17 +113,22 @@
                                 <p class="text-muted mb-3">Belum ada profile Linked.In</p>
                             @endif
 
+                            <!-- PENDIDIKAN -->
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
                             <p>{{ $user->pendidikan_terakhir ?? '-' }}</p>
 
+                            <!-- EMAIL -->
                             <h6 class="fw-bold mb-1">Email</h6>
                             <p class="mb-4">{{ $user->email_pencari_kerja }}</p>
 
+                            <!-- NO TELP -->
                             <h6 class="fw-bold mb-1">No.Telp</h6>
                             <p>{{ $user->no_telp_pencari_kerja ?? '-' }}</p>
 
+                            <!-- CV -->
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             @if($user->cv)
+                                <!-- BUTTON UNTUK BUKA MODAL CV -->
                                 <button type="button" class="btn btn-outline-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#modalCV">
                                     Lihat CV
                                 </button>
@@ -124,6 +136,7 @@
                                 <p class="text-muted">Belum upload CV</p>
                             @endif
 
+                            <!-- MODAL CV -->
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -154,9 +167,11 @@
             </div>
         </footer>
 
+        <!-- BACKDROP EFFECT -->
         <div class="content-backdrop fade"></div>
     </div>
 
+    {{-- SCRIPT ALERT OTOMATIS HILANG --}}
     <script>
         setTimeout(() => {
             const alert = document.getElementById('autoAlert');

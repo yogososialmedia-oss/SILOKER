@@ -3,14 +3,18 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-12">
+                    {{-- CARD REGISTRASI PENCARI KERJA --}}
                     <div class="card">
+                        {{-- HEADER CARD --}}
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="mb-0 fw-bold">REGISTRASI PENCARI KERJA</h5>
                             </div>
                         </div>
 
+                        {{-- BODY CARD --}}
                         <div class="card-body">
+                            {{-- ALERT SUCCESS --}}
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
@@ -18,11 +22,12 @@
                                 </div>
                             @endif
 
+                            {{-- FORM REGISTRASI --}}
                             <form action="{{ route('pencarikerja.register.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
 
-                                    {{-- NAMA --}}
+                                    {{-- NAMA LENGKAP --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Lengkap</label>
                                         <input name="nama_pencari_kerja" value="{{ old('nama_pencari_kerja') }}" class="form-control @error('nama_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan nama lengkap anda">
@@ -37,7 +42,7 @@
                                         <input name="nim" value="{{ old('nim') }}" class="form-control" placeholder="Tambahkan NIM ">
                                     </div>
 
-                                    {{-- NO TELP --}}
+                                    {{-- NO TELEPON --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No Telepon</label>
                                         <input name="no_telp_pencari_kerja" value="{{ old('no_telp_pencari_kerja') }}" class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan nomor telepon">
@@ -55,7 +60,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- PENDIDIKAN --}}
+                                    {{-- PENDIDIKAN TERAKHIR --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Pendidikan Terakhir</label>
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
@@ -75,21 +80,21 @@
                                         <input name="linkedin" value="{{ old('linkedin') }}" class="form-control" placeholder="Tambahkan link profile Linked.In">
                                     </div>
 
-                                    {{-- CV --}}
+                                    {{-- UPLOAD CV --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Upload CV (Format: PDF · Maksimal 2MB)</label>
                                         <input id="cvInput" name="cv" type="file" class="form-control file-input-unified" accept="application/pdf">
                                         <small class="file-helper text-danger d-none" id="cvError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                     </div>
 
-                                    {{-- FOTO --}}
+                                    {{-- FOTO PROFILE --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Foto Profile (Format: JPG / PNG · Maksimal 2MB)</label>
                                         <input id="fotoProfileInput" name="foto_pencari_kerja" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
                                         <small class="file-helper text-danger d-none" id="fotoProfileError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                     </div>
 
-                                    {{-- DESKRIPSI --}}
+                                    {{-- DESKRIPSI TENTANG DIRI --}}
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Tentang Saya</label>
                                         <textarea name="deskripsi_diri" class="form-control" rows="3">{{ old('deskripsi_diri') }}</textarea>
@@ -112,11 +117,13 @@
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
 
+                                        {{-- CHECKBOX SHOW PASSWORD --}}
                                         <div class="form-check mt-2">
                                             <input class="form-check-input" type="checkbox" id="showPassword">
                                             <label class="form-check-label" for="showPassword">Tampilkan password</label>
                                         </div>
 
+                                        {{-- PASSWORD RULES LIST --}}
                                         <ul class="list-unstyled mt-2 small" id="passwordRules">
                                             <li id="rule-length" class="text-muted">Minimal 8 karakter</li>
                                             <li id="rule-upper" class="text-muted">Mengandung huruf besar</li>
@@ -126,7 +133,7 @@
                                         </ul>
                                     </div>
 
-                                    {{-- SUBMIT --}}
+                                    {{-- BUTTON SUBMIT --}}
                                     <div class="col-12 text-end mt-3">
                                         <button type="submit" class="btn btn-primary">Registrasi</button>
                                     </div>
@@ -138,6 +145,7 @@
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -147,12 +155,13 @@
                 </div>
             </div>
         </footer>
-        {{-- SCRIPTS --}}
+
+        {{-- SCRIPT VALIDASI & PASSWORD --}}
         <script>
-            // Validasi Ukuran Foto
+            // VALIDASI UKURAN FOTO
             document.getElementById('fotoProfileInput').addEventListener('change', function () {
                 const file = this.files[0];
-                const maxSize = 2 * 1024 * 1024;
+                const maxSize = 2 * 1024 * 1024; // 2MB
                 const error = document.getElementById('fotoProfileError');
                 if (!file) return;
                 if (file.size > maxSize) {
@@ -163,10 +172,10 @@
                 }
             });
 
-            // Validasi Ukuran & Format CV
+            // VALIDASI UKURAN & FORMAT CV
             document.getElementById('cvInput').addEventListener('change', function () {
                 const file = this.files[0];
-                const maxSize = 2 * 1024 * 1024;
+                const maxSize = 2 * 1024 * 1024; // 2MB
                 const error = document.getElementById('cvError');
                 if (!file) return;
                 if (file.size > maxSize) {
@@ -184,7 +193,7 @@
                 error.classList.add('d-none');
             });
 
-            // Password Validation Rules
+            // PASSWORD VALIDATION RULES
             document.addEventListener('DOMContentLoaded', function () {
                 const passwordInput = document.getElementById('password');
                 if (!passwordInput) return;
@@ -215,7 +224,7 @@
                 }
             });
 
-            // Toggle Show Password
+            // TOGGLE SHOW PASSWORD
             const passwordInput = document.getElementById('password');
             const checkbox = document.getElementById('showPassword');
             if (checkbox) {

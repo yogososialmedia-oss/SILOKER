@@ -2,6 +2,7 @@
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
+                {{-- ================= CARD INPUT LOKER ================= --}}
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -10,17 +11,18 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            {{-- FORM INPUT LOKER --}}
                             <form action="{{ route('perusahaan.loker.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
 
-                                    {{-- Nama Perusahaan --}}
+                                    {{-- NAMA PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Nama Perusahaan</label>
                                         <input name="nama_perusahaan" type="text" class="form-control" value="{{ $info_perusahaan->nama_perusahaan ?? '' }}" readonly>
                                     </div>
 
-                                    {{-- Jabatan --}}
+                                    {{-- JABATAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Jabatan</label>
                                         <input name="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan') }}" placeholder="Tambahkan jabatan">
@@ -29,7 +31,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Email --}}
+                                    {{-- EMAIL PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
                                         <input name="email_perusahaan" type="email" class="form-control @error('email_perusahaan') is-invalid @enderror" value="{{ old('email_perusahaan', $info_perusahaan->email_perusahaan ?? '') }}">
@@ -38,7 +40,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- No Telp --}}
+                                    {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
                                         <input name="no_telp_perusahaan" type="text" class="form-control @error('no_telp_perusahaan') is-invalid @enderror" value="{{ old('no_telp_perusahaan', $info_perusahaan->no_telp_perusahaan ?? '') }}">
@@ -47,7 +49,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Tanggal Mulai --}}
+                                    {{-- TANGGAL MULAI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Mulai</label>
                                         <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control @error('tanggal_mulai_loker') is-invalid @enderror" min="{{ now()->toDateString() }}" value="{{ old('tanggal_mulai_loker') }}">
@@ -56,7 +58,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Tanggal Selesai --}}
+                                    {{-- TANGGAL SELESAI --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Tanggal Selesai</label>
                                         <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control @error('tanggal_berakhir_loker') is-invalid @enderror" value="{{ old('tanggal_berakhir_loker') }}" disabled>
@@ -65,7 +67,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Poster --}}
+                                    {{-- POSTER LOKER --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker</label>
                                         <input name="poster_loker" type="file" accept="image/png, image/jpeg, image/jpg" class="form-control @error('poster_loker') is-invalid @enderror">
@@ -75,7 +77,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Provinsi --}}
+                                    {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Provinsi</label>
                                         <select id="provinsi" name="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
@@ -86,7 +88,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Kabupaten --}}
+                                    {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kabupaten</label>
                                         <select id="kabupaten" name="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
@@ -97,7 +99,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Kecamatan --}}
+                                    {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Kecamatan</label>
                                         <select id="kecamatan" name="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
@@ -108,7 +110,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Alamat --}}
+                                    {{-- ALAMAT LENGKAP --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Alamat</label>
                                         <input name="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $info_perusahaan->alamat_perusahaan ?? '') }}" placeholder="Tambahkan alamat lengkap">
@@ -117,7 +119,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Model Kerja --}}
+                                    {{-- MODEL KERJA --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Model Kerja</label>
                                         <select name="model_kerja" class="form-select @error('model_kerja') is-invalid @enderror">
@@ -131,7 +133,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Tipe Loker --}}
+                                    {{-- TIPE LOKER --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Tipe Loker</label>
                                         <select name="tipe_loker" class="form-select @error('tipe_loker') is-invalid @enderror">
@@ -144,7 +146,7 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Minimal Pendidikan --}}
+                                    {{-- MINIMAL PENDIDIKAN --}}
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label">Minimal Pendidikan</label>
                                         <select name="minimal_pendidikan" class="form-select @error('minimal_pendidikan') is-invalid @enderror">
@@ -162,6 +164,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- PETUNJUK PENULISAN KUALIFIKASI --}}
                                     <div class="col-12">
                                         <div class="alert alert-info mb-3">
                                             <strong>Petunjuk Penulisan Kualifikasi:</strong>
@@ -173,7 +176,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- Deskripsi --}}
+                                    {{-- DESKRIPSI / KUALIFIKASI --}}
                                     <div class="col-md-12 mb-4">
                                         <label class="form-label">Kualifikasi</label>
                                         <textarea id="editor" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" rows="3">{{ old('deskripsi') }}</textarea>
@@ -182,6 +185,7 @@
                                         @enderror
                                     </div>
 
+                                    {{-- BUTTON SUBMIT --}}
                                     <div class="col-12 text-end">
                                         <button type="submit" class="btn btn-primary">Upload</button>
                                     </div>
@@ -193,6 +197,7 @@
             </div>
         </div>
 
+        {{-- ================= FOOTER ================= --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -201,6 +206,7 @@
             </div>
         </footer>
 
+        {{-- BACKDROP ================= --}}
         <div class="content-backdrop fade"></div>
     </div>
 
@@ -208,7 +214,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // ==========================================
-                // TANGGAL (SUDAH SUPPORT OLD)
+                // TANGGAL MULAI & SELESAI
                 // ==========================================
                 const mulai = document.getElementById('tanggal_mulai');
                 const selesai = document.getElementById('tanggal_selesai');
@@ -233,7 +239,7 @@
                 mulai.addEventListener('change', syncTanggal);
 
                 // ==========================================
-                // WILAYAH INDONESIA (SUPPORT OLD)
+                // WILAYAH INDONESIA (PROVINSI, KABUPATEN, KECAMATAN)
                 // ==========================================
                 const provinsi = document.getElementById('provinsi');
                 const kabupaten = document.getElementById('kabupaten');
@@ -310,7 +316,7 @@
             });
         </script>
         
-        {{-- CKEditor 5 --}}
+        {{-- ================= CKEDITOR 5 ================= --}}
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
         <script>
             ClassicEditor

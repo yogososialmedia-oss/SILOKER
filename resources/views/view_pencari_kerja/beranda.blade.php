@@ -1,32 +1,37 @@
 <x-pencari_kerja.layout>
+    <!-- Wrapper utama halaman beranda pencari kerja -->
     <div class="content-wrapper-user">
+        <!-- Section carousel lowongan -->
         <section class="py-5">
             <div class="container-fluid">
                 @if($lokers->count())
+                    <!-- Carousel bootstrap untuk lowongan -->
                     <div id="lokerCarousel" class="carousel slide" data-bs-ride="false">
                         <div class="carousel-inner">
                             @foreach($lokers->chunk(4) as $chunkIndex => $chunk)
+                                <!-- Item carousel (4 lowongan per slide) -->
                                 <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
                                     <div class="container">
                                         <div class="row justify-content-center">
                                             @foreach($chunk as $loker)
-                                                <div class="col-md-6 mb-4"> {{-- 2 kolom --}}
+                                                <div class="col-md-6 mb-4"> {{-- 2 kolom per row --}}
+                                                    <!-- Card lowongan -->
                                                     <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
                                                         class="text-decoration-none">
                                                         <div class="card h-100 loker-card-beranda position-relative">
-                                                            {{-- LINK STRETCHED --}}
+                                                            {{-- LINK STRETCHED agar card clickable --}}
                                                             <a href="{{ route('pencarikerja.loker.show', $loker->id) }}"
                                                                 class="stretched-link"></a>
 
                                                             <div class="card-body position-relative">
-                                                                {{-- TANGGAL --}}
+                                                                {{-- Tanggal mulai & berakhir lowongan --}}
                                                                 <p class="text-end fs-9 mb-2">
                                                                     {{ $loker->tanggal_mulai_loker->format('d M Y') }}
                                                                     -
                                                                     {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
                                                                 </p>
 
-                                                                {{-- HEADER --}}
+                                                                {{-- Header card: logo + nama perusahaan --}}
                                                                 <div class="d-flex align-items-start gap-3 mb-3">
                                                                     <img src="{{ $loker->perusahaanMitra->logo_url ?? asset('default.png') }}"
                                                                         style="width:60px; height:60px; object-fit:cover;"
@@ -48,19 +53,20 @@
                                                                             </a>
                                                                         </h6>
 
+                                                                        {{-- Tipe lowongan --}}
                                                                         <p class="mb-1 small">
                                                                             {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
                                                                         </p>
 
-                                                                        <p
-                                                                            class="d-flex align-items-center gap-1 mb-0 small text-muted">
+                                                                        {{-- Lokasi --}}
+                                                                        <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                                                             <i class="bx bx-location-plus"></i>
                                                                             <span>{{ $loker->kabupaten }}</span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
 
-                                                                {{-- JABATAN + STATUS --}}
+                                                                {{-- Jabatan + Status lowongan --}}
                                                                 <div class="d-flex align-items-center mb-3">
                                                                     <h5 class="mb-0 text-dark">
                                                                         {{ $loker->jabatan }}
@@ -75,7 +81,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                {{-- DETAIL --}}
+                                                                {{-- Detail model kerja & pendidikan minimal --}}
                                                                 <p class="d-flex align-items-start gap-2 mb-1">
                                                                     <i class="bx bx-buildings"></i>
                                                                     <span>{{ $loker->model_kerja }}</span>
@@ -96,6 +102,7 @@
                             @endforeach
                         </div>
 
+                        <!-- Kontrol navigasi carousel -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#lokerCarousel"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
@@ -106,6 +113,7 @@
                         </button>
                     </div>
                 @else
+                    <!-- Pesan jika tidak ada lowongan -->
                     <div class="text-center">
                         <p class="text-muted">Belum ada lowongan terbuka.</p>
                     </div>
@@ -113,10 +121,12 @@
             </div>
         </section>
 
+        <!-- Section Hero/Home -->
         <section id="home" class="home-beranda">
             <div class="container-fluid px-0">
                 <div class="container">
                     <div class="row align-items-center">
+                        <!-- Teks hero -->
                         <div class="col-lg-6 home-text-beranda">
                             <h1>
                                 FIND YOUR<br>
@@ -129,6 +139,7 @@
                                 yang tepat.
                             </p>
                         </div>
+                        <!-- Gambar hero -->
                         <div class="col-lg-6 text-center">
                             <img src="{{ asset('admin-perusahaan/assets/img/avatars/beranda1.png') }}"
                                 class="img-fluid hero-image-beranda">
@@ -138,8 +149,10 @@
             </div>
         </section>
 
+        <!-- Section About / Career Center -->
         <section id="about" class="about-career pt-12">
             <div class="container">
+                <!-- Box deskripsi Career Center -->
                 <div class="career-center-box mb-5 pb-4 border-bottom border-primary text-center">
                     <h3 class="fw-bold mb-4">CAREER CENTER</h3>
                     <div class="mx-auto" style="max-width: 850px;">
@@ -156,6 +169,7 @@
                     </div>
                 </div>
 
+                <!-- Informasi kampus & kontak -->
                 <div class="row">
                     <div class="col-lg-4 mb-4">
                         <h4 class="fw-bold mb-3">Alamat Kampus</h4>
@@ -185,8 +199,8 @@
 
                     <div class="col-lg-4 mb-4">
                         <h4 class="fw-bold mb-3">Bergabunglah Bersama Kami</h4>
+                        <!-- Social media links -->
                         <div class="social-icons">
-
                             <a href="https://siap.stikom-bali.ac.id/" target="_blank"
                                 class="d-flex align-items-center mb-2 text-decoration-none">
                                 <i class="bx bx-globe"></i> <span>www.siap.stikom-bali.ac.id</span>
@@ -216,13 +230,13 @@
                                 class="d-flex align-items-center mb-2 text-decoration-none">
                                 <i class="bx bxl-youtube"></i> <span>stikomerstv</span>
                             </a>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Footer utama -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex justify-content-between py-4">
@@ -232,14 +246,14 @@
         </footer>
     </div>
 
-    {{-- JS SCROLL --}}
+    {{-- Script JS untuk scroll dan menu active --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const menuLinks = document.querySelectorAll('.menu-beranda .nav-link');
             const sections = document.querySelectorAll('section');
             const offset = 70;
 
-            // ===== Klik menu #section =====
+            // ===== Klik menu untuk scroll ke section =====
             menuLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
@@ -261,7 +275,7 @@
                 });
             });
 
-            // ===== Scrollspy =====
+            // ===== Scrollspy untuk highlight menu saat scroll =====
             window.addEventListener('scroll', function () {
                 let scrollPos = window.scrollY + offset + 1;
                 sections.forEach(section => {
@@ -276,7 +290,7 @@
                 });
             });
 
-            // ===== Cek URL saat halaman load =====
+            // ===== Cek hash URL saat halaman load =====
             const currentPath = window.location.pathname;
             const currentHash = window.location.hash;
             menuLinks.forEach(link => {

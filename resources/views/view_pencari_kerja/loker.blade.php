@@ -2,8 +2,10 @@
     <div class="content-wrapper-user">
 
         <div class="container-xxl flex-grow-1 container-p-y">
+            <!-- FORM FILTER LOWONGAN -->
             <form method="GET" action="{{ route('pencarikerja.loker.index') }}">
                 <div class="row mb-4">
+                    <!-- FILTER PROVINSI -->
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Provinsi</label>
                         <select id="provinsi" name="provinsi" class="form-select">
@@ -11,6 +13,7 @@
                         </select>
                     </div>
 
+                    <!-- FILTER KABUPATEN -->
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Kabupaten</label>
                         <select id="kabupaten" name="kabupaten" class="form-select" disabled>
@@ -18,6 +21,7 @@
                         </select>
                     </div>
 
+                    <!-- FILTER KECAMATAN -->
                     <div class="col-md-4 mb-4">
                         <label class="form-label">Kecamatan</label>
                         <select id="kecamatan" name="kecamatan" class="form-select" disabled>
@@ -25,11 +29,13 @@
                         </select>
                     </div>
 
+                    <!-- FILTER JABATAN -->
                     <div class="col-md-3 mb-4">
                         <label class="form-label">Jabatan</label>
                         <input type="text" name="jabatan" value="{{ $filters['jabatan'] ?? '' }}" class="form-control" placeholder="Masukan posisi jabatan">
                     </div>
 
+                    <!-- FILTER TIPE LOWONGAN -->
                     <div class="col-md-3 mb-4">
                         <label class="form-label">Tipe Lowongan</label>
                         <select name="tipe_loker" class="form-select">
@@ -43,6 +49,7 @@
                         </select>
                     </div>
 
+                    <!-- FILTER MODEL KERJA -->
                     <div class="col-md-3 mb-4">
                         <label class="form-label">Model Kerja</label>
                         <select name="model_kerja" class="form-select">
@@ -59,6 +66,7 @@
                         </select>
                     </div>
 
+                    <!-- FILTER MINIMAL PENDIDIKAN -->
                     <div class="col-md-3 mb-4">
                         <label class="form-label">Minimal Pendidikan</label>
                         <select name="minimal_pendidikan" class="form-select">
@@ -88,6 +96,7 @@
                     </div>
                 </div>
 
+                <!-- BUTTON RESET & CARI LOWONGAN -->
                 <div class="row mb-5">
                     <div class="col-12 d-flex justify-content-end gap-3">
                         <a href="{{ route('pencarikerja.loker.index', ['reset' => 1]) }}" class="btn btn-secondary px-4">
@@ -100,42 +109,46 @@
                 </div>
             </form>
 
+            <!-- LIST LOWONGAN -->
             <div class="row">
                 @forelse($lokers as $loker)
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
-                            {{-- LINK --}}
+                            {{-- LINK CARD KE DETAIL LOWONGAN --}}
                             <a href="{{ route('pencarikerja.loker.show', $loker->id) }}?from=beranda&{{ http_build_query(request()->query()) }}" class="stretched-link"></a>
 
                             <div class="card-body position-relative">
-                                {{-- TANGGAL --}}
+                                {{-- TANGGAL LOWONGAN --}}
                                 <p class="text-end fs-9 mb-2">
                                     {{ $loker->tanggal_mulai_loker->format('d M Y') }}
                                     -
                                     {{ $loker->tanggal_berakhir_loker->format('d M Y') }}
                                 </p>
 
-                                {{-- HEADER --}}
+                                {{-- HEADER CARD --}}
                                 <div class="d-flex align-items-start gap-3 mb-3">
+                                    <!-- LOGO PERUSAHAAN -->
                                     <img src="{{ $loker->perusahaanMitra->logo_url }}" style="width:60px; height:60px; object-fit:cover;" class="rounded shadow-sm" alt="">
 
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
-                                            {{-- Nama Perusahaan --}}
+                                            {{-- NAMA PERUSAHAAN --}}
                                             <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}" class="text-dark link-primary fw-bold position-relative z-3">
                                                 {{ $loker->perusahaanMitra->nama_perusahaan }}
                                             </a>
 
-                                            {{-- Icon Info --}}
+                                            {{-- ICON INFO --}}
                                             <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
                                                 i
                                             </a>
                                         </h6>
 
+                                        {{-- TIPE LOWONGAN --}}
                                         <p class="mb-1 small">
                                             {{ $loker->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}
                                         </p>
 
+                                        {{-- LOKASI --}}
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                             <i class="bx bx-location-plus"></i>
                                             <span>{{ $loker->kabupaten }}</span>
@@ -143,7 +156,7 @@
                                     </div>
                                 </div>
 
-                                {{-- JABATAN + STATUS --}}
+                                {{-- JABATAN + STATUS LOWONGAN --}}
                                 <div class="d-flex align-items-center mb-3">
                                     <h5 class="mb-0">{{ $loker->jabatan }}</h5>
                                     <div class="ms-auto pe-3">
@@ -155,7 +168,7 @@
                                     </div>
                                 </div>
 
-                                {{-- DETAIL --}}
+                                {{-- DETAIL MODEL KERJA & PENDIDIKAN --}}
                                 <p class="d-flex align-items-start gap-2 mb-1">
                                     <i class="bx bx-buildings"></i>
                                     <span>{{ $loker->model_kerja }}</span>
@@ -178,26 +191,31 @@
             @if ($lokers->lastPage() > 1)
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
+                        <!-- FIRST PAGE -->
                         <li class="page-item {{ $lokers->onFirstPage() ? 'disabled' : '' }}">
                             <a class="page-link" href="{{ $lokers->url(1) }}">
                                 <i class="icon-base bx bx-chevrons-left icon-sm"></i>
                             </a>
                         </li>
+                        <!-- PREVIOUS PAGE -->
                         <li class="page-item {{ $lokers->onFirstPage() ? 'disabled' : '' }}">
                             <a class="page-link" href="{{ $lokers->previousPageUrl() }}">
                                 <i class="icon-base bx bx-chevron-left icon-sm"></i>
                             </a>
                         </li>
+                        <!-- PAGE NUMBERS -->
                         @for ($i = 1; $i <= $lokers->lastPage(); $i++)
                             <li class="page-item {{ $lokers->currentPage() == $i ? 'active' : '' }}">
                                 <a class="page-link" href="{{ $lokers->url($i) }}">{{ $i }}</a>
                             </li>
                         @endfor
+                        <!-- NEXT PAGE -->
                         <li class="page-item {{ $lokers->currentPage() == $lokers->lastPage() ? 'disabled' : '' }}">
                             <a class="page-link" href="{{ $lokers->nextPageUrl() }}">
                                 <i class="icon-base bx bx-chevron-right icon-sm"></i>
                             </a>
                         </li>
+                        <!-- LAST PAGE -->
                         <li class="page-item {{ $lokers->currentPage() == $lokers->lastPage() ? 'disabled' : '' }}">
                             <a class="page-link" href="{{ $lokers->url($lokers->lastPage()) }}">
                                 <i class="icon-base bx bx-chevrons-right icon-sm"></i>
@@ -208,6 +226,7 @@
             @endif
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex justify-content-between py-4">
@@ -216,11 +235,13 @@
             </div>
         </footer>
 
+        <!-- BACKDROP UNTUK EFFECT UI -->
         <div class="content-backdrop fade"></div>
     </div>
 
-    {{-- SCRIPTS --}}
+    {{-- SCRIPTS: API WILAYAH INDONESIA --}}
     <script>
+        // OLD VALUES untuk form filter
         const oldProvinsi = "{{ $filters['provinsi'] ?? '' }}";
         const oldKabupaten = "{{ $filters['kabupaten'] ?? '' }}";
         const oldKecamatan = "{{ $filters['kecamatan'] ?? '' }}";
@@ -230,7 +251,7 @@
             const kabupaten = document.getElementById('kabupaten');
             const kecamatan = document.getElementById('kecamatan');
 
-            // LOAD PROVINSI
+            // LOAD PROVINSI DARI API
             fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
                 .then(res => res.json())
                 .then(data => {
@@ -243,7 +264,7 @@
                     if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
                 });
 
-            // LOAD KABUPATEN
+            // EVENT CHANGE PROVINSI UNTUK LOAD KABUPATEN
             provinsi.addEventListener('change', function () {
                 const id = this.selectedOptions[0]?.dataset.id;
                 kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
@@ -267,7 +288,7 @@
                     });
             });
 
-            // LOAD KECAMATAN
+            // EVENT CHANGE KABUPATEN UNTUK LOAD KECAMATAN
             kabupaten.addEventListener('change', function () {
                 const id = this.selectedOptions[0]?.dataset.id;
                 kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';

@@ -3,19 +3,22 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+
+                    {{-- HEADER CARD EDIT PROFILE --}}
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="mb-0 fw-bold">EDIT PROFILE</h5>
                         </div>
                     </div>
 
+                    {{-- FORM EDIT PROFILE --}}
                     <div class="card-body">
                         <form action="{{ route('perusahaan.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
                             <div class="row">
-                                {{-- Nama Perusahaan --}}
+                                {{-- NAMA PERUSAHAAN --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Perusahaan</label>
                                     <input name="NamaPerusahaan" class="form-control" value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}">
@@ -33,7 +36,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- Email --}}
+                                {{-- EMAIL --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
                                     <input name="Email" class="form-control" value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}">
@@ -42,7 +45,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- No Telp --}}
+                                {{-- NO TELP --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No. Telp</label>
                                     <input name="NoTelp" class="form-control" value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}">
@@ -51,7 +54,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- Provinsi --}}
+                                {{-- PROVINSI --}}
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Provinsi</label>
                                     <select id="provinsi" name="Provinsi" class="form-select">
@@ -59,7 +62,7 @@
                                     </select>
                                 </div>
 
-                                {{-- Kabupaten --}}
+                                {{-- KABUPATEN --}}
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Kabupaten</label>
                                     <select id="kabupaten" name="Kabupaten" class="form-select" disabled>
@@ -67,7 +70,7 @@
                                     </select>
                                 </div>
 
-                                {{-- Kecamatan --}}
+                                {{-- KECAMATAN --}}
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Kecamatan</label>
                                     <select id="kecamatan" name="Kecamatan" class="form-select" disabled>
@@ -75,7 +78,7 @@
                                     </select>
                                 </div>
 
-                                {{-- Alamat --}}
+                                {{-- ALAMAT --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
                                     <input name="Alamat" class="form-control" value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}">
@@ -84,7 +87,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- Google Maps --}}
+                                {{-- GOOGLE MAPS --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Google Maps</label>
                                     <input name="GoogleMaps" class="form-control" value="{{ old('GoogleMaps', $info_perusahaan->google_maps ?? '') }}">
@@ -93,7 +96,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- Logo --}}
+                                {{-- LOGO PERUSAHAAN --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Logo Perusahaan (Format: JPG / PNG · Maksimal 2MB)</label>
                                     <input id="logoInput" name="logo" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
@@ -102,7 +105,7 @@
                                     </small>
                                 </div>
 
-                                {{-- Tentang Perusahaan --}}
+                                {{-- TENTANG PERUSAHAAN --}}
                                 <div class="col-12 mb-4">
                                     <label class="form-label">Tentang Perusahaan</label>
                                     <textarea name="TentangPerusahaan" class="form-control" rows="4">{{ old('TentangPerusahaan', $info_perusahaan->tentang_perusahaan ?? '') }}</textarea>
@@ -111,7 +114,7 @@
                                     @enderror
                                 </div>
 
-                                {{-- Submit --}}
+                                {{-- BUTTON SUBMIT --}}
                                 <div class="col-12 text-end">
                                     <button type="submit" class="btn btn-warning">
                                         Simpan Perubahan
@@ -124,6 +127,7 @@
             </div>
         </div>
 
+        {{-- FOOTER --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -146,14 +150,14 @@
                 if (logoInput) {
                     logoInput.addEventListener('change', function () {
                         const file = this.files[0];
-                        const maxSize = 2 * 1024 * 1024;
+                        const maxSize = 2 * 1024 * 1024; // 2MB
                         if (!file) return;
 
                         if (file.size > maxSize) {
-                            logoError.classList.remove('d-none');
-                            this.value = '';
+                            logoError.classList.remove('d-none'); // tampilkan error
+                            this.value = ''; // reset input
                         } else {
-                            logoError.classList.add('d-none');
+                            logoError.classList.add('d-none'); // sembunyikan error
                         }
                     });
                 }
@@ -178,7 +182,7 @@
                             opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldProvinsi ? 'selected' : ''}>${item.name}</option>`;
                         });
                         provinsi.innerHTML = opt;
-                        if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
+                        if (oldProvinsi) provinsi.dispatchEvent(new Event('change')); // trigger load kabupaten
                     });
 
                 // LOAD KABUPATEN
@@ -200,7 +204,7 @@
                             });
                             kabupaten.innerHTML = opt;
                             kabupaten.disabled = false;
-                            if (oldKabupaten) kabupaten.dispatchEvent(new Event('change'));
+                            if (oldKabupaten) kabupaten.dispatchEvent(new Event('change')); // trigger load kecamatan
                         });
                 });
 

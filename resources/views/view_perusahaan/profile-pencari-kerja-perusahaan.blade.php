@@ -3,17 +3,21 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
 
+                {{-- ================= HEADER PELAMAR / CARD THUMBNAIL ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
+                        {{-- BACKGROUND IMAGE --}}
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top" style="height:280px; object-fit:cover;">
 
                         <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                            {{-- FOTO PROFIL PELAMAR --}}
                             <img src="{{ $apply->pencariKerja->foto_pencari_kerja 
                                 ? asset('storage/profile/' . $apply->pencariKerja->foto_pencari_kerja) 
                                 : asset('admin-perusahaan/assets/img/avatars/default_profile_pencari_kerja.jpg') }}" 
                                 class="rounded-circle mb-2" 
                                 style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 
+                            {{-- NAMA & NIM --}}
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $apply->pencariKerja->nama_pencari_kerja }}
                             </h4>
@@ -22,20 +26,25 @@
                             </p>
                         </div>
 
+                        {{-- ================= NAVBAR CARD ================= --}}
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
+                                    {{-- TOGGLER UNTUK MOBILE --}}
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
+                                        {{-- MENU NAVBAR --}}
                                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                            {{-- TENTANG SAYA --}}
                                             <li class="nav-item">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.profile-pelamar', $apply->id) ? 'active' : '' }}" 
                                                     href="{{ route('perusahaan.apply.profile-pelamar', $apply->id) }}">
                                                     Tentang Saya
                                                 </a>
                                             </li>
+                                            {{-- HISTORY APPLY --}}
                                             <li class="nav-item">
                                                 <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.history', $apply->id) ? 'active' : '' }}" 
                                                     href="{{ route('perusahaan.apply.history', $apply->id) }}">
@@ -50,15 +59,19 @@
                     </div>
                 </div>
 
+                {{-- ================= DETAIL PELAMAR ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="card-body p-4">
+                            {{-- TENTANG SAYA --}}
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
                             <p class="mb-4 text-muted">{{ $apply->pencariKerja->deskripsi_diri ?? 'Belum ada deskripsi diri' }}</p>
 
+                            {{-- ALAMAT --}}
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p class="mb-4">{{ $apply->pencariKerja->alamat_pencari_kerja }}</p>
 
+                            {{-- LINKEDIN --}}
                             <h6 class="fw-bold mb-1">Akun Linked.In</h6>
                             <div class="mb-4">
                                 @if($apply->pencariKerja->linkedin)
@@ -70,20 +83,25 @@
                                 @endif
                             </div>
 
+                            {{-- PENDIDIKAN TERAKHIR --}}
                             <h6 class="fw-bold mb-1">Pendidikan Terakhir</h6>
                             <p class="mb-4">{{ $apply->pencariKerja->pendidikan_terakhir ?? '-' }}</p>
 
+                            {{-- EMAIL --}}
                             <h6 class="fw-bold mb-1">Email</h6>
                             <p class="mb-4">{{ $apply->pencariKerja->email_pencari_kerja }}</p>
 
+                            {{-- NO.TELP --}}
                             <h6 class="fw-bold mb-1">No.Telp</h6>
                             <p class="mb-4">{{ $apply->pencariKerja->no_telp_pencari_kerja }}</p>
 
+                            {{-- CURRICULUM VITAE --}}
                             <h6 class="fw-bold mb-1">Curriculum Vitae (CV)</h6>
                             <button type="button" class="btn btn-outline-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalCV">
                                 Lihat CV
                             </button>
 
+                            {{-- MODAL CV --}}
                             <div class="modal fade" id="modalCV" tabindex="-1" aria-labelledby="modalCVLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -103,12 +121,14 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
+
+        {{-- ================= FOOTER ================= --}}
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -118,6 +138,7 @@
                 </div>
             </div>
         </footer>
+
         <div class="content-backdrop fade"></div>
     </div>
-    </x-admin_perusahaan.layout>
+</x-admin_perusahaan.layout>
