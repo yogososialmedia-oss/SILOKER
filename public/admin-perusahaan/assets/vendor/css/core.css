@@ -32454,6 +32454,20 @@ html {
     text-align: right;
   }
 
+  
+  .career-center-box .text-justify {
+    text-align: justify; /* desktop */
+}
+
+@media (max-width: 991.98px) {
+    .career-center-box .text-justify {
+        text-align: justify;       /* tetap justify */
+        text-justify: inter-word;  /* meratakan spasi antar kata di mobile */
+        padding-left: 1rem;        /* beri padding agar tidak mepet */
+        padding-right: 1rem;
+        max-width: 100%;            /* full width di HP */
+    }
+}
 }
 
 
@@ -32463,16 +32477,15 @@ html {
 
 .home-beranda,
 .footer-beranda {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
   background-color: #3f75c7;
   color: #fff;
-}
-
-/* Padding konten */
-.home-beranda {
-  padding: -10px 15px 50px;
+  overflow-x: hidden; /* mencegah scroll horizontal */
 }
 
 

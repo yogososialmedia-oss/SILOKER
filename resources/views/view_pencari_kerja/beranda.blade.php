@@ -155,7 +155,7 @@
                 <!-- Box deskripsi Career Center -->
                 <div class="career-center-box mb-5 pb-4 border-bottom border-primary text-center">
                     <h3 class="fw-bold mb-4">CAREER CENTER</h3>
-                    <div class="mx-auto" style="max-width: 850px;">
+                    <div class="mx-auto text-justify" style="max-width: 850px;">
                         <p class="mb-3">
                             Career Center ITB STIKOM Bali merupakan sebuah platform digital yang didedikasikan
                             untuk membantu mahasiswa aktif maupun alumni ITB STIKOM Bali dalam menemukan dan

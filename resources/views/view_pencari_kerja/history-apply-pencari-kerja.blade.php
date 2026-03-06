@@ -4,7 +4,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 {{-- CARD HEADER PROFILE USER --}}
-                <div class="col-12 mb-4">
+                <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <!-- BACKGROUND IMAGE CARD -->
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png')}}" class="card-img-top" style="height:280px; object-fit:cover;">

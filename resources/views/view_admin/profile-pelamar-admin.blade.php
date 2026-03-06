@@ -1,9 +1,9 @@
 <x-admin_perusahaan.layout>
-    <!-- Wrapper utama halaman profile apply -->
     <div class="content-wrapper">
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
-                <!-- PROFILE HEADER -->
+
+                {{-- ================= PROFILE HEADER ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <!-- Background header -->
@@ -18,16 +18,15 @@
                                 style="width:100px; height:100px; object-fit:cover; background:#fff; padding:5px;">
 
                             <!-- Nama dan NIM pelamar -->
-                            <h4 class="fw-bold mb-0 text-white">
-                                {{ $apply->pencariKerja->nama_pencari_kerja }}
-                            </h4>
-
-                            <p>
-                                {{ $apply->pencariKerja->nim }}
-                            </p>
+                            <h4 class="fw-bold mb-0 text-white">{{ $apply->pencariKerja->nama_pencari_kerja }}</h4>
+                            <p class="mb-0">{{ $apply->pencariKerja->nim }}</p>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Navigation tab untuk profile / history apply -->
+                {{-- ================= NAVBAR TAB ================= --}}
+                <div class="col-12 mb-5">
+                    <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         <div class="bg-white p-4">
                             <nav class="navbar navbar-expand-lg py-1">
                                 <div class="container-fluid">
@@ -54,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- DETAIL PROFILE PELAMAR -->
+                {{-- ================= DETAIL PROFILE PELAMAR ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="bg-white p-4">
@@ -117,18 +116,16 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer halaman admin -->
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl">
-                <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">
-                        ©2026 Yogo & Wahyu
+            {{-- ================= FOOTER ================= --}}
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl">
+                    <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <div class="content-backdrop fade"></div>
+            </footer>
+            <div class="content-backdrop fade"></div>
+        </div>
     </div>
 </x-admin_perusahaan.layout>

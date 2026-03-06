@@ -21,7 +21,7 @@
                 @endif
 
                 {{-- ================= CARD THUMBNAIL / HEADER ================= --}}
-                <div class="col-12 mb-4">
+                <div class="col-12 mb-5">
                     <div class="card position-relative overflow-hidden border-0 shadow-sm rounded-4">
                         {{-- BACKGROUND IMAGE --}}
                         <img src="{{ asset('admin-perusahaan/assets/img/backgrounds/back.png') }}" class="card-img-top" style="height:280px; object-fit:cover;">

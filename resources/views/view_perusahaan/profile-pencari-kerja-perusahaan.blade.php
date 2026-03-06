@@ -21,41 +21,40 @@
                             <h4 class="fw-bold mb-0 text-white">
                                 {{ $apply->pencariKerja->nama_pencari_kerja }}
                             </h4>
-                            <p class="mb-0">
-                                {{ $apply->pencariKerja->nim }}
-                            </p>
+                            <p>{{ $apply->pencariKerja->nim }}</p>
                         </div>
+                    </div>
+                </div>
 
-                        {{-- ================= NAVBAR CARD ================= --}}
-                        <div class="bg-white p-4">
-                            <nav class="navbar navbar-expand-lg py-1">
-                                <div class="container-fluid">
-                                    {{-- TOGGLER UNTUK MOBILE --}}
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-15">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbar-ex-15">
-                                        {{-- MENU NAVBAR --}}
-                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            {{-- TENTANG SAYA --}}
-                                            <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.profile-pelamar', $apply->id) ? 'active' : '' }}" 
-                                                    href="{{ route('perusahaan.apply.profile-pelamar', $apply->id) }}">
-                                                    Tentang Saya
-                                                </a>
-                                            </li>
-                                            {{-- HISTORY APPLY --}}
-                                            <li class="nav-item">
-                                                <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.history', $apply->id) ? 'active' : '' }}" 
-                                                    href="{{ route('perusahaan.apply.history', $apply->id) }}">
-                                                    History Apply
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                {{-- ================= NAVBAR PELAMAR TERPISAH ================= --}}
+                <div class="col-12 mb-5">
+                    <div class="bg-white p-4 shadow-sm rounded-4">
+                        <nav class="navbar navbar-expand-lg py-1">
+                            <div class="container-fluid">
+                                {{-- TOGGLER UNTUK MOBILE --}}
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-pelamar">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbar-pelamar">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        {{-- TENTANG SAYA --}}
+                                        <li class="nav-item">
+                                            <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.profile-pelamar', $apply->id) ? 'active' : '' }}" 
+                                                href="{{ route('perusahaan.apply.profile-pelamar', $apply->id) }}">
+                                                Tentang Saya
+                                            </a>
+                                        </li>
+                                        {{-- HISTORY APPLY --}}
+                                        <li class="nav-item">
+                                            <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.apply.history', $apply->id) ? 'active' : '' }}" 
+                                                href="{{ route('perusahaan.apply.history', $apply->id) }}">
+                                                History Apply
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </nav>
-                        </div>
+                            </div>
+                        </nav>
                     </div>
                 </div>
 
@@ -132,9 +131,7 @@
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                    <div class="mb-2 mb-md-0">
-                        ©2026 Yogo & Wahyu
-                    </div>
+                    <div class="mb-2 mb-md-0">©2026 Yogo & Wahyu</div>
                 </div>
             </div>
         </footer>
