@@ -34,7 +34,7 @@ class RegistrasiPencariKerjaController extends Controller
     {
         $request->validate([
             'nama_pencari_kerja' => 'required|string|max:255',
-            'nim' => 'nullable|string|max:50',
+            'nim' => 'nullable|numeric|digits_between:1,11',
             'email_pencari_kerja' => 'required|email|max:255|unique:tb_pencari_kerja,email_pencari_kerja',
             'password_pencari_kerja' => [
                 'required',
@@ -44,8 +44,8 @@ class RegistrasiPencariKerjaController extends Controller
                 'regex:/[0-9]/',
                 'regex:/[^A-Za-z0-9]/'
             ],
-            'no_telp_pencari_kerja' => 'required|string|max:20',
-            'alamat_pencari_kerja' => 'required|string|max:255',
+            'no_telp_pencari_kerja' => 'required|regex:/^[0-9]{10,15}$/',
+            'alamat_pencari_kerja' => 'required|string',
             'linkedin' => 'nullable|url|max:255',
             'pendidikan_terakhir' => 'required|string|max:50',
             'deskripsi_diri' => 'nullable|string',
@@ -58,7 +58,8 @@ class RegistrasiPencariKerjaController extends Controller
             'nama_pencari_kerja.max' => 'Nama Lengkap maksimal 255 karakter.',
 
             // 🔹 NIM
-            'nim.max' => 'NIM maksimal 50 karakter.',
+            'nim.numeric' => 'NIM hanya boleh berisi angka.',
+            'nim.digits_between' => 'NIM maksimal 11 angka.',   
 
             // 🔹 EMAIL
             'email_pencari_kerja.required' => 'Email wajib diisi.',
@@ -73,11 +74,10 @@ class RegistrasiPencariKerjaController extends Controller
 
             // 🔹 NO TELP
             'no_telp_pencari_kerja.required' => 'No Telepon wajib diisi.',
-            'no_telp_pencari_kerja.max' => 'No Telepon maksimal 20 karakter.',
+            'no_telp_pencari_kerja.regex' => 'Nomor telepon hanya boleh angka (10-15 digit).',
 
             // 🔹 ALAMAT
             'alamat_pencari_kerja.required' => 'Alamat wajib diisi.',
-            'alamat_pencari_kerja.max' => 'Alamat maksimal 255 karakter.',
 
             // 🔹 LINKEDIN
             'linkedin.url' => 'Link Linked.In harus berupa URL yang valid.',
@@ -110,8 +110,12 @@ class RegistrasiPencariKerjaController extends Controller
         // Upload Foto
         $fotoPath = null;
         if ($request->hasFile('foto_pencari_kerja')) {
-            $fotoPath = $request->file('foto_pencari_kerja')->store('foto_pencari_kerja', 'public');
-        }
+                $foto = $request->file('foto_pencari_kerja');
+                $fotoName = 'profile_' . time() . '.' . $foto->getClientOriginalExtension();
+                $foto->storeAs('profile', $fotoName, 'public');
+
+                $fotoPath = $fotoName;
+            }
 
         $token = uniqid(true); // generate token unik
         $user = PencariKerja::create([

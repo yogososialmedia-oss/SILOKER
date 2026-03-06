@@ -34,13 +34,37 @@
                                     {{-- NIM --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">NIM (jika mahasiswa STIKOM)</label>
-                                        <input name="nim" value="{{ old('nim') }}" class="form-control" placeholder="Tambahkan NIM ">
+
+                                        <input 
+                                            type="text"
+                                            name="nim"
+                                            value="{{ old('nim') }}"
+                                            class="form-control @error('nim') is-invalid @enderror"
+                                            placeholder="Tambahkan NIM (jika mahasiswa STIKOM)"
+                                            maxlength="11"
+                                            inputmode="numeric"
+                                            pattern="[0-9]{11}"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                                        @error('nim')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     {{-- NO TELP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No Telepon</label>
-                                        <input name="no_telp_pencari_kerja" value="{{ old('no_telp_pencari_kerja') }}" class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan nomor telepon">
+                                        <label class="form-label">Nomor Telepon</label>
+                                        <input 
+                                            type="text"
+                                            name="no_telp_pencari_kerja"
+                                            value="{{ old('no_telp_pencari_kerja') }}"
+                                            class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror"
+                                            placeholder="Masukkan nomor telepon"
+                                            maxlength="15"
+                                            inputmode="numeric"
+                                            pattern="[0-9]{10,15}"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
                                         @error('no_telp_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -72,21 +96,35 @@
                                     {{-- LINKEDIN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Linked.In</label>
-                                        <input name="linkedin" value="{{ old('linkedin') }}" class="form-control" placeholder="Tambahkan link profile Linked.In">
+                                        <input 
+                                            name="linkedin"
+                                            value="{{ old('linkedin') }}"
+                                            class="form-control @error('linkedin') is-invalid @enderror"
+                                            placeholder="Tambahkan link profile Linked.In">
+
+                                        @error('linkedin')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     {{-- CV --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Upload CV (Format: PDF · Maksimal 2MB)</label>
-                                        <input id="cvInput" name="cv" type="file" class="form-control file-input-unified" accept="application/pdf">
+                                        <input id="cvInput" name="cv" type="file" class="form-control file-input-unified @error('cv') is-invalid @enderror" accept="application/pdf">
                                         <small class="file-helper text-danger d-none" id="cvError">Ukuran file terlalu besar. Maksimal 2MB.</small>
+                                        @error('cv')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     {{-- FOTO --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Foto Profile (Format: JPG / PNG · Maksimal 2MB)</label>
-                                        <input id="fotoProfileInput" name="foto_pencari_kerja" type="file" class="form-control file-input-unified" accept="image/png,image/jpg,image/jpeg">
+                                        <input id="fotoProfileInput" name="foto_pencari_kerja" type="file" class="form-control file-input-unified @error('foto_pencari_kerja') is-invalid @enderror" accept="image/png,image/jpg,image/jpeg">
                                         <small class="file-helper text-danger d-none" id="fotoProfileError">Ukuran file terlalu besar. Maksimal 2MB.</small>
+                                        @error('foto_pencari_kerja')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     {{-- DESKRIPSI --}}
