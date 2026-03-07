@@ -2,7 +2,7 @@ FROM php:8.2-fpm
 
 # Install dependencies & PHP extensions
 RUN apt-get update && apt-get install -y \
-    git curl libpng-dev libonig-dev libxml2-dev zip unzip \
+    git curl libpng-dev libonig-dev libxml2-dev zip unzip libzip-dev \
     && docker-php-ext-install zip pdo_mysql mbstring exif pcntl bcmath gd
 
 # Install Composer
