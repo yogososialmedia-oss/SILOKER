@@ -1,52 +1,53 @@
+version: '3.9'
+
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    image: siloker-app
-    container_name: siloker_app
+    image: laravel-app
+    container_name: laravel-app
     restart: unless-stopped
     working_dir: /var/www
     volumes:
       - ./:/var/www
     networks:
-      - siloker_network
-
-  web:
-    image: nginx:alpine
-    container_name: siloker_web
-    restart: unless-stopped
-    ports:
-      - "8000:80"
-    volumes:
-      - ./:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - siloker_network
+      - laravel
     depends_on:
-      - app
+      - db
 
   db:
     image: mysql:8.0
-    container_name: siloker_db
+    container_name: mysql-db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-db_siloker}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
-      MYSQL_USER: ${DB_USERNAME:-siloker}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    volumes:
-      - dbdata:/var/lib/mysql
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: siloker
+      MYSQL_USER: silokeruser
+      MYSQL_PASSWORD: silokerpass
     ports:
       - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
     networks:
-      - siloker_network
+      - laravel
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel
 
 networks:
-  siloker_network:
-    driver: bridge
+  laravel:
 
 volumes:
   dbdata:
-    driver: local
