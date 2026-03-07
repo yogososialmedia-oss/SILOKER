@@ -40,6 +40,7 @@
                                         <input type="password" class="form-control" name="password" placeholder="••••••••••••" />
                                         <span class="input-group-text cursor-pointer">
                                             <i class="icon-base bx bx-hide"></i>
+                                            {{--  --}}
                                         </span>
                                     </div>
                                 </div>
