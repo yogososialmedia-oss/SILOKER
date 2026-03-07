@@ -34,7 +34,7 @@
                                 </div>
 
                                 <!-- Input password dengan toggle show/hide -->
-                                <div class="mb-12 form-password-toggle">
+                                <div class="mb-6 form-password-toggle">
                                     <label class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="form-control" name="password" placeholder="••••••••••••" />
