@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class PerusahaanMitra extends Authenticatable implements MustVerifyEmail
+{
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $table = 'tb_perusahaan_mitra';
+    protected $fillable = [
+    'nama_perusahaan',
+    'email_perusahaan',
+    'provinsi',
+    'kabupaten',
+    'kecamatan',
+    'no_telp_perusahaan',
+    'alamat_perusahaan',
+    'logo',
+    'password_perusahaan',
+    'no_npwp',
+    'tentang_perusahaan',
+    'google_maps',
+    'status_akun',
+    'deskripsi_status',
+    'email_verified_at',
+    'verification_token'
+];
+    
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password_perusahaan',
+    ];
+    
+    public function loker()
+    {
+        return $this->hasMany(Loker::class, 'id_perusahaan_mitra');
+    }
+    public function apply()
+    {
+        return $this->hasManyThrough(
+            Apply::class,
+            Loker::class,
+            'id_perusahaan_mitra', // foreign key di loker
+            'id_loker',            // foreign key di apply
+            'id',                  // local key perusahaan
+            'id'                   // local key loker
+        );
+    }
+    public function getLogoUrlAttribute()
+    {
+        if (!empty($this->logo) && file_exists(public_path('storage/logo_perusahaan/' . $this->logo))) {
+            return asset('storage/logo_perusahaan/' . $this->logo);
+        }
+
+        return asset('admin-perusahaan/assets/img/avatars/default_profile_perusahaan.jpg');
+    }
+    protected $casts = [
+    'email_verified_at' => 'datetime',
+    ];
+}

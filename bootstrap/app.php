@@ -11,7 +11,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'isAdmin' => App\Http\Middleware\isAdmin::class,
+            'isPerusahaanMitra' => App\Http\Middleware\isPerusahaanMitra::class,
+            'isPencariKerja' => App\Http\Middleware\isPencariKerja::class,
+            'guestAdmin' => App\Http\Middleware\guestAdmin::class,
+            'guestPerusahaanMitra' => App\Http\Middleware\guestPerusahaanMitra::class,
+            'guestPencariKerja' => App\Http\Middleware\guestPencariKerja::class,
+            'authAny' => App\Http\Middleware\authAny::class,
+            'verified.perusahaan' => App\Http\Middleware\CheckPerusahaanVerified::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

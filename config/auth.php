@@ -36,9 +36,17 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'pencarikerja' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'pencarikerjas',
+        ],
+        'perusahaanmitra' => [
+            'driver' => 'session',
+            'provider' => 'perusahaanmitras',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -60,9 +68,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'pencarikerjas' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\PencariKerja::class,
+        ],
+        'perusahaanmitras' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PerusahaanMitra::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
         // 'users' => [
