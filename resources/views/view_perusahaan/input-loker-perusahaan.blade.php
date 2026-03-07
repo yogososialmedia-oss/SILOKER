@@ -43,7 +43,13 @@
                                     {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No.Telp</label>
-                                        <input name="no_telp_perusahaan" type="text" class="form-control @error('no_telp_perusahaan') is-invalid @enderror" value="{{ old('no_telp_perusahaan', $info_perusahaan->no_telp_perusahaan ?? '') }}">
+                                        <input 
+                                            name="no_telp_perusahaan"
+                                            type="text"
+                                            class="form-control @error('no_telp_perusahaan') is-invalid @enderror"
+                                            value="{{ old('no_telp_perusahaan', $info_perusahaan->no_telp_perusahaan ?? '') }}"
+                                            maxlength="15"
+                                            oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('no_telp_perusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

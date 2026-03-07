@@ -126,9 +126,9 @@
                     </div>
 
                     {{-- FORM MODAL --}}
-                    <form method="POST" action="{{ route('perusahaan.apply.update-status', 0) }}" id="formUpdateStatus">
+                    <form method="POST" action="{{ route('perusahaan.apply.update-status') }}" id="formUpdateStatus">
                         @csrf
-                        <input type="hidden" name="id_apply" id="apply_id">
+                        <input type="hidden" name="id_apply" id="apply_id" value="{{ old('id_apply') }}">
 
                         <div class="modal-body">
                             {{-- ALERT INFO --}}
@@ -144,9 +144,9 @@
                                 <label class="form-label">Pilih Status</label>
                                 <select class="form-select @error('status') is-invalid @enderror" name="status" id="statusSelect">
                                     <option value="">Pilih Status</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="ditolak">Tidak Diterima</option>
-                                    <option value="diterima">Diterima</option>
+                                    <option value="interview" {{ old('status')=='interview'?'selected':'' }}>Interview</option>
+                                    <option value="ditolak" {{ old('status')=='ditolak'?'selected':'' }}>Tidak Diterima</option>
+                                    <option value="diterima" {{ old('status')=='diterima'?'selected':'' }}>Diterima</option>
                                 </select>
                                 @error('status')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -156,7 +156,7 @@
                             {{-- PESAN --}}
                             <div class="mb-3">
                                 <label class="form-label">Pesan ke Pelamar</label>
-                                <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="3" placeholder="Tuliskan pesan yang akan dikirim ke pelamar">{{ old('pesan') }}</textarea>
+                                <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="3">{{ old('pesan') }}</textarea>
                                 @error('pesan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -167,19 +167,44 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Tanggal Interview</label>
-                                        <input type="date" name="tanggal_interview" class="form-control" min="{{ date('Y-m-d') }}">
+                                        <input type="date" name="tanggal_interview"
+                                            class="form-control @error('tanggal_interview') is-invalid @enderror"
+                                            value="{{ old('tanggal_interview') }}"
+                                            min="{{ date('Y-m-d') }}">
+                                            @error('tanggal_interview')
+                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Waktu Interview</label>
-                                        <input type="time" name="waktu_interview" class="form-control">
+                                        <input type="time" name="waktu_interview" 
+                                            class="form-control @error('waktu_interview') is-invalid @enderror"
+                                            value="{{ old('waktu_interview') }}">
+                                        @error('waktu_interview')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Lokasi Interview</label>
-                                        <input type="text" name="google_maps" id="googleMapsInput" class="form-control">
+                                        <input type="text" name="google_maps" 
+                                            id="googleMapsInput"
+                                            class="form-control @error('google_maps') is-invalid @enderror"
+                                            value="{{ old('google_maps') }}">
+
+                                        @error('google_maps')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInput" class="form-control">
+                                        <input type="text" name="no_telp"
+                                            id="noTelpInput"
+                                            class="form-control @error('no_telp') is-invalid @enderror"
+                                            value="{{ old('no_telp') }}">
+
+                                        @error('no_telp')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -189,19 +214,44 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Tanggal Berkunjung</label>
-                                        <input type="date" name="tanggal_kunjungan" class="form-control" min="{{ date('Y-m-d') }}">
+                                        <input type="date" name="tanggal_kunjungan"
+                                            class="form-control @error('tanggal_kunjungan') is-invalid @enderror"
+                                            value="{{ old('tanggal_kunjungan') }}"
+                                            min="{{ date('Y-m-d') }}">
+                                        @error('tanggal_kunjungan')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Jam Berkunjung</label>
-                                        <input type="time" name="jam_kunjungan" class="form-control">
+                                        <input type="time" name="jam_kunjungan"
+                                            class="form-control @error('jam_kunjungan') is-invalid @enderror"
+                                            value="{{ old('jam_kunjungan') }}">
+                                        @error('jam_kunjungan')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Kantor</label>
-                                        <input type="text" name="google_maps" id="googleMapsInputAccepted" class="form-control">
+                                        <input type="text" name="google_maps"
+                                            id="googleMapsInputAccepted"
+                                            class="form-control @error('google_maps') is-invalid @enderror"
+                                            value="{{ old('google_maps') }}">
+
+                                        @error('google_maps')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp" id="noTelpInputAccepted" class="form-control">
+                                        <input type="text" name="no_telp"
+                                            id="noTelpInputAccepted"
+                                            class="form-control @error('no_telp') is-invalid @enderror"
+                                            value="{{ old('no_telp') }}">
+
+                                        @error('no_telp')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -274,11 +324,37 @@
                         noTelpInputAccepted.value = telp;
 
                         // RESET STATUS SELECT
-                        statusSelect.value = '';
-                        toggleFields();
+                        if(!"{{ old('status') }}"){
+                            statusSelect.value = '';
+                        }
                     });
                 });
             });
         </script>
+    @if ($errors->any())
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var modal = new bootstrap.Modal(document.getElementById('modalCenter'));
+            modal.show();
+
+            document.getElementById('apply_id').value = "{{ old('id_apply') }}";
+
+            const status = "{{ old('status') }}";
+
+            const interviewFields = document.getElementById('interviewFields');
+            const acceptedFields = document.getElementById('acceptedFields');
+
+            if(status === 'interview'){
+                interviewFields.style.display = 'block';
+            }
+
+            if(status === 'diterima'){
+                acceptedFields.style.display = 'block';
+            }
+
+        });
+        </script>
+    @endif
     @endpush
 </x-admin_perusahaan.layout>

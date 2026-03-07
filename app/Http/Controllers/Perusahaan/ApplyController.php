@@ -119,8 +119,14 @@ class ApplyController extends Controller
             ->firstOrFail();
 
         $request->validate([
-            'status' => 'required',
+            'id_apply' => 'required|exists:tb_apply,id',
+            'status' => 'required|in:interview,ditolak,diterima',
             'pesan' => 'required|string|min:5',
+        ],[
+            'status.required' => 'Status wajib dipilih.',
+            'status.in' => 'Status tidak valid.',
+            'pesan.required' => 'Pesan untuk pelamar wajib diisi.',
+            'pesan.min' => 'Pesan minimal 5 karakter.',
         ]);
 
         if ($request->status === 'interview') {
@@ -128,6 +134,13 @@ class ApplyController extends Controller
                 'tanggal_interview' => 'required|date|after_or_equal:today',
                 'waktu_interview' => 'required',
                 'no_telp' => 'required',
+                'google_maps' => 'required'
+            ],[
+                'tanggal_interview.required' => 'Tanggal interview wajib diisi.',
+                'tanggal_interview.after_or_equal' => 'Tanggal interview tidak boleh sebelum hari ini.',
+                'waktu_interview.required' => 'Waktu interview wajib diisi.',
+                'no_telp.required' => 'Nomor telepon perusahaan wajib diisi.',
+                'google_maps.required' => 'Link Google Maps wajib diisi.',
             ]);
         }
 
@@ -135,6 +148,10 @@ class ApplyController extends Controller
             $request->validate([
                 'tanggal_kunjungan' => 'required|date|after_or_equal:today',
                 'jam_kunjungan' => 'required',
+            ],[
+                'tanggal_kunjungan.required' => 'Tanggal kunjungan wajib diisi.',
+                'tanggal_kunjungan.after_or_equal' => 'Tanggal kunjungan tidak boleh sebelum hari ini.',
+                'jam_kunjungan.required' => 'Jam kunjungan wajib diisi.',
             ]);
         }
 

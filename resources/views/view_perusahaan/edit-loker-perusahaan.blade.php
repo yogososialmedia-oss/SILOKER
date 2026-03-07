@@ -28,16 +28,18 @@
                                     {{-- JABATAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Jabatan</label>
-                                        <input name="jabatan" type="text" class="form-control" value="{{ old('jabatan', $loker->jabatan) }}">
+                                        <input name="jabatan" type="text"
+                                            class="form-control @error('jabatan') is-invalid @enderror"
+                                            value="{{ old('jabatan', $loker->jabatan) }}">
                                         @error('jabatan')
-                                            <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     {{-- EMAIL PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Email</label>
-                                        <input name="email_perusahaan" type="text" class="form-control" value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
+                                        <input name="email_perusahaan" type="email" class="form-control" value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
                                         @error('email_perusahaan')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -46,7 +48,13 @@
                                     {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">No. Telp</label>
-                                        <input type="text" name="no_telp_perusahaan" class="form-control" value="{{ old('no_telp_perusahaan', $loker->perusahaanMitra->no_telp_perusahaan ?? '') }}">
+                                        <input 
+                                            type="text"
+                                            name="no_telp_perusahaan"
+                                            class="form-control"
+                                            value="{{ old('no_telp_perusahaan', $loker->perusahaanMitra->no_telp_perusahaan ?? '') }}"
+                                            maxlength="15"
+                                            oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('no_telp_perusahaan')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -73,7 +81,9 @@
                                     {{-- POSTER LOKER --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Poster Loker (Format: JPG / PNG · Maksimal 2MB)</label>
-                                        <input name="poster_loker" type="file" class="form-control" id="posterLoker" accept="image/*">
+                                        <input name="poster_loker" type="file"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            class="form-control @error('poster_loker') is-invalid @enderror">
                                         <small class="text-danger d-none" id="posterError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                         @error('poster_loker')
                                             <small class="text-danger">{{ $message }}</small>
@@ -315,6 +325,25 @@
                     loadKecamatan(id);
                 });
             });
+            const mulai = document.getElementById('tanggal_mulai');
+            const selesai = document.getElementById('tanggal_selesai');
+
+            function syncTanggal() {
+                if (!mulai.value) return;
+
+                let mulaiDate = new Date(mulai.value);
+                mulaiDate.setDate(mulaiDate.getDate() + 1);
+                let minSelesai = mulaiDate.toISOString().split('T')[0];
+
+                selesai.min = minSelesai;
+
+                if (selesai.value && selesai.value < minSelesai) {
+                    selesai.value = '';
+                }
+            }
+
+            syncTanggal();
+            mulai.addEventListener('change', syncTanggal);
         </script>
     @endpush
 

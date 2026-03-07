@@ -21,36 +21,64 @@
                                 {{-- NAMA PERUSAHAAN --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Perusahaan</label>
-                                    <input name="NamaPerusahaan" class="form-control" value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}">
+                                    <input type="text"
+                                        name="NamaPerusahaan"
+                                        value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}"
+                                        class="form-control @error('NamaPerusahaan') is-invalid @enderror"
+                                        placeholder="Tambahkan nama perusahaan">
+
                                     @error('NamaPerusahaan')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 {{-- NPWP --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">No NPWP</label>
-                                    <input name="NoNpwp" class="form-control" value="{{ old('NoNpwp', $info_perusahaan->no_npwp ?? '') }}">
+                                    <input type="text"
+                                        name="NoNpwp"
+                                        value="{{ old('NoNpwp', $info_perusahaan->no_npwp ?? '') }}"
+                                        class="form-control @error('NoNpwp') is-invalid @enderror"
+                                        placeholder="Tambahkan nomor NPWP"
+                                        maxlength="16"
+                                        inputmode="numeric"
+                                        pattern="[0-9]*"
+                                        oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
                                     @error('NoNpwp')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 {{-- EMAIL --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input name="Email" class="form-control" value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}">
+                                    <input type="email"
+                                        name="Email"
+                                        value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}"
+                                        class="form-control @error('Email') is-invalid @enderror"
+                                        placeholder="Tambahkan email perusahaan">
+
                                     @error('Email')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 {{-- NO TELP --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">No. Telp</label>
-                                    <input name="NoTelp" class="form-control" value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}">
+                                    <label class="form-label">No Telepon</label>
+                                    <input type="text"
+                                        name="NoTelp"
+                                        value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}"
+                                        class="form-control @error('NoTelp') is-invalid @enderror"
+                                        placeholder="Tambahkan nomor telepon perusahaan"
+                                        inputmode="numeric"
+                                        maxlength="15"
+                                        pattern="[0-9]*"
+                                        oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+
                                     @error('NoTelp')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -81,9 +109,14 @@
                                 {{-- ALAMAT --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Alamat</label>
-                                    <input name="Alamat" class="form-control" value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}">
+                                    <input type="text"
+                                        name="Alamat"
+                                        value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}"
+                                        class="form-control @error('Alamat') is-invalid @enderror"
+                                        placeholder="Tambahkan alamat lengkap perusahaan">
+
                                     @error('Alamat')
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
