@@ -21,6 +21,7 @@ use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
 
 
+Route::redirect('/', '/pencarikerja/beranda#home');
 
 Route::get('/pencarikerja/loker', [PencariKerjaLokerController::class, 'index'])->name('pencarikerja.loker.index');
 Route::get('/pencarikerja/beranda', [PencariKerjaLokerController::class, 'showBeranda'])->name('pencarikerja.beranda');
