@@ -226,7 +226,7 @@
                                 <i class="bx bxl-tiktok"></i> <span>itbstikombali</span>
                             </a>
 
-                            <a href="https://youtube.com/@stikomerstv" target="_blank"
+                            <a href="https://youtube.com/@stikomerstv8537?si=r5_qAh3ytIgNuGBw" target="_blank"
                                 class="d-flex align-items-center mb-2 text-decoration-none">
                                 <i class="bx bxl-youtube"></i> <span>stikomerstv</span>
                             </a>
