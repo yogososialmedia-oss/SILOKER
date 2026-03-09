@@ -36,7 +36,6 @@ Route::get('/verifikasi-email/{type}/{token}', [VerifikasiEmailController::class
 
 
 
-
 Route::middleware(['isPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/profile', [ProfilePerusahaanController::class,'index'])->name('perusahaan.profile');
     Route::get('/perusahaan/profile/edit', [ProfilePerusahaanController::class, 'edit'])->name('perusahaan.profile.edit');
