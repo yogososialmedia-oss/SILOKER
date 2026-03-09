@@ -230,11 +230,12 @@ class LokerController extends Controller
 
             $file = $request->file('poster_loker');
 
+            // gunakan hashName seperti registrasi
             $filename = $file->hashName();
 
             $file->storeAs('poster_loker', $filename, 'public');
 
-            $posterPath = 'storage/poster_loker/'.$filename;
+            $loker->poster_loker = 'storage/poster_loker/'.$filename;
         }
 
         $loker->save();
