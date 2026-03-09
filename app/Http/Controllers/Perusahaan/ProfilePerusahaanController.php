@@ -140,7 +140,7 @@ class ProfilePerusahaanController extends Controller
         }
 
         $logoFile = $request->file('logo');
-        $logoFilename = time() . '_' . $logoFile->getClientOriginalName();
+        $logoFilename = $logoFile->hashName();
         $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
 
         $authPerusahaan->logo = $logoFilename;
