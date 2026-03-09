@@ -15,16 +15,13 @@
                     <div class="card pb-3">
                         <div class="card-header">
                             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                                <!-- Judul daftar loker -->
+                                <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
 
-                                <div>
-                                    <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
-                                </div>
-
-                                {{-- FILTER & EXPORT --}}
+                                <!-- Form filter export berdasarkan tahun -->
                                 <form action="{{ route('perusahaan.loker.export') }}" method="GET">
                                     <div class="d-flex flex-wrap align-items-center gap-2">
-
-                                        {{-- PILIH TAHUN --}}
+                                        <!-- Dropdown pilih tahun -->
                                         <select name="tahun" class="form-select form-select-sm" style="width:160px;">
                                             <option value="">Semua Tahun</option>
                                             @foreach($loker->pluck('tanggal_mulai_loker')->map(fn($t)=>\Carbon\Carbon::parse($t)->year)->unique()->sortDesc() as $tahun)
@@ -34,14 +31,12 @@
                                             @endforeach
                                         </select>
 
-                                        {{-- TOMBOL DOWNLOAD --}}
+                                        <!-- Tombol download -->
                                         <button type="submit" class="btn btn-success btn-sm px-3">
                                             Download
                                         </button>
-
                                     </div>
                                 </form>
-
                             </div>
                         </div>
 

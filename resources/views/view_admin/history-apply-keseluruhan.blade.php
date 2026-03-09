@@ -4,30 +4,31 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3">
                 <!-- Header Card Daftar Apply -->
-                <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                    <div>
+                <div class="card-header">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <!-- Judul daftar apply -->
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
+
+                        <!-- Form filter export berdasarkan tahun -->
+                        <form action="{{ route('admin.apply.export.semua') }}" method="GET">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <!-- Dropdown tahun -->
+                                <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
+                                    <option value="">Semua Tahun</option>
+                                    @foreach($tahunList as $tahun)
+                                        <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                            {{ $tahun }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <!-- Tombol download export -->
+                                <button type="submit" class="btn btn-success btn-sm px-3">
+                                    Download
+                                </button>
+                            </div>
+                        </form>
                     </div>
-
-                    <!-- Form filter export berdasarkan tahun -->
-                    <form action="{{ route('admin.apply.export.semua') }}" method="GET">
-                        <div class="d-flex flex-wrap align-items-center gap-2">
-                            <!-- Dropdown tahun -->
-                            <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
-                                <option value="">Semua Tahun</option>
-                                @foreach($tahunList as $tahun)
-                                    <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
-                                        {{ $tahun }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            <!-- Tombol download export -->
-                            <button type="submit" class="btn btn-success btn-sm px-3">
-                                Download
-                            </button>
-                        </div>
-                    </form>
                 </div>
 
                 <!-- Tabel daftar apply -->
