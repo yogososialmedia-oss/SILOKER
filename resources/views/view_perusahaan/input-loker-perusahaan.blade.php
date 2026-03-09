@@ -75,9 +75,9 @@
 
                                     {{-- POSTER LOKER --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Poster Loker</label>
-                                        <input name="poster_loker" type="file" accept="image/png, image/jpeg, image/jpg" class="form-control @error('poster_loker') is-invalid @enderror">
-                                        <small class="text-muted">Format: JPG, JPEG, PNG (Max 2MB)</small>
+                                        <label class="form-label">Poster Loker (Format: JPG / PNG · Maksimal 2MB)</label>
+                                        <input id="posterInput"  name="poster_loker" type="file" accept="image/png, image/jpeg, image/jpg" class="form-control @error('poster_loker') is-invalid @enderror">
+                                        <small class="text-danger d-none" id="posterError">Ukuran file terlalu besar. Maksimal 2MB.</small>
                                         @error('poster_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -218,12 +218,21 @@
 
     @push('scripts')
         <script>
-            document.querySelector('input[name="poster_loker"]').addEventListener('change', function() {
+            document.getElementById('posterInput').addEventListener('change', function () {
+
                 const file = this.files[0];
-                if (file && file.size > 2 * 1024 * 1024) {
-                    alert('Ukuran file maksimal 2MB');
+                const maxSize = 2 * 1024 * 1024; // 2MB
+                const error = document.getElementById('posterError');
+
+                if (!file) return;
+
+                if (file.size > maxSize) {
+                    error.classList.remove('d-none');
                     this.value = '';
+                } else {
+                    error.classList.add('d-none');
                 }
+
             });
             document.addEventListener('DOMContentLoaded', function () {
                 // ==========================================
