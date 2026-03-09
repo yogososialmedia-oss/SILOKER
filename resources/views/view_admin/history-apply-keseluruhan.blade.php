@@ -4,14 +4,14 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card pb-3">
                 <!-- Header Card Daftar Apply -->
-                <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                     <div>
                         <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
                     </div>
 
                     <!-- Form filter export berdasarkan tahun -->
                     <form action="{{ route('admin.apply.export.semua') }}" method="GET">
-                        <div class="d-flex align-items-center gap-2">
+                        <div class="d-flex flex-wrap align-items-center gap-2">
                             <!-- Dropdown tahun -->
                             <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
                                 <option value="">Semua Tahun</option>

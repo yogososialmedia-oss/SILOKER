@@ -13,29 +13,35 @@
 
                     {{-- CARD DAFTAR LOKER --}}
                     <div class="card pb-3">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
-                            </div>
+                        <div class="card-header">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
 
-                            {{-- FILTER & EXPORT --}}
-                            <div class="d-flex align-items-center gap-2">
-                                <form action="{{ route('perusahaan.loker.export') }}" method="GET" class="d-flex align-items-center gap-2">
-                                    {{-- PILIH TAHUN --}}
-                                    <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
-                                        <option value="">Semua Tahun</option>
-                                        @foreach($loker->pluck('tanggal_mulai_loker')->map(fn($t)=>\Carbon\Carbon::parse($t)->year)->unique()->sortDesc() as $tahun)
-                                            <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
-                                                {{ $tahun }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div>
+                                    <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
+                                </div>
 
-                                    {{-- TOMBOL DOWNLOAD --}}
-                                    <button type="submit" class="btn btn-success btn-sm px-3">
-                                        Download
-                                    </button>
+                                {{-- FILTER & EXPORT --}}
+                                <form action="{{ route('perusahaan.loker.export') }}" method="GET">
+                                    <div class="d-flex flex-wrap align-items-center gap-2">
+
+                                        {{-- PILIH TAHUN --}}
+                                        <select name="tahun" class="form-select form-select-sm" style="width:160px;">
+                                            <option value="">Semua Tahun</option>
+                                            @foreach($loker->pluck('tanggal_mulai_loker')->map(fn($t)=>\Carbon\Carbon::parse($t)->year)->unique()->sortDesc() as $tahun)
+                                                <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                                    {{ $tahun }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                        {{-- TOMBOL DOWNLOAD --}}
+                                        <button type="submit" class="btn btn-success btn-sm px-3">
+                                            Download
+                                        </button>
+
+                                    </div>
                                 </form>
+
                             </div>
                         </div>
 
