@@ -46,9 +46,9 @@
                                             value="{{ old('nim') }}"
                                             class="form-control @error('nim') is-invalid @enderror"
                                             placeholder="Tambahkan NIM (jika mahasiswa STIKOM)"
-                                            maxlength="11"
+                                            maxlength="9"
                                             inputmode="numeric"
-                                            pattern="[0-9]{11}"
+                                            pattern="[0-9]{9}"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
                                         @error('nim')
