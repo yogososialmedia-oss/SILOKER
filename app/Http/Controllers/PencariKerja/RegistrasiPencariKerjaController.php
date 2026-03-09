@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\PencariKerja;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class RegistrasiPencariKerjaController extends Controller
 {
@@ -109,13 +110,18 @@ class RegistrasiPencariKerjaController extends Controller
 
         // Upload Foto
         $fotoPath = null;
-        if ($request->hasFile('foto_pencari_kerja')) {
-                $foto = $request->file('foto_pencari_kerja');
-                $fotoName = 'profile_' . time() . '.' . $foto->getClientOriginalExtension();
-                $foto->storeAs('profile', $fotoName, 'public');
 
-                $fotoPath = $fotoName;
-            }
+        if ($request->hasFile('foto_pencari_kerja')) {
+
+            $foto = $request->file('foto_pencari_kerja');
+
+            $fotoFilename = $foto->hashName();
+
+            $foto->storeAs('profile', $fotoFilename, 'public');
+
+            $fotoPath = $fotoFilename;
+
+        }
 
         $token = uniqid(true); // generate token unik
         $user = PencariKerja::create([
