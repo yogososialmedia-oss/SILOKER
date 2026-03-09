@@ -4,8 +4,9 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <!-- Card utama berisi daftar perusahaan mitra -->
             <div class="card pb-3">
-                <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                        <!-- Judul halaman daftar perusahaan -->
+                <div class="card-header">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+
                         <h5 class="mb-0 fw-bold">DAFTAR PERUSAHAAN</h5>
 
                     <!-- Form untuk export/download daftar perusahaan berdasarkan tahun -->
