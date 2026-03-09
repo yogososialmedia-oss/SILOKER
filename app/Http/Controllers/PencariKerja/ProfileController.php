@@ -186,17 +186,22 @@ class ProfileController extends Controller
         // Upload Foto Profile
         if ($request->hasFile('foto_pencari_kerja')) {
 
-            if ($user->foto_pencari_kerja &&
-                Storage::disk('public')->exists('profile/'.$user->foto_pencari_kerja)) {
-                Storage::disk('public')->delete('profile/'.$user->foto_pencari_kerja);
-            }
+    // hapus foto lama
+    if ($user->foto_pencari_kerja &&
+            Storage::disk('public')->exists('profile/'.$user->foto_pencari_kerja)) {
 
-            $foto = $request->file('foto_pencari_kerja');
-            $fotoName = 'profile_' . $user->id . '.' . $foto->getClientOriginalExtension();
-            $foto->storeAs('profile', $fotoName, 'public');
-
-            $user->foto_pencari_kerja = $fotoName;
+            Storage::disk('public')->delete('profile/'.$user->foto_pencari_kerja);
         }
+
+        // upload foto baru dengan hash
+        $foto = $request->file('foto_pencari_kerja');
+
+        $fotoName = $foto->hashName();
+
+        $foto->storeAs('profile', $fotoName, 'public');
+
+        $user->foto_pencari_kerja = $fotoName;
+    }
 
         $user->save();
 
