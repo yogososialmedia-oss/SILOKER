@@ -100,9 +100,9 @@ class ProfilePerusahaanController extends Controller
             'Kecamatan' => 'nullable|string',
             'Email' => 'required|email',
             'NoTelp' => 'required|string',
-            'NoNpwp' => 'nullable',
+            'NoNpwp' => 'nullable|digits:16',
             'GoogleMaps' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'TentangPerusahaan' => 'nullable|string',
         ], [
             'NamaPerusahaan.required' => 'Nama Perusahaan wajib diisi.',
