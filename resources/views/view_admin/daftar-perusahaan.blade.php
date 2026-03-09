@@ -5,10 +5,8 @@
             <!-- Card utama berisi daftar perusahaan mitra -->
             <div class="card pb-3">
                 <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                    <div>
                         <!-- Judul halaman daftar perusahaan -->
                         <h5 class="mb-0 fw-bold">DAFTAR PERUSAHAAN</h5>
-                    </div>
 
                     <!-- Form untuk export/download daftar perusahaan berdasarkan tahun -->
                     <form action="{{ route('admin.perusahaan.export') }}" method="GET">
