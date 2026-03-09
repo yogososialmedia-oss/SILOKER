@@ -77,13 +77,13 @@
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
                                             <option value="">Pilih Pendidikan Terakhir</option>
                                             @foreach ([
-                                                'Pendidikan Terakhir SMA/Sederajat',
-                                                'Pendidikan Terakhir D1',
-                                                'Pendidikan Terakhir D2',
-                                                'Pendidikan Terakhir D3',
-                                                'Pendidikan Terakhir S1',
-                                                'Pendidikan Terakhir S2',
-                                                'Pendidikan Terakhir S3'
+                                            'Pendidikan Terakhir SMA/sederajat',
+                                            'Pendidikan Terakhir D1',
+                                            'Pendidikan Terakhir D2',
+                                            'Pendidikan Terakhir D3',
+                                            'Pendidikan Terakhir S1',
+                                            'Pendidikan Terakhir S2',
+                                            'Pendidikan Terakhir S3'
                                             ] as $p)
                                                 <option value="{{ $p }}" {{ old('pendidikan_terakhir', $user->pendidikan_terakhir) == $p ? 'selected' : '' }}>
                                                     {{ $p }}
@@ -107,7 +107,10 @@
                                     <!-- Foto Profile -->
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Foto Profile</label>
-                                        <input name="foto_pencari_kerja" type="file" class="form-control @error('foto_pencari_kerja') is-invalid @enderror" accept="image/png,image/jpeg,image/jpg">
+                                        <input id="fotoProfileInput" name="foto_pencari_kerja" type="file" class="form-control @error('foto_pencari_kerja') is-invalid @enderror" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-danger d-none" id="fotoProfileError">
+                                        Ukuran file terlalu besar. Maksimal 2MB.
+                                        </small>
                                         @error('foto_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -145,4 +148,21 @@
             </div>
         </div>
     </footer>
+    <script>
+    document.getElementById('fotoProfileInput').addEventListener('change', function () {
+
+        const file = this.files[0];
+        const maxSize = 2 * 1024 * 1024; // 2MB
+        const error = document.getElementById('fotoProfileError');
+
+        if (!file) return;
+
+        if (file.size > maxSize) {
+            error.classList.remove('d-none');
+            this.value = ''; // reset file
+        } else {
+            error.classList.add('d-none');
+        }
+    });
+    </script>
 </x-pencari_kerja.layout>
