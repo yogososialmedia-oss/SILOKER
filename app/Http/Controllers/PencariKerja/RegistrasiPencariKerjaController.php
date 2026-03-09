@@ -34,7 +34,7 @@ class RegistrasiPencariKerjaController extends Controller
     {
         $request->validate([
             'nama_pencari_kerja' => 'required|string|max:255',
-            'nim' => 'nullable|numeric|digits_between:1,9',
+            'nim' => 'nullable|digits:9',
             'email_pencari_kerja' => 'required|email|max:255|unique:tb_pencari_kerja,email_pencari_kerja',
             'password_pencari_kerja' => [
                 'required',
@@ -59,7 +59,7 @@ class RegistrasiPencariKerjaController extends Controller
 
             // 🔹 NIM
             'nim.numeric' => 'NIM hanya boleh berisi angka.',
-            'nim.digits_between' => 'NIM maksimal 11 angka.',   
+            'nim.digits' => 'NIM harus terdiri dari 9 digit.',   
 
             // 🔹 EMAIL
             'email_pencari_kerja.required' => 'Email wajib diisi.',
