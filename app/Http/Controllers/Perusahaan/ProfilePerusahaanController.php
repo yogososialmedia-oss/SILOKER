@@ -134,15 +134,20 @@ class ProfilePerusahaanController extends Controller
 
         if ($request->hasFile('logo')) {
 
-        // Hapus logo lama jika ada
-        if (!empty($authPerusahaan->logo)) {
-            Storage::disk('public')->delete('logo_perusahaan/' . $authPerusahaan->logo);
+        // hapus logo lama
+        if ($authPerusahaan->logo) {
+            Storage::disk('public')->delete('logo_perusahaan/'.$authPerusahaan->logo);
         }
 
         $logoFile = $request->file('logo');
+
+        // buat nama file aman
         $logoFilename = $logoFile->hashName();
+
+        // simpan file
         $logoFile->storeAs('logo_perusahaan', $logoFilename, 'public');
 
+        // simpan ke database
         $authPerusahaan->logo = $logoFilename;
     }
         // Jika sebelumnya gagal, ubah jadi pending lagi
