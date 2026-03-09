@@ -7,15 +7,14 @@
                     <!-- Card utama berisi daftar lowongan -->
                     <div class="card pb-3">
                         <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                                <!-- Judul halaman daftar lowongan -->
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+
                                 <h5 class="mb-0 fw-bold">DAFTAR LOKER</h5>
 
-                                <!-- Form untuk export/download daftar loker berdasarkan tahun -->
                                 <form action="{{ route('admin.loker.export') }}" method="GET">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <!-- Dropdown tahun untuk filter export -->
-                                        <select name="tahun" class="form-select form-select-sm" style="width: 160px;">
+                                    <div class="d-flex flex-wrap align-items-center gap-2">
+
+                                        <select name="tahun" class="form-select form-select-sm" style="width:160px;">
                                             <option value="">Semua Tahun</option>
                                             @foreach($tahunList as $tahun)
                                                 <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
@@ -24,12 +23,13 @@
                                             @endforeach
                                         </select>
 
-                                        <!-- Tombol submit untuk download -->
                                         <button type="submit" class="btn btn-success btn-sm px-3">
                                             Download
                                         </button>
+
                                     </div>
                                 </form>
+
                             </div>
                         </div>
 
