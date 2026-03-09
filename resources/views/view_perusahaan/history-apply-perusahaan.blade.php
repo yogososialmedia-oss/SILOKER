@@ -8,16 +8,13 @@
                 {{-- HEADER CARD --}}
                 <div class="card-header">
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <!-- Judul -->
+                        <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
 
-                        <div>
-                            <h5 class="mb-0 fw-bold">DAFTAR APPLY</h5>
-                        </div>
-
-                        {{-- FORM FILTER & DOWNLOAD --}}
+                        <!-- Form filter & download -->
                         <form action="{{ route('perusahaan.apply.export') }}" method="GET">
                             <div class="d-flex flex-wrap align-items-center gap-2">
-                                
-                                {{-- SELECT TAHUN --}}
+                                <!-- Dropdown tahun -->
                                 <select name="tahun" class="form-select form-select-sm" style="width:160px;">
                                     <option value="">Semua Tahun</option>
                                     @foreach($tahunList as $tahun)
@@ -27,14 +24,12 @@
                                     @endforeach
                                 </select>
 
-                                {{-- BUTTON DOWNLOAD --}}
+                                <!-- Tombol download -->
                                 <button type="submit" class="btn btn-success btn-sm px-3">
                                     Download
                                 </button>
-
                             </div>
                         </form>
-
                     </div>
                 </div>
 
