@@ -34,7 +34,7 @@ class RegistrasiPencariKerjaController extends Controller
     {
         $request->validate([
             'nama_pencari_kerja' => 'required|string|max:255',
-            'nim' => 'nullable|numeric|digits_between:1,11',
+            'nim' => 'nullable|numeric|digits_between:1,9',
             'email_pencari_kerja' => 'required|email|max:255|unique:tb_pencari_kerja,email_pencari_kerja',
             'password_pencari_kerja' => [
                 'required',
