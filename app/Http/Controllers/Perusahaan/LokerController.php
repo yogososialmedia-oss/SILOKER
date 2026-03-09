@@ -99,12 +99,11 @@ class LokerController extends Controller
         if ($request->hasFile('poster_loker')) {
 
             $file = $request->file('poster_loker');
-            $filename = time().'_'.$file->getClientOriginalName();
 
-            // simpan ke storage/app/public/poster_loker
+            $filename = $file->hashName();
+
             $file->storeAs('poster_loker', $filename, 'public');
 
-            // simpan path ke database
             $posterPath = 'storage/poster_loker/'.$filename;
         }
 
@@ -230,10 +229,12 @@ class LokerController extends Controller
             }
 
             $file = $request->file('poster_loker');
-            $filename = time().'_'.$file->getClientOriginalName();
+
+            $filename = $file->hashName();
+
             $file->storeAs('poster_loker', $filename, 'public');
 
-            $loker->poster_loker = 'storage/poster_loker/'.$filename;
+            $posterPath = 'storage/poster_loker/'.$filename;
         }
 
         $loker->save();
