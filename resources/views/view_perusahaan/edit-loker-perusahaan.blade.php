@@ -227,6 +227,13 @@
 
     @push('scripts')
         <script>
+            document.querySelector('input[name="poster_loker"]').addEventListener('change', function() {
+                const file = this.files[0];
+                if (file && file.size > 2 * 1024 * 1024) {
+                    alert('Ukuran file maksimal 2MB');
+                    this.value = '';
+                }
+            });
             document.addEventListener('DOMContentLoaded', function () {
                 // ===== TANGGAL MULAI & SELESAI SYNC =====
                 const mulai = document.getElementById('tanggal_mulai');
