@@ -46,7 +46,7 @@ class RegistrasiPerusahaanController extends Controller
                 'regex:/[^A-Za-z0-9]/'
             ],
 
-            'NoNpwp' => 'required|digits:16',
+            'NoNpwp' => 'nullable|digits:15',
 
             'NoTelp' => 'required|regex:/^[0-9]{10,15}$/',
 
@@ -73,8 +73,7 @@ class RegistrasiPerusahaanController extends Controller
             'Password.min' => 'Password minimal 8 karakter.',
             'Password.regex' => 'Password harus mengandung huruf besar, kecil, angka, dan simbol.',
 
-            'NoNpwp.required' => 'NPWP wajib diisi.',
-            'NoNpwp.digits' => 'NPWP wajib berisi 16 angka.',
+            'NoNpwp.digits' => 'NPWP wajib berisi 15 angka.',
 
             'NoTelp.required' => 'Nomor telepon wajib diisi.',
             'NoTelp.regex' => 'Nomor telepon hanya boleh angka (10-15 digit).',

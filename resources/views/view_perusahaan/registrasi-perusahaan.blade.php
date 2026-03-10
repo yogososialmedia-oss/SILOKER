@@ -34,7 +34,7 @@
                                             value="{{ old('NoNpwp') }}"
                                             class="form-control @error('NoNpwp') is-invalid @enderror"
                                             placeholder="Tambahkan nomor NPWP"
-                                            maxlength="16"
+                                            maxlength="15"
                                             inputmode="numeric"
                                             pattern="[0-9]*"
                                             oninput="this.value=this.value.replace(/[^0-9]/g,'')">
