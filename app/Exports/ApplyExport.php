@@ -75,7 +75,7 @@ class ApplyExport implements
             $apply->pencariKerja->nim ?? '-',
             $apply->pencariKerja->nama_pencari_kerja ?? '-',
             $apply->pencariKerja->no_telp_pencari_kerja ?? '-',
-            $apply->pencariKerja->email ?? '-',
+            $apply->pencariKerja->email_pencari_kerja ?? '-',
             strtoupper($apply->status ?? '-'),
         ];
     }

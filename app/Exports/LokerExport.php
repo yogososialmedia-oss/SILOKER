@@ -67,7 +67,7 @@ class LokerExport implements
             $loker->jabatan ?? '-',
             $loker->tipe_loker ?? '-',
             $status,
-            $loker->perusahaanMitra->no_telp ?? '-',
+            $loker->perusahaanMitra->no_telp_perusahaan ?? '-',
             $loker->perusahaanMitra->email_perusahaan ?? '-',
         ];
     }
