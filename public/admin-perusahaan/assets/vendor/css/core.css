@@ -6543,7 +6543,7 @@ fieldset:disabled .btn {
   --bs-pagination-border-width: 1px;
   --bs-pagination-border-color: rgba(34, 48, 62, 0.22);
   --bs-pagination-border-radius: 50%;
-  --bs-pagination-hover-color: var(--bs-primary);
+  --bs-pagination-hover-color: var();
   --bs-pagination-hover-bg: var(--bs-primary-bg-subtle);
   --bs-pagination-hover-border-color: rgba(34, 48, 62, 0.22);
   --bs-pagination-focus-color: var(--bs-primary);
@@ -32563,30 +32563,4 @@ html {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   background-color: #fff;
-}
-
-/* ===============================
-  PAGINATION TANPA HOVER
-================================ */
-
-/* pagination normal */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #3f75c7 !important;
-  background: transparent !important;
-  border: none !important;
-}
-
-/* HILANGKAN HOVER */
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: transparent !important;
-  color: #3f75c7 !important;
-  cursor: pointer;
-}
-
-/* pagination aktif */
-.dataTables_wrapper .dataTables_paginate .paginate_button.current,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  background: #3f75c7 !important;
-  color: #ffffff !important;
-  border-radius: 6px !important;
 }
