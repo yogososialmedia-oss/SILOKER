@@ -6585,9 +6585,9 @@ fieldset:disabled .btn {
 
 .page-link:hover {
   z-index: 2;
-  color: var(--bs-pagination-color);
-  background-color: var(--bs-pagination-bg);
-  border-color: var(--bs-pagination-border-color);
+  color: var(--bs-pagination-hover-color);
+  background-color: var(--bs-pagination-hover-bg);
+  border-color: var(--bs-pagination-hover-border-color);
 }
 
 .page-link:focus {
