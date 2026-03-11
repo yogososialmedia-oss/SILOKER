@@ -13,7 +13,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-
 class ApplyExport implements
     FromCollection,
     WithHeadings,
@@ -56,11 +55,13 @@ class ApplyExport implements
     public function headings(): array
     {
         return [
-            'Tanggal Apply',
-            'Nama Pelamar',
-            'No Telp',
+            'Tanggal',
             'Perusahaan',
             'Jabatan',
+            'NIM',
+            'Nama',
+            'No. Telp',
+            'Email',
             'Status',
         ];
     }
@@ -68,12 +69,14 @@ class ApplyExport implements
     public function map($apply): array
     {
         return [
-            Carbon::parse($apply->tanggal_apply)->format('d-m-Y'),
-            $apply->pencariKerja->nama_pencari_kerja ?? '-',
-            $apply->pencariKerja->no_telp_pencari_kerja ?? '-',
+            $apply->tanggal_apply ? Carbon::parse($apply->tanggal_apply)->format('d-m-Y') : '-',
             $apply->loker->perusahaanMitra->nama_perusahaan ?? '-',
             $apply->loker->jabatan ?? '-',
-            strtoupper($apply->status),
+            $apply->pencariKerja->nim ?? '-',
+            $apply->pencariKerja->nama_pencari_kerja ?? '-',
+            $apply->pencariKerja->no_telp_pencari_kerja ?? '-',
+            $apply->pencariKerja->email ?? '-',
+            strtoupper($apply->status ?? '-'),
         ];
     }
 
@@ -82,7 +85,7 @@ class ApplyExport implements
         $lastRow = $sheet->getHighestRow();
 
         // HEADER STYLE
-        $sheet->getStyle('A1:F1')->applyFromArray([
+        $sheet->getStyle('A1:H1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -98,7 +101,7 @@ class ApplyExport implements
         ]);
 
         // BORDER
-        $sheet->getStyle("A1:F{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:H{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -110,12 +113,15 @@ class ApplyExport implements
         $sheet->getStyle("A2:A{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
-        $sheet->getStyle("F2:F{$lastRow}")
+        $sheet->getStyle("D2:D{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
-        // WARNA STATUS
+        $sheet->getStyle("H2:H{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        // WARNA STATUS di kolom H
         for ($row = 2; $row <= $lastRow; $row++) {
-            $status = strtolower($sheet->getCell("F{$row}")->getValue());
+            $status = strtolower($sheet->getCell("H{$row}")->getValue());
 
             $color = match ($status) {
                 'pending'   => 'FFC107',
@@ -125,7 +131,7 @@ class ApplyExport implements
                 default     => '6C757D',
             };
 
-            $sheet->getStyle("F{$row}")->applyFromArray([
+            $sheet->getStyle("H{$row}")->applyFromArray([
                 'font' => [
                     'bold' => true,
                     'color' => ['rgb' => 'FFFFFF'],
