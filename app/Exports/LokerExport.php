@@ -102,8 +102,8 @@ class LokerExport implements
             $status = $sheet->getCell("D{$row}")->getValue();
 
             $color = $status === 'OPEN'
-                ? '198754'
-                : 'DC3545';
+                ? '0D6EFD'  
+                : 'DC3545';  
 
             $sheet->getStyle("D{$row}")->applyFromArray([
                 'font' => [
