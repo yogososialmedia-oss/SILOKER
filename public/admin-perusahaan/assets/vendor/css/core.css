@@ -32565,3 +32565,25 @@ html {
   background-color: #fff;
 }
 
+/* ===============================
+  FIX PAGINATION DATATABLES
+================================ */
+
+/* warna angka pagination normal */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #3f75c7 !important;
+}
+
+/* hover pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: rgba(63, 117, 199, 0.15) !important;
+    color: #3f75c7 !important;
+}
+
+/* pagination aktif */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #3f75c7 !important;
+    color: #ffffff !important;
+    border-radius: 6px;
+}
