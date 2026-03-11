@@ -32566,38 +32566,27 @@ html {
 }
 
 /* ===============================
-  FIX PAGINATION DATATABLES
+  PAGINATION TANPA HOVER
 ================================ */
 
-/* link angka normal */
-.dataTables_wrapper .dataTables_paginate .paginate_button,
-.dataTables_wrapper .dataTables_paginate .paginate_button a,
-.dataTables_wrapper .dataTables_paginate .page-link {
+/* pagination normal */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
   color: #3f75c7 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-/* hover */
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover a,
-.dataTables_wrapper .dataTables_paginate .page-link:hover {
+/* HILANGKAN HOVER */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: transparent !important;
   color: #3f75c7 !important;
+  cursor: pointer;
 }
 
-/* active/current */
+/* pagination aktif */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
-.dataTables_wrapper .dataTables_paginate .page-item.active .page-link,
-.dataTables_wrapper .dataTables_paginate .page-link.active {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   background: #3f75c7 !important;
-  border-color: #3f75c7 !important;
   color: #ffffff !important;
   border-radius: 6px !important;
-}
-
-/* paksa teks di dalam current tetap putih */
-.dataTables_wrapper .dataTables_paginate .paginate_button.current a,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover a,
-.dataTables_wrapper .dataTables_paginate .page-item.active .page-link,
-.dataTables_wrapper .dataTables_paginate .page-link.active {
-  color: #ffffff !important;
 }
