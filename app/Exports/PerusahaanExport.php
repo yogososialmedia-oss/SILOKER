@@ -50,7 +50,6 @@ class PerusahaanExport implements
             'Kecamatan',
             'Alamat Perusahaan',
             'Status Akun',
-            'Deskripsi Status',
         ];
     }
 
@@ -67,7 +66,6 @@ class PerusahaanExport implements
             $perusahaan->kecamatan ?? '-',
             $perusahaan->alamat_perusahaan ?? '-',
             str_replace('_', ' ', ucfirst($perusahaan->status_akun ?? '-')),
-            $perusahaan->deskripsi_status ?? '-',
         ];
     }
 
