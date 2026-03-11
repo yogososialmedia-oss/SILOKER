@@ -73,6 +73,10 @@ class PerusahaanExport implements
                 'fillType' => Fill::FILL_SOLID,
                 'startColor' => ['rgb' => '198754'],
             ],
+            'alignment' => [
+                'horizontal' => 'center',
+                'vertical' => 'center',
+            ],
         ]);
 
         // Border
@@ -83,6 +87,37 @@ class PerusahaanExport implements
                 ],
             ],
         ]);
+
+        // Align tanggal & status
+        $sheet->getStyle("A2:A{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        $sheet->getStyle("E2:E{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        // WARNA STATUS
+        for ($row = 2; $row <= $lastRow; $row++) {
+
+            $status = strtolower($sheet->getCell("E{$row}")->getValue());
+
+            $color = match ($status) {
+                'pending' => 'FFC107',             // orange
+                'terverifikasi' => '198754',       // hijau
+                'verifikasi gagal' => 'DC3545',    // merah
+                default => '6C757D'
+            };
+
+            $sheet->getStyle("E{$row}")->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ],
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => $color],
+                ],
+            ]);
+        }
 
         return [];
     }
