@@ -40,24 +40,22 @@ class PerusahaanExport implements
     public function headings(): array
     {
         return [
+            'Tanggal',
             'Nama Perusahaan',
             'Email',
             'No NPWP',
-            'Alamat',
-            'Status Verifikasi',
-            'Tanggal Daftar'
+            'Status',
         ];
     }
 
     public function map($perusahaan): array
     {
         return [
-            $perusahaan->nama_perusahaan,
-            $perusahaan->email_perusahaan,
-            $perusahaan->no_npwp,
-            $perusahaan->alamat_perusahaan ?? '-',
-            ucfirst($perusahaan->status_akun),
-            $perusahaan->created_at->format('d-m-Y')
+            $perusahaan->created_at ? $perusahaan->created_at->format('d-m-Y') : '-',
+            $perusahaan->nama_perusahaan ?? '-',
+            $perusahaan->email_perusahaan ?? '-',
+            $perusahaan->no_npwp ?? '-',
+            ucfirst($perusahaan->status_akun ?? '-'),
         ];
     }
 
@@ -66,7 +64,7 @@ class PerusahaanExport implements
         $lastRow = $sheet->getHighestRow();
 
         // Header style
-        $sheet->getStyle('A1:F1')->applyFromArray([
+        $sheet->getStyle('A1:E1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -78,7 +76,7 @@ class PerusahaanExport implements
         ]);
 
         // Border
-        $sheet->getStyle("A1:F{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:E{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,

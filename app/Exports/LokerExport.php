@@ -19,7 +19,6 @@ class LokerExport implements
     ShouldAutoSize,
     WithStyles
 {
-
     protected $tahun;
     protected $idPerusahaan;
 
@@ -28,11 +27,10 @@ class LokerExport implements
         $this->tahun = $tahun;
         $this->idPerusahaan = $idPerusahaan;
     }
+
     public function collection()
     {
-        $query = Loker::with('perusahaanMitra')
-            ->withCount('apply')
-            ->latest();
+        $query = Loker::with('perusahaanMitra')->latest();
 
         if ($this->tahun) {
             $query->whereYear('tanggal_mulai_loker', $this->tahun);
@@ -51,32 +49,26 @@ class LokerExport implements
             'Nama Perusahaan',
             'Jabatan',
             'Tipe',
-            'Model Kerja',
-            'Lokasi',
-            'Tanggal Mulai',
-            'Tanggal Berakhir',
             'Status',
-            'Jumlah Pelamar',
+            'No.Telp',
+            'Email',
         ];
     }
 
     public function map($loker): array
     {
         $status = now()->between(
-        $loker->tanggal_mulai_loker->startOfDay(),
-        $loker->tanggal_berakhir_loker->endOfDay()
-    ) ? 'OPEN' : 'CLOSED';
+            $loker->tanggal_mulai_loker->copy()->startOfDay(),
+            $loker->tanggal_berakhir_loker->copy()->endOfDay()
+        ) ? 'OPEN' : 'CLOSED';
 
         return [
             $loker->perusahaanMitra->nama_perusahaan ?? '-',
-            $loker->jabatan,
-            $loker->tipe_loker,
-            $loker->model_kerja,
-            $loker->kabupaten . ', ' . $loker->provinsi,
-            $loker->tanggal_mulai_loker->format('d-m-Y'),
-            $loker->tanggal_berakhir_loker->format('d-m-Y'),
+            $loker->jabatan ?? '-',
+            $loker->tipe_loker ?? '-',
             $status,
-            $loker->apply_count,
+            $loker->perusahaanMitra->no_telp ?? '-',
+            $loker->perusahaanMitra->email_perusahaan ?? '-',
         ];
     }
 
@@ -85,7 +77,7 @@ class LokerExport implements
         $lastRow = $sheet->getHighestRow();
 
         // HEADER
-        $sheet->getStyle('A1:I1')->applyFromArray([
+        $sheet->getStyle('A1:F1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -97,7 +89,7 @@ class LokerExport implements
         ]);
 
         // BORDER
-        $sheet->getStyle("A1:I{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:F{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -105,15 +97,15 @@ class LokerExport implements
             ],
         ]);
 
-        // WARNA STATUS
+        // WARNA STATUS di kolom D
         for ($row = 2; $row <= $lastRow; $row++) {
-            $status = $sheet->getCell("H{$row}")->getValue();
+            $status = $sheet->getCell("D{$row}")->getValue();
 
             $color = $status === 'OPEN'
                 ? '198754'
                 : 'DC3545';
 
-            $sheet->getStyle("H{$row}")->applyFromArray([
+            $sheet->getStyle("D{$row}")->applyFromArray([
                 'font' => [
                     'bold' => true,
                     'color' => ['rgb' => 'FFFFFF'],

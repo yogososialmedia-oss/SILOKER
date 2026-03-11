@@ -61,7 +61,9 @@
                                                                         {{-- Lokasi --}}
                                                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                                                             <i class="bx bx-location-plus"></i>
-                                                                            <span>{{ $loker->kabupaten }}</span>
+                                                                            <span>
+                                                                                {{ $loker->provinsi }}, {{ $loker->kabupaten }}, {{ $loker->kecamatan }}
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
