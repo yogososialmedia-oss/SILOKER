@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('#daftar-loker-perusahaan').DataTable();
 
-    
-    $('#table-apply').DataTable();
+    $('#table-apply').DataTable({
+        paging: false
+    });
 });
