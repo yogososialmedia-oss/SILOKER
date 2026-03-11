@@ -32564,3 +32564,26 @@ html {
   margin-right: calc(-50vw + 50%);
   background-color: #fff;
 }
+
+/* =========================
+  FIX PAGINATION DATATABLES
+========================= */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #3f75c7 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50% !important;
+  margin: 0 4px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: rgba(63, 117, 199, 0.12) !important;
+  color: #3f75c7 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: #3f75c7 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
