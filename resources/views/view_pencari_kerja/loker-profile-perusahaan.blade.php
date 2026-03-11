@@ -80,7 +80,7 @@
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                             <i class="bx bx-location-plus"></i>
                                             <span>
-                                                {{ $loker->provinsi }}, {{ $loker->kabupaten }}, {{ $loker->kecamatan }}
+                                                {{ $item->provinsi }}, {{ $item->kabupaten }}, {{ $item->kecamatan }}
                                             </span>
                                         </p>
                                     </div>
