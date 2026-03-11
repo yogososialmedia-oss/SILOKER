@@ -92,7 +92,7 @@ class ApplyExport implements
             ],
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'startColor' => ['rgb' => '3f75c7'],
+                'startColor' => ['rgb' => '6C757D'],
             ],
             'alignment' => [
                 'horizontal' => 'center',
