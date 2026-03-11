@@ -267,9 +267,9 @@
                 const kabupaten = document.getElementById('kabupaten');
                 const kecamatan = document.getElementById('kecamatan');
 
-                let oldProvinsi = "{{ old('provinsi') }}";
-                let oldKabupaten = "{{ old('kabupaten') }}";
-                let oldKecamatan = "{{ old('kecamatan') }}";
+                let oldProvinsi = @json(old('provinsi', $info_perusahaan->provinsi ?? ''));
+                let oldKabupaten = @json(old('kabupaten', $info_perusahaan->kabupaten ?? ''));
+                let oldKecamatan = @json(old('kecamatan', $info_perusahaan->kecamatan ?? ''));
 
                 fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
                     .then(res => res.json())
