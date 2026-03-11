@@ -17,6 +17,7 @@ class isPencariKerja
     public function handle(Request $request, Closure $next): Response
     {
         If (!Auth::guard('pencarikerja')->check()) {
+            session(['url.intended_pencarikerja' => $request->fullUrl()]);
             return redirect()->route('pencarikerja.login');
         }
         return $next($request);

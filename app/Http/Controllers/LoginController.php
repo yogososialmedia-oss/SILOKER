@@ -177,6 +177,12 @@ class LoginController extends Controller
 
         Auth::guard('pencarikerja')->login($pencarikerja);
 
+        $intendedUrl = session()->pull('url.intended_pencarikerja');
+
+        if ($intendedUrl) {
+            return redirect($intendedUrl);
+        }
+
         return redirect()->route('pencarikerja.loker.index');
     }
     public function logout(Request $request)
