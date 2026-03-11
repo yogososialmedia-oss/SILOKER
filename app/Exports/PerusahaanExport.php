@@ -54,7 +54,7 @@ class PerusahaanExport implements
             $perusahaan->created_at ? $perusahaan->created_at->format('d-m-Y') : '-',
             $perusahaan->nama_perusahaan ?? '-',
             $perusahaan->email_perusahaan ?? '-',
-            $perusahaan->no_npwp ?? '-',
+            "'" . ($perusahaan->no_npwp ?? '-'),
             ucfirst($perusahaan->status_akun ?? '-'),
         ];
     }
@@ -95,6 +95,10 @@ class PerusahaanExport implements
         $sheet->getStyle("E2:E{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
+        $sheet->getStyle("D2:D{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
+
         // WARNA STATUS
         for ($row = 2; $row <= $lastRow; $row++) {
 
@@ -102,7 +106,7 @@ class PerusahaanExport implements
 
             $color = match ($status) {
                 'pending' => 'FFC107',             // orange
-                'terverifikasi' => '198754',       // hijau
+                'terverifikasi' => '0D6EFD',       // biru
                 'verifikasi gagal' => 'DC3545',    // merah
                 default => '6C757D'
             };
