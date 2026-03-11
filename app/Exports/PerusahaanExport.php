@@ -71,7 +71,7 @@ class PerusahaanExport implements
             ],
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'startColor' => ['rgb' => '198754'],
+                'startColor' => ['rgb' => '6C757D'],
             ],
             'alignment' => [
                 'horizontal' => 'center',
