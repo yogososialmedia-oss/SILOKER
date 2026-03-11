@@ -32569,21 +32569,35 @@ html {
   FIX PAGINATION DATATABLES
 ================================ */
 
-/* warna angka pagination normal */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    color: #3f75c7 !important;
+/* link angka normal */
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button a,
+.dataTables_wrapper .dataTables_paginate .page-link {
+  color: #3f75c7 !important;
 }
 
-/* hover pagination */
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: rgba(63, 117, 199, 0.15) !important;
-    color: #3f75c7 !important;
+/* hover */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover a,
+.dataTables_wrapper .dataTables_paginate .page-link:hover {
+  color: #3f75c7 !important;
 }
 
-/* pagination aktif */
+/* active/current */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: #3f75c7 !important;
-    color: #ffffff !important;
-    border-radius: 6px;
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .page-item.active .page-link,
+.dataTables_wrapper .dataTables_paginate .page-link.active {
+  background: #3f75c7 !important;
+  border-color: #3f75c7 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+}
+
+/* paksa teks di dalam current tetap putih */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current a,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover a,
+.dataTables_wrapper .dataTables_paginate .page-item.active .page-link,
+.dataTables_wrapper .dataTables_paginate .page-link.active {
+  color: #ffffff !important;
 }
