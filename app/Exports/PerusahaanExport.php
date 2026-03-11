@@ -40,11 +40,17 @@ class PerusahaanExport implements
     public function headings(): array
     {
         return [
-            'Tanggal',
+            'Tanggal Daftar',
             'Nama Perusahaan',
             'Email',
+            'No Telepon',
             'No NPWP',
-            'Status',
+            'Provinsi',
+            'Kabupaten',
+            'Kecamatan',
+            'Alamat Perusahaan',
+            'Status Akun',
+            'Deskripsi Status',
         ];
     }
 
@@ -54,8 +60,14 @@ class PerusahaanExport implements
             $perusahaan->created_at ? $perusahaan->created_at->format('d-m-Y') : '-',
             $perusahaan->nama_perusahaan ?? '-',
             $perusahaan->email_perusahaan ?? '-',
+            "'" . ($perusahaan->no_telp_perusahaan ?? '-'),
             "'" . ($perusahaan->no_npwp ?? '-'),
-            ucfirst($perusahaan->status_akun ?? '-'),
+            $perusahaan->provinsi ?? '-',
+            $perusahaan->kabupaten ?? '-',
+            $perusahaan->kecamatan ?? '-',
+            $perusahaan->alamat_perusahaan ?? '-',
+            str_replace('_', ' ', ucfirst($perusahaan->status_akun ?? '-')),
+            $perusahaan->deskripsi_status ?? '-',
         ];
     }
 
@@ -64,7 +76,7 @@ class PerusahaanExport implements
         $lastRow = $sheet->getHighestRow();
 
         // Header style
-        $sheet->getStyle('A1:E1')->applyFromArray([
+        $sheet->getStyle('A1:L1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -80,7 +92,7 @@ class PerusahaanExport implements
         ]);
 
         // Border
-        $sheet->getStyle("A1:E{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:L{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -88,30 +100,59 @@ class PerusahaanExport implements
             ],
         ]);
 
-        // Align tanggal & status
+        // Align center
         $sheet->getStyle("A2:A{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
-        $sheet->getStyle("E2:E{$lastRow}")
+        $sheet->getStyle("J2:J{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
+        $sheet->getStyle("L2:L{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        // Format text untuk no telepon & npwp
         $sheet->getStyle("D2:D{$lastRow}")
             ->getNumberFormat()
             ->setFormatCode('@');
 
-        // WARNA STATUS
-        for ($row = 2; $row <= $lastRow; $row++) {
+        $sheet->getStyle("E2:E{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
 
-            $status = strtolower($sheet->getCell("E{$row}")->getValue());
+        // Warna status akun
+        for ($row = 2; $row <= $lastRow; $row++) {
+            $status = strtolower(trim($sheet->getCell("J{$row}")->getValue()));
 
             $color = match ($status) {
-                'pending' => 'FFC107',             // orange
-                'terverifikasi' => '0D6EFD',       // biru
-                'verifikasi gagal' => 'DC3545',    // merah
+                'pending' => 'FFC107',               // orange
+                'terverifikasi' => '198754',         // hijau
+                'verifikasi gagal' => 'DC3545',      // merah
                 default => '6C757D'
             };
 
-            $sheet->getStyle("E{$row}")->applyFromArray([
+            $sheet->getStyle("J{$row}")->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ],
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => $color],
+                ],
+            ]);
+        }
+
+        // Warna email verified
+        for ($row = 2; $row <= $lastRow; $row++) {
+            $verified = strtolower(trim($sheet->getCell("L{$row}")->getValue()));
+
+            $color = match ($verified) {
+                'sudah verifikasi' => '198754', // hijau
+                'belum verifikasi' => 'DC3545', // merah
+                default => '6C757D'
+            };
+
+            $sheet->getStyle("L{$row}")->applyFromArray([
                 'font' => [
                     'bold' => true,
                     'color' => ['rgb' => 'FFFFFF'],

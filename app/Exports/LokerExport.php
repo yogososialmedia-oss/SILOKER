@@ -48,10 +48,20 @@ class LokerExport implements
         return [
             'Nama Perusahaan',
             'Jabatan',
-            'Tipe',
+            'Tipe Loker',
+            'Model Kerja',
+            'Minimal Pendidikan',
+            'Tanggal Mulai',
+            'Tanggal Berakhir',
             'Status',
-            'No.Telp',
+            'Provinsi',
+            'Kabupaten',
+            'Kecamatan',
+            'Alamat',
+            'No. Telepon',
             'Email',
+            'Tayangan',
+            'Interaksi',
         ];
     }
 
@@ -66,9 +76,19 @@ class LokerExport implements
             $loker->perusahaanMitra->nama_perusahaan ?? '-',
             $loker->jabatan ?? '-',
             $loker->tipe_loker ?? '-',
+            $loker->model_kerja ?? '-',
+            $loker->minimal_pendidikan ?? '-',
+            $loker->tanggal_mulai_loker ? $loker->tanggal_mulai_loker->format('d-m-Y') : '-',
+            $loker->tanggal_berakhir_loker ? $loker->tanggal_berakhir_loker->format('d-m-Y') : '-',
             $status,
-            $loker->perusahaanMitra->no_telp_perusahaan ?? '-',
-            $loker->perusahaanMitra->email_perusahaan ?? '-',
+            $loker->provinsi ?? '-',
+            $loker->kabupaten ?? '-',
+            $loker->kecamatan ?? '-',
+            $loker->alamat ?? '-',
+            "'" . ($loker->no_telp_perusahaan ?? '-'),
+            $loker->email_perusahaan ?? '-',
+            $loker->tayangan ?? 0,
+            $loker->interaksi ?? 0,
         ];
     }
 
@@ -77,7 +97,7 @@ class LokerExport implements
         $lastRow = $sheet->getHighestRow();
 
         // HEADER
-        $sheet->getStyle('A1:F1')->applyFromArray([
+        $sheet->getStyle('A1:Q1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -86,10 +106,14 @@ class LokerExport implements
                 'fillType' => Fill::FILL_SOLID,
                 'startColor' => ['rgb' => '6C757D'],
             ],
+            'alignment' => [
+                'horizontal' => 'center',
+                'vertical' => 'center',
+            ],
         ]);
 
         // BORDER
-        $sheet->getStyle("A1:F{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:Q{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -97,15 +121,27 @@ class LokerExport implements
             ],
         ]);
 
-        // WARNA STATUS di kolom D
+        // Alignment tengah untuk beberapa kolom
+        $sheet->getStyle("F2:H{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        $sheet->getStyle("O2:P{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        // Format no telepon sebagai text
+        $sheet->getStyle("M2:M{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
+
+        // Warna status di kolom H
         for ($row = 2; $row <= $lastRow; $row++) {
-            $status = $sheet->getCell("D{$row}")->getValue();
+            $status = strtoupper(trim($sheet->getCell("H{$row}")->getValue()));
 
             $color = $status === 'OPEN'
-                ? '0D6EFD'  
-                : 'DC3545';  
+                ? '0D6EFD'   // biru
+                : 'DC3545';  // merah
 
-            $sheet->getStyle("D{$row}")->applyFromArray([
+            $sheet->getStyle("H{$row}")->applyFromArray([
                 'font' => [
                     'bold' => true,
                     'color' => ['rgb' => 'FFFFFF'],
@@ -113,6 +149,10 @@ class LokerExport implements
                 'fill' => [
                     'fillType' => Fill::FILL_SOLID,
                     'startColor' => ['rgb' => $color],
+                ],
+                'alignment' => [
+                    'horizontal' => 'center',
+                    'vertical' => 'center',
                 ],
             ]);
         }

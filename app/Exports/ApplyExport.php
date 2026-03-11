@@ -55,13 +55,14 @@ class ApplyExport implements
     public function headings(): array
     {
         return [
-            'Tanggal',
+            'Tanggal Apply',
             'Perusahaan',
             'Jabatan',
             'NIM',
-            'Nama',
-            'No. Telp',
-            'Email',
+            'Nama Pelamar',
+            'No. Telp Pelamar',
+            'Email Pelamar',
+            'LinkedIn',
             'Status',
         ];
     }
@@ -72,10 +73,11 @@ class ApplyExport implements
             $apply->tanggal_apply ? Carbon::parse($apply->tanggal_apply)->format('d-m-Y') : '-',
             $apply->loker->perusahaanMitra->nama_perusahaan ?? '-',
             $apply->loker->jabatan ?? '-',
-            $apply->pencariKerja->nim ?? '-',
+            "'" . ($apply->pencariKerja->nim ?? '-'),
             $apply->pencariKerja->nama_pencari_kerja ?? '-',
-            $apply->pencariKerja->no_telp_pencari_kerja ?? '-',
+            "'" . ($apply->pencariKerja->no_telp_pencari_kerja ?? '-'),
             $apply->pencariKerja->email_pencari_kerja ?? '-',
+            $apply->linkedin ?? '-',
             strtoupper($apply->status ?? '-'),
         ];
     }
@@ -85,7 +87,7 @@ class ApplyExport implements
         $lastRow = $sheet->getHighestRow();
 
         // HEADER STYLE
-        $sheet->getStyle('A1:H1')->applyFromArray([
+        $sheet->getStyle('A1:Q1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['rgb' => 'FFFFFF'],
@@ -101,7 +103,7 @@ class ApplyExport implements
         ]);
 
         // BORDER
-        $sheet->getStyle("A1:H{$lastRow}")->applyFromArray([
+        $sheet->getStyle("A1:Q{$lastRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -116,22 +118,41 @@ class ApplyExport implements
         $sheet->getStyle("D2:D{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
-        $sheet->getStyle("H2:H{$lastRow}")
+        $sheet->getStyle("I2:I{$lastRow}")
             ->getAlignment()->setHorizontal('center');
 
-        // WARNA STATUS di kolom H
+        $sheet->getStyle("K2:L{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        $sheet->getStyle("P2:Q{$lastRow}")
+            ->getAlignment()->setHorizontal('center');
+
+        // Format text agar angka depan 0 tidak hilang
+        $sheet->getStyle("D2:D{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
+
+        $sheet->getStyle("F2:F{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
+
+        $sheet->getStyle("M2:M{$lastRow}")
+            ->getNumberFormat()
+            ->setFormatCode('@');
+
+        // WARNA STATUS di kolom I
         for ($row = 2; $row <= $lastRow; $row++) {
-            $status = strtolower($sheet->getCell("H{$row}")->getValue());
+            $status = strtolower(trim($sheet->getCell("I{$row}")->getValue()));
 
             $color = match ($status) {
-                'pending'   => 'FFC107',
-                'interview' => '0DCAF0',
-                'diterima'  => '198754',
-                'ditolak'   => 'DC3545',
+                'pending'   => 'FFC107', // kuning
+                'interview' => '0DCAF0', // biru muda
+                'diterima'  => '198754', // hijau
+                'ditolak'   => 'DC3545', // merah
                 default     => '6C757D',
             };
 
-            $sheet->getStyle("H{$row}")->applyFromArray([
+            $sheet->getStyle("I{$row}")->applyFromArray([
                 'font' => [
                     'bold' => true,
                     'color' => ['rgb' => 'FFFFFF'],
@@ -139,6 +160,10 @@ class ApplyExport implements
                 'fill' => [
                     'fillType' => Fill::FILL_SOLID,
                     'startColor' => ['rgb' => $color],
+                ],
+                'alignment' => [
+                    'horizontal' => 'center',
+                    'vertical' => 'center',
                 ],
             ]);
         }
