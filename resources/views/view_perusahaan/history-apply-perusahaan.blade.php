@@ -184,10 +184,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Lokasi Interview</label>
-                                        <input type="text" name="google_maps" 
+                                        <input type="text" name="google_maps_interview" 
                                             id="googleMapsInput"
                                             class="form-control @error('google_maps') is-invalid @enderror"
-                                            value="{{ old('google_maps') }}"
+                                            value="{{ old('google_maps_interview') }}"
                                             placeholder="Contoh: https://maps.google.com/...">
 
                                         @error('google_maps')
@@ -196,10 +196,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp"
+                                        <input type="text" name="no_telp_interview"
                                             id="noTelpInput"
                                             class="form-control @error('no_telp') is-invalid @enderror"
-                                            value="{{ old('no_telp') }}"
+                                            value="{{ old('no_telp_interview') }}"
                                             placeholder="Contoh: 081234567890">
 
                                         @error('no_telp')
@@ -233,10 +233,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Link Google Maps Kantor</label>
-                                        <input type="text" name="google_maps"
+                                        <input type="text" name="google_maps_diterima"
                                             id="googleMapsInputAccepted"
                                             class="form-control @error('google_maps') is-invalid @enderror"
-                                            value="{{ old('google_maps') }}"
+                                            value="{{ old('google_maps_diterima') }}"
                                             placeholder="Contoh: https://maps.google.com/...">
 
                                         @error('google_maps')
@@ -245,10 +245,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
-                                        <input type="text" name="no_telp"
+                                        <input type="text" name="no_telp_diterima"
                                             id="noTelpInputAccepted"
                                             class="form-control @error('no_telp') is-invalid @enderror"
-                                            value="{{ old('no_telp') }}"
+                                            value="{{ old('no_telp_diterima') }}"
                                             placeholder="Contoh: 081234567890">
 
                                         @error('no_telp')
