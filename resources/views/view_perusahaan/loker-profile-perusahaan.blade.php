@@ -45,33 +45,43 @@
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbar-ex-15">
+                                        @php
+                                            $isPerusahaanLogin = Auth::guard('perusahaanmitra')->check();
+                                            $isAdminLogin = Auth::guard('admin')->check();
+                                            $isOwnProfile = $isPerusahaanLogin && Auth::guard('perusahaanmitra')->id() == $info_perusahaan->id;
+                                        @endphp
+
                                         {{-- MENU NAVBAR --}}
                                         <ul class="navbar-nav mb-2 mb-lg-0 text-end text-lg-start ms-auto ms-lg-0">
                                             {{-- TENTANG PERUSAHAAN --}}
-                                            @if (Auth::guard('perusahaanmitra')->user())
+                                            @if ($isPerusahaanLogin)
                                                 <li class="nav-item mb-2">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') ? 'active' : '' }}" href="{{ route('perusahaan.profile') }}">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.profile') || request()->routeIs('perusahaan.profile.lihat') ? 'active' : '' }}"
+                                                    href="{{ $isOwnProfile ? route('perusahaan.profile') : route('perusahaan.profile.lihat', $info_perusahaan->id) }}">
                                                         Tentang Perusahaan
                                                     </a>
                                                 </li>
-                                            @elseif (Auth::guard('admin')->user())
+                                            @elseif ($isAdminLogin)
                                                 <li class="nav-item">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.profile-perusahaan') ? 'active' : '' }}" href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.profile-perusahaan') ? 'active' : '' }}"
+                                                    href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}">
                                                         Tentang Perusahaan
                                                     </a>
                                                 </li>
                                             @endif
 
                                             {{-- LOWONGAN KERJA --}}
-                                            @if (Auth::guard('perusahaanmitra')->user())
+                                            @if ($isPerusahaanLogin)
                                                 <li class="nav-item mb-2">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') ? 'active' : '' }}" href="{{ route('perusahaan.loker.profile') }}">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('perusahaan.loker.profile') || request()->routeIs('perusahaan.loker.profile.lihat') ? 'active' : '' }}"
+                                                    href="{{ $isOwnProfile ? route('perusahaan.loker.profile') : route('perusahaan.loker.profile.lihat', $info_perusahaan->id) }}">
                                                         Lowongan Kerja
                                                     </a>
                                                 </li>
-                                            @elseif (Auth::guard('admin')->user())
+                                            @elseif ($isAdminLogin)
                                                 <li class="nav-item mb-2">
-                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}" href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
+                                                    <a class="navbar-brand nav-underline {{ request()->routeIs('admin.lowongan-kerja-perusahaan') ? 'active' : '' }}"
+                                                    href="{{ route('admin.lowongan-kerja-perusahaan', $info_perusahaan->id) }}">
                                                         Lowongan Kerja
                                                     </a>
                                                 </li>
@@ -80,7 +90,7 @@
 
                                         {{-- TOMBOL EDIT PROFILE --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
-                                            @if (Auth::guard('perusahaanmitra')->user())
+                                            @if ($isPerusahaanLogin && $isOwnProfile)
                                                 <li class="nav-item me-2">
                                                     <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-sm btn-warning">
                                                         Edit Profile
@@ -119,8 +129,15 @@
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 d-flex align-items-center gap-2 fw-bold">
                                             @php
-                                                $profileRoute = $isPerusahaan ? route('perusahaan.profile') : route('admin.profile-perusahaan', $info_perusahaan->id);
+                                                if ($isPerusahaan) {
+                                                    $profileRoute = $isOwnProfile
+                                                        ? route('perusahaan.profile')
+                                                        : route('perusahaan.profile.lihat', $info_perusahaan->id);
+                                                } else {
+                                                    $profileRoute = route('admin.profile-perusahaan', $info_perusahaan->id);
+                                                }
                                             @endphp
+
                                             <a href="{{ $profileRoute }}" class="text-dark link-primary fw-bold position-relative z-3">
                                                 {{ $info_perusahaan->nama_perusahaan }}
                                             </a>
