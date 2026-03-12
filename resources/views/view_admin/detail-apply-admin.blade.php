@@ -100,7 +100,7 @@
 
                             {{-- Back --}}
                             <div class="text-end mt-4">
-                                <a href="{{ route('admin.history-apply') }}" class="btn btn-secondary">
+                                <a href="{{ route('admin.history-apply', $loker->id) }}" class="btn btn-secondary">
                                     Kembali
                                 </a>
                             </div>
