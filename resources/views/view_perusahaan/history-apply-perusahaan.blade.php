@@ -100,8 +100,6 @@
                                                 {{-- BUTTON UPDATE STATUS --}}
                                                 <button type="button" class="dropdown-item btn-update-status" 
                                                     data-id="{{ $data_apply->id }}"
-                                                    data-maps="{{ $data_apply->loker->perusahaanMitra->google_maps }}"
-                                                    data-telp="{{ $data_apply->loker->perusahaanMitra->no_telp_perusahaan }}"
                                                     data-bs-toggle="modal" data-bs-target="#modalCenter">
                                                     <i class="icon-base bx bx-edit-alt me-2"></i> Update Status
                                                 </button>
@@ -303,8 +301,40 @@
 
                 // FUNCTION TOGGLE FIELDS BASED ON STATUS
                 function toggleFields() {
-                    interviewFields.style.display = (statusSelect.value === 'interview') ? 'block' : 'none';
-                    acceptedFields.style.display = (statusSelect.value === 'diterima') ? 'block' : 'none';
+                    if (statusSelect.value === 'interview') {
+                        interviewFields.style.display = 'block';
+                        acceptedFields.style.display = 'none';
+
+                        // kosongkan field diterima
+                        document.querySelector('input[name="tanggal_kunjungan"]').value = '';
+                        document.querySelector('input[name="jam_kunjungan"]').value = '';
+                        googleMapsInputAccepted.value = '';
+                        noTelpInputAccepted.value = '';
+                    } 
+                    else if (statusSelect.value === 'diterima') {
+                        interviewFields.style.display = 'none';
+                        acceptedFields.style.display = 'block';
+
+                        // kosongkan field interview
+                        document.querySelector('input[name="tanggal_interview"]').value = '';
+                        document.querySelector('input[name="waktu_interview"]').value = '';
+                        googleMapsInputInterview.value = '';
+                        noTelpInputInterview.value = '';
+                    } 
+                    else {
+                        interviewFields.style.display = 'none';
+                        acceptedFields.style.display = 'none';
+
+                        // kosongkan semua field tambahan
+                        document.querySelector('input[name="tanggal_interview"]').value = '';
+                        document.querySelector('input[name="waktu_interview"]').value = '';
+                        document.querySelector('input[name="tanggal_kunjungan"]').value = '';
+                        document.querySelector('input[name="jam_kunjungan"]').value = '';
+                        googleMapsInputInterview.value = '';
+                        noTelpInputInterview.value = '';
+                        googleMapsInputAccepted.value = '';
+                        noTelpInputAccepted.value = '';
+                    }
                 }
 
                 // CHANGE EVENT STATUS
@@ -314,18 +344,18 @@
                 buttons.forEach(btn => {
                     btn.addEventListener('click', function () {
                         applyIdInput.value = this.dataset.id;
-                        const maps = this.dataset.maps ?? '';
-                        const telp = this.dataset.telp ?? '';
 
-                        // SET DEFAULT VALUES
-                        googleMapsInputInterview.value = maps;
-                        noTelpInputInterview.value = telp;
-                        googleMapsInputAccepted.value = maps;
-                        noTelpInputAccepted.value = telp;
+                        // Kosongkan field manual setiap buka modal
+                        googleMapsInputInterview.value = '';
+                        noTelpInputInterview.value = '';
+                        googleMapsInputAccepted.value = '';
+                        noTelpInputAccepted.value = '';
 
-                        // RESET STATUS SELECT
-                        if(!"{{ old('status') }}"){
+                        // Reset status jika bukan reopen karena error validasi
+                        if (!"{{ old('status') }}") {
                             statusSelect.value = '';
+                            interviewFields.style.display = 'none';
+                            acceptedFields.style.display = 'none';
                         }
                     });
                 });

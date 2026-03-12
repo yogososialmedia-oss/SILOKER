@@ -148,10 +148,14 @@ class ApplyController extends Controller
             $request->validate([
                 'tanggal_kunjungan' => 'required|date|after_or_equal:today',
                 'jam_kunjungan' => 'required',
+                'no_telp' => 'required',
+                'google_maps' => 'required',
             ],[
                 'tanggal_kunjungan.required' => 'Tanggal kunjungan wajib diisi.',
                 'tanggal_kunjungan.after_or_equal' => 'Tanggal kunjungan tidak boleh sebelum hari ini.',
                 'jam_kunjungan.required' => 'Jam kunjungan wajib diisi.',
+                'no_telp.required' => 'Nomor telepon perusahaan wajib diisi.',
+                'google_maps.required' => 'Link Google Maps wajib diisi.',
             ]);
         }
 
@@ -159,13 +163,14 @@ class ApplyController extends Controller
             'status' => $request->status,
             'pesan' => $request->pesan,
 
-            'tanggal_interview' => $request->tanggal_interview,
-            'waktu_interview' => $request->waktu_interview,
-            'no_telp' => $request->no_telp,
-            'google_maps' => $request->google_maps,
+            'tanggal_interview' => $request->status === 'interview' ? $request->tanggal_interview : null,
+            'waktu_interview' => $request->status === 'interview' ? $request->waktu_interview : null,
 
-            'tanggal_kunjungan' => $request->tanggal_kunjungan,
-            'jam_kunjungan' => $request->jam_kunjungan,
+            'tanggal_kunjungan' => $request->status === 'diterima' ? $request->tanggal_kunjungan : null,
+            'jam_kunjungan' => $request->status === 'diterima' ? $request->jam_kunjungan : null,
+
+            'no_telp' => in_array($request->status, ['interview', 'diterima']) ? $request->no_telp : null,
+            'google_maps' => in_array($request->status, ['interview', 'diterima']) ? $request->google_maps : null,
         ]);
 
         Mail::to($apply->pencariKerja->email_pencari_kerja)
