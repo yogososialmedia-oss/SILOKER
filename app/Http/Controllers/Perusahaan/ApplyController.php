@@ -133,16 +133,16 @@ class ApplyController extends Controller
             $request->validate([
                 'tanggal_interview' => 'required|date|after_or_equal:today',
                 'waktu_interview' => 'required',
-                'no_telp' => 'required|regex:/^[0-9]{10,15}$/',
-                'google_maps' => 'required|url',
+                'no_telp_interview' => 'required|regex:/^[0-9]{10,15}$/',
+                'google_maps_interview' => 'required|url',
             ],[
                 'tanggal_interview.required' => 'Tanggal interview wajib diisi.',
                 'tanggal_interview.after_or_equal' => 'Tanggal interview tidak boleh sebelum hari ini.',
                 'waktu_interview.required' => 'Waktu interview wajib diisi.',
-                'no_telp.required' => 'Nomor telepon perusahaan wajib diisi.',
-                'no_telp.regex' => 'Nomor telepon harus berupa angka 10 sampai 15 digit.',
-                'google_maps.required' => 'Link Google Maps wajib diisi.',
-                'google_maps.url' => 'Link Google Maps harus berupa URL yang valid.',
+                'no_telp_interview.required' => 'Nomor telepon perusahaan wajib diisi.',
+                'no_telp_interview.regex' => 'Nomor telepon harus berupa angka 10 sampai 15 digit.',
+                'google_maps_interview.required' => 'Link Google Maps wajib diisi.',
+                'google_maps_interview.url' => 'Link Google Maps harus berupa URL yang valid.',
             ]);
         }
 
@@ -150,16 +150,16 @@ class ApplyController extends Controller
             $request->validate([
                 'tanggal_kunjungan' => 'required|date|after_or_equal:today',
                 'jam_kunjungan' => 'required',
-                'no_telp' => 'required|regex:/^[0-9]{10,15}$/',
-                'google_maps' => 'required|url',
+                'no_telp_diterima' => 'required|regex:/^[0-9]{10,15}$/',
+                'google_maps_diterima' => 'required|url',
             ],[
                 'tanggal_kunjungan.required' => 'Tanggal kunjungan wajib diisi.',
                 'tanggal_kunjungan.after_or_equal' => 'Tanggal kunjungan tidak boleh sebelum hari ini.',
                 'jam_kunjungan.required' => 'Jam kunjungan wajib diisi.',
-                'no_telp.required' => 'Nomor telepon perusahaan wajib diisi.',
-                'no_telp.regex' => 'Nomor telepon harus berupa angka 10 sampai 15 digit.',
-                'google_maps.required' => 'Link Google Maps wajib diisi.',
-                'google_maps.url' => 'Link Google Maps harus berupa URL yang valid.',
+                'no_telp_diterima.required' => 'Nomor telepon perusahaan wajib diisi.',
+                'no_telp_diterima.regex' => 'Nomor telepon harus berupa angka 10 sampai 15 digit.',
+                'google_maps_diterima.required' => 'Link Google Maps wajib diisi.',
+                'google_maps_diterima.url' => 'Link Google Maps harus berupa URL yang valid.',
             ]);
         }
 
@@ -173,8 +173,13 @@ class ApplyController extends Controller
             'tanggal_kunjungan' => $request->status === 'diterima' ? $request->tanggal_kunjungan : null,
             'jam_kunjungan' => $request->status === 'diterima' ? $request->jam_kunjungan : null,
 
-            'no_telp' => in_array($request->status, ['interview', 'diterima']) ? $request->no_telp : null,
-            'google_maps' => in_array($request->status, ['interview', 'diterima']) ? $request->google_maps : null,
+            'no_telp' => $request->status === 'interview'
+                ? $request->no_telp_interview
+                : ($request->status === 'diterima' ? $request->no_telp_diterima : null),
+
+            'google_maps' => $request->status === 'interview'
+                ? $request->google_maps_interview
+                : ($request->status === 'diterima' ? $request->google_maps_diterima : null),
         ]);
 
         Mail::to($apply->pencariKerja->email_pencari_kerja)
