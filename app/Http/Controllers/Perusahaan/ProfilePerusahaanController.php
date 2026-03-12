@@ -78,6 +78,16 @@ class ProfilePerusahaanController extends Controller
 
         return view('view_perusahaan.index-perusahaan', compact('info_perusahaan'));
     }
+    public function showLokerProfile($id)
+    {
+        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+
+        $loker = $info_perusahaan->loker()
+            ->latest()
+            ->paginate(6);
+
+        return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan', 'loker'));
+    }
 
     /**
      * Show the form for editing the specified resource.

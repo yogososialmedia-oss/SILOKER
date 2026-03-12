@@ -41,6 +41,7 @@ Route::middleware(['IsPerusahaanMitra'])->group(function () {
     Route::get('/perusahaan/loker/porfile', [ProfilePerusahaanController::class, 'lokerprofile'])->name('perusahaan.loker.profile');
     Route::put('/perusahaan/profile/update', [ProfilePerusahaanController::class, 'update'])->name('perusahaan.profile.update');
     Route::get('/perusahaan/profile/lihat/{id}', [ProfilePerusahaanController::class, 'show'])->name('perusahaan.profile.lihat');
+    Route::get('/perusahaan/loker/profile/lihat/{id}', [ProfilePerusahaanController::class, 'showLokerProfile'])->name('perusahaan.loker.profile.lihat');
 
     Route::middleware(['verified.perusahaan'])->group(function () {
         Route::get('/perusahaan/loker', [PerusahaanLokerController::class, 'index'])->name('perusahaan.loker');
