@@ -17,23 +17,28 @@
 
                             {{-- NAMA PERUSAHAAN --}}
                             <h5 class="mb-1 d-flex align-items-center gap-2">
-                                @if (Auth::guard('perusahaanmitra')->user())
-                                    {{-- LINK PROFILE PERUSAHAAN MITRA --}}
-                                    <a href="{{ route('perusahaan.profile') }}" class="text-dark link-primary fw-bold position-relative z-3">
-                                        {{ $info_perusahaan->nama_perusahaan }}
-                                    </a>
-                                    <a href="{{ route('perusahaan.profile') }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
-                                        i
-                                    </a>
-                                @elseif (Auth::guard('admin')->user())
-                                    {{-- LINK PROFILE PERUSAHAAN ADMIN --}}
-                                    <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}" class="text-dark link-primary fw-bold position-relative z-3">
-                                        {{ $info_perusahaan->nama_perusahaan }}
-                                    </a>
-                                    <a href="{{ route('admin.profile-perusahaan', $info_perusahaan->id) }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
-                                        i
-                                    </a>
-                                @endif
+                                @php
+                                    $isPerusahaanLogin = Auth::guard('perusahaanmitra')->check();
+                                    $isAdminLogin = Auth::guard('admin')->check();
+                                    $isOwnProfile = $isPerusahaanLogin && Auth::guard('perusahaanmitra')->id() == $info_perusahaan->id;
+
+                                    if ($isPerusahaanLogin) {
+                                        $profileRoute = $isOwnProfile
+                                            ? route('perusahaan.profile')
+                                            : route('perusahaan.profile.lihat', $info_perusahaan->id);
+                                    } elseif ($isAdminLogin) {
+                                        $profileRoute = route('admin.profile-perusahaan', $info_perusahaan->id);
+                                    } else {
+                                        $profileRoute = '#';
+                                    }
+                                @endphp
+
+                                <a href="{{ $profileRoute }}" class="text-dark link-primary fw-bold position-relative z-3">
+                                    {{ $info_perusahaan->nama_perusahaan }}
+                                </a>
+                                <a href="{{ $profileRoute }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
+                                    i
+                                </a>
                             </h5>
 
                             {{-- JABATAN DAN STATUS LOKER --}}

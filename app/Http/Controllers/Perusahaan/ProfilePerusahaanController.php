@@ -88,6 +88,16 @@ class ProfilePerusahaanController extends Controller
 
         return view('view_perusahaan.loker-profile-perusahaan', compact('info_perusahaan', 'loker'));
     }
+    public function showTampilanLokerProfile($id)
+    {
+        $loker = \App\Models\Loker::with('perusahaanMitra')
+            ->withCount('apply')
+            ->findOrFail($id);
+
+        $info_perusahaan = $loker->perusahaanMitra;
+
+        return view('view_perusahaan.tampilan-loker-perusahaan', compact('info_perusahaan', 'loker'));
+    }
 
     /**
      * Show the form for editing the specified resource.

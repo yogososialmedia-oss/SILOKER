@@ -114,7 +114,10 @@
                     <div class="col-sm-12 col-md-12 col-lg-6 mb-5">
                         <div class="card h-100 loker-card-beranda position-relative">
                             {{-- LINK STRETCHED --}}
-                            <a href="{{ $isPerusahaan ? route('perusahaan.loker.tampilan', $item->id) : route('admin.loker.tampilan', $item->id) }}" class="stretched-link"></a>
+                            <a href="{{ $isPerusahaan 
+                                    ? ($isOwnProfile ? route('perusahaan.loker.tampilan', $item->id) : route('perusahaan.loker.tampilan.lihat', $item->id))
+                                    : route('admin.loker.tampilan', $item->id) }}" 
+                                class="stretched-link"></a>
 
                             <div class="card-body position-relative">
                                 {{-- TANGGAL LOWONGAN --}}
