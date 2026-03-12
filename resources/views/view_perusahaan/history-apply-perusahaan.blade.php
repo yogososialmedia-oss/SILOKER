@@ -187,7 +187,8 @@
                                         <input type="text" name="google_maps" 
                                             id="googleMapsInput"
                                             class="form-control @error('google_maps') is-invalid @enderror"
-                                            value="{{ old('google_maps') }}">
+                                            value="{{ old('google_maps') }}"
+                                            placeholder="Contoh: https://maps.google.com/...">
 
                                         @error('google_maps')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -198,7 +199,8 @@
                                         <input type="text" name="no_telp"
                                             id="noTelpInput"
                                             class="form-control @error('no_telp') is-invalid @enderror"
-                                            value="{{ old('no_telp') }}">
+                                            value="{{ old('no_telp') }}"
+                                            placeholder="Contoh: 081234567890">
 
                                         @error('no_telp')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -234,7 +236,8 @@
                                         <input type="text" name="google_maps"
                                             id="googleMapsInputAccepted"
                                             class="form-control @error('google_maps') is-invalid @enderror"
-                                            value="{{ old('google_maps') }}">
+                                            value="{{ old('google_maps') }}"
+                                            placeholder="Contoh: https://maps.google.com/...">
 
                                         @error('google_maps')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -245,7 +248,8 @@
                                         <input type="text" name="no_telp"
                                             id="noTelpInputAccepted"
                                             class="form-control @error('no_telp') is-invalid @enderror"
-                                            value="{{ old('no_telp') }}">
+                                            value="{{ old('no_telp') }}"
+                                            placeholder="Contoh: 081234567890">
 
                                         @error('no_telp')
                                         <div class="invalid-feedback">{{ $message }}</div>
