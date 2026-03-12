@@ -190,7 +190,7 @@
                                 {{ $info_perusahaan->deskripsi_status ?? 'Tidak ada keterangan dari admin.' }}
                             </div>
                             <div class="modal-footer">
-                                @if (Auth::guard('perusahaanmitra')->user())
+                                @if ($isPerusahaanLogin && $isOwnProfile)
                                     <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-warning">
                                         Perbaiki
                                     </a>
