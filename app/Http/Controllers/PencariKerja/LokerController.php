@@ -7,6 +7,8 @@ use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class LokerController extends Controller
 {
@@ -160,13 +162,14 @@ class LokerController extends Controller
         if ($loker->status != 'open') {
             return back()->with('error', 'Lowongan sudah ditutup.');
         }
+
         $pencari = Auth::guard('pencarikerja')->user();
 
         // 🚫 WAJIB punya minimal salah satu: CV atau LinkedIn
         if (empty($pencari->cv) && empty($pencari->linkedin)) {
             return redirect()
                 ->route('pencarikerja.profile')
-                ->with('error', 
+                ->with('error',
                     'Profile Anda belum lengkap. 
                     Silakan tambahkan CV atau LinkedIn terlebih dahulu sebelum melamar.'
                 );
@@ -212,10 +215,24 @@ class LokerController extends Controller
         ]);
 
         try {
+            $cvApplyPath = null;
+
+            // ✅ Jika pencari punya CV di profile, copy file ke folder arsip apply
+            if (!empty($pencari->cv) && Storage::disk('public')->exists($pencari->cv)) {
+                $extension = pathinfo($pencari->cv, PATHINFO_EXTENSION);
+                $fileName = 'cv_apply_' . Str::uuid() . '.' . $extension;
+                $newPath = 'apply/cv/' . $fileName;
+
+                Storage::disk('public')->copy($pencari->cv, $newPath);
+
+                $cvApplyPath = $newPath;
+            }
 
             // ✅ LinkedIn otomatis ambil dari profile
             $validated['linkedin'] = $pencari->linkedin;
-            $validated['cv'] = $pencari->cv; // WAJIB TAMBAH INI
+
+            // ✅ CV simpan hasil copy, bukan path profile asli
+            $validated['cv'] = $cvApplyPath;
 
             $validated['tanggal_apply'] = now();
             $validated['id_pencari_kerja'] = $pencari->id;
@@ -233,7 +250,6 @@ class LokerController extends Controller
                 ->with('success', 'Lamaran berhasil dikirim.');
 
         } catch (QueryException $e) {
-
             if ($e->errorInfo[1] == 1062) {
                 return back()->with('error', 'Anda sudah melamar pada lowongan ini.');
             }

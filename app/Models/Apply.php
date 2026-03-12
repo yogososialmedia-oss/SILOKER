@@ -12,6 +12,7 @@ class Apply extends Model
         'id_pencari_kerja',
         'id_loker',
         'linkedin',
+        'cv',
         'tanggal_apply',
         'status',
         'pesan',
