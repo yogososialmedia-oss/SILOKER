@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\PerusahaanMitra;
 
 class ProfilePerusahaanController extends Controller
 {
@@ -71,9 +72,11 @@ class ProfilePerusahaanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $info_perusahaan = PerusahaanMitra::findOrFail($id);
+
+        return view('view_perusahaan.index-perusahaan', compact('info_perusahaan'));
     }
 
     /**

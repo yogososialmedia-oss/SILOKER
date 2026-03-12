@@ -112,7 +112,7 @@
 
                                         {{-- BUTTON EDIT PROFILE --}}
                                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
-                                            @if (Auth::guard('perusahaanmitra')->user())
+                                            @if(Auth::guard('perusahaanmitra')->id() == $info_perusahaan->id)
                                                 <li class="nav-item me-2">
                                                     <a href="{{ route('perusahaan.profile.edit') }}" class="btn btn-sm btn-warning">
                                                         Edit Profile

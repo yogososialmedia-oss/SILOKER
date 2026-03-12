@@ -89,9 +89,9 @@
                                                     @elseif($item->status == 'interview')
                                                         <span class="badge bg-label-info me-1">Interview</span>
                                                     @elseif($item->status == 'diterima')
-                                                        <span class="badge bg-label-danger me-1">Tidak Diterima</span>
-                                                    @elseif($item->status == 'ditolak')
                                                         <span class="badge bg-label-success me-1">Diterima</span>
+                                                    @elseif($item->status == 'ditolak')
+                                                        <span class="badge bg-label-danger me-1">Tidak Diterima</span>
                                                     @else
                                                         <span class="badge bg-label-secondary">-</span>
                                                     @endif
@@ -104,7 +104,7 @@
                                                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="{{ route('perusahaan.profile', $item->loker->perusahaanMitra->id) }}">
+                                                            <a class="dropdown-item" href="{{ route('perusahaan.profile.lihat', $item->loker->perusahaanMitra->id) }}">
                                                                 <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
                                                             </a>
                                                         </div>
