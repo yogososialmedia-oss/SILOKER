@@ -75,7 +75,7 @@
                                 {{-- CV --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-bold">Curriculum Vitae (CV)</label><br>
-                                    @if($pelamar?->cv)
+                                    @if($apply->cv)
                                         <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCV">
                                             Lihat CV
                                         </button>
@@ -86,7 +86,7 @@
                             </div>
 
                             {{-- ===== MODAL CV ===== --}}
-                            @if($pelamar?->cv)
+                            @if($apply->cv)
                                 <div class="modal fade" id="modalCV" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                                         <div class="modal-content">
@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="modal-body p-0">
                                                 {{-- IFRAME UNTUK MENAMPILKAN CV --}}
-                                                <iframe src="{{ asset('storage/' . $pelamar->cv) }}" width="100%" height="600px" style="border:none;"></iframe>
+                                                <iframe src="{{ asset('storage/' . $apply->cv) }}" width="100%" height="600px" style="border:none;"></iframe>
                                             </div>
                                         </div>
                                     </div>
