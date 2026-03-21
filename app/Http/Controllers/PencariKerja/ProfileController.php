@@ -144,7 +144,6 @@ class ProfileController extends Controller
 
             // 🔹 PENDIDIKAN
             'pendidikan_terakhir.required' => 'Pendidikan Terakhir wajib dipilih.',
-            'pendidikan_terakhir.max' => 'Pendidikan Terakhir maksimal 50 karakter.',
 
             // 🔹 DESKRIPSI
             'deskripsi_diri.string' => 'Tentang Saya harus berupa teks.',

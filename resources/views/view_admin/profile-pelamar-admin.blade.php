@@ -59,7 +59,9 @@
                         <div class="bg-white p-4">
                             <!-- Deskripsi diri -->
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-2 text-muted">{{ $apply->pencariKerja->deskripsi_diri ?? 'Belum ada deskripsi diri' }}</p>
+                            <p class="mb-2 text-muted">
+                                {!! nl2br(e($apply->pencariKerja->deskripsi_diri?? '-')) !!}
+                            </p>
 
                             <!-- Alamat -->
                             <h6 class="fw-bold mb-1">Alamat</h6>

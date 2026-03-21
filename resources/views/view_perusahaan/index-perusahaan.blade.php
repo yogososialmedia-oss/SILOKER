@@ -140,8 +140,10 @@
                 {{-- ================= CARD DETAIL PROFIL ================= --}}
                 <div class="col-12 mb-5">
                     <div class="card shadow-sm rounded-4 p-4">
-                        <h6 class="fw-bold mb-2">Tentang Perusahaan</h6>
-                        <p class="mb-3 text-muted">{{ $info_perusahaan->tentang_perusahaan ?? '-' }}</p>
+                        <h6 class="fw-bold mb-1">Tentang Perusahaan</h6>
+                            <p class="mb-2 text-muted">
+                                {!! nl2br(e($info_perusahaan->tentang_perusahaan ?? '-')) !!}
+                            </p>
 
                         <h6 class="fw-bold mb-2">Alamat</h6>
                         <p class="mb-2">{{ $info_perusahaan->alamat_perusahaan ?? '-' }}</p>

@@ -64,7 +64,9 @@
                         <div class="card-body p-4">
                             {{-- TENTANG SAYA --}}
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-4 text-muted">{{ $apply->pencariKerja->deskripsi_diri ?? 'Belum ada deskripsi diri' }}</p>
+                            <p class="mb-2 text-muted">
+                                {!! nl2br(e($apply->pencariKerja->deskripsi_diri ?? '-')) !!}
+                            </p>
 
                             {{-- ALAMAT --}}
                             <h6 class="fw-bold mb-1">Alamat</h6>
