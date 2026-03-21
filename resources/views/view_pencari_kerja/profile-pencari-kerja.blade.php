@@ -103,8 +103,10 @@
                         <div class="card-body p-4">
                             <!-- TENTANG SAYA -->
                             <h6 class="fw-bold mb-1">Tentang Saya</h6>
-                            <p class="mb-2 text-muted">{{ $user->deskripsi_diri ?? '-' }}</p>
-
+                            <p class="mb-2 text-muted">
+                                {!! nl2br(e($user->deskripsi_diri ?? '-')) !!}
+                            </p>
+                            
                             <!-- ALAMAT -->
                             <h6 class="fw-bold mb-1">Alamat</h6>
                             <p>{{ $user->alamat_pencari_kerja ?? '-' }}</p>

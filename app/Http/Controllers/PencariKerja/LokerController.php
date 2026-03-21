@@ -186,16 +186,13 @@ class LokerController extends Controller
 
             // 🔹 NAMA
             'nama.required' => 'Nama lengkap wajib diisi.',
-            'nama.string' => 'Nama lengkap harus berupa teks.',
             'nama.max' => 'Nama lengkap maksimal 255 karakter.',
 
             // 🔹 NIM
-            'nim.string' => 'NIM harus berupa teks.',
             'nim.max' => 'NIM maksimal 50 karakter.',
 
             // 🔹 PENDIDIKAN
             'pendidikan_terakhir.required' => 'Pendidikan terakhir wajib dipilih.',
-            'pendidikan_terakhir.string' => 'Pendidikan terakhir tidak valid.',
             'pendidikan_terakhir.max' => 'Pendidikan terakhir maksimal 50 karakter.',
 
             // 🔹 EMAIL
@@ -210,7 +207,6 @@ class LokerController extends Controller
 
             // 🔹 ALAMAT
             'alamat.required' => 'Alamat wajib diisi.',
-            'alamat.string' => 'Alamat harus berupa teks.',
             'alamat.max' => 'Alamat maksimal 255 karakter.',
         ]);
 
