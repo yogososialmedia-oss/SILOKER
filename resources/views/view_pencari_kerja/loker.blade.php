@@ -242,74 +242,123 @@
     </div>
 
     {{-- SCRIPTS: API WILAYAH INDONESIA --}}
+    @push('scripts')
     <script>
-        // OLD VALUES untuk form filter
-        const oldProvinsi = "{{ $filters['provinsi'] ?? '' }}";
-        const oldKabupaten = "{{ $filters['kabupaten'] ?? '' }}";
-        const oldKecamatan = "{{ $filters['kecamatan'] ?? '' }}";
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', async function () {
             const provinsi = document.getElementById('provinsi');
             const kabupaten = document.getElementById('kabupaten');
             const kecamatan = document.getElementById('kecamatan');
 
-            // LOAD PROVINSI DARI API
-            fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
-                .then(res => res.json())
-                .then(data => {
-                    let opt = '<option value="">Pilih Provinsi</option>';
-                    data.forEach(item => {
-                        const selected = item.name === oldProvinsi ? 'selected' : '';
-                        opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                    });
-                    provinsi.innerHTML = opt;
-                    if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
+            const oldProvinsi = @json($filters['provinsi'] ?? '');
+            const oldKabupaten = @json($filters['kabupaten'] ?? '');
+            const oldKecamatan = @json($filters['kecamatan'] ?? '');
+
+            if (!provinsi || !kabupaten || !kecamatan) {
+                console.error('Select wilayah tidak ditemukan');
+                return;
+            }
+
+            try {
+                const resProv = await fetch('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
+                const dataProv = await resProv.json();
+
+                let optProv = '<option value="">Pilih Provinsi</option>';
+                let selectedProvId = '';
+
+                dataProv.forEach(item => {
+                    const selected = item.name === oldProvinsi ? 'selected' : '';
+                    if (item.name === oldProvinsi) selectedProvId = item.id;
+                    optProv += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                 });
 
-            // EVENT CHANGE PROVINSI UNTUK LOAD KABUPATEN
-            provinsi.addEventListener('change', function () {
-                const id = this.selectedOptions[0]?.dataset.id;
+                provinsi.innerHTML = optProv;
+
+                if (selectedProvId) {
+                    await loadKabupaten(selectedProvId);
+                }
+
+            } catch (error) {
+                console.error('Gagal load provinsi:', error);
+            }
+
+            async function loadKabupaten(provinsiId) {
+                try {
+                    kabupaten.disabled = true;
+                    kecamatan.disabled = true;
+                    kabupaten.innerHTML = '<option value="">Loading...</option>';
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+
+                    const resKab = await fetch(`https://emsifa.github.io/api-wilayah-indonesia/api/regencies/${provinsiId}.json`);
+                    const dataKab = await resKab.json();
+
+                    let optKab = '<option value="">Pilih Kabupaten</option>';
+                    let selectedKabId = '';
+
+                    dataKab.forEach(item => {
+                        const selected = item.name === oldKabupaten ? 'selected' : '';
+                        if (item.name === oldKabupaten) selectedKabId = item.id;
+                        optKab += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
+                    });
+
+                    kabupaten.innerHTML = optKab;
+                    kabupaten.disabled = false;
+
+                    if (selectedKabId) {
+                        await loadKecamatan(selectedKabId);
+                    }
+
+                } catch (error) {
+                    console.error('Gagal load kabupaten:', error);
+                }
+            }
+
+            async function loadKecamatan(kabupatenId) {
+                try {
+                    kecamatan.disabled = true;
+                    kecamatan.innerHTML = '<option value="">Loading...</option>';
+
+                    const resKec = await fetch(`https://emsifa.github.io/api-wilayah-indonesia/api/districts/${kabupatenId}.json`);
+                    const dataKec = await resKec.json();
+
+                    let optKec = '<option value="">Pilih Kecamatan</option>';
+
+                    dataKec.forEach(item => {
+                        const selected = item.name === oldKecamatan ? 'selected' : '';
+                        optKec += `<option value="${item.name}" ${selected}>${item.name}</option>`;
+                    });
+
+                    kecamatan.innerHTML = optKec;
+                    kecamatan.disabled = false;
+
+                } catch (error) {
+                    console.error('Gagal load kecamatan:', error);
+                }
+            }
+
+            provinsi.addEventListener('change', async function () {
+                const id = this.options[this.selectedIndex]?.dataset.id || '';
+
                 kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
                 kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
                 kabupaten.disabled = true;
                 kecamatan.disabled = true;
 
-                if (!id) return;
-
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let opt = '<option value="">Pilih Kabupaten</option>';
-                        data.forEach(item => {
-                            const selected = item.name === oldKabupaten ? 'selected' : '';
-                            opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                        });
-                        kabupaten.innerHTML = opt;
-                        kabupaten.disabled = false;
-                        if (oldKabupaten) kabupaten.dispatchEvent(new Event('change'));
-                    });
+                if (id) {
+                    await loadKabupaten(id);
+                }
             });
 
-            // EVENT CHANGE KABUPATEN UNTUK LOAD KECAMATAN
-            kabupaten.addEventListener('change', function () {
-                const id = this.selectedOptions[0]?.dataset.id;
+            kabupaten.addEventListener('change', async function () {
+                const id = this.options[this.selectedIndex]?.dataset.id || '';
+
                 kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
                 kecamatan.disabled = true;
 
-                if (!id) return;
-
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let opt = '<option value="">Pilih Kecamatan</option>';
-                        data.forEach(item => {
-                            const selected = item.name === oldKecamatan ? 'selected' : '';
-                            opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
-                        });
-                        kecamatan.innerHTML = opt;
-                        kecamatan.disabled = false;
-                    });
+                if (id) {
+                    await loadKecamatan(id);
+                }
             });
         });
     </script>
+    @endpush
 </x-pencari_kerja.layout>
