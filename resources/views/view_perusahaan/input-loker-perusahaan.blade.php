@@ -271,16 +271,19 @@
                 let oldKabupaten = @json(old('kabupaten', $info_perusahaan->kabupaten ?? ''));
                 let oldKecamatan = @json(old('kecamatan', $info_perusahaan->kecamatan ?? ''));
 
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                fetch('https://api-regional-indonesia.vercel.app/api/provinces')
                     .then(res => res.json())
-                    .then(data => {
+                    .then(response => {
+                        const data = response.data;
                         let opt = '<option value="">Pilih Provinsi</option>';
                         let selectedProvId = null;
+
                         data.forEach(item => {
                             let selected = oldProvinsi === item.name ? 'selected' : '';
                             if (selected) selectedProvId = item.id;
                             opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                         });
+
                         provinsi.innerHTML = opt;
                         if (selectedProvId) loadKabupaten(selectedProvId);
                     });
@@ -289,16 +292,20 @@
                     kabupaten.disabled = true;
                     kecamatan.disabled = true;
                     kabupaten.innerHTML = '<option value="">Loading...</option>';
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+
+                    fetch(`https://api-regional-indonesia.vercel.app/api/cities/${id}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih Kabupaten</option>';
                             let selectedKabId = null;
+
                             data.forEach(item => {
                                 let selected = oldKabupaten === item.name ? 'selected' : '';
                                 if (selected) selectedKabId = item.id;
                                 opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
                             });
+
                             kabupaten.innerHTML = opt;
                             kabupaten.disabled = false;
                             if (selectedKabId) loadKecamatan(selectedKabId);
@@ -308,14 +315,18 @@
                 function loadKecamatan(id) {
                     kecamatan.disabled = true;
                     kecamatan.innerHTML = '<option value="">Loading...</option>';
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+
+                    fetch(`https://api-regional-indonesia.vercel.app/api/districts/${id}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih Kecamatan</option>';
+
                             data.forEach(item => {
                                 let selected = oldKecamatan === item.name ? 'selected' : '';
                                 opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
                             });
+
                             kecamatan.innerHTML = opt;
                             kecamatan.disabled = false;
                         });

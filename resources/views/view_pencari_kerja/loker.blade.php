@@ -243,73 +243,121 @@
 
     {{-- SCRIPTS: API WILAYAH INDONESIA --}}
     <script>
-        // OLD VALUES untuk form filter
-        const oldProvinsi = "{{ $filters['provinsi'] ?? '' }}";
-        const oldKabupaten = "{{ $filters['kabupaten'] ?? '' }}";
-        const oldKecamatan = "{{ $filters['kecamatan'] ?? '' }}";
-
         document.addEventListener('DOMContentLoaded', function () {
-            const provinsi = document.getElementById('provinsi');
-            const kabupaten = document.getElementById('kabupaten');
-            const kecamatan = document.getElementById('kecamatan');
+            const provinsiSelect = document.getElementById('provinsi');
+            const kabupatenSelect = document.getElementById('kabupaten');
+            const kecamatanSelect = document.getElementById('kecamatan');
 
-            // LOAD PROVINSI DARI API
-            fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
-                .then(res => res.json())
-                .then(data => {
-                    let opt = '<option value="">Pilih Provinsi</option>';
-                    data.forEach(item => {
-                        const selected = item.name === oldProvinsi ? 'selected' : '';
-                        opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                    });
-                    provinsi.innerHTML = opt;
-                    if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
+            const oldProvinsi = "{{ $filters['provinsi'] ?? '' }}";
+            const oldKabupaten = "{{ $filters['kabupaten'] ?? '' }}";
+            const oldKecamatan = "{{ $filters['kecamatan'] ?? '' }}";
+
+            const API_BASE = 'https://api-regional-indonesia.vercel.app/api';
+
+            function normalizeText(text) {
+                return (text || '')
+                    .toString()
+                    .trim()
+                    .toLowerCase();
+            }
+
+            function resetSelect(select, placeholder) {
+                select.innerHTML = `<option value="">${placeholder}</option>`;
+                select.disabled = true;
+            }
+
+            function fillSelect(select, items, placeholder, selectedName = '') {
+                select.innerHTML = `<option value="">${placeholder}</option>`;
+
+                items.forEach(item => {
+                    const isSelected = normalizeText(item.name) === normalizeText(selectedName) ? 'selected' : '';
+                    select.innerHTML += `
+                        <option value="${item.name}" data-id="${item.id}" ${isSelected}>
+                            ${item.name}
+                        </option>
+                    `;
                 });
 
-            // EVENT CHANGE PROVINSI UNTUK LOAD KABUPATEN
-            provinsi.addEventListener('change', function () {
-                const id = this.selectedOptions[0]?.dataset.id;
-                kabupaten.innerHTML = '<option value="">Pilih Kabupaten</option>';
-                kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                kabupaten.disabled = true;
-                kecamatan.disabled = true;
+                select.disabled = false;
+            }
 
-                if (!id) return;
+            async function fetchData(url) {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let opt = '<option value="">Pilih Kabupaten</option>';
-                        data.forEach(item => {
-                            const selected = item.name === oldKabupaten ? 'selected' : '';
-                            opt += `<option value="${item.name}" data-id="${item.id}" ${selected}>${item.name}</option>`;
-                        });
-                        kabupaten.innerHTML = opt;
-                        kabupaten.disabled = false;
-                        if (oldKabupaten) kabupaten.dispatchEvent(new Event('change'));
-                    });
+                const result = await response.json();
+                return result.data || [];
+            }
+
+            async function loadProvinsi() {
+                try {
+                    const provinces = await fetchData(`${API_BASE}/provinces?sort=name`);
+                    fillSelect(provinsiSelect, provinces, 'Pilih Provinsi', oldProvinsi);
+
+                    if (oldProvinsi) {
+                        const selectedOption = [...provinsiSelect.options].find(
+                            option => normalizeText(option.value) === normalizeText(oldProvinsi)
+                        );
+
+                        if (selectedOption && selectedOption.dataset.id) {
+                            await loadKabupaten(selectedOption.dataset.id, true);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Gagal memuat provinsi:', error);
+                }
+            }
+
+            async function loadKabupaten(provinceId, isInitialLoad = false) {
+                try {
+                    resetSelect(kabupatenSelect, 'Pilih Kabupaten');
+                    resetSelect(kecamatanSelect, 'Pilih Kecamatan');
+
+                    if (!provinceId) return;
+
+                    const cities = await fetchData(`${API_BASE}/cities/${provinceId}?sort=name`);
+                    fillSelect(kabupatenSelect, cities, 'Pilih Kabupaten', oldKabupaten);
+
+                    if (isInitialLoad && oldKabupaten) {
+                        const selectedOption = [...kabupatenSelect.options].find(
+                            option => normalizeText(option.value) === normalizeText(oldKabupaten)
+                        );
+
+                        if (selectedOption && selectedOption.dataset.id) {
+                            await loadKecamatan(selectedOption.dataset.id, true);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Gagal memuat kabupaten:', error);
+                }
+            }
+
+            async function loadKecamatan(cityId, isInitialLoad = false) {
+                try {
+                    resetSelect(kecamatanSelect, 'Pilih Kecamatan');
+
+                    if (!cityId) return;
+
+                    const districts = await fetchData(`${API_BASE}/districts/${cityId}?sort=name`);
+                    fillSelect(kecamatanSelect, districts, 'Pilih Kecamatan', oldKecamatan);
+                } catch (error) {
+                    console.error('Gagal memuat kecamatan:', error);
+                }
+            }
+
+            provinsiSelect.addEventListener('change', async function () {
+                const provinceId = this.options[this.selectedIndex]?.dataset.id || '';
+                await loadKabupaten(provinceId);
             });
 
-            // EVENT CHANGE KABUPATEN UNTUK LOAD KECAMATAN
-            kabupaten.addEventListener('change', function () {
-                const id = this.selectedOptions[0]?.dataset.id;
-                kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                kecamatan.disabled = true;
-
-                if (!id) return;
-
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let opt = '<option value="">Pilih Kecamatan</option>';
-                        data.forEach(item => {
-                            const selected = item.name === oldKecamatan ? 'selected' : '';
-                            opt += `<option value="${item.name}" ${selected}>${item.name}</option>`;
-                        });
-                        kecamatan.innerHTML = opt;
-                        kecamatan.disabled = false;
-                    });
+            kabupatenSelect.addEventListener('change', async function () {
+                const cityId = this.options[this.selectedIndex]?.dataset.id || '';
+                await loadKecamatan(cityId);
             });
+
+            loadProvinsi();
         });
-    </script>
+        </script>
 </x-pencari_kerja.layout>
