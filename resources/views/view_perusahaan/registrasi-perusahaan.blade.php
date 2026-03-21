@@ -198,9 +198,10 @@
             const kecamatanSelect = document.getElementById('kecamatan');
 
             // LOAD PROVINSI DARI API
-            fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+            fetch('https://api-regional-indonesia.vercel.app/api/provinces')
                 .then(res => res.json())
-                .then(data => {
+                .then(response => {
+                    const data = response.data;
                     let option = '<option value="">Pilih Provinsi</option>';
                     data.forEach(item => {
                         let selected = item.name === oldProvinsi ? 'selected' : '';
@@ -216,9 +217,10 @@
 
             // LOAD KABUPATEN SESUAI PROVINSI
             function loadKabupaten(provinsiId) {
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provinsiId}.json`)
+                fetch(`https://api-regional-indonesia.vercel.app/api/cities/${provinsiId}`)
                     .then(res => res.json())
-                    .then(data => {
+                    .then(response => {
+                        const data = response.data;
                         let option = '<option value="">Pilih Kabupaten</option>';
                         data.forEach(item => {
                             let selected = item.name === oldKabupaten ? 'selected' : '';
@@ -236,9 +238,10 @@
 
             // LOAD KECAMATAN SESUAI KABUPATEN
             function loadKecamatan(kabupatenId) {
-                fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabupatenId}.json`)
+                fetch(`https://api-regional-indonesia.vercel.app/api/districts/${kabupatenId}`)
                     .then(res => res.json())
-                    .then(data => {
+                    .then(response => {
+                        const data = response.data;
                         let option = '<option value="">Pilih Kecamatan</option>';
                         data.forEach(item => {
                             let selected = item.name === oldKecamatan ? 'selected' : '';

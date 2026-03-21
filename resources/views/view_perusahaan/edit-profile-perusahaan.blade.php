@@ -207,15 +207,16 @@
                 const oldKecamatan = "{{ old('Kecamatan', $info_perusahaan->kecamatan ?? '') }}";
 
                 // LOAD PROVINSI
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                fetch('https://api-regional-indonesia.vercel.app/api/provinces')
                     .then(res => res.json())
-                    .then(data => {
+                    .then(response => {
+                        const data = response.data;
                         let opt = '<option value="">Pilih provinsi</option>';
                         data.forEach(item => {
                             opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldProvinsi ? 'selected' : ''}>${item.name}</option>`;
                         });
                         provinsi.innerHTML = opt;
-                        if (oldProvinsi) provinsi.dispatchEvent(new Event('change')); // trigger load kabupaten
+                        if (oldProvinsi) provinsi.dispatchEvent(new Event('change'));
                     });
 
                 // LOAD KABUPATEN
@@ -228,16 +229,17 @@
 
                     if (!provId) return;
 
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${provId}.json`)
+                    fetch(`https://api-regional-indonesia.vercel.app/api/cities/${provId}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih kabupaten</option>';
                             data.forEach(item => {
                                 opt += `<option value="${item.name}" data-id="${item.id}" ${item.name === oldKabupaten ? 'selected' : ''}>${item.name}</option>`;
                             });
                             kabupaten.innerHTML = opt;
                             kabupaten.disabled = false;
-                            if (oldKabupaten) kabupaten.dispatchEvent(new Event('change')); // trigger load kecamatan
+                            if (oldKabupaten) kabupaten.dispatchEvent(new Event('change'));
                         });
                 });
 
@@ -249,9 +251,10 @@
 
                     if (!kabId) return;
 
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${kabId}.json`)
+                    fetch(`https://api-regional-indonesia.vercel.app/api/districts/${kabId}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih kecamatan</option>';
                             data.forEach(item => {
                                 opt += `<option value="${item.name}" ${item.name === oldKecamatan ? 'selected' : ''}>${item.name}</option>`;

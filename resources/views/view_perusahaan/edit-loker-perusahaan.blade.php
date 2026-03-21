@@ -276,9 +276,10 @@
                 let oldKabupaten = "{{ old('kabupaten', $loker->kabupaten) }}";
                 let oldKecamatan = "{{ old('kecamatan', $loker->kecamatan) }}";
 
-                fetch('https://kanglerian.my.id/api-wilayah-indonesia/api/provinces.json')
+                fetch('https://api-regional-indonesia.vercel.app/api/provinces')
                     .then(res => res.json())
-                    .then(data => {
+                    .then(response => {
+                        const data = response.data;
                         let opt = '<option value="">Pilih Provinsi</option>';
                         let selectedProvId = null;
                         data.forEach(item => {
@@ -294,9 +295,10 @@
                     kabupaten.disabled = true;
                     kecamatan.disabled = true;
                     kabupaten.innerHTML = '<option value="">Loading...</option>';
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/regencies/${id}.json`)
+                    fetch(`https://api-regional-indonesia.vercel.app/api/cities/${id}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih Kabupaten</option>';
                             let selectedKabId = null;
                             data.forEach(item => {
@@ -313,9 +315,10 @@
                 function loadKecamatan(id) {
                     kecamatan.disabled = true;
                     kecamatan.innerHTML = '<option value="">Loading...</option>';
-                    fetch(`https://kanglerian.my.id/api-wilayah-indonesia/api/districts/${id}.json`)
+                    fetch(`https://api-regional-indonesia.vercel.app/api/districts/${id}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then(response => {
+                            const data = response.data;
                             let opt = '<option value="">Pilih Kecamatan</option>';
                             data.forEach(item => {
                                 let selected = oldKecamatan === item.name ? 'selected' : '';
