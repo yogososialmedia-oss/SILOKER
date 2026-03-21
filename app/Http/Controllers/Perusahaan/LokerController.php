@@ -18,11 +18,11 @@ class LokerController extends Controller
     public function index()
     {
         $loker = Loker::with('perusahaanMitra')
-        ->whereDate('tanggal_mulai_loker', '<=', today())
-        ->whereDate('tanggal_berakhir_loker', '>=', today())
-        ->withCount('apply')
-        ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->id())
-        ->get();
+            ->withCount('apply')
+            ->where('id_perusahaan_mitra', Auth::guard('perusahaanmitra')->id())
+            ->orderBy('tanggal_berakhir_loker', 'desc')
+            ->get();
+
         return view('view_perusahaan.daftar-loker-perusahaan', compact('loker'));
     }
 
