@@ -194,6 +194,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('pencarikerja.beranda');
+        return redirect()->route('pencarikerja.beranda'). '#home';
     }
 }
