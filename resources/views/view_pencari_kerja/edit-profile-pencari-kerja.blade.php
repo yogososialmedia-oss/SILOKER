@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <!-- Nama Lengkap -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Lengkap</label>
+                                        <label class="form-label">Nama Lengkap *</label>
                                         <input name="nama_pencari_kerja" class="form-control @error('nama_pencari_kerja') is-invalid @enderror" value="{{ old('nama_pencari_kerja', $user->nama_pencari_kerja) }}" placeholder="Tambahkan nama lengkap anda">
                                         @error('nama_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -37,7 +37,7 @@
 
                                     <!-- Email -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input name="email_pencari_kerja" class="form-control @error('email_pencari_kerja') is-invalid @enderror" value="{{ old('email_pencari_kerja', $user->email_pencari_kerja) }}" placeholder="Tambahkan alamat email anda">
                                         @error('email_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -46,7 +46,7 @@
 
                                     <!-- No.Telp -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No.Telp</label>
+                                        <label class="form-label">No.Telp *</label>
                                         <input name="no_telp_pencari_kerja" class="form-control @error('no_telp_pencari_kerja') is-invalid @enderror" value="{{ old('no_telp_pencari_kerja', $user->no_telp_pencari_kerja) }}" placeholder="Tambahkan nomor telepon anda">
                                         @error('no_telp_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -55,7 +55,7 @@
 
                                     <!-- Alamat -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input name="alamat_pencari_kerja" class="form-control @error('alamat_pencari_kerja') is-invalid @enderror" value="{{ old('alamat_pencari_kerja', $user->alamat_pencari_kerja) }}" placeholder="Tambahkan alamat lengkap anda">
                                         @error('alamat_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -73,7 +73,7 @@
 
                                     <!-- Pendidikan Terakhir -->
                                     <div class="col-md-4 mb-4">
-                                        <label for="defaultSelect" class="form-label">Pendidikan Terakhir</label>
+                                        <label for="defaultSelect" class="form-label">Pendidikan Terakhir *</label>
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
                                             <option value="">Pilih Pendidikan Terakhir</option>
                                             @foreach ([

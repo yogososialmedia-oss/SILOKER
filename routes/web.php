@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DaftarLokerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\VerifikasiPerusahaanController;
 use App\Http\Controllers\Admin\ApplyController as AdminApplyController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokerController;
@@ -32,6 +33,16 @@ Route::get('/registrasi-pencari-kerja', [RegistrasiPencariKerjaController::class
 Route::post('/registrasi-pencari-kerja/store', [RegistrasiPencariKerjaController::class, 'store'])->name('pencarikerja.register.store');
 
 Route::get('/verifikasi-email/{type}/{token}', [VerifikasiEmailController::class, 'verify'])->name('verifikasi.email');
+
+// view
+Route::get('/lupa-password', function () {return view('auth.lupa_password');})->name('lupa.password');
+Route::view('/form-otp', 'auth.verifikasi_otp')->name('form.otp');
+Route::view('/reset-password-form', 'auth.reset_password')->name('reset.password.form');
+
+// logic
+Route::post('/kirim-otp', [ForgotPasswordController::class, 'kirimOtp'])->name('kirim.otp');
+Route::post('/verifikasi-otp', [ForgotPasswordController::class, 'verifikasiOtp'])->name('verifikasi.otp');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('reset.password');
 
 
 

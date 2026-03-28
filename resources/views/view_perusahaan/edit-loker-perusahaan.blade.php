@@ -21,13 +21,13 @@
                                 <div class="row">
                                     {{-- NAMA PERUSAHAAN (readonly) --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Perusahaan</label>
+                                        <label class="form-label">Nama Perusahaan *</label>
                                         <input type="text" class="form-control" value="{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}" readonly>
                                     </div>
 
                                     {{-- JABATAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Jabatan</label>
+                                        <label class="form-label">Jabatan *</label>
                                         <input name="jabatan" type="text"
                                             class="form-control @error('jabatan') is-invalid @enderror"
                                             value="{{ old('jabatan', $loker->jabatan) }}">
@@ -38,7 +38,7 @@
 
                                     {{-- EMAIL PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input name="email_perusahaan" type="email" class="form-control" value="{{ old('email_perusahaan', $loker->email_perusahaan) }}">
                                         @error('email_perusahaan')
                                             <small class="text-danger">{{ $message }}</small>
@@ -47,7 +47,7 @@
 
                                     {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No. Telp</label>
+                                        <label class="form-label">No. Telp *</label>
                                         <input 
                                             type="text"
                                             name="no_telp_perusahaan"
@@ -62,7 +62,7 @@
 
                                     {{-- TANGGAL MULAI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Mulai</label>
+                                        <label class="form-label">Tanggal Mulai *</label>
                                         <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control" value="{{ old('tanggal_mulai_loker', \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('Y-m-d')) }}" min="{{ now()->toDateString() }}">
                                         @error('tanggal_mulai_loker')
                                             <small class="text-danger">{{ $message }}</small>
@@ -71,7 +71,7 @@
 
                                     {{-- TANGGAL SELESAI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Selesai</label>
+                                        <label class="form-label">Tanggal Selesai *</label>
                                         <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control" value="{{ old('tanggal_berakhir_loker', \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('Y-m-d')) }}" min="{{ old('tanggal_mulai_loker', $loker->tanggal_mulai_loker) }}">
                                         @error('tanggal_berakhir_loker')
                                             <small class="text-danger">{{ $message }}</small>
@@ -92,7 +92,7 @@
 
                                     {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Provinsi</label>
+                                        <label class="form-label">Provinsi *</label>
                                         <select name="provinsi" id="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
                                         </select>
@@ -103,7 +103,7 @@
 
                                     {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Kabupaten</label>
+                                        <label class="form-label">Kabupaten *</label>
                                         <select name="kabupaten" id="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
                                         </select>
@@ -114,7 +114,7 @@
 
                                     {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Kecamatan</label>
+                                        <label class="form-label">Kecamatan *</label>
                                         <select name="kecamatan" id="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
                                         </select>
@@ -125,7 +125,7 @@
 
                                     {{-- ALAMAT LENGKAP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input name="alamat" type="text" class="form-control" value="{{ old('alamat', $loker->alamat) }}">
                                         @error('alamat')
                                             <small class="text-danger">{{ $message }}</small>
@@ -134,7 +134,7 @@
 
                                     {{-- MODEL KERJA --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Model Kerja</label>
+                                        <label class="form-label">Model Kerja *</label>
                                         <select name="model_kerja" class="form-select @error('model_kerja') is-invalid @enderror">
                                             <option value="">Pilih model kerja</option>
                                             <option value="Work From Home" {{ old('model_kerja', $loker->model_kerja) == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
@@ -148,7 +148,7 @@
 
                                     {{-- TIPE LOKER --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tipe Loker</label>
+                                        <label class="form-label">Tipe Loker *</label>
                                         <select name="tipe_loker" class="form-select @error('tipe_loker') is-invalid @enderror">
                                             <option value="">Pilih tipe loker</option>
                                             <option value="job_opportunity" {{ old('tipe_loker', $loker->tipe_loker) == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity</option>
@@ -161,7 +161,7 @@
 
                                     {{-- MINIMAL PENDIDIKAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Minimal Pendidikan</label>
+                                        <label class="form-label">Minimal Pendidikan *</label>
                                         @php $pendidikan = old('minimal_pendidikan', $loker->minimal_pendidikan); @endphp
                                         <select name="minimal_pendidikan" class="form-select">
                                             <option value="">Pilih Minimal Pendidikan</option>
@@ -192,7 +192,7 @@
 
                                     {{-- DESKRIPSI / KUALIFIKASI --}}
                                     <div class="col-md-12 mb-3">
-                                        <label class="form-label">Kualifikasi</label>
+                                        <label class="form-label">Kualifikasi *</label>
                                         <textarea id="editor" name="deskripsi" class="form-control" rows="6">{{ old('deskripsi', $loker->deskripsi) }}</textarea>
                                         @error('deskripsi')
                                             <small class="text-danger">{{ $message }}</small>

@@ -42,6 +42,11 @@
                                             <i class="icon-base bx bx-hide"></i>
                                         </span>
                                     </div>
+                                    <div class="d-flex justify-content-end mt-3 mb-3">
+                                        <a href="{{ route('lupa.password') }}" class="text-primary small">
+                                            Lupa Password?
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <!-- Error message untuk email -->

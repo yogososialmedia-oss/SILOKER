@@ -20,7 +20,7 @@
                             <div class="row">
                                 {{-- NAMA PERUSAHAAN --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nama Perusahaan</label>
+                                    <label class="form-label">Nama Perusahaan *</label>
                                     <input type="text"
                                         name="NamaPerusahaan"
                                         value="{{ old('NamaPerusahaan', $info_perusahaan->nama_perusahaan ?? '') }}"
@@ -52,7 +52,7 @@
 
                                 {{-- EMAIL --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email *</label>
                                     <input type="email"
                                         name="Email"
                                         value="{{ old('Email', $info_perusahaan->email_perusahaan ?? '') }}"
@@ -66,7 +66,7 @@
 
                                 {{-- NO TELP --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">No Telepon</label>
+                                    <label class="form-label">No Telepon *</label>
                                     <input type="text"
                                         name="NoTelp"
                                         value="{{ old('NoTelp', $info_perusahaan->no_telp_perusahaan ?? '') }}"
@@ -84,7 +84,7 @@
 
                                 {{-- PROVINSI --}}
                                 <div class="col-md-6 mb-4">
-                                    <label class="form-label">Provinsi</label>
+                                    <label class="form-label">Provinsi *</label>
                                     <select id="provinsi" name="Provinsi" class="form-select">
                                         <option value="">Pilih provinsi</option>
                                     </select>
@@ -92,7 +92,7 @@
 
                                 {{-- KABUPATEN --}}
                                 <div class="col-md-6 mb-4">
-                                    <label class="form-label">Kabupaten</label>
+                                    <label class="form-label">Kabupaten *</label>
                                     <select id="kabupaten" name="Kabupaten" class="form-select" disabled>
                                         <option value="">Pilih kabupaten</option>
                                     </select>
@@ -100,7 +100,7 @@
 
                                 {{-- KECAMATAN --}}
                                 <div class="col-md-6 mb-4">
-                                    <label class="form-label">Kecamatan</label>
+                                    <label class="form-label">Kecamatan *</label>
                                     <select id="kecamatan" name="Kecamatan" class="form-select" disabled>
                                         <option value="">Pilih kecamatan</option>
                                     </select>
@@ -108,7 +108,7 @@
 
                                 {{-- ALAMAT --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Alamat</label>
+                                    <label class="form-label">Alamat *</label>
                                     <input type="text"
                                         name="Alamat"
                                         value="{{ old('Alamat', $info_perusahaan->alamat_perusahaan ?? '') }}"

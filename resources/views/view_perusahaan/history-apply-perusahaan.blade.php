@@ -153,7 +153,7 @@
 
                             {{-- PESAN --}}
                             <div class="mb-3">
-                                <label class="form-label">Pesan ke Pelamar</label>
+                                <label class="form-label">Pesan ke Pelamar *</label>
                                 <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="3">{{ old('pesan') }}</textarea>
                                 @error('pesan')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -164,7 +164,7 @@
                             <div id="interviewFields" style="display:none;">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label">Tanggal Interview</label>
+                                        <label class="form-label">Tanggal Interview *</label>
                                         <input type="date" name="tanggal_interview"
                                             class="form-control @error('tanggal_interview') is-invalid @enderror"
                                             value="{{ old('tanggal_interview') }}"
@@ -174,7 +174,7 @@
                                             @enderror
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Waktu Interview</label>
+                                        <label class="form-label">Waktu Interview *</label>
                                         <input type="time" name="waktu_interview" 
                                             class="form-control @error('waktu_interview') is-invalid @enderror"
                                             value="{{ old('waktu_interview') }}">
@@ -183,7 +183,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-12">
-                                        <label class="form-label">Link Google Maps Lokasi Interview</label>
+                                        <label class="form-label">Link Google Maps Lokasi Interview *</label>
                                         <input type="text" name="google_maps_interview" 
                                             id="googleMapsInput"
                                             class="form-control @error('google_maps') is-invalid @enderror"
@@ -195,7 +195,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-12">
-                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
+                                        <label class="form-label">No. Telepon yang Dapat Dihubungi *</label>
                                         <input type="text" name="no_telp_interview"
                                             id="noTelpInput"
                                             class="form-control @error('no_telp') is-invalid @enderror"
@@ -213,7 +213,7 @@
                             <div id="acceptedFields" style="display:none;">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label">Tanggal Berkunjung</label>
+                                        <label class="form-label">Tanggal Berkunjung *</label>
                                         <input type="date" name="tanggal_kunjungan"
                                             class="form-control @error('tanggal_kunjungan') is-invalid @enderror"
                                             value="{{ old('tanggal_kunjungan') }}"
@@ -223,7 +223,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Jam Berkunjung</label>
+                                        <label class="form-label">Jam Berkunjung *</label>
                                         <input type="time" name="jam_kunjungan"
                                             class="form-control @error('jam_kunjungan') is-invalid @enderror"
                                             value="{{ old('jam_kunjungan') }}">
@@ -232,7 +232,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-12">
-                                        <label class="form-label">Link Google Maps Kantor</label>
+                                        <label class="form-label">Link Google Maps Kantor *</label>
                                         <input type="text" name="google_maps_diterima"
                                             id="googleMapsInputAccepted"
                                             class="form-control @error('google_maps') is-invalid @enderror"
@@ -244,7 +244,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-12">
-                                        <label class="form-label">No. Telepon yang Dapat Dihubungi</label>
+                                        <label class="form-label">No. Telepon yang Dapat Dihubungi *</label>
                                         <input type="text" name="no_telp_diterima"
                                             id="noTelpInputAccepted"
                                             class="form-control @error('no_telp') is-invalid @enderror"

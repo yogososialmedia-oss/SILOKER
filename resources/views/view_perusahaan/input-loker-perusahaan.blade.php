@@ -18,13 +18,13 @@
 
                                     {{-- NAMA PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Perusahaan</label>
+                                        <label class="form-label">Nama Perusahaan *</label>
                                         <input name="nama_perusahaan" type="text" class="form-control" value="{{ $info_perusahaan->nama_perusahaan ?? '' }}" readonly>
                                     </div>
 
                                     {{-- JABATAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Jabatan</label>
+                                        <label class="form-label">Jabatan *</label>
                                         <input name="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan') }}" placeholder="Tambahkan jabatan">
                                         @error('jabatan')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -33,7 +33,7 @@
 
                                     {{-- EMAIL PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input name="email_perusahaan" type="email" class="form-control @error('email_perusahaan') is-invalid @enderror" value="{{ old('email_perusahaan', $info_perusahaan->email_perusahaan ?? '') }}">
                                         @error('email_perusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -42,7 +42,7 @@
 
                                     {{-- NO TELP PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No.Telp</label>
+                                        <label class="form-label">No.Telp *</label>
                                         <input 
                                             name="no_telp_perusahaan"
                                             type="text"
@@ -57,7 +57,7 @@
 
                                     {{-- TANGGAL MULAI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Mulai</label>
+                                        <label class="form-label">Tanggal Mulai *</label>
                                         <input id="tanggal_mulai" name="tanggal_mulai_loker" type="date" class="form-control @error('tanggal_mulai_loker') is-invalid @enderror" min="{{ now()->toDateString() }}" value="{{ old('tanggal_mulai_loker') }}">
                                         @error('tanggal_mulai_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -66,7 +66,7 @@
 
                                     {{-- TANGGAL SELESAI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tanggal Selesai</label>
+                                        <label class="form-label">Tanggal Selesai *</label>
                                         <input id="tanggal_selesai" name="tanggal_berakhir_loker" type="date" class="form-control @error('tanggal_berakhir_loker') is-invalid @enderror" value="{{ old('tanggal_berakhir_loker') }}" disabled>
                                         @error('tanggal_berakhir_loker')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -85,7 +85,7 @@
 
                                     {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Provinsi</label>
+                                        <label class="form-label">Provinsi *</label>
                                         <select id="provinsi" name="provinsi" class="form-select @error('provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
                                         </select>
@@ -96,7 +96,7 @@
 
                                     {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Kabupaten</label>
+                                        <label class="form-label">Kabupaten *</label>
                                         <select id="kabupaten" name="kabupaten" class="form-select @error('kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
                                         </select>
@@ -107,7 +107,7 @@
 
                                     {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Kecamatan</label>
+                                        <label class="form-label">Kecamatan *</label>
                                         <select id="kecamatan" name="kecamatan" class="form-select @error('kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
                                         </select>
@@ -118,7 +118,7 @@
 
                                     {{-- ALAMAT LENGKAP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input name="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $info_perusahaan->alamat_perusahaan ?? '') }}" placeholder="Tambahkan alamat lengkap">
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -127,7 +127,7 @@
 
                                     {{-- MODEL KERJA --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Model Kerja</label>
+                                        <label class="form-label">Model Kerja *</label>
                                         <select name="model_kerja" class="form-select @error('model_kerja') is-invalid @enderror">
                                             <option value="">Pilih model kerja</option>
                                             <option value="Work From Home" {{ old('model_kerja') == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
@@ -141,7 +141,7 @@
 
                                     {{-- TIPE LOKER --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Tipe Loker</label>
+                                        <label class="form-label">Tipe Loker *</label>
                                         <select name="tipe_loker" class="form-select @error('tipe_loker') is-invalid @enderror">
                                             <option value="">Pilih tipe loker</option>
                                             <option value="job_opportunity" {{ old('tipe_loker') == 'job_opportunity' ? 'selected' : '' }}>Job Opportunity</option>
@@ -154,7 +154,7 @@
 
                                     {{-- MINIMAL PENDIDIKAN --}}
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Minimal Pendidikan</label>
+                                        <label class="form-label">Minimal Pendidikan *</label>
                                         <select name="minimal_pendidikan" class="form-select @error('minimal_pendidikan') is-invalid @enderror">
                                             <option value="">Pilih Minimal Pendidikan</option>
                                             <option value="Minimal Pendidikan SMA/sederajat" {{ old('minimal_pendidikan') == 'Minimal Pendidikan SMA/sederajat' ? 'selected' : '' }}>Minimal Pendidikan SMA/Sederajat</option>
@@ -184,7 +184,7 @@
 
                                     {{-- DESKRIPSI / KUALIFIKASI --}}
                                     <div class="col-md-12 mb-4">
-                                        <label class="form-label">Kualifikasi</label>
+                                        <label class="form-label">Kualifikasi *</label>
                                         <textarea id="editor" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" rows="3">{{ old('deskripsi') }}</textarea>
                                         @error('deskripsi')
                                             <div class="invalid-feedback">{{ $message }}</div>
