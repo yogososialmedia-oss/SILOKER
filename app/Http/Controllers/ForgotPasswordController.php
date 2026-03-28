@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Models\PencariKerja;
 use App\Models\PerusahaanMitra;
-use App\Models\Admin;
 use Illuminate\Support\Facades\DB;
 
 class ForgotPasswordController extends Controller
@@ -19,19 +19,17 @@ class ForgotPasswordController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'role' => 'required'
+            'role' => 'required|in:pencarikerja,perusahaanmitra'
         ]);
 
         $email = $request->email;
         $role = $request->role;
 
-        // cek user berdasarkan role
+        // cek user
         if ($role == 'pencarikerja') {
             $user = PencariKerja::where('email_pencari_kerja', $email)->first();
-        } elseif ($role == 'perusahaanmitra') {
-            $user = PerusahaanMitra::where('email_perusahaan', $email)->first();
         } else {
-            $user = Admin::where('email_admin', $email)->first();
+            $user = PerusahaanMitra::where('email_perusahaan', $email)->first();
         }
 
         if (!$user) {
@@ -79,7 +77,7 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'email' => 'required',
             'otp' => 'required',
-            'role' => 'required'
+            'role' => 'required|in:pencarikerja,perusahaanmitra'
         ]);
 
         $data = DB::table('otp_codes')
@@ -96,12 +94,13 @@ class ForgotPasswordController extends Controller
             return back()->with('error', 'OTP sudah expired');
         }
 
-        // hapus OTP setelah digunakan
+        // hapus OTP
         DB::table('otp_codes')
             ->where('email', $request->email)
             ->where('role', $request->role)
             ->delete();
 
+        // simpan session
         session([
             'email' => $request->email,
             'role' => $request->role
@@ -124,25 +123,34 @@ class ForgotPasswordController extends Controller
         $email = session('email');
         $role = session('role');
 
-        // cek session
         if (!$email || !$role) {
             return redirect()->route('lupa.password')
                 ->with('error', 'Session habis, ulangi proses');
         }
 
-        // update password sesuai role
         if ($role == 'pencarikerja') {
+
             PencariKerja::where('email_pencari_kerja', $email)
-                ->update(['password_pencari_kerja' => Hash::make($request->password)]);
-        } elseif ($role == 'perusahaan') {
-            PerusahaanMitra::where('email_perusahaan', $email)
-                ->update(['password_perusahaan' => Hash::make($request->password)]);
+                ->update([
+                    'password_pencari_kerja' => Hash::make($request->password)
+                ]);
+
+            $redirect = 'pencarikerja.login';
+
         } else {
-            Admin::where('email_admin', $email)
-                ->update(['password_admin' => Hash::make($request->password)]);
+
+            PerusahaanMitra::where('email_perusahaan', $email)
+                ->update([
+                    'password_perusahaan' => Hash::make($request->password)
+                ]);
+
+            $redirect = 'perusahaan.login';
         }
 
-        return redirect()->route('login')
+        // hapus session
+        session()->forget(['email', 'role']);
+
+        return redirect()->route($redirect)
             ->with('success', 'Password berhasil diubah');
     }
 }
