@@ -29,7 +29,7 @@
 
                                     {{-- NAMA LENGKAP --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Lengkap</label>
+                                        <label class="form-label">Nama Lengkap *</label>
                                         <input name="nama_pencari_kerja" value="{{ old('nama_pencari_kerja') }}" class="form-control @error('nama_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan nama lengkap anda">
                                         @error('nama_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -58,7 +58,7 @@
 
                                     {{-- NO TELEPON --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nomor Telepon</label>
+                                        <label class="form-label">Nomor Telepon *</label>
                                         <input 
                                             type="text"
                                             name="no_telp_pencari_kerja"
@@ -77,7 +77,7 @@
 
                                     {{-- ALAMAT --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input name="alamat_pencari_kerja" value="{{ old('alamat_pencari_kerja') }}" class="form-control @error('alamat_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan alamat lengkap">
                                         @error('alamat_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -86,7 +86,7 @@
 
                                     {{-- PENDIDIKAN TERAKHIR --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Pendidikan Terakhir</label>
+                                        <label class="form-label">Pendidikan Terakhir *</label>
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
                                             <option value="">Pilih Pendidikan</option>
                                             @foreach (['Pendidikan Terakhir SMA/sederajat', 'Pendidikan Terakhir D1', 'Pendidikan Terakhir D2', 'Pendidikan Terakhir D3', 'Pendidikan Terakhir S1', 'Pendidikan Terakhir S2', 'Pendidikan Terakhir S3'] as $p)
@@ -140,7 +140,7 @@
 
                                     {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input type="email" name="email_pencari_kerja" value="{{ old('email_pencari_kerja') }}" class="form-control @error('email_pencari_kerja') is-invalid @enderror" placeholder="Tambahkan email anda">
                                         @error('email_pencari_kerja')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -149,7 +149,7 @@
 
                                     {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">Password *</label>
                                         <input type="password" id="password" name="password_pencari_kerja" class="form-control @error('password_pencari_kerja') is-invalid @enderror" placeholder="Buat password">
                                         @error('password_pencari_kerja')
                                             <div class="invalid-feedback d-block">{{ $message }}</div>

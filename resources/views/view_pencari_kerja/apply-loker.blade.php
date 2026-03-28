@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <!-- Input Nama Lengkap -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Lengkap</label>
+                                        <label class="form-label">Nama Lengkap *</label>
                                         <input name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $pencari->nama_pencari_kerja) }}" placeholder="Tambahkan nama lengkap anda">
                                         @error('nama')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +45,7 @@
 
                                     <!-- Select Pendidikan Terakhir -->
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label">Pendidikan Terakhir</label>
+                                        <label class="form-label">Pendidikan Terakhir *</label>
                                         <select name="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
                                             <option value="">Pilih Pendidikan Terakhir</option>
                                             @php
@@ -73,7 +73,7 @@
 
                                     <!-- Input Email -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $pencari->email_pencari_kerja) }}" placeholder="Tambahkan alamat email anda">
                                         @error('email')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -82,7 +82,7 @@
 
                                     <!-- Input No. Telp -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No.Telp</label>
+                                        <label class="form-label">No.Telp *</label>
                                         <input name="no_telp" class="form-control @error('no_telp') is-invalid @enderror" value="{{ old('no_telp', $pencari->no_telp_pencari_kerja) }}" placeholder="Tambahkan nomor telepon anda">
                                         @error('no_telp')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -91,7 +91,7 @@
 
                                     <!-- Input Alamat -->
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input name="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $pencari->alamat_pencari_kerja) }}" placeholder="Tambahkan alamat lengkap anda">
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>

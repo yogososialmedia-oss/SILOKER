@@ -19,7 +19,7 @@
 
                                     {{-- NAMA PERUSAHAAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nama Perusahaan</label>
+                                        <label class="form-label">Nama Perusahaan *</label>
                                         <input type="text" name="NamaPerusahaan" value="{{ old('NamaPerusahaan') }}" class="form-control @error('NamaPerusahaan') is-invalid @enderror" placeholder="Tambahkan nama perusahaan">
                                         @error('NamaPerusahaan')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +45,7 @@
 
                                     {{-- NO TELEPON --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">No Telepon</label>
+                                        <label class="form-label">No Telepon *</label>
                                         <input type="text"
                                             name="NoTelp"
                                             value="{{ old('NoTelp') }}"
@@ -62,7 +62,7 @@
 
                                     {{-- PROVINSI --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Provinsi</label>
+                                        <label class="form-label">Provinsi *</label>
                                         <select id="provinsi" name="Provinsi" class="form-select @error('Provinsi') is-invalid @enderror">
                                             <option value="">Pilih Provinsi</option>
                                         </select>
@@ -73,7 +73,7 @@
 
                                     {{-- KABUPATEN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Kabupaten</label>
+                                        <label class="form-label">Kabupaten *</label>
                                         <select id="kabupaten" name="Kabupaten" class="form-select @error('Kabupaten') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kabupaten</option>
                                         </select>
@@ -84,7 +84,7 @@
 
                                     {{-- KECAMATAN --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Kecamatan</label>
+                                        <label class="form-label">Kecamatan *</label>
                                         <select id="kecamatan" name="Kecamatan" class="form-select @error('Kecamatan') is-invalid @enderror" disabled>
                                             <option value="">Pilih Kecamatan</option>
                                         </select>
@@ -95,7 +95,7 @@
 
                                     {{-- ALAMAT --}}
                                     <div class="col-md-12 mb-3">
-                                        <label class="form-label">Alamat</label>
+                                        <label class="form-label">Alamat *</label>
                                         <input type="text" name="Alamat" value="{{ old('Alamat') }}" class="form-control @error('Alamat') is-invalid @enderror" placeholder="Tambahkan alamat lengkap perusahaan">
                                         @error('Alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -131,7 +131,7 @@
 
                                     {{-- EMAIL --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Email *</label>
                                         <input type="email" name="Email" value="{{ old('Email') }}" class="form-control @error('Email') is-invalid @enderror" placeholder="Tambahkan email perusahaan">
                                         @error('Email')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -140,7 +140,7 @@
 
                                     {{-- PASSWORD --}}
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">Password *</label>
                                         <input type="password" id="password" name="Password" class="form-control @error('Password') is-invalid @enderror" placeholder="Buat password">
                                         
                                         @error('Password')
