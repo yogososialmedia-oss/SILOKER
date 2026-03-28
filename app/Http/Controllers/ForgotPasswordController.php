@@ -102,9 +102,12 @@ class ForgotPasswordController extends Controller
             ->where('role', $request->role)
             ->delete();
 
-        return redirect()->route('reset.password.form')
-            ->with('email', $request->email)
-            ->with('role', $request->role);
+        session([
+            'email' => $request->email,
+            'role' => $request->role
+        ]);
+
+        return redirect()->route('reset.password.form');
     }
 
     // =========================
