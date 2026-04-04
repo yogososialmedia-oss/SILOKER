@@ -41,14 +41,15 @@
                                                                         <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
                                                                             {{-- Nama Perusahaan --}}
                                                                             <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                                                                                class="text-dark link-primary fw-bold position-relative z-3">
+                                                                            class="text-dark link-primary fw-bold text-truncate d-inline-block"
+                                                                            style="max-width: 170px;"
+                                                                            title="{{ $loker->perusahaanMitra->nama_perusahaan }}">
                                                                                 {{ $loker->perusahaanMitra->nama_perusahaan }}
                                                                             </a>
 
-                                                                            {{-- Icon Info --}}
                                                                             <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
-                                                                                class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5"
-                                                                                style="width:16px; height:16px; font-size:10px;">
+                                                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center flex-shrink-0"
+                                                                            style="width:16px; height:16px; font-size:10px;">
                                                                                 i
                                                                             </a>
                                                                         </h6>
@@ -61,7 +62,9 @@
                                                                         {{-- Lokasi --}}
                                                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                                                             <i class="bx bx-location-plus"></i>
-                                                                            <span>
+                                                                            <span class="text-truncate d-inline-block"
+                                                                                style="max-width: 220px;"
+                                                                                title="{{ $loker->provinsi }}, {{ $loker->kabupaten }}, {{ $loker->kecamatan }}">
                                                                                 {{ $loker->provinsi }}, {{ $loker->kabupaten }}, {{ $loker->kecamatan }}
                                                                             </span>
                                                                         </p>
@@ -70,11 +73,18 @@
 
                                                                 {{-- Jabatan + Status lowongan --}}
                                                                 <div class="d-flex align-items-center mb-3">
-                                                                    <h5 class="mb-0 text-dark">
+                                                                    <h5 class="mb-0 flex-grow-1 me-2 text-dark"
+                                                                        style="
+                                                                            overflow: hidden;
+                                                                            display: -webkit-box;
+                                                                            -webkit-line-clamp: 2;
+                                                                            -webkit-box-orient: vertical;
+                                                                        "
+                                                                        title="{{ $loker->jabatan }}">
                                                                         {{ $loker->jabatan }}
                                                                     </h5>
 
-                                                                    <div class="ms-auto pe-3">
+                                                                    <div class="flex-shrink-0">
                                                                         @if($loker->status == 'open')
                                                                             <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                                                         @else
