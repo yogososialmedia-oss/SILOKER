@@ -166,11 +166,11 @@
 
                                 {{-- JABATAN & STATUS --}}
                                 <div class="d-flex align-items-center mb-3">
-                                    <h5 class="mb-0 text-truncate flex-grow-1 me-2" title="{{ $item->jabatan }}">
+                                    <h5 class="mb-0 text-truncate" style="max-width: 70%;" title="{{ $item->jabatan }}">
                                         {{ $item->jabatan }}
                                     </h5>
 
-                                    <div class="flex-shrink-0">
+                                    <div class="ms-auto pe-2">
                                         @if($item->status == 'open')
                                             <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                         @else
