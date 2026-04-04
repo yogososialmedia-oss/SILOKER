@@ -70,9 +70,8 @@
                                                     {{ $perusahaan->nama_perusahaan }}
                                                 </span>
                                             </td>
-                                            <td style="max-width: 200px;">
-                                                <span class="d-inline-block text-truncate w-100"
-                                                    style="max-width: 200px;"
+                                            <td style="max-width: 140px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 140px;"
                                                     title="{{ $data_loker->jabatan }}">
                                                     {{ $data_loker->jabatan }}
                                                 </span>
