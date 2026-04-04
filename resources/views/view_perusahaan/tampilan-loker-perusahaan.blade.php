@@ -33,7 +33,10 @@
                                     }
                                 @endphp
 
-                                <a href="{{ $profileRoute }}" class="text-dark link-primary fw-bold position-relative z-3">
+                                <a href="{{ $profileRoute }}" 
+                                class="text-dark link-primary fw-bold text-truncate d-inline-block" 
+                                style="max-width: 220px;"
+                                title="{{ $info_perusahaan->nama_perusahaan }}">
                                     {{ $info_perusahaan->nama_perusahaan }}
                                 </a>
                                 <a href="{{ $profileRoute }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
@@ -43,11 +46,11 @@
 
                             {{-- JABATAN DAN STATUS LOKER --}}
                             <div class="d-flex align-items-center mb-3">
-                                <h5 class="mb-0 text-truncate" style="max-width: 65%;" title="{{ $loker->jabatan }}">
+                                <h5 class="mb-0 text-truncate flex-grow-1 me-2" title="{{ $loker->jabatan }}">
                                     {{ $loker->jabatan }}
                                 </h5>
 
-                                <div class="ms-auto pe-2">
+                                <div class="flex-shrink-0">
                                     @if($loker->status == 'open')
                                         <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else
@@ -62,10 +65,10 @@
                             </h6>
 
                             {{-- LOKASI --}}
-                            <p class="d-flex align-items-center gap-1 mb-1">
-                                <i class="bx bx-location-plus icon-sm"></i>
-                                <span>{{ $loker->kabupaten }}</span>
-                            </p>
+                            <span class="text-truncate d-inline-block" style="max-width: 200px;" 
+                                title="{{ $loker->kabupaten }}">
+                                {{ $loker->kabupaten }}
+                            </span>
 
                             {{-- MODEL KERJA --}}
                             <p class="d-flex align-items-start gap-2 mb-1">

@@ -141,7 +141,10 @@
                                                 }
                                             @endphp
 
-                                            <a href="{{ $profileRoute }}" class="text-dark link-primary fw-bold position-relative z-3">
+                                            <a href="{{ $profileRoute }}" 
+                                            class="text-dark link-primary fw-bold text-truncate d-inline-block" 
+                                            style="max-width: 200px;"
+                                            title="{{ $info_perusahaan->nama_perusahaan }}">
                                                 {{ $info_perusahaan->nama_perusahaan }}
                                             </a>
                                             <a href="{{ $profileRoute }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
@@ -153,7 +156,8 @@
                                         </p>
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                             <i class="bx bx-location-plus"></i>
-                                            <span>
+                                            <span class="text-truncate d-inline-block" style="max-width: 230px;"
+                                                title="{{ $item->provinsi }}, {{ $item->kabupaten }}, {{ $item->kecamatan }}">
                                                 {{ $item->provinsi }}, {{ $item->kabupaten }}, {{ $item->kecamatan }}
                                             </span>
                                         </p>
@@ -162,11 +166,11 @@
 
                                 {{-- JABATAN & STATUS --}}
                                 <div class="d-flex align-items-center mb-3">
-                                    <h5 class="mb-0 text-truncate" style="max-width: 70%;" title="{{ $item->jabatan }}">
+                                    <h5 class="mb-0 text-truncate flex-grow-1 me-2" title="{{ $item->jabatan }}">
                                         {{ $item->jabatan }}
                                     </h5>
 
-                                    <div class="ms-auto pe-2">
+                                    <div class="flex-shrink-0">
                                         @if($item->status == 'open')
                                             <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                         @else
