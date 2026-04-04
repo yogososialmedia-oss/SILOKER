@@ -43,8 +43,11 @@
 
                             {{-- JABATAN DAN STATUS LOKER --}}
                             <div class="d-flex align-items-center mb-3">
-                                <h5 class="mb-0">{{ $loker->jabatan }}</h5>
-                                <div class="ms-auto pe-4">
+                                <h5 class="mb-0 text-truncate" style="max-width: 65%;" title="{{ $loker->jabatan }}">
+                                    {{ $loker->jabatan }}
+                                </h5>
+
+                                <div class="ms-auto pe-2">
                                     @if($loker->status == 'open')
                                         <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else

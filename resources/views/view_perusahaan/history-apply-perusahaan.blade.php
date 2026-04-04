@@ -55,7 +55,12 @@
                                     {{-- DATA APPLY --}}
                                     <td>{{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}</td>
                                     <td>{{ $data_apply->loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                    <td>{{ $data_apply->loker->jabatan ?? '-' }}</td>
+                                    <td style="max-width: 200px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 200px;" 
+                                            title="{{ $data_apply->loker->jabatan }}">
+                                            {{ $data_apply->loker->jabatan ?? '-' }}
+                                        </span>
+                                    </td>
                                     <td>{{ $data_apply->pencariKerja->nim }}</td>
                                     <td>{{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}</td>
                                     <td>{{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}</td>
