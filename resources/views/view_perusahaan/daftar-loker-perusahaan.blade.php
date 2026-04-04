@@ -42,7 +42,7 @@
 
                         {{-- TABLE RESPONSIVE --}}
                         <div class="table-responsive">
-                            <table class="table mb-0" id="daftar-loker-perusahaan">
+                            <table class="table mb-0" id="daftar-loker-perusahaan" style="table-layout: fixed;">
                                 <thead>
                                     <tr>
                                         <th>Nama Perusahaan</th>
