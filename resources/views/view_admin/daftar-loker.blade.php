@@ -50,39 +50,69 @@
                                 <tbody>
                                     @foreach ($daftarLoker as $loker)
                                         <tr>
-                                            <!-- Nama perusahaan mitra, jika tidak ada tampil "-" -->
-                                            <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                            <!-- Jabatan yang ditawarkan -->
-                                            <td>{{ $loker->jabatan }}</td>
-                                            <!-- Tipe loker (Full-time, Part-time, Magang, dll) -->
-                                            <td>{{ $loker->tipe_loker }}</td>
+                                            {{-- NAMA PERUSAHAAN --}}
+                                            <td style="max-width: 180px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                                    title="{{ $loker->perusahaanMitra->nama_perusahaan }}">
+                                                    {{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                                </span>
+                                            </td>
+
+                                            {{-- JABATAN --}}
+                                            <td style="max-width: 200px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                                    title="{{ $loker->jabatan }}">
+                                                    {{ $loker->jabatan }}
+                                                </span>
+                                            </td>
+
+                                            {{-- TIPE LOKER --}}
+                                            <td style="max-width: 140px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 140px;"
+                                                    title="{{ $loker->tipe_loker }}">
+                                                    {{ $loker->tipe_loker }}
+                                                </span>
+                                            </td>
+
+                                            {{-- STATUS --}}
                                             <td>
                                                 @php
-                                                    // Cek apakah lowongan masih dalam periode open
                                                     $isOpen = now()->between(
                                                         \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->startOfDay(),
                                                         \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->endOfDay()
                                                     );
                                                 @endphp
 
-                                                <!-- Tampilkan badge Open atau Closed -->
                                                 @if ($isOpen)
                                                     <span class="badge bg-label-info">Open</span>
                                                 @else
                                                     <span class="badge bg-label-warning">Closed</span>
                                                 @endif
                                             </td>
-                                            <!-- Kontak perusahaan -->
-                                            <td>{{ $loker->no_telp_perusahaan }}</td>
-                                            <td>{{ $loker->email_perusahaan }}</td>
-                                            <td>
-                                                <!-- Dropdown opsi untuk setiap loker -->
+
+                                            {{-- NO TELP --}}
+                                            <td style="max-width: 140px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 140px;"
+                                                    title="{{ $loker->no_telp_perusahaan }}">
+                                                    {{ $loker->no_telp_perusahaan ?? '-' }}
+                                                </span>
+                                            </td>
+
+                                            {{-- EMAIL --}}
+                                            <td style="max-width: 200px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                                    title="{{ $loker->email_perusahaan }}">
+                                                    {{ $loker->email_perusahaan ?? '-' }}
+                                                </span>
+                                            </td>
+
+                                            {{-- OPSI --}}
+                                            <td style="width: 80px;">
                                                 <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                         <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <!-- Link untuk melihat tampilan loker -->
                                                         <a class="dropdown-item" href="{{ route('admin.loker.tampilan', $loker->id) }}">
                                                             <i class="icon-base bx bx-show me-2"></i>
                                                             Tampilan Loker

@@ -78,26 +78,68 @@
                                     <tbody>
                                         @forelse($history as $item)
                                             <tr>
-                                                <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                                                <td>{{ $item->loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                                <td>{{ $item->loker->jabatan ?? '-' }}</td>
-                                                <td>{{ $item->loker->tipe_loker ?? '-' }}</td>
-                                                <td>
+                                                {{-- TANGGAL --}}
+                                                <td style="width: 110px;">
+                                                    {{ $item->created_at->format('d/m/Y') }}
+                                                </td>
+
+                                                {{-- NAMA PERUSAHAAN --}}
+                                                <td style="max-width: 180px;">
+                                                    <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                                        title="{{ $item->loker->perusahaanMitra->nama_perusahaan }}">
+                                                        {{ $item->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                                    </span>
+                                                </td>
+
+                                                {{-- JABATAN --}}
+                                                <td style="max-width: 200px;">
+                                                    <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                                        title="{{ $item->loker->jabatan }}">
+                                                        {{ $item->loker->jabatan ?? '-' }}
+                                                    </span>
+                                                </td>
+
+                                                {{-- TIPE --}}
+                                                <td style="max-width: 130px;">
+                                                    <span class="d-inline-block text-truncate" style="max-width: 130px;"
+                                                        title="{{ $item->loker->tipe_loker }}">
+                                                        {{ $item->loker->tipe_loker ?? '-' }}
+                                                    </span>
+                                                </td>
+
+                                                {{-- STATUS --}}
+                                                <td style="width: 140px;">
                                                     @if($item->status == 'pending')
-                                                        <span class="badge bg-label-warning me-1">Pending</span>
+                                                        <span class="badge bg-label-warning">Pending</span>
                                                     @elseif($item->status == 'interview')
-                                                        <span class="badge bg-label-info me-1">Interview</span>
+                                                        <span class="badge bg-label-info">Interview</span>
                                                     @elseif($item->status == 'diterima')
-                                                        <span class="badge bg-label-success me-1">Diterima</span>
+                                                        <span class="badge bg-label-success">Diterima</span>
                                                     @elseif($item->status == 'ditolak')
-                                                        <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                                        <span class="badge bg-label-danger">Tidak Diterima</span>
                                                     @else
                                                         <span class="badge bg-label-secondary">-</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $item->loker->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
-                                                <td>{{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}</td>
-                                                <td>
+
+                                                {{-- NO TELP --}}
+                                                <td style="max-width: 140px;">
+                                                    <span class="d-inline-block text-truncate" style="max-width: 140px;"
+                                                        title="{{ $item->loker->perusahaanMitra->no_telp_perusahaan }}">
+                                                        {{ $item->loker->perusahaanMitra->no_telp_perusahaan ?? '-' }}
+                                                    </span>
+                                                </td>
+
+                                                {{-- EMAIL --}}
+                                                <td style="max-width: 200px;">
+                                                    <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                                        title="{{ $item->loker->perusahaanMitra->email_perusahaan }}">
+                                                        {{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}
+                                                    </span>
+                                                </td>
+
+                                                {{-- OPSI --}}
+                                                <td style="width: 80px;">
                                                     <div class="dropdown">
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                             <i class="icon-base bx bx-dots-vertical-rounded"></i>
