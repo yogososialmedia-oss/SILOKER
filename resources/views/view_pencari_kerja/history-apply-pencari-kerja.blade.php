@@ -89,7 +89,7 @@
                                 @if($historyApplies->isEmpty())
                                     <p class="text-muted mt-3">Belum ada history apply</p>
                                 @else
-                                    <table class="table mb-0" id="daftar-loker-perusahaan" style="table-layout: fixed; width:100%;">
+                                    <table class="table mb-0" id="daftar-loker-perusahaan">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
