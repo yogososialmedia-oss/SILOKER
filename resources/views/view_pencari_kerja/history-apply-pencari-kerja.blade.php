@@ -103,57 +103,80 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($historyApplies as $apply)
+                                            @forelse($historyApplies as $apply)
                                                 <tr>
-                                                    <!-- Data apply per baris -->
                                                     <td>{{ $apply->tanggal_apply ? $apply->tanggal_apply->format('d/m/Y') : '-' }}</td>
-                                                    <td>
-                                                        <span class="d-block text-truncate"
+
+                                                    {{-- NAMA PERUSAHAAN --}}
+                                                    <td style="max-width: 160px;">
+                                                        <span class="d-inline-block text-truncate w-100"
+                                                            style="max-width: 160px;"
                                                             title="{{ $apply->perusahaanMitra->nama_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->nama_perusahaan ?? '-' }}
                                                         </span>
                                                     </td>
-                                                    <td>
-                                                        <span class="d-block text-truncate"
+
+                                                    {{-- JABATAN --}}
+                                                    <td style="max-width: 180px;">
+                                                        <span class="d-inline-block text-truncate w-100"
+                                                            style="max-width: 180px;"
                                                             title="{{ $apply->loker->jabatan }}">
                                                             {{ $apply->loker->jabatan ?? '-' }}
                                                         </span>
                                                     </td>
+
+                                                    {{-- TIPE --}}
                                                     <td>{{ $apply->loker->tipe_loker ?? '-' }}</td>
+
+                                                    {{-- STATUS --}}
                                                     <td>
-                                                        <!-- Status apply -->
                                                         @if($apply->status == 'pending')
                                                             <span class="badge bg-label-warning me-1">Pending</span>
                                                         @elseif($apply->status == 'interview')
                                                             <span class="badge bg-label-info me-1">Interview</span>
                                                         @elseif($apply->status == 'diterima')
                                                             <span class="badge bg-label-success me-1">Diterima</span>
-                                                        @else
+                                                        @elseif($apply->status == 'ditolak')
                                                             <span class="badge bg-label-danger me-1">Tidak Diterima</span>
+                                                        @else
+                                                            <span class="badge bg-label-secondary">-</span>
                                                         @endif
                                                     </td>
+
+                                                    {{-- NO TELP --}}
                                                     <td>{{ $apply->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
-                                                    <td>
-                                                        <span class="d-block text-truncate"
+
+                                                    {{-- EMAIL --}}
+                                                    <td style="max-width: 180px;">
+                                                        <span class="d-inline-block text-truncate w-100"
+                                                            style="max-width: 180px;"
                                                             title="{{ $apply->perusahaanMitra->email_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->email_perusahaan ?? '-' }}
                                                         </span>
                                                     </td>
+
+                                                    {{-- OPSI --}}
                                                     <td>
-                                                        <!-- Opsi dropdown -->
                                                         <div class="dropdown">
                                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ $apply->perusahaanMitra ? route('pencarikerja.profile.perusahaan', $apply->perusahaanMitra->id) : '#' }}">
+                                                                <a class="dropdown-item"
+                                                                href="{{ route('pencarikerja.profile.perusahaan', $apply->perusahaanMitra->id) }}">
                                                                     <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="8" class="text-center text-muted">
+                                                        Belum ada history apply
+                                                    </td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 @endif
