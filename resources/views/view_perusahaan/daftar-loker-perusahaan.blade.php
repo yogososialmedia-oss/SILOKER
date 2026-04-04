@@ -64,7 +64,11 @@
                                     @foreach ($loker as $data_loker)
                                         <tr>
                                             <td>{{ $perusahaan->nama_perusahaan }}</td>
-                                            <td>{{ $data_loker->jabatan }}</td>
+                                            <td style="max-width: 200px;">
+                                                <span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                                    {{ $data_loker->jabatan }}
+                                                </span>
+                                            </td>
                                             <td>{{ $data_loker->tipe_loker }}</td>
                                             <td>
                                                 {{-- STATUS LOKER --}}
