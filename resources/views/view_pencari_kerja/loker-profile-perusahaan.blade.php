@@ -69,17 +69,25 @@
                                     <img src="{{ $item->perusahaanMitra->logo_url }}" style="width:60px; height:60px; object-fit:cover;" class="rounded shadow-sm" alt="">
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold d-flex align-items-center gap-2">
-                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}" class="text-dark link-primary fw-bold position-relative z-3">
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}"
+                                            class="text-dark link-primary fw-bold text-truncate d-inline-block"
+                                            style="max-width: 180px;"
+                                            title="{{ $info_perusahaan->nama_perusahaan }}">
                                                 {{ $info_perusahaan->nama_perusahaan }}
                                             </a>
-                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
+
+                                            <a href="{{ route('pencarikerja.profile.perusahaan', $info_perusahaan->id) }}"
+                                            class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="width:16px; height:16px; font-size:10px;">
                                                 i
                                             </a>
                                         </h6>
                                         <p class="mb-1 small">{{ $item->tipe_loker == 'job_opportunity' ? 'Job Opportunity' : 'Internship' }}</p>
                                         <p class="d-flex align-items-center gap-1 mb-0 small text-muted">
                                             <i class="bx bx-location-plus"></i>
-                                            <span>
+                                            <span class="text-truncate d-inline-block"
+                                                style="max-width: 220px;"
+                                                title="{{ $item->provinsi }}, {{ $item->kabupaten }}, {{ $item->kecamatan }}">
                                                 {{ $item->provinsi }}, {{ $item->kabupaten }}, {{ $item->kecamatan }}
                                             </span>
                                         </p>
@@ -88,8 +96,18 @@
 
                                 <!-- Jabatan dan status lowongan -->
                                 <div class="d-flex align-items-center mb-3">
-                                    <h5 class="mb-0">{{ $item->jabatan }}</h5>
-                                    <div class="ms-auto pe-5 me-2">
+                                    <h5 class="mb-0 flex-grow-1 me-2"
+                                        style="
+                                            overflow: hidden;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2;
+                                            -webkit-box-orient: vertical;
+                                        "
+                                        title="{{ $item->jabatan }}">
+                                        {{ $item->jabatan }}
+                                    </h5>
+
+                                    <div class="flex-shrink-0">
                                         @if($item->status == 'open')
                                             <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                         @else

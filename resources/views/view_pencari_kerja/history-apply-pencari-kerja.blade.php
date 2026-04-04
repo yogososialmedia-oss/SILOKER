@@ -107,14 +107,14 @@
                                                 <tr>
                                                     <!-- Data apply per baris -->
                                                     <td>{{ $apply->tanggal_apply ? $apply->tanggal_apply->format('d/m/Y') : '-' }}</td>
-                                                    <td style="max-width: 160px;">
-                                                        <span class="d-inline-block text-truncate" style="max-width: 160px;" 
+                                                    <td>
+                                                        <span class="d-inline-block text-truncate w-100"
                                                             title="{{ $apply->perusahaanMitra->nama_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->nama_perusahaan ?? '-' }}
                                                         </span>
                                                     </td>
-                                                    <td style="max-width: 180px;">
-                                                        <span class="d-inline-block text-truncate" style="max-width: 180px;" 
+                                                    <td>
+                                                        <span class="d-inline-block text-truncate w-100"
                                                             title="{{ $apply->loker->jabatan }}">
                                                             {{ $apply->loker->jabatan ?? '-' }}
                                                         </span>
@@ -133,8 +133,8 @@
                                                         @endif
                                                     </td>
                                                     <td>{{ $apply->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
-                                                    <td style="max-width: 180px;">
-                                                        <span class="d-inline-block text-truncate" style="max-width: 180px;" 
+                                                    <td>
+                                                        <span class="d-inline-block text-truncate w-100"
                                                             title="{{ $apply->perusahaanMitra->email_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->email_perusahaan ?? '-' }}
                                                         </span>
