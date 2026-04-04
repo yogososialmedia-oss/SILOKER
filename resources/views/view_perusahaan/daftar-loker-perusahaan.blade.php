@@ -63,9 +63,17 @@
                                     {{-- LOOPING DATA LOKER --}}
                                     @foreach ($loker as $data_loker)
                                         <tr>
-                                            <td>{{ $perusahaan->nama_perusahaan }}</td>
+                                            <td style="max-width: 180px;">
+                                                <span class="d-inline-block text-truncate w-100"
+                                                    style="max-width: 180px;"
+                                                    title="{{ $perusahaan->nama_perusahaan }}">
+                                                    {{ $perusahaan->nama_perusahaan }}
+                                                </span>
+                                            </td>
                                             <td style="max-width: 200px;">
-                                                <span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                                <span class="d-inline-block text-truncate w-100"
+                                                    style="max-width: 200px;"
+                                                    title="{{ $data_loker->jabatan }}">
                                                     {{ $data_loker->jabatan }}
                                                 </span>
                                             </td>
@@ -79,7 +87,13 @@
                                                 @endif
                                             </td>
                                             <td>{{ $perusahaan->no_telp_perusahaan }}</td>
-                                            <td>{{ $perusahaan->email_perusahaan }}</td>
+                                            <td style="max-width: 200px;">
+                                                <span class="d-inline-block text-truncate w-100"
+                                                    style="max-width: 200px;"
+                                                    title="{{ $perusahaan->email_perusahaan }}">
+                                                    {{ $perusahaan->email_perusahaan }}
+                                                </span>
+                                            </td>
                                             <td>
                                                 {{-- DROPDOWN OPSI --}}
                                                 <div class="dropdown">

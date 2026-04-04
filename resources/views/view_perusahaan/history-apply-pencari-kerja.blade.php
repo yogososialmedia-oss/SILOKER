@@ -80,8 +80,20 @@
                                         @forelse($history as $item)
                                             <tr>
                                                 <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                                                <td>{{ $item->loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                                <td>{{ $item->loker->jabatan ?? '-' }}</td>
+                                                <td style="max-width: 160px;">
+                                                    <span class="d-inline-block text-truncate w-100"
+                                                        style="max-width: 160px;"
+                                                        title="{{ $item->loker->perusahaanMitra->nama_perusahaan }}">
+                                                        {{ $item->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                                    </span>
+                                                </td>
+                                                <td style="max-width: 180px;">
+                                                    <span class="d-inline-block text-truncate w-100"
+                                                        style="max-width: 180px;"
+                                                        title="{{ $item->loker->jabatan }}">
+                                                        {{ $item->loker->jabatan ?? '-' }}
+                                                    </span>
+                                                </td>
                                                 <td>{{ $item->loker->tipe_loker ?? '-' }}</td>
                                                 <td>
                                                     @if($item->status == 'pending')
@@ -97,7 +109,13 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->loker->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
-                                                <td>{{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}</td>
+                                                <td style="max-width: 180px;">
+                                                    <span class="d-inline-block text-truncate w-100"
+                                                        style="max-width: 180px;"
+                                                        title="{{ $item->loker->perusahaanMitra->email_perusahaan }}">
+                                                        {{ $item->loker->perusahaanMitra->email_perusahaan ?? '-' }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
