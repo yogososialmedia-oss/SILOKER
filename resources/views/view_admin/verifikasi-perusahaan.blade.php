@@ -44,44 +44,67 @@
                         <tbody>
                             @foreach($status_akun as $akun)
                                 <tr>
-                                    <!-- Tanggal registrasi -->
-                                    <td>{{ $akun->created_at->format('d/m/Y') }}</td>
-                                    <!-- Data perusahaan -->
-                                    <td>{{ $akun->nama_perusahaan }}</td>
-                                    <td>{{ $akun->email_perusahaan }}</td>
-                                    <td>{{ $akun->no_npwp }}</td>
-                                    <td>
+                                    {{-- TANGGAL --}}
+                                    <td style="width: 110px;">
+                                        {{ $akun->created_at->format('d/m/Y') }}
+                                    </td>
+
+                                    {{-- NAMA PERUSAHAAN --}}
+                                    <td style="max-width: 200px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                            title="{{ $akun->nama_perusahaan }}">
+                                            {{ $akun->nama_perusahaan }}
+                                        </span>
+                                    </td>
+
+                                    {{-- EMAIL --}}
+                                    <td style="max-width: 220px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 220px;"
+                                            title="{{ $akun->email_perusahaan }}">
+                                            {{ $akun->email_perusahaan }}
+                                        </span>
+                                    </td>
+
+                                    {{-- NPWP --}}
+                                    <td style="max-width: 180px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                            title="{{ $akun->no_npwp }}">
+                                            {{ $akun->no_npwp }}
+                                        </span>
+                                    </td>
+
+                                    {{-- STATUS --}}
+                                    <td style="width: 150px;">
                                         @php
                                             $status = strtolower($akun->status_akun);
                                         @endphp
 
-                                        <!-- Badge status akun -->
                                         @if($status == 'pending')
-                                            <span class="badge bg-label-warning me-1">Pending</span>
+                                            <span class="badge bg-label-warning">Pending</span>
                                         @elseif($status == 'verifikasi_gagal')
-                                            <span class="badge bg-label-danger me-1">Verifikasi Gagal</span>
+                                            <span class="badge bg-label-danger">Verifikasi Gagal</span>
                                         @elseif($status == 'terverifikasi')
-                                            <span class="badge bg-label-success me-1">Terverifikasi</span>
+                                            <span class="badge bg-label-success">Terverifikasi</span>
                                         @else
-                                            <span class="badge bg-label-secondary me-1">
+                                            <span class="badge bg-label-secondary">
                                                 {{ ucfirst($akun->status_akun) }}
                                             </span>
                                         @endif
                                     </td>
 
-                                    <!-- Opsi aksi untuk setiap perusahaan -->
-                                    <td>
+                                    {{-- OPSI --}}
+                                    <td style="width: 90px;">
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <!-- Detail registrasi -->
                                                 <a class="dropdown-item" href="{{ route('admin.detail-verifikasi-perusahaan', $akun->id) }}">
                                                     <i class="icon-base bx bx-show me-2"></i> Detail Registrasi
                                                 </a>
-                                                <!-- Tombol update status -->
-                                                <button type="button" class="dropdown-item btn-update-status" data-id="{{ $akun->id }}" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                                                <button type="button" class="dropdown-item btn-update-status"
+                                                    data-id="{{ $akun->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#modalCenter">
                                                     <i class="icon-base bx bx-edit-alt me-2"></i> Update Status
                                                 </button>
                                             </div>

@@ -119,27 +119,73 @@
                     <tbody>
                         @foreach ($lokerTerbaru as $index => $loker)
                             <tr>
-                                <!-- Index urutan -->
-                                <th>{{ $index + 1 }}</th>
-                                <!-- Tanggal upload loker -->
-                                <td>{{ \Carbon\Carbon::parse($loker->created_at)->format('d-m-Y') }}</td>
-                                <!-- Nama perusahaan mitra -->
-                                <td>{{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                <!-- Jabatan yang dibuka -->
-                                <td>{{ $loker->jabatan }}</td>
-                                <!-- Tipe lowongan (Full-time/Part-time/Magang) -->
-                                <td>{{ $loker->tipe_loker }}</td>
-                                <!-- Tanggal mulai loker -->
-                                <td>{{ \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('d-m-Y') }}</td>
-                                <!-- Tanggal berakhir loker -->
-                                <td>{{ \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('d-m-Y') }}</td>
-                                <!-- Kontak perusahaan -->
-                                <td>{{ $loker->no_telp_perusahaan }}</td>
-                                <td>{{ $loker->email_perusahaan }}</td>
-                                <!-- Jumlah tayangan loker -->
-                                <td>{{ $loker->tayangan ?? 0 }}</td>
-                                <!-- Jumlah apply loker -->
-                                <td>{{ $loker->apply_count }}</td>
+                                {{-- NO --}}
+                                <th style="width: 50px;">{{ $index + 1 }}</th>
+
+                                {{-- TANGGAL UPLOAD --}}
+                                <td style="width: 110px;">
+                                    {{ \Carbon\Carbon::parse($loker->created_at)->format('d-m-Y') }}
+                                </td>
+
+                                {{-- NAMA PERUSAHAAN --}}
+                                <td style="max-width: 180px;">
+                                    <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                        title="{{ $loker->perusahaanMitra->nama_perusahaan }}">
+                                        {{ $loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                    </span>
+                                </td>
+
+                                {{-- JABATAN --}}
+                                <td style="max-width: 200px;">
+                                    <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                        title="{{ $loker->jabatan }}">
+                                        {{ $loker->jabatan }}
+                                    </span>
+                                </td>
+
+                                {{-- TIPE --}}
+                                <td style="max-width: 130px;">
+                                    <span class="d-inline-block text-truncate" style="max-width: 130px;"
+                                        title="{{ $loker->tipe_loker }}">
+                                        {{ $loker->tipe_loker }}
+                                    </span>
+                                </td>
+
+                                {{-- TANGGAL MULAI --}}
+                                <td style="width: 110px;">
+                                    {{ \Carbon\Carbon::parse($loker->tanggal_mulai_loker)->format('d-m-Y') }}
+                                </td>
+
+                                {{-- TANGGAL BERAKHIR --}}
+                                <td style="width: 110px;">
+                                    {{ \Carbon\Carbon::parse($loker->tanggal_berakhir_loker)->format('d-m-Y') }}
+                                </td>
+
+                                {{-- NO TELP --}}
+                                <td style="max-width: 140px;">
+                                    <span class="d-inline-block text-truncate" style="max-width: 140px;"
+                                        title="{{ $loker->no_telp_perusahaan }}">
+                                        {{ $loker->no_telp_perusahaan ?? '-' }}
+                                    </span>
+                                </td>
+
+                                {{-- EMAIL --}}
+                                <td style="max-width: 200px;">
+                                    <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                        title="{{ $loker->email_perusahaan }}">
+                                        {{ $loker->email_perusahaan ?? '-' }}
+                                    </span>
+                                </td>
+
+                                {{-- TAYANGAN --}}
+                                <td style="width: 90px;">
+                                    {{ $loker->tayangan ?? 0 }}
+                                </td>
+
+                                {{-- APPLY --}}
+                                <td style="width: 80px;">
+                                    {{ $loker->apply_count }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

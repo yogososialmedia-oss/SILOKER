@@ -50,22 +50,58 @@
                         <tbody>
                             @foreach ($apply as $data_apply)
                                 <tr>
-                                    <!-- Tanggal apply diformat -->
-                                    <td>{{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}</td>
-                                    <!-- Nama perusahaan -->
-                                    <td>{{ $data_apply->loker->perusahaanMitra->nama_perusahaan ?? '-' }}</td>
-                                    <!-- Jabatan yang dilamar -->
-                                    <td>{{ $data_apply->loker->jabatan ?? '-' }}</td>
-                                    <!-- NIM pelamar -->
-                                    <td>{{ $data_apply->pencariKerja->nim }}</td>
-                                    <!-- Nama pelamar -->
-                                    <td>{{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}</td>
-                                    <!-- No. Telp pelamar -->
-                                    <td>{{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}</td>
-                                    <!-- Email pelamar -->
-                                    <td>{{ $data_apply->pencariKerja->email_pencari_kerja ?? '-' }}</td>
-                                    <!-- Status apply dengan badge -->
-                                    <td>
+                                    {{-- TANGGAL --}}
+                                    <td style="width: 110px;">
+                                        {{ \Carbon\Carbon::parse($data_apply->tanggal_apply)->format('d-m-Y') }}
+                                    </td>
+
+                                    {{-- PERUSAHAAN --}}
+                                    <td style="max-width: 180px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                            title="{{ $data_apply->loker->perusahaanMitra->nama_perusahaan }}">
+                                            {{ $data_apply->loker->perusahaanMitra->nama_perusahaan ?? '-' }}
+                                        </span>
+                                    </td>
+
+                                    {{-- JABATAN --}}
+                                    <td style="max-width: 200px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                            title="{{ $data_apply->loker->jabatan }}">
+                                            {{ $data_apply->loker->jabatan ?? '-' }}
+                                        </span>
+                                    </td>
+
+                                    {{-- NIM --}}
+                                    <td style="width: 120px;">
+                                        {{ $data_apply->pencariKerja->nim }}
+                                    </td>
+
+                                    {{-- NAMA --}}
+                                    <td style="max-width: 160px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 160px;"
+                                            title="{{ $data_apply->pencariKerja->nama_pencari_kerja }}">
+                                            {{ $data_apply->pencariKerja->nama_pencari_kerja ?? '-' }}
+                                        </span>
+                                    </td>
+
+                                    {{-- NO TELP --}}
+                                    <td style="max-width: 140px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 140px;"
+                                            title="{{ $data_apply->pencariKerja->no_telp_pencari_kerja }}">
+                                            {{ $data_apply->pencariKerja->no_telp_pencari_kerja ?? '-' }}
+                                        </span>
+                                    </td>
+
+                                    {{-- EMAIL --}}
+                                    <td style="max-width: 200px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                            title="{{ $data_apply->pencariKerja->email_pencari_kerja }}">
+                                            {{ $data_apply->pencariKerja->email_pencari_kerja ?? '-' }}
+                                        </span>
+                                    </td>
+
+                                    {{-- STATUS --}}
+                                    <td style="width: 140px;">
                                         @switch($data_apply->status)
                                             @case('pending')
                                                 <span class="badge bg-label-warning">Pending</span>
@@ -81,18 +117,17 @@
                                                 @break
                                         @endswitch
                                     </td>
-                                    <!-- Opsi dropdown untuk profile/detail apply -->
-                                    <td>
+
+                                    {{-- OPSI --}}
+                                    <td style="width: 90px;">
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <!-- Link ke profile pelamar -->
                                                 <a class="dropdown-item" href="{{ route('admin.apply.profile', $data_apply->id) }}">
                                                     <i class="icon-base bx bx-user-circle me-2"></i> Profile Pelamar
                                                 </a>
-                                                <!-- Link ke detail apply -->
                                                 <a class="dropdown-item" href="{{ route('admin.apply.detail', $data_apply->id) }}">
                                                     <i class="icon-base bx bx-show me-2"></i> Detail Apply
                                                 </a>

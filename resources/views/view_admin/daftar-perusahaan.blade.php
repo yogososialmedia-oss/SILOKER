@@ -47,21 +47,41 @@
                         <tbody>
                             @foreach ($perusahaanMitra as $perusahaan)
                                 <tr>
-                                    <!-- Tanggal pendaftaran perusahaan -->
-                                    <td>{{ $perusahaan->created_at->format('d/m/Y') }}</td>
-                                    <!-- Nama perusahaan -->
-                                    <td>{{ $perusahaan->nama_perusahaan }}</td>
-                                    <!-- Email perusahaan -->
-                                    <td>{{ $perusahaan->email_perusahaan }}</td>
-                                    <!-- Nomor NPWP perusahaan -->
-                                    <td>{{ $perusahaan->no_npwp }}</td>
-                                    <td>
+                                    {{-- TANGGAL --}}
+                                    <td style="width: 110px;">
+                                        {{ $perusahaan->created_at->format('d/m/Y') }}
+                                    </td>
+
+                                    {{-- NAMA PERUSAHAAN --}}
+                                    <td style="max-width: 200px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 200px;"
+                                            title="{{ $perusahaan->nama_perusahaan }}">
+                                            {{ $perusahaan->nama_perusahaan }}
+                                        </span>
+                                    </td>
+
+                                    {{-- EMAIL --}}
+                                    <td style="max-width: 220px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 220px;"
+                                            title="{{ $perusahaan->email_perusahaan }}">
+                                            {{ $perusahaan->email_perusahaan }}
+                                        </span>
+                                    </td>
+
+                                    {{-- NPWP --}}
+                                    <td style="max-width: 180px;">
+                                        <span class="d-inline-block text-truncate" style="max-width: 180px;"
+                                            title="{{ $perusahaan->no_npwp }}">
+                                            {{ $perusahaan->no_npwp }}
+                                        </span>
+                                    </td>
+
+                                    {{-- STATUS --}}
+                                    <td style="width: 140px;">
                                         @php
-                                            // Ambil status akun dan ubah ke lowercase untuk memudahkan pengecekan
                                             $status = strtolower($perusahaan->status_akun);
                                         @endphp
 
-                                        <!-- Badge status akun -->
                                         @if ($status == 'pending')
                                             <span class="badge bg-label-warning">Pending</span>
                                         @elseif ($status == 'terverifikasi')
@@ -69,20 +89,19 @@
                                         @elseif ($status == 'verifikasi_gagal')
                                             <span class="badge bg-label-danger">Verifikasi Gagal</span>
                                         @else
-                                            <!-- Status lain tampil dengan badge default -->
                                             <span class="badge bg-label-secondary">
                                                 {{ ucfirst($perusahaan->status_akun) }}
                                             </span>
                                         @endif
                                     </td>
-                                    <td>
-                                        <!-- Dropdown opsi untuk setiap perusahaan -->
+
+                                    {{-- OPSI --}}
+                                    <td style="width: 80px;">
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <!-- Link menuju profile perusahaan -->
                                                 <a class="dropdown-item" href="{{ route('admin.profile-perusahaan', $perusahaan->id) }}">
                                                     <i class="icon-base bx bx-user-circle me-2"></i> Profile Perusahaan
                                                 </a>
