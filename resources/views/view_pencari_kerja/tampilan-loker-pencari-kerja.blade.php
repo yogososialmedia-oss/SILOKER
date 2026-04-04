@@ -30,26 +30,45 @@
                             </p>
 
                             {{-- NAMA PERUSAHAAN & INFO --}}
-                            <h5 class="mb-1 d-flex align-items-center gap-2">
-                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}" class="text-dark link-primary fw-bold position-relative z-3">
+                            <h5 class="mb-1 d-flex align-items-center gap-2" style="min-width:0;">
+    
+                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                class="text-dark link-primary fw-bold text-truncate d-inline-block"
+                                style="max-width: 220px;"
+                                title="{{ $loker->perusahaanMitra->nama_perusahaan }}">
                                     {{ $loker->perusahaanMitra->nama_perusahaan }}
                                 </a>
-                                {{-- ICON INFO PERUSAHAAN --}}
-                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}" class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center position-relative z-5" style="width:16px; height:16px; font-size:10px; line-height:1;">
+
+                                <a href="{{ route('pencarikerja.profile.perusahaan', $loker->perusahaanMitra->id) }}"
+                                class="badge rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                style="width:16px; height:16px; font-size:10px;">
                                     i
                                 </a>
+
                             </h5>
                             
                             {{-- JABATAN + STATUS LOKER --}}
-                            <div class="d-flex align-items-center mb-3">
-                                <h5 class="mb-0">{{ $loker->jabatan }}</h5>
-                                <div class="ms-auto pe-3">
+                            <div class="d-flex align-items-start mb-3" style="min-width:0;">
+    
+                                <h5 class="mb-0 flex-grow-1 me-2" 
+                                    style="
+                                        overflow: hidden;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2;
+                                        -webkit-box-orient: vertical;
+                                    "
+                                    title="{{ $loker->jabatan }}">
+                                    {{ $loker->jabatan }}
+                                </h5>
+
+                                <div class="flex-shrink-0">
                                     @if($loker->status == 'open')
                                         <span class="badge bg-primary fs-6 px-3 py-2">Open</span>
                                     @else
                                         <span class="badge bg-warning fs-6 px-3 py-2">Closed</span>
                                     @endif
                                 </div>
+
                             </div>
 
                             {{-- DETAIL DESKRIPSI SINGKAT --}}
@@ -58,9 +77,12 @@
                             </h6>
 
                             {{-- LOKASI --}}
-                            <p class="d-flex align-items-center gap-1 mb-1">
+                            <p class="d-flex align-items-center gap-1 mb-1" style="min-width:0;">
                                 <i class="bx bx-location-plus icon-sm"></i>
-                                <span>{{ $loker->kabupaten }}</span>
+                                <span class="text-truncate d-inline-block" style="max-width: 200px;" 
+                                    title="{{ $loker->kabupaten }}">
+                                    {{ $loker->kabupaten }}
+                                </span>
                             </p>
 
                             {{-- MODEL KERJA --}}
