@@ -108,13 +108,13 @@
                                                     <!-- Data apply per baris -->
                                                     <td>{{ $apply->tanggal_apply ? $apply->tanggal_apply->format('d/m/Y') : '-' }}</td>
                                                     <td>
-                                                        <span class="d-inline-block text-truncate w-100"
+                                                        <span class="d-block text-truncate"
                                                             title="{{ $apply->perusahaanMitra->nama_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->nama_perusahaan ?? '-' }}
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <span class="d-inline-block text-truncate w-100"
+                                                        <span class="d-block text-truncate"
                                                             title="{{ $apply->loker->jabatan }}">
                                                             {{ $apply->loker->jabatan ?? '-' }}
                                                         </span>
@@ -134,7 +134,7 @@
                                                     </td>
                                                     <td>{{ $apply->perusahaanMitra->no_telp_perusahaan ?? '-' }}</td>
                                                     <td>
-                                                        <span class="d-inline-block text-truncate w-100"
+                                                        <span class="d-block text-truncate"
                                                             title="{{ $apply->perusahaanMitra->email_perusahaan }}">
                                                             {{ $apply->perusahaanMitra->email_perusahaan ?? '-' }}
                                                         </span>
