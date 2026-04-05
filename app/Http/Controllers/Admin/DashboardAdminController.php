@@ -35,14 +35,12 @@ class DashboardAdminController extends Controller
 
         $lokerTerbaru = Loker::with('perusahaanMitra')
             ->withCount('apply')
+            ->whereDate('tanggal_mulai_loker', '<=', $today)
+            ->whereDate('tanggal_berakhir_loker', '>=', $today)
             ->get()
-            ->map(function ($loker) {
-                $loker->total_popularitas =
-                    ($loker->tayangan * 1) +
-                    ($loker->apply_count * 5);
-                return $loker;
+            ->sortByDesc(function ($loker) {
+                return ($loker->tayangan * 1) + ($loker->apply_count * 5);
             })
-            ->sortByDesc('total_popularitas')
             ->take(10)
             ->values();
 
